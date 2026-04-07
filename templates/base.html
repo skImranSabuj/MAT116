@@ -322,20 +322,62 @@
 
       /* answer */
       .answer-box {
-        margin-top: 1.1rem;
+        margin-top: 1.25rem;
         background: #e8f5e9;
         border: 1.5px solid #a5d6a7;
         border-radius: 6px;
-        padding: 0.8rem 1.2rem;
+        overflow: hidden;
       }
-      .answer-box .label {
+      .answer-box-header {
         font-weight: bold;
-        color: #2e7d32;
-        font-size: 0.85rem;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        display: block;
-        margin-bottom: 0.3rem;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-sections {
+        padding: 0.6rem 1rem 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .answer-section {
+        padding: 0.45rem 0.75rem;
+        border-left: 3px solid #81c784;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 0 4px 4px 0;
+      }
+      .answer-sec-label {
+        font-family: "Georgia", serif;
+        font-size: 0.78rem;
+        font-weight: bold;
+        color: #1b5e20;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.2rem;
+      }
+      .answer-sec-body {
+        white-space: pre-wrap;
+        font-family: "Courier New", monospace;
+        font-size: 0.91rem;
+        line-height: 1.65;
+        color: #1a2e1a;
+        word-break: break-word;
+      }
+      /* fallback for old one-liner answers */
+      .answer-plain {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+        color: #1b5e20;
+        white-space: pre-wrap;
       }
 
       /* graph */
@@ -521,10 +563,23 @@
             <div class="graph-label">Graph of f(x)</div>
             <div id="g{{ sol.number }}" class="graph-div"></div>
           </div>
-          {% endif %} {% if sol.answer %}
+          {% endif %} {% if sol.answer_sections or sol.answer %}
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            {{ sol.answer }}
+            <div class="answer-box-header">Exam Answer</div>
+            {% if sol.answer_sections %}
+            <div class="answer-sections">
+              {% for sec in sol.answer_sections %}
+              <div class="answer-section">
+                <div class="answer-sec-label">{{ sec.label }}</div>
+                <div class="answer-sec-body">
+                  {{ sec.body | replace("**", "") }}
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="answer-plain">{{ sol.answer }}</div>
+            {% endif %}
           </div>
           {% endif %}
           <a class="back-top" href="#top">&#8593; Back to top</a>

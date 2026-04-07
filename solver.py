@@ -45,9 +45,17 @@ class Solver:
         }
         fn = dispatch.get(ptype, self._generic)
         result = fn(num, q, meta)
-        steps, answer, graph = result if len(result) == 3 else (*result, None)
+        if len(result) == 4:
+            steps, answer, answer_sections, graph = result
+        elif len(result) == 3:
+            steps, answer, graph = result
+            answer_sections = None
+        else:
+            steps, answer = result
+            answer_sections, graph = None, None
         return {"number": num, "question": q, "type": ptype,
-                "steps": steps, "answer": answer, "graph": graph}
+                "steps": steps, "answer": answer,
+                "answer_sections": answer_sections, "graph": graph}
 
     # -----------------------------------------------------------------------
     # GRAPH HELPER
@@ -277,7 +285,81 @@ class Solver:
             graph = self._make_graph(f_fn, _h - x_span, _h + x_span, graphkp)
         except Exception:
             graph = None
-        return steps, answer, graph
+
+        # ── exam answer sections ──────────────────────────────────────────
+        if even:
+            parent_line = (f"y = x^{n}\n"
+                           f"  Shape    : U-shaped, opens upward\n"
+                           f"  Vertex   : (0, 0)\n"
+                           f"  Symmetry : symmetric about the y-axis")
+        else:
+            parent_line = (f"y = x^{n}\n"
+                           f"  Shape    : S-shaped curve\n"
+                           f"  Key point: inflection point at (0, 0)")
+
+        trans_bullets = []
+        for t in trans_lines:
+            first_line = t.split("\n")[0].strip()
+            trans_bullets.append(f"  • {first_line}")
+        if not trans_bullets:
+            trans_bullets = ["  • No transformation — this IS the parent function"]
+        trans_exam = "\n".join(trans_bullets)
+
+        k_sign = f"+ {abs(k)}" if k >= 0 else f"- {abs(k)}"
+        yint_exam = (
+            f"  Substitute x = 0 into f(x):\n"
+            f"    f(0) = {a_str}(0 − ({h}))^{n} {k_sign}\n"
+            f"         = {a_str} × {inner_val} {k_sign}\n"
+            f"         = {scaled_str} {k_sign}\n"
+            f"         = {y_int_str}\n\n"
+            f"  ∴  y-intercept: (0, {y_int_str})"
+        )
+
+        if even:
+            shape_exam = (
+                f"  n = {n}  (EVEN power),  a = {a_str}  ({'> 0' if a > 0 else '< 0'})\n"
+                f"  → Graph opens {'UPWARD (U-shape)' if a > 0 else 'DOWNWARD (inverted U)'}\n"
+                f"  → Axis of symmetry: x = {kp_x}"
+            )
+        else:
+            shape_exam = (
+                f"  n = {n}  (ODD power),  a = {a_str}  ({'> 0' if a > 0 else '< 0'})\n"
+                f"  → {'Rises left-to-right' if a > 0 else 'Falls left-to-right'}\n"
+                f"  → Point symmetry about ({kp_x}, {kp_y})"
+            )
+
+        kp_exam = (
+            f"  Start at parent key point (0, 0), apply shifts:\n"
+            f"    Horizontal shift: {hdir}  →  x = {kp_x}\n"
+            f"    Vertical shift  : {kdir}  →  y = {kp_y}\n\n"
+            f"  ∴  {key_name} = ({kp_x}, {kp_y})"
+            + (f"\n     (This is the {'lowest' if a > 0 else 'highest'} point on the graph.)"
+               if even else "\n     (This is where the curve changes its bend.)")
+        )
+
+        end_exam = (
+            f"  Leading term: {a_str}·x^{n}  —  "
+            f"degree {n} ({'even' if even else 'odd'}), "
+            f"a = {a_str} ({'positive' if a > 0 else 'negative'})\n\n"
+            f"  {_end_math(n, a)}\n"
+            f"  → {_end_plain(n, a)}"
+        )
+
+        answer_sections = [
+            {"label": "① Parent Function",
+             "body": parent_line},
+            {"label": "② Transformations Applied",
+             "body": trans_exam},
+            {"label": f"③ New {key_name}  (apply shifts to key point)",
+             "body": kp_exam},
+            {"label": "④ Shape & Symmetry",
+             "body": shape_exam},
+            {"label": "⑤ y-intercept  (substitute x = 0)",
+             "body": yint_exam},
+            {"label": "⑥ End Behavior",
+             "body": end_exam},
+        ]
+        return steps, answer, answer_sections, graph
 
     # -----------------------------------------------------------------------
     # 2. FORM POLYNOMIAL FROM ZEROS  (43-50)
@@ -388,7 +470,51 @@ class Solver:
             graph = self._make_graph(_f, min(_zf) - _margin, max(_zf) + _margin, _gkp)
         except Exception:
             graph = None
-        return steps, answer, graph
+
+        # ── exam answer sections ──────────────────────────────────────────
+        ft_lines = ["  Factor Theorem:  if x = r is a zero, then (x − r) is a factor.\n"]
+        for f_str, z, m in factor_parts:
+            mult_tag = f"   ← multiplicity {m} (use this factor {m} times)" if m > 1 else ""
+            ft_lines.append(f"  x = {str(z):<6}  →  {f_str}{mult_tag}")
+        ft_body = "\n".join(ft_lines)
+
+        factored_body = f"  f(x) = {factored}"
+        if any(m > 1 for _, _, m in factor_parts):
+            factored_body += ("\n\n  Note: a factor with even multiplicity → graph TOUCHES the x-axis\n"
+                              "        a factor with odd  multiplicity → graph CROSSES the x-axis")
+
+        yint_poly = None
+        try:
+            from sympy import symbols as _s2, Rational as _R2
+            _xx = _s2("x")
+            _ep = 1
+            for z, m in zeros:
+                _zv2 = _R2(z).limit_denominator(100) if isinstance(z, float) and z != int(z) else int(z)
+                _ep *= (_xx - _zv2)**m
+            yint_poly = float(_ep.subs(_xx, 0))
+        except Exception:
+            yint_poly = None
+        yint_poly_str = (f"{int(yint_poly)}" if yint_poly is not None and yint_poly == int(yint_poly)
+                         else f"{yint_poly:.4g}" if yint_poly is not None else "—")
+
+        verify_lines = ["  Degree check — sum of multiplicities must equal the stated degree:"]
+        for _, z, m in factor_parts:
+            verify_lines.append(f"    zero x = {z},  multiplicity {m}")
+        total_m = sum(m for _, _, m in factor_parts)
+        verify_lines.append(f"    Total = {total_m}" + (f"  =  {degree}  ✓" if degree else ""))
+        verify_lines.append(f"\n  y-intercept check:  f(0) = {yint_poly_str}")
+
+        answer_sections = [
+            {"label": "① Factor Theorem  (zeros → factors)",
+             "body": ft_body},
+            {"label": "② Factored Form  (a = 1)",
+             "body": factored_body},
+            {"label": "③ Standard Form  (expand / multiply out)",
+             "body": f"  f(x) = {expanded_str}"},
+            {"label": "④ Verify",
+             "body": "\n".join(verify_lines)},
+        ]
+        return steps, answer, answer_sections, graph
 
     # -----------------------------------------------------------------------
     # 3. FORM POLYNOMIAL THROUGH A POINT  (51-56)
@@ -514,7 +640,45 @@ class Solver:
                 graph = self._make_graph(_f2, min(_zf2) - _margin2, max(_zf2) + _margin2, _gkp2)
         except Exception:
             graph = None
-        return steps, answer, graph
+
+        # ── exam answer sections ──────────────────────────────────────────
+        ft3_lines = ["  Factor Theorem:  zero x = r  →  factor (x − r)\n"]
+        for f_str, z, m in factor_parts:
+            ft3_lines.append(f"  x = {str(z):<6}  →  {f_str}")
+        ft3_body = "\n".join(ft3_lines)
+
+        general_body = (
+            f"  Write f(x) with unknown leading coefficient 'a':\n\n"
+            f"    f(x) = a · {factored_base}\n\n"
+            f"  (Any value of 'a' gives the same zeros — we need the given point to fix it.)"
+        )
+
+        solve_a_body = (
+            f"  Given point: f({px_str}) = {py_str}\n\n"
+            f"  Step 1 — Substitute x = {px_str} into the base (without 'a'):\n"
+            f"    {factored_base} at x = {px_str}  =  {base_str}\n\n"
+            f"  Step 2 — Set up equation and solve:\n"
+            f"    a × {base_str} = {py_str}\n"
+            f"    a = {py_str} ÷ ({base_str}) = {a_str}"
+        )
+
+        final_poly_body = (
+            f"  Factored form:  f(x) = {a_str} · {factored_base}\n\n"
+            f"  Standard form:  f(x) = {expanded_final}\n\n"
+            f"  Verify: f({px_str}) = {a_str} × {base_str} = {py_str}  ✓"
+        )
+
+        answer_sections = [
+            {"label": "① Factor Theorem  (zeros → factors)",
+             "body": ft3_body},
+            {"label": "② General Form  (a is unknown)",
+             "body": general_body},
+            {"label": "③ Find 'a'  (substitute given point)",
+             "body": solve_a_body},
+            {"label": "④ Final Polynomial",
+             "body": final_poly_body},
+        ]
+        return steps, answer, answer_sections, graph
 
     # -----------------------------------------------------------------------
     # 4. ANALYSIS  (57-68)
@@ -711,7 +875,65 @@ class Solver:
                 graph = self._make_graph(_fn, _gxlo, _gxhi, _gkp3)
             except Exception:
                 graph = None
-            return steps, answer, graph
+
+            # ── exam answer sections ──────────────────────────────────────
+            a_sec = (
+                f"  f(x) = {expanded_str}\n\n"
+                f"  Degree              = {deg}   (highest power of x)\n"
+                f"  Leading coefficient = {lc_str}\n"
+                f"  Leading term        = ${lt_str}$"
+            )
+
+            if real_zeros:
+                b_lines = ["  Set factors equal to zero:\n"]
+                for z in sorted(real_zeros, key=lambda r: float(r.evalf())):
+                    m = real_zeros[z]
+                    z_str = _fmt_zero(z)
+                    b_lines.append(f"    x = {z_str}   (multiplicity {m})")
+                b_lines.append(f"\n  y-intercept: f(0) = {y_int_str}  →  point (0, {y_int_str})")
+            else:
+                b_lines = [
+                    "  No real zeros — graph never crosses or touches the x-axis.",
+                    f"\n  y-intercept: f(0) = {y_int_str}  →  point (0, {y_int_str})"
+                ]
+            b_sec = "\n".join(b_lines)
+
+            if real_zeros:
+                c_lines = [
+                    "  Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis",
+                    "        EVEN multiplicity → graph TOUCHES x-axis and bounces back\n"
+                ]
+                for z in sorted(real_zeros, key=lambda r: float(r.evalf())):
+                    m = real_zeros[z]
+                    z_str = _fmt_zero(z)
+                    behavior = "CROSSES" if m % 2 == 1 else "TOUCHES (bounces back)"
+                    c_lines.append(f"  x = {z_str}  (mult {m}, {'odd' if m%2==1 else 'even'})  →  {behavior}")
+                c_sec = "\n".join(c_lines)
+            else:
+                c_sec = "  No real zeros — no x-intercepts to cross or touch."
+
+            d_sec = (
+                f"  Formula: maximum turning points = degree − 1\n\n"
+                f"  = {deg} − 1 = {max_tp}\n\n"
+                f"  ∴  This graph has at most {max_tp} turning point(s)."
+            )
+
+            e_sec = (
+                f"  Leading term: ${lt_str}$\n"
+                f"  Degree = {deg} ({'EVEN' if deg % 2 == 0 else 'ODD'}),  "
+                f"a = {lc_str} ({'positive' if lc > 0 else 'negative'})\n\n"
+                f"  {_end_math(deg, lc)}\n"
+                f"  → {_end_plain(deg, lc)}"
+            )
+
+            answer_sections = [
+                {"label": "(a) Degree & Leading Term", "body": a_sec},
+                {"label": "(b) Zeros (x-intercepts) & y-intercept", "body": b_sec},
+                {"label": "(c) Cross or Touch the x-axis?", "body": c_sec},
+                {"label": "(d) Maximum Number of Turning Points", "body": d_sec},
+                {"label": "(e) End Behavior", "body": e_sec},
+            ]
+            return steps, answer, answer_sections, graph
 
         except Exception as e:
             logger.warning(f"sympy analysis failed for '{q}': {e}")

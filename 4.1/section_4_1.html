@@ -31,7 +31,10 @@
     ></script>
 
     <!-- Plotly.js basic (line + scatter, ~600 KB) -->
-    <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
+    <script
+      src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js"
+      charset="utf-8"
+    ></script>
 
     <style>
       /* ── Reset ── */
@@ -319,20 +322,62 @@
 
       /* answer */
       .answer-box {
-        margin-top: 1.1rem;
+        margin-top: 1.25rem;
         background: #e8f5e9;
         border: 1.5px solid #a5d6a7;
         border-radius: 6px;
-        padding: 0.8rem 1.2rem;
+        overflow: hidden;
       }
-      .answer-box .label {
+      .answer-box-header {
         font-weight: bold;
-        color: #2e7d32;
-        font-size: 0.85rem;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
-        display: block;
-        margin-bottom: 0.3rem;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-sections {
+        padding: 0.6rem 1rem 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .answer-section {
+        padding: 0.45rem 0.75rem;
+        border-left: 3px solid #81c784;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 0 4px 4px 0;
+      }
+      .answer-sec-label {
+        font-family: "Georgia", serif;
+        font-size: 0.78rem;
+        font-weight: bold;
+        color: #1b5e20;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.2rem;
+      }
+      .answer-sec-body {
+        white-space: pre-wrap;
+        font-family: "Courier New", monospace;
+        font-size: 0.91rem;
+        line-height: 1.65;
+        color: #1a2e1a;
+        word-break: break-word;
+      }
+      /* fallback for old one-liner answers */
+      .answer-plain {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+        color: #1b5e20;
+        white-space: pre-wrap;
       }
 
       /* graph */
@@ -356,7 +401,9 @@
         width: 100%;
       }
       @media (max-width: 768px) {
-        .graph-div { height: 260px; }
+        .graph-div {
+          height: 260px;
+        }
       }
 
       /* misc */
@@ -986,11 +1033,76 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g37" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Parent: $y = x^{4}$ | Vertex: (-2, -3) | y-intercept: (0, 13) | The graph rises on BOTH sides (like a U-shape).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Parent Function</div>
+                <div class="answer-sec-body">
+                  y = x^4
+  Shape    : U-shaped, opens upward
+  Vertex   : (0, 0)
+  Symmetry : symmetric about the y-axis
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Transformations Applied</div>
+                <div class="answer-sec-body">
+                    • SHIFT LEFT by 2 units
+  • SHIFT DOWN by 3 units
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ New Vertex  (apply shifts to key point)</div>
+                <div class="answer-sec-body">
+                    Start at parent key point (0, 0), apply shifts:
+    Horizontal shift: left 2 unit(s)  →  x = -2
+    Vertical shift  : down 3 unit(s)  →  y = -3
+
+  ∴  Vertex = (-2, -3)
+     (This is the lowest point on the graph.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Shape &amp; Symmetry</div>
+                <div class="answer-sec-body">
+                    n = 4  (EVEN power),  a = 1  (&gt; 0)
+  → Graph opens UPWARD (U-shape)
+  → Axis of symmetry: x = -2
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑤ y-intercept  (substitute x = 0)</div>
+                <div class="answer-sec-body">
+                    Substitute x = 0 into f(x):
+    f(0) = 1(0 − (-2))^4 - 3
+         = 1 × 16 - 3
+         = 16 - 3
+         = 13
+
+  ∴  y-intercept: (0, 13)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑥ End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: 1·x^4  —  degree 4 (even), a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph rises on BOTH sides (like a U-shape).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1090,11 +1202,75 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g38" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Parent: $y = x^{5}$ | Inflection Point: (1, 2) | y-intercept: (0, 1) | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Parent Function</div>
+                <div class="answer-sec-body">
+                  y = x^5
+  Shape    : S-shaped curve
+  Key point: inflection point at (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Transformations Applied</div>
+                <div class="answer-sec-body">
+                    • SHIFT RIGHT by 1 units
+  • SHIFT UP by 2 units
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ New Inflection Point  (apply shifts to key point)</div>
+                <div class="answer-sec-body">
+                    Start at parent key point (0, 0), apply shifts:
+    Horizontal shift: right 1 unit(s)  →  x = 1
+    Vertical shift  : up 2 unit(s)  →  y = 2
+
+  ∴  Inflection Point = (1, 2)
+     (This is where the curve changes its bend.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Shape &amp; Symmetry</div>
+                <div class="answer-sec-body">
+                    n = 5  (ODD power),  a = 1  (&gt; 0)
+  → Rises left-to-right
+  → Point symmetry about (1, 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑤ y-intercept  (substitute x = 0)</div>
+                <div class="answer-sec-body">
+                    Substitute x = 0 into f(x):
+    f(0) = 1(0 − (1))^5 + 2
+         = 1 × -1 + 2
+         = -1 + 2
+         = 1
+
+  ∴  y-intercept: (0, 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑥ End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: 1·x^5  —  degree 5 (odd), a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1197,11 +1373,76 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g39" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Parent: $y = x^{5}$ | Inflection Point: (1, -2) | y-intercept: (0, -2.5) | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Parent Function</div>
+                <div class="answer-sec-body">
+                  y = x^5
+  Shape    : S-shaped curve
+  Key point: inflection point at (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Transformations Applied</div>
+                <div class="answer-sec-body">
+                    • VERTICAL COMPRESSION by 0.5
+  • SHIFT RIGHT by 1 units
+  • SHIFT DOWN by 2 units
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ New Inflection Point  (apply shifts to key point)</div>
+                <div class="answer-sec-body">
+                    Start at parent key point (0, 0), apply shifts:
+    Horizontal shift: right 1 unit(s)  →  x = 1
+    Vertical shift  : down 2 unit(s)  →  y = -2
+
+  ∴  Inflection Point = (1, -2)
+     (This is where the curve changes its bend.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Shape &amp; Symmetry</div>
+                <div class="answer-sec-body">
+                    n = 5  (ODD power),  a = 0.5  (&gt; 0)
+  → Rises left-to-right
+  → Point symmetry about (1, -2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑤ y-intercept  (substitute x = 0)</div>
+                <div class="answer-sec-body">
+                    Substitute x = 0 into f(x):
+    f(0) = 0.5(0 − (1))^5 - 2
+         = 0.5 × -1 - 2
+         = -0.5 - 2
+         = -2.5
+
+  ∴  y-intercept: (0, -2.5)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑥ End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: 0.5·x^5  —  degree 5 (odd), a = 0.5 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1305,11 +1546,77 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g40" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Parent: $y = x^{4}$ | Vertex: (-1, 1) | y-intercept: (0, 3) | The graph rises on BOTH sides (like a U-shape).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Parent Function</div>
+                <div class="answer-sec-body">
+                  y = x^4
+  Shape    : U-shaped, opens upward
+  Vertex   : (0, 0)
+  Symmetry : symmetric about the y-axis
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Transformations Applied</div>
+                <div class="answer-sec-body">
+                    • VERTICAL STRETCH by 2
+  • SHIFT LEFT by 1 units
+  • SHIFT UP by 1 units
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ New Vertex  (apply shifts to key point)</div>
+                <div class="answer-sec-body">
+                    Start at parent key point (0, 0), apply shifts:
+    Horizontal shift: left 1 unit(s)  →  x = -1
+    Vertical shift  : up 1 unit(s)  →  y = 1
+
+  ∴  Vertex = (-1, 1)
+     (This is the lowest point on the graph.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Shape &amp; Symmetry</div>
+                <div class="answer-sec-body">
+                    n = 4  (EVEN power),  a = 2  (&gt; 0)
+  → Graph opens UPWARD (U-shape)
+  → Axis of symmetry: x = -1
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑤ y-intercept  (substitute x = 0)</div>
+                <div class="answer-sec-body">
+                    Substitute x = 0 into f(x):
+    f(0) = 2(0 − (-1))^4 + 1
+         = 2 × 1 + 1
+         = 2 + 1
+         = 3
+
+  ∴  y-intercept: (0, 3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑥ End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: 2·x^4  —  degree 4 (even), a = 2 (positive)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph rises on BOTH sides (like a U-shape).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1414,11 +1721,77 @@ In plain words: The graph falls on BOTH sides (like an upside-down U).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g41" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Parent: $y = x^{4}$ | Vertex: (-2, 3) | y-intercept: (0, -13) | The graph falls on BOTH sides (like an upside-down U).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Parent Function</div>
+                <div class="answer-sec-body">
+                  y = x^4
+  Shape    : U-shaped, opens upward
+  Vertex   : (0, 0)
+  Symmetry : symmetric about the y-axis
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Transformations Applied</div>
+                <div class="answer-sec-body">
+                    • FLIP (Reflection over x-axis)
+  • SHIFT LEFT by 2 units
+  • SHIFT UP by 3 units
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ New Vertex  (apply shifts to key point)</div>
+                <div class="answer-sec-body">
+                    Start at parent key point (0, 0), apply shifts:
+    Horizontal shift: left 2 unit(s)  →  x = -2
+    Vertical shift  : up 3 unit(s)  →  y = 3
+
+  ∴  Vertex = (-2, 3)
+     (This is the highest point on the graph.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Shape &amp; Symmetry</div>
+                <div class="answer-sec-body">
+                    n = 4  (EVEN power),  a = -1  (&lt; 0)
+  → Graph opens DOWNWARD (inverted U)
+  → Axis of symmetry: x = -2
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑤ y-intercept  (substitute x = 0)</div>
+                <div class="answer-sec-body">
+                    Substitute x = 0 into f(x):
+    f(0) = -1(0 − (-2))^4 + 3
+         = -1 × 16 + 3
+         = -16 + 3
+         = -13
+
+  ∴  y-intercept: (0, -13)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑥ End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: -1·x^4  —  degree 4 (even), a = -1 (negative)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph falls on BOTH sides (like an upside-down U).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1522,11 +1895,76 @@ In plain words: The graph rises to the LEFT and falls to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g42" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Parent: $y = x^{5}$ | Inflection Point: (2, 4) | y-intercept: (0, 36) | The graph rises to the LEFT and falls to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Parent Function</div>
+                <div class="answer-sec-body">
+                  y = x^5
+  Shape    : S-shaped curve
+  Key point: inflection point at (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Transformations Applied</div>
+                <div class="answer-sec-body">
+                    • FLIP (Reflection over x-axis)
+  • SHIFT RIGHT by 2 units
+  • SHIFT UP by 4 units
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ New Inflection Point  (apply shifts to key point)</div>
+                <div class="answer-sec-body">
+                    Start at parent key point (0, 0), apply shifts:
+    Horizontal shift: right 2 unit(s)  →  x = 2
+    Vertical shift  : up 4 unit(s)  →  y = 4
+
+  ∴  Inflection Point = (2, 4)
+     (This is where the curve changes its bend.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Shape &amp; Symmetry</div>
+                <div class="answer-sec-body">
+                    n = 5  (ODD power),  a = -1  (&lt; 0)
+  → Falls left-to-right
+  → Point symmetry about (2, 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑤ y-intercept  (substitute x = 0)</div>
+                <div class="answer-sec-body">
+                    Substitute x = 0 into f(x):
+    f(0) = -1(0 − (2))^5 + 4
+         = -1 × -32 + 4
+         = 32 + 4
+         = 36
+
+  ∴  y-intercept: (0, 36)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">⑥ End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: -1·x^5  —  degree 5 (odd), a = -1 (negative)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph rises to the LEFT and falls to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1599,11 +2037,52 @@ Degree = 3  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g43" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 1) \cdot (x - 1) \cdot (x - 3) = x^3 - 3x^2 - x + 3$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -1      →  (x + 1)
+  x = 1       →  (x - 1)
+  x = 3       →  (x - 3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 1) \cdot (x - 1) \cdot (x - 3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 - 3x^2 - x + 3
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -1,  multiplicity 1
+    zero x = 1,  multiplicity 1
+    zero x = 3,  multiplicity 1
+    Total = 3  =  3  ✓
+
+  y-intercept check:  f(0) = 3
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1676,11 +2155,52 @@ Degree = 3  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g44" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 2) \cdot (x - 2) \cdot (x - 3) = x^3 - 3x^2 - 4x + 12$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -2      →  (x + 2)
+  x = 2       →  (x - 2)
+  x = 3       →  (x - 3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 2) \cdot (x - 2) \cdot (x - 3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 - 3x^2 - 4x + 12
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -2,  multiplicity 1
+    zero x = 2,  multiplicity 1
+    zero x = 3,  multiplicity 1
+    Total = 3  =  3  ✓
+
+  y-intercept check:  f(0) = 12
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1753,11 +2273,52 @@ Degree = 3  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g45" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 4) \cdot x \cdot (x - 2) = x^3 + 2x^2 - 8x$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -4      →  (x + 4)
+  x = 0       →  x
+  x = 2       →  (x - 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 4) \cdot x \cdot (x - 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 + 2x^2 - 8x
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -4,  multiplicity 1
+    zero x = 0,  multiplicity 1
+    zero x = 2,  multiplicity 1
+    Total = 3  =  3  ✓
+
+  y-intercept check:  f(0) = 0
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1830,11 +2391,52 @@ Degree = 3  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g46" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 3) \cdot x \cdot (x - 4) = x^3 - x^2 - 12x$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -3      →  (x + 3)
+  x = 0       →  x
+  x = 4       →  (x - 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 3) \cdot x \cdot (x - 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 - x^2 - 12x
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -3,  multiplicity 1
+    zero x = 0,  multiplicity 1
+    zero x = 4,  multiplicity 1
+    Total = 3  =  3  ✓
+
+  y-intercept check:  f(0) = 0
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1909,11 +2511,54 @@ Degree = 4  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g47" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 3) \cdot (x + 1) \cdot (x - 2) \cdot (x - 5) = x^4 - 3x^3 - 15x^2 + 19x + 30$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -3      →  (x + 3)
+  x = -1      →  (x + 1)
+  x = 2       →  (x - 2)
+  x = 5       →  (x - 5)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 3) \cdot (x + 1) \cdot (x - 2) \cdot (x - 5)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^4 - 3x^3 - 15x^2 + 19x + 30
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -3,  multiplicity 1
+    zero x = -1,  multiplicity 1
+    zero x = 2,  multiplicity 1
+    zero x = 5,  multiplicity 1
+    Total = 4  =  4  ✓
+
+  y-intercept check:  f(0) = 30
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -1988,11 +2633,54 @@ Degree = 4  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g48" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 4) \cdot (x + 1) \cdot (x - 2) \cdot (x - 3) = x^4 - 15x^2 + 10x + 24$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -4      →  (x + 4)
+  x = -1      →  (x + 1)
+  x = 2       →  (x - 2)
+  x = 3       →  (x - 3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 4) \cdot (x + 1) \cdot (x - 2) \cdot (x - 3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^4 - 15x^2 + 10x + 24
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -4,  multiplicity 1
+    zero x = -1,  multiplicity 1
+    zero x = 2,  multiplicity 1
+    zero x = 3,  multiplicity 1
+    Total = 4  =  4  ✓
+
+  y-intercept check:  f(0) = 24
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2064,11 +2752,53 @@ Degree = 3  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g49" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 2)^{2} \cdot (x - 4) = x^3 - 12x - 16$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -2      →  (x + 2)^{2}   ← multiplicity 2 (use this factor 2 times)
+  x = 4       →  (x - 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 2)^{2} \cdot (x - 4)
+
+  Note: a factor with even multiplicity → graph TOUCHES the x-axis
+        a factor with odd  multiplicity → graph CROSSES the x-axis
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 - 12x - 16
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -2,  multiplicity 2
+    zero x = 4,  multiplicity 1
+    Total = 3  =  3  ✓
+
+  y-intercept check:  f(0) = -16
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2140,11 +2870,53 @@ Degree = 3  (matches!)</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g50" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            $f(x) = (x + 1) \cdot (x - 3)^{2} = x^3 - 5x^2 + 3x + 9$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  if x = r is a zero, then (x − r) is a factor.
+
+  x = -1      →  (x + 1)
+  x = 3       →  (x - 3)^{2}   ← multiplicity 2 (use this factor 2 times)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Factored Form  (a = 1)</div>
+                <div class="answer-sec-body">
+                    f(x) = (x + 1) \cdot (x - 3)^{2}
+
+  Note: a factor with even multiplicity → graph TOUCHES the x-axis
+        a factor with odd  multiplicity → graph CROSSES the x-axis
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Standard Form  (expand / multiply out)</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 - 5x^2 + 3x + 9
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Verify</div>
+                <div class="answer-sec-body">
+                    Degree check — sum of multiplicities must equal the stated degree:
+    zero x = -1,  multiplicity 1
+    zero x = 3,  multiplicity 2
+    Total = 3  =  3  ✓
+
+  y-intercept check:  f(0) = 9
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2225,11 +2997,61 @@ The point (-4, 16) lies on our polynomial. Correct!</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g51" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            a = -1/3  =&gt;  $f(x) = -1/3((x + 2) \cdot x \cdot (x - 2)) = -x^3/3 + 4x/3$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  zero x = r  →  factor (x − r)
+
+  x = -2      →  (x + 2)
+  x = 0       →  x
+  x = 2       →  (x - 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② General Form  (a is unknown)</div>
+                <div class="answer-sec-body">
+                    Write f(x) with unknown leading coefficient &#39;a&#39;:
+
+    f(x) = a · (x + 2) \cdot x \cdot (x - 2)
+
+  (Any value of &#39;a&#39; gives the same zeros — we need the given point to fix it.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Find &#39;a&#39;  (substitute given point)</div>
+                <div class="answer-sec-body">
+                    Given point: f(-4) = 16
+
+  Step 1 — Substitute x = -4 into the base (without &#39;a&#39;):
+    (x + 2) \cdot x \cdot (x - 2) at x = -4  =  -48
+
+  Step 2 — Set up equation and solve:
+    a × -48 = 16
+    a = 16 ÷ (-48) = -1/3
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Polynomial</div>
+                <div class="answer-sec-body">
+                    Factored form:  f(x) = -1/3 · (x + 2) \cdot x \cdot (x - 2)
+
+  Standard form:  f(x) = -x^3/3 + 4x/3
+
+  Verify: f(-4) = -1/3 × -48 = 16  ✓
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2310,11 +3132,61 @@ The point (6, 180) lies on our polynomial. Correct!</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g52" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            a = 2  =&gt;  $f(x) = 2((x + 3) \cdot (x - 1) \cdot (x - 4)) = 2x^3 - 4x^2 - 22x + 24$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  zero x = r  →  factor (x − r)
+
+  x = -3      →  (x + 3)
+  x = 1       →  (x - 1)
+  x = 4       →  (x - 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② General Form  (a is unknown)</div>
+                <div class="answer-sec-body">
+                    Write f(x) with unknown leading coefficient &#39;a&#39;:
+
+    f(x) = a · (x + 3) \cdot (x - 1) \cdot (x - 4)
+
+  (Any value of &#39;a&#39; gives the same zeros — we need the given point to fix it.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Find &#39;a&#39;  (substitute given point)</div>
+                <div class="answer-sec-body">
+                    Given point: f(6) = 180
+
+  Step 1 — Substitute x = 6 into the base (without &#39;a&#39;):
+    (x + 3) \cdot (x - 1) \cdot (x - 4) at x = 6  =  90
+
+  Step 2 — Set up equation and solve:
+    a × 90 = 180
+    a = 180 ÷ (90) = 2
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Polynomial</div>
+                <div class="answer-sec-body">
+                    Factored form:  f(x) = 2 · (x + 3) \cdot (x - 1) \cdot (x - 4)
+
+  Standard form:  f(x) = 2x^3 - 4x^2 - 22x + 24
+
+  Verify: f(6) = 2 × 90 = 180  ✓
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2396,11 +3268,62 @@ The point (2.5, 15) lies on our polynomial. Correct!</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g53" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            a = -16/49  =&gt;  $f(x) = -16/49((x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  zero x = r  →  factor (x − r)
+
+  x = -5      →  (x + 5)
+  x = -1      →  (x + 1)
+  x = 2       →  (x - 2)
+  x = 6       →  (x - 6)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② General Form  (a is unknown)</div>
+                <div class="answer-sec-body">
+                    Write f(x) with unknown leading coefficient &#39;a&#39;:
+
+    f(x) = a · (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)
+
+  (Any value of &#39;a&#39; gives the same zeros — we need the given point to fix it.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Find &#39;a&#39;  (substitute given point)</div>
+                <div class="answer-sec-body">
+                    Given point: f(2.5) = 15
+
+  Step 1 — Substitute x = 2.5 into the base (without &#39;a&#39;):
+    (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6) at x = 2.5  =  -45.94
+
+  Step 2 — Set up equation and solve:
+    a × -45.94 = 15
+    a = 15 ÷ (-45.94) = -16/49
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Polynomial</div>
+                <div class="answer-sec-body">
+                    Factored form:  f(x) = -16/49 · (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)
+
+  Standard form:  f(x) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49
+
+  Verify: f(2.5) = -16/49 × -45.94 = 15  ✓
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2482,11 +3405,62 @@ The point (0.5, 63) lies on our polynomial. Correct!</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g54" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            a = 16  =&gt;  $f(x) = 16((x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)) = 16x^4 - 80x^3 + 32x^2 + 128x$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  zero x = r  →  factor (x − r)
+
+  x = -1      →  (x + 1)
+  x = 0       →  x
+  x = 2       →  (x - 2)
+  x = 4       →  (x - 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② General Form  (a is unknown)</div>
+                <div class="answer-sec-body">
+                    Write f(x) with unknown leading coefficient &#39;a&#39;:
+
+    f(x) = a · (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)
+
+  (Any value of &#39;a&#39; gives the same zeros — we need the given point to fix it.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Find &#39;a&#39;  (substitute given point)</div>
+                <div class="answer-sec-body">
+                    Given point: f(0.5) = 63
+
+  Step 1 — Substitute x = 0.5 into the base (without &#39;a&#39;):
+    (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4) at x = 0.5  =  3.938
+
+  Step 2 — Set up equation and solve:
+    a × 3.938 = 63
+    a = 63 ÷ (3.938) = 16
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Polynomial</div>
+                <div class="answer-sec-body">
+                    Factored form:  f(x) = 16 · (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)
+
+  Standard form:  f(x) = 16x^4 - 80x^3 + 32x^2 + 128x
+
+  Verify: f(0.5) = 16 × 3.938 = 63  ✓
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2567,11 +3541,61 @@ The point (1, -48) lies on our polynomial. Correct!</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g55" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            a = -3  =&gt;  $f(x) = -3((x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  zero x = r  →  factor (x − r)
+
+  x = -1      →  (x + 1)^{2}
+  x = 0       →  x^{2}
+  x = 3       →  (x - 3)^{2}
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② General Form  (a is unknown)</div>
+                <div class="answer-sec-body">
+                    Write f(x) with unknown leading coefficient &#39;a&#39;:
+
+    f(x) = a · (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}
+
+  (Any value of &#39;a&#39; gives the same zeros — we need the given point to fix it.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Find &#39;a&#39;  (substitute given point)</div>
+                <div class="answer-sec-body">
+                    Given point: f(1) = -48
+
+  Step 1 — Substitute x = 1 into the base (without &#39;a&#39;):
+    (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2} at x = 1  =  16
+
+  Step 2 — Set up equation and solve:
+    a × 16 = -48
+    a = -48 ÷ (16) = -3
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Polynomial</div>
+                <div class="answer-sec-body">
+                    Factored form:  f(x) = -3 · (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}
+
+  Standard form:  f(x) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2
+
+  Verify: f(1) = -3 × 16 = -48  ✓
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2651,11 +3675,60 @@ The point (-2, 45) lies on our polynomial. Correct!</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g56" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            a = 5  =&gt;  $f(x) = 5((x + 1)^{2} \cdot (x - 1)^{2}) = 5x^4 - 10x^2 + 5$
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Factor Theorem  (zeros → factors)</div>
+                <div class="answer-sec-body">
+                    Factor Theorem:  zero x = r  →  factor (x − r)
+
+  x = -1      →  (x + 1)^{2}
+  x = 1       →  (x - 1)^{2}
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② General Form  (a is unknown)</div>
+                <div class="answer-sec-body">
+                    Write f(x) with unknown leading coefficient &#39;a&#39;:
+
+    f(x) = a · (x + 1)^{2} \cdot (x - 1)^{2}
+
+  (Any value of &#39;a&#39; gives the same zeros — we need the given point to fix it.)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Find &#39;a&#39;  (substitute given point)</div>
+                <div class="answer-sec-body">
+                    Given point: f(-2) = 45
+
+  Step 1 — Substitute x = -2 into the base (without &#39;a&#39;):
+    (x + 1)^{2} \cdot (x - 1)^{2} at x = -2  =  9
+
+  Step 2 — Set up equation and solve:
+    a × 9 = 45
+    a = 45 ÷ (9) = 5
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Polynomial</div>
+                <div class="answer-sec-body">
+                    Factored form:  f(x) = 5 · (x + 1)^{2} \cdot (x - 1)^{2}
+
+  Standard form:  f(x) = 5x^4 - 10x^2 + 5
+
+  Verify: f(-2) = 5 × 9 = 45  ✓
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2739,11 +3812,70 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g57" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $3x^{3}$ | Zeros: x = -3 (mult 2); x = 7 (mult 1) | y-intercept: (0, -189) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = 3x^3 - 3x^2 - 99x - 189
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = 3
+  Leading term        = $3x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -3   (multiplicity 2)
+    x = 7   (multiplicity 1)
+
+  y-intercept: f(0) = -189  →  point (0, -189)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -3  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 7  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $3x^{3}$
+  Degree = 3 (ODD),  a = 3 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2827,11 +3959,70 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g58" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 4 | Leading term: $4x^{4}$ | Zeros: x = -4 (mult 1); x = -3 (mult 3) | y-intercept: (0, 432) | Max turning pts: 3 | The graph rises on BOTH sides (like a U-shape).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = 4x^4 + 52x^3 + 252x^2 + 540x + 432
+
+  Degree              = 4   (highest power of x)
+  Leading coefficient = 4
+  Leading term        = $4x^{4}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 1)
+    x = -3   (multiplicity 3)
+
+  y-intercept: f(0) = 432  →  point (0, 432)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 1, odd)  →  CROSSES
+  x = -3  (mult 3, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 4 − 1 = 3
+
+  ∴  This graph has at most 3 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $4x^{4}$
+  Degree = 4 (EVEN),  a = 4 (positive)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph rises on BOTH sides (like a U-shape).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2913,11 +4104,68 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g59" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 7 | Leading term: $2x^{7}$ | Zeros: x = 3 (mult 1) | y-intercept: (0, -384) | Max turning pts: 6 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = 2x^7 - 6x^6 + 24x^5 - 72x^4 + 96x^3 - 288x^2 + 128x - 384
+
+  Degree              = 7   (highest power of x)
+  Leading coefficient = 2
+  Leading term        = $2x^{7}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = 3   (multiplicity 1)
+
+  y-intercept: f(0) = -384  →  point (0, -384)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = 3  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 7 − 1 = 6
+
+  ∴  This graph has at most 6 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $2x^{7}$
+  Degree = 7 (ODD),  a = 2 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -2999,11 +4247,68 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g60" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 5 | Leading term: $4x^{5}$ | Zeros: x = 2 (mult 3) | y-intercept: (0, -32) | Max turning pts: 4 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = 4x^5 - 24x^4 + 52x^3 - 56x^2 + 48x - 32
+
+  Degree              = 5   (highest power of x)
+  Leading coefficient = 4
+  Leading term        = $4x^{5}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = 2   (multiplicity 3)
+
+  y-intercept: f(0) = -32  →  point (0, -32)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = 2  (mult 3, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 5 − 1 = 4
+
+  ∴  This graph has at most 4 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $4x^{5}$
+  Degree = 5 (ODD),  a = 4 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3087,11 +4392,70 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g61" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 5 | Leading term: $x^{5}$ | Zeros: x = 1/3 (mult 2); x = 1 (mult 3) | y-intercept: (0, -0.1111) | Max turning pts: 4 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^5 - 11x^4/3 + 46x^3/9 - 10x^2/3 + x - 1/9
+
+  Degree              = 5   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{5}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = 1/3   (multiplicity 2)
+    x = 1   (multiplicity 3)
+
+  y-intercept: f(0) = -0.1111  →  point (0, -0.1111)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = 1/3  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 1  (mult 3, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 5 − 1 = 4
+
+  ∴  This graph has at most 4 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{5}$
+  Degree = 5 (ODD),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3175,11 +4539,70 @@ In plain words: The graph rises to the LEFT and falls to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g62" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 5 | Leading term: $-2x^{5}$ | Zeros: x = -4 (mult 3); x = -1/2 (mult 2) | y-intercept: (0, -32) | Max turning pts: 4 | The graph rises to the LEFT and falls to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = -2x^5 - 26x^4 - 241x^3/2 - 230x^2 - 152x - 32
+
+  Degree              = 5   (highest power of x)
+  Leading coefficient = -2
+  Leading term        = $-2x^{5}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 3)
+    x = -1/2   (multiplicity 2)
+
+  y-intercept: f(0) = -32  →  point (0, -32)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 3, odd)  →  CROSSES
+  x = -1/2  (mult 2, even)  →  TOUCHES (bounces back)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 5 − 1 = 4
+
+  ∴  This graph has at most 4 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $-2x^{5}$
+  Degree = 5 (ODD),  a = -2 (negative)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph rises to the LEFT and falls to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3263,11 +4686,70 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g63" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 6 | Leading term: $x^{6}$ | Zeros: x = -sqrt(3) (mult 2); x = 2 (mult 4) | y-intercept: (0, 48) | Max turning pts: 5 | The graph rises on BOTH sides (like a U-shape).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^6 - 8x^5 + 2*sqrt(3)x^5 - 16*sqrt(3)x^4 + 27x^4 - 56x^3 + 48*sqrt(3)x^3 - 64*sqrt(3)x^2 + 88x^2 - 96x + 32*sqrt(3)x + 48
+
+  Degree              = 6   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{6}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -sqrt(3)   (multiplicity 2)
+    x = 2   (multiplicity 4)
+
+  y-intercept: f(0) = 48  →  point (0, 48)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -sqrt(3)  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 2  (mult 4, even)  →  TOUCHES (bounces back)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 6 − 1 = 5
+
+  ∴  This graph has at most 5 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{6}$
+  Degree = 6 (EVEN),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph rises on BOTH sides (like a U-shape).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3351,11 +4833,70 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g64" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 5 | Leading term: $x^{5}$ | Zeros: x = -4 (mult 2); x = 5 (mult 3) | y-intercept: (0, -2000) | Max turning pts: 4 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^5 - 7x^4 - 29x^3 + 235x^2 + 200x - 2000
+
+  Degree              = 5   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{5}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 2)
+    x = 5   (multiplicity 3)
+
+  y-intercept: f(0) = -2000  →  point (0, -2000)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 5  (mult 3, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 5 − 1 = 4
+
+  ∴  This graph has at most 4 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{5}$
+  Degree = 5 (ODD),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3432,11 +4973,63 @@ In plain words: The graph falls on BOTH sides (like an upside-down U).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g65" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 6 | Leading term: $-2x^{6}$ | Zeros: no real zeros | y-intercept: (0, -54) | Max turning pts: 5 | The graph falls on BOTH sides (like an upside-down U).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = -2x^6 - 18x^4 - 54x^2 - 54
+
+  Degree              = 6   (highest power of x)
+  Leading coefficient = -2
+  Leading term        = $-2x^{6}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    No real zeros — graph never crosses or touches the x-axis.
+
+  y-intercept: f(0) = -54  →  point (0, -54)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    No real zeros — no x-intercepts to cross or touch.
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 6 − 1 = 5
+
+  ∴  This graph has at most 5 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $-2x^{6}$
+  Degree = 6 (EVEN),  a = -2 (negative)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph falls on BOTH sides (like an upside-down U).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3513,11 +5106,63 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g66" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 6 | Leading term: $3x^{6}$ | Zeros: no real zeros | y-intercept: (0, 1944) | Max turning pts: 5 | The graph rises on BOTH sides (like a U-shape).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = 3x^6 + 78x^4 + 675x^2 + 1944
+
+  Degree              = 6   (highest power of x)
+  Leading coefficient = 3
+  Leading term        = $3x^{6}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    No real zeros — graph never crosses or touches the x-axis.
+
+  y-intercept: f(0) = 1944  →  point (0, 1944)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    No real zeros — no x-intercepts to cross or touch.
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 6 − 1 = 5
+
+  ∴  This graph has at most 5 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $3x^{6}$
+  Degree = 6 (EVEN),  a = 3 (positive)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph rises on BOTH sides (like a U-shape).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3603,11 +5248,72 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g67" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $4x^{3}$ | Zeros: x = -sqrt(3) (mult 1); x = 0 (mult 1); x = sqrt(3) (mult 1) | y-intercept: (0, 0) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = 4x^3 - 12x
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = 4
+  Leading term        = $4x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -sqrt(3)   (multiplicity 1)
+    x = 0   (multiplicity 1)
+    x = sqrt(3)   (multiplicity 1)
+
+  y-intercept: f(0) = 0  →  point (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -sqrt(3)  (mult 1, odd)  →  CROSSES
+  x = 0  (mult 1, odd)  →  CROSSES
+  x = sqrt(3)  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $4x^{3}$
+  Degree = 3 (ODD),  a = 4 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3693,11 +5399,72 @@ In plain words: The graph falls on BOTH sides (like an upside-down U).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g68" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 4 | Leading term: $-2x^{4}$ | Zeros: x = -sqrt(2) (mult 1); x = 0 (mult 2); x = sqrt(2) (mult 1) | y-intercept: (0, 0) | Max turning pts: 3 | The graph falls on BOTH sides (like an upside-down U).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = -2x^4 + 4x^2
+
+  Degree              = 4   (highest power of x)
+  Leading coefficient = -2
+  Leading term        = $-2x^{4}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -sqrt(2)   (multiplicity 1)
+    x = 0   (multiplicity 2)
+    x = sqrt(2)   (multiplicity 1)
+
+  y-intercept: f(0) = 0  →  point (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -sqrt(2)  (mult 1, odd)  →  CROSSES
+  x = 0  (mult 2, even)  →  TOUCHES (bounces back)
+  x = sqrt(2)  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 4 − 1 = 3
+
+  ∴  This graph has at most 3 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $-2x^{4}$
+  Degree = 4 (EVEN),  a = -2 (negative)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph falls on BOTH sides (like an upside-down U).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3793,11 +5560,70 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g81" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $x^{3}$ | Zeros: x = 0 (mult 2); x = 3 (mult 1) | y-intercept: (0, 0) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 - 3x^2
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = 0   (multiplicity 2)
+    x = 3   (multiplicity 1)
+
+  y-intercept: f(0) = 0  →  point (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = 0  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 3  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{3}$
+  Degree = 3 (ODD),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3893,11 +5719,70 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g82" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -2 (mult 2); x = 0 (mult 1) | y-intercept: (0, 0) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 + 4x^2 + 4x
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -2   (multiplicity 2)
+    x = 0   (multiplicity 1)
+
+  y-intercept: f(0) = 0  →  point (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -2  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 0  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{3}$
+  Degree = 3 (ODD),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -3993,11 +5878,70 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g83" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -3 (mult 2); x = 1 (mult 1) | y-intercept: (0, -9) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 + 5x^2 + 3x - 9
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -3   (multiplicity 2)
+    x = 1   (multiplicity 1)
+
+  y-intercept: f(0) = -9  →  point (0, -9)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -3  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 1  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{3}$
+  Degree = 3 (ODD),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4093,11 +6037,70 @@ In plain words: The graph rises to the LEFT and falls to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g84" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $-x^{3}$ | Zeros: x = -4 (mult 2); x = 1 (mult 1) | y-intercept: (0, 16) | Max turning pts: 2 | The graph rises to the LEFT and falls to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = -x^3 - 7x^2 - 8x + 16
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = -1
+  Leading term        = $-x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 2)
+    x = 1   (multiplicity 1)
+
+  y-intercept: f(0) = 16  →  point (0, 16)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 1  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $-x^{3}$
+  Degree = 3 (ODD),  a = -1 (negative)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph rises to the LEFT and falls to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4193,11 +6196,70 @@ In plain words: The graph falls on BOTH sides (like an upside-down U).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g85" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 4 | Leading term: $-0.5x^{4}$ | Zeros: x = -4 (mult 1); x = 1 (mult 3) | y-intercept: (0, 2) | Max turning pts: 3 | The graph falls on BOTH sides (like an upside-down U).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = -x^4/2 - x^3/2 + 9x^2/2 - 11x/2 + 2
+
+  Degree              = 4   (highest power of x)
+  Leading coefficient = -0.5
+  Leading term        = $-0.5x^{4}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 1)
+    x = 1   (multiplicity 3)
+
+  y-intercept: f(0) = 2  →  point (0, 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 1, odd)  →  CROSSES
+  x = 1  (mult 3, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 4 − 1 = 3
+
+  ∴  This graph has at most 3 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $-0.5x^{4}$
+  Degree = 4 (EVEN),  a = -0.5 (negative)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph falls on BOTH sides (like an upside-down U).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4293,11 +6355,70 @@ In plain words: The graph falls on BOTH sides (like an upside-down U).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g86" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 4 | Leading term: $-2x^{4}$ | Zeros: x = -2 (mult 1); x = 2 (mult 3) | y-intercept: (0, 32) | Max turning pts: 3 | The graph falls on BOTH sides (like an upside-down U).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = -2x^4 + 8x^3 - 32x + 32
+
+  Degree              = 4   (highest power of x)
+  Leading coefficient = -2
+  Leading term        = $-2x^{4}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -2   (multiplicity 1)
+    x = 2   (multiplicity 3)
+
+  y-intercept: f(0) = 32  →  point (0, 32)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -2  (mult 1, odd)  →  CROSSES
+  x = 2  (mult 3, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 4 − 1 = 3
+
+  ∴  This graph has at most 3 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $-2x^{4}$
+  Degree = 4 (EVEN),  a = -2 (negative)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+  → The graph falls on BOTH sides (like an upside-down U).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4396,11 +6517,72 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g87" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -4 (mult 1); x = 1 (mult 1); x = 3 (mult 1) | y-intercept: (0, 12) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 - 13x + 12
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 1)
+    x = 1   (multiplicity 1)
+    x = 3   (multiplicity 1)
+
+  y-intercept: f(0) = 12  →  point (0, 12)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 1, odd)  →  CROSSES
+  x = 1  (mult 1, odd)  →  CROSSES
+  x = 3  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{3}$
+  Degree = 3 (ODD),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4499,11 +6681,72 @@ In plain words: The graph falls to the LEFT and rises to the RIGHT.</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g88" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -4 (mult 1); x = -1 (mult 1); x = 2 (mult 1) | y-intercept: (0, -8) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^3 + 3x^2 - 6x - 8
+
+  Degree              = 3   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{3}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 1)
+    x = -1   (multiplicity 1)
+    x = 2   (multiplicity 1)
+
+  y-intercept: f(0) = -8  →  point (0, -8)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 1, odd)  →  CROSSES
+  x = -1  (mult 1, odd)  →  CROSSES
+  x = 2  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 3 − 1 = 2
+
+  ∴  This graph has at most 2 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{3}$
+  Degree = 3 (ODD),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph falls to the LEFT and rises to the RIGHT.
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4602,11 +6845,72 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g89" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 4 | Leading term: $x^{4}$ | Zeros: x = -4 (mult 1); x = 0 (mult 2); x = 3 (mult 1) | y-intercept: (0, 0) | Max turning pts: 3 | The graph rises on BOTH sides (like a U-shape).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^4 + x^3 - 12x^2
+
+  Degree              = 4   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{4}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -4   (multiplicity 1)
+    x = 0   (multiplicity 2)
+    x = 3   (multiplicity 1)
+
+  y-intercept: f(0) = 0  →  point (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -4  (mult 1, odd)  →  CROSSES
+  x = 0  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 3  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 4 − 1 = 3
+
+  ∴  This graph has at most 3 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{4}$
+  Degree = 4 (EVEN),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph rises on BOTH sides (like a U-shape).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4705,11 +7009,72 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
             <div class="graph-label">Graph of f(x)</div>
             <div id="g90" class="graph-div"></div>
           </div>
-          
-          
+           
           <div class="answer-box">
-            <span class="label">Final Answer</span>
-            Degree: 4 | Leading term: $x^{4}$ | Zeros: x = -2 (mult 1); x = 0 (mult 2); x = 2 (mult 1) | y-intercept: (0, 0) | Max turning pts: 3 | The graph rises on BOTH sides (like a U-shape).
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(a) Degree &amp; Leading Term</div>
+                <div class="answer-sec-body">
+                    f(x) = x^4 - 4x^2
+
+  Degree              = 4   (highest power of x)
+  Leading coefficient = 1
+  Leading term        = $x^{4}$
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(b) Zeros (x-intercepts) &amp; y-intercept</div>
+                <div class="answer-sec-body">
+                    Set factors equal to zero:
+
+    x = -2   (multiplicity 1)
+    x = 0   (multiplicity 2)
+    x = 2   (multiplicity 1)
+
+  y-intercept: f(0) = 0  →  point (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(c) Cross or Touch the x-axis?</div>
+                <div class="answer-sec-body">
+                    Rule: ODD multiplicity  → graph CROSSES (passes through) x-axis
+        EVEN multiplicity → graph TOUCHES x-axis and bounces back
+
+  x = -2  (mult 1, odd)  →  CROSSES
+  x = 0  (mult 2, even)  →  TOUCHES (bounces back)
+  x = 2  (mult 1, odd)  →  CROSSES
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(d) Maximum Number of Turning Points</div>
+                <div class="answer-sec-body">
+                    Formula: maximum turning points = degree − 1
+
+  = 4 − 1 = 3
+
+  ∴  This graph has at most 3 turning point(s).
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">(e) End Behavior</div>
+                <div class="answer-sec-body">
+                    Leading term: $x^{4}$
+  Degree = 4 (EVEN),  a = 1 (positive)
+
+  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+  → The graph rises on BOTH sides (like a U-shape).
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
           
           <a class="back-top" href="#top">&#8593; Back to top</a>
@@ -4861,6 +7226,5 @@ In plain words: The graph rises on BOTH sides (like a U-shape).</div>
         });
       }
     </script>
-
   </body>
 </html>
