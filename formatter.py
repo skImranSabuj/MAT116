@@ -147,12 +147,23 @@ class Formatter:
         """
         # Load Jinja2 template if available, else use built-in fallback
         try:
+            import json as _json
+            from markupsafe import Markup as _Markup
             from jinja2 import Environment, FileSystemLoader, select_autoescape
 
             env = Environment(
                 loader=FileSystemLoader(self.template_dir),
                 autoescape=select_autoescape(["html"]),
             )
+
+            def _tojson(obj):
+                s = _json.dumps(obj, ensure_ascii=True, separators=(',', ':'))
+                # Escape HTML-special chars so the JSON is safe inside <script> tags
+                s = s.replace('<', '\\u003c').replace('>', '\\u003e') \
+                     .replace('&', '\\u0026').replace("'", '\\u0027')
+                return _Markup(s)
+
+            env.filters['tojson'] = _tojson
             template = env.get_template("base.html")
             # Pre-build nav groups so the template doesn't need Jinja ns tricks
             nav_groups: dict = {}

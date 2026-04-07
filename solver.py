@@ -44,9 +44,46 @@ class Solver:
             "analysis_full":         self._analysis_full,
         }
         fn = dispatch.get(ptype, self._generic)
-        steps, answer = fn(num, q, meta)
+        result = fn(num, q, meta)
+        steps, answer, graph = result if len(result) == 3 else (*result, None)
         return {"number": num, "question": q, "type": ptype,
-                "steps": steps, "answer": answer}
+                "steps": steps, "answer": answer, "graph": graph}
+
+    # -----------------------------------------------------------------------
+    # GRAPH HELPER
+    # -----------------------------------------------------------------------
+    def _make_graph(self, f_fn, x_lo: float, x_hi: float,
+                    key_points: list = None, n_pts: int = 300) -> dict:
+        """Evaluate f_fn over [x_lo, x_hi] and return Plotly-ready data."""
+        span = x_hi - x_lo
+        xs, ys = [], []
+        for i in range(n_pts):
+            xv = x_lo + i * span / (n_pts - 1)
+            try:
+                yv = float(f_fn(xv))
+                yv = None if abs(yv) > 1e7 else round(yv, 4)
+            except Exception:
+                yv = None
+            xs.append(round(xv, 5))
+            ys.append(yv)
+        kp = key_points or []
+        kp_ys = [p["y"] for p in kp if p.get("y") is not None]
+        valid_ys = [y for y in ys if y is not None]
+        if kp_ys:
+            yc = sum(kp_ys) / len(kp_ys)
+            yspan = max((abs(y - yc) for y in kp_ys), default=0)
+            yspan = max(yspan, abs(yc) * 0.25, 2.0)
+        elif valid_ys:
+            yc = (max(valid_ys) + min(valid_ys)) / 2
+            yspan = (max(valid_ys) - min(valid_ys)) / 2 or 2.0
+        else:
+            yc, yspan = 0.0, 5.0
+        return {
+            "x": xs, "y": ys, "key_points": kp,
+            "x_range": [round(x_lo, 4), round(x_hi, 4)],
+            "y_range": [round(yc - max(yspan * 2.6, 4), 2),
+                        round(yc + max(yspan * 2.6, 4), 2)],
+        }
 
     # -----------------------------------------------------------------------
     # 1. TRANSFORMATION  (37-42)
@@ -228,7 +265,19 @@ class Solver:
             f"y-intercept: (0, {y_int_str}) | "
             f"{_end_plain(n, a)}"
         )
-        return steps, answer
+        graph = None
+        try:
+            _a, _h, _n, _k = float(a), float(h), int(n), float(k)
+            f_fn = lambda xv, __a=_a, __h=_h, __n=_n, __k=_k: __a * (xv - __h)**__n + __k
+            x_span = max(4.0, abs(_h) + 2.5)
+            graphkp = [
+                {"x": _h, "y": _k, "label": f"{key_name} ({kp_x}, {kp_y})", "color": "#e94560"},
+                {"x": 0.0, "y": float(y_int), "label": f"y-int (0, {y_int_str})", "color": "#0f3460"},
+            ]
+            graph = self._make_graph(f_fn, _h - x_span, _h + x_span, graphkp)
+        except Exception:
+            graph = None
+        return steps, answer, graph
 
     # -----------------------------------------------------------------------
     # 2. FORM POLYNOMIAL FROM ZEROS  (43-50)
@@ -322,7 +371,24 @@ class Solver:
             },
         ]
         answer = f"$f(x) = {factored} = {expanded_str}$"
-        return steps, answer
+        graph = None
+        try:
+            from sympy import symbols as _sym, Rational as _Rat, lambdify
+            _x = _sym("x")
+            _expr = 1
+            for z, m in zeros:
+                _zv = _Rat(z).limit_denominator(100) if isinstance(z, float) and z != int(z) else int(z)
+                _expr *= (_x - _zv)**m
+            _f = lambdify(_x, _expr, "math")
+            _zf = [float(z) for z, _ in zeros]
+            _margin = max(2.0, (max(_zf) - min(_zf)) * 0.35 + 1) if len(_zf) > 1 else 3.0
+            _yint_g = float(_expr.subs(_x, 0))
+            _gkp = [{"x": float(z), "y": 0.0, "label": f"x={z}", "color": "#e94560"} for z, _ in zeros]
+            _gkp.append({"x": 0.0, "y": round(_yint_g, 4), "label": "y-int", "color": "#0f3460"})
+            graph = self._make_graph(_f, min(_zf) - _margin, max(_zf) + _margin, _gkp)
+        except Exception:
+            graph = None
+        return steps, answer, graph
 
     # -----------------------------------------------------------------------
     # 3. FORM POLYNOMIAL THROUGH A POINT  (51-56)
@@ -432,7 +498,23 @@ class Solver:
             },
         ]
         answer = f"a = {a_str}  =>  $f(x) = {a_str}({factored_base}) = {expanded_final}$"
-        return steps, answer
+        graph = None
+        try:
+            if a_val_sym is not None:
+                from sympy import lambdify, symbols as _sym
+                _x2 = _sym("x")
+                _full = a_val_sym * expr_unit
+                _f2 = lambdify(_x2, _full, "math")
+                _zf2 = [float(z) for z, _ in zeros]
+                _margin2 = max(2.0, (max(_zf2) - min(_zf2)) * 0.35 + 1) if len(_zf2) > 1 else 3.0
+                _yint2 = float(_full.subs(_x2, 0).evalf())
+                _gkp2 = [{"x": float(z), "y": 0.0, "label": f"x={z}", "color": "#e94560"} for z, _ in zeros]
+                _gkp2.append({"x": 0.0, "y": round(_yint2, 4), "label": "y-int", "color": "#0f3460"})
+                _gkp2.append({"x": float(px), "y": float(py), "label": f"({px_str}, {py_str})", "color": "#2e7d32"})
+                graph = self._make_graph(_f2, min(_zf2) - _margin2, max(_zf2) + _margin2, _gkp2)
+        except Exception:
+            graph = None
+        return steps, answer, graph
 
     # -----------------------------------------------------------------------
     # 4. ANALYSIS  (57-68)
@@ -611,7 +693,25 @@ class Solver:
                 f"Max turning pts: {max_tp} | "
                 f"{_end_plain(deg, lc)}"
             )
-            return steps, answer
+            graph = None
+            try:
+                from sympy import lambdify
+                _fn = lambdify(x, f_sym, "math")
+                _zf3 = [float(z.evalf()) for z in real_zeros] if real_zeros else []
+                if _zf3:
+                    _m3 = max(2.0, (max(_zf3) - min(_zf3)) * 0.35 + 1)
+                    _gxlo, _gxhi = min(_zf3) - _m3, max(_zf3) + _m3
+                else:
+                    _gxlo, _gxhi = -4.0, 4.0
+                _gkp3 = [{"x": float(z.evalf()), "y": 0.0,
+                          "label": f"x={_fmt_zero(z)}", "color": "#e94560"}
+                         for z in sorted(real_zeros, key=lambda r: float(r.evalf()))]
+                _gkp3.append({"x": 0.0, "y": round(y_int, 4),
+                              "label": f"y-int (0, {y_int_str})", "color": "#0f3460"})
+                graph = self._make_graph(_fn, _gxlo, _gxhi, _gkp3)
+            except Exception:
+                graph = None
+            return steps, answer, graph
 
         except Exception as e:
             logger.warning(f"sympy analysis failed for '{q}': {e}")
@@ -624,4 +724,4 @@ class Solver:
             {"title": "Step 3 - Work Step by Step", "body": "Show every algebraic step clearly."},
             {"title": "Step 4 - Verify",            "body": "Substitute back to check."},
         ]
-        return steps, "See steps above."
+        return steps, "See steps above.", None

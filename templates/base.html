@@ -30,6 +30,12 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
     ></script>
 
+    <!-- Plotly.js basic (line + scatter, ~600 KB) -->
+    <script
+      src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js"
+      charset="utf-8"
+    ></script>
+
     <style>
       /* ── Reset ── */
       *,
@@ -332,6 +338,32 @@
         margin-bottom: 0.3rem;
       }
 
+      /* graph */
+      .graph-wrap {
+        margin: 1.25rem 0 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .graph-label {
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+      }
+      .graph-div {
+        height: 320px;
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        .graph-div {
+          height: 260px;
+        }
+      }
+
       /* misc */
       hr {
         border: none;
@@ -484,7 +516,12 @@
             </div>
             {% endfor %}
           </div>
-          {% if sol.answer %}
+          {% if sol.graph %}
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g{{ sol.number }}" class="graph-div"></div>
+          </div>
+          {% endif %} {% if sol.answer %}
           <div class="answer-box">
             <span class="label">Final Answer</span>
             {{ sol.answer }}
@@ -549,6 +586,54 @@
           io.observe(el);
         });
       })();
+    </script>
+    <script>
+      if (typeof Plotly !== 'undefined') {
+        var _GRAPHS = [
+          {% for sol in solutions %}{% if sol.graph %}{"id":"g{{ sol.number }}","d":{{ sol.graph | tojson }}},
+          {% endif %}{% endfor %}
+        ];
+        _GRAPHS.forEach(function (item) {
+          var g = item.d;
+          var traces = [{
+            x: g.x, y: g.y,
+            type: 'scatter', mode: 'lines',
+            name: 'f(x)',
+            line: {color: '#0f3460', width: 2.5},
+            connectgaps: false
+          }];
+          if (g.key_points && g.key_points.length) {
+            traces.push({
+              x: g.key_points.map(function(p){return p.x;}),
+              y: g.key_points.map(function(p){return p.y;}),
+              text: g.key_points.map(function(p){return p.label;}),
+              type: 'scatter', mode: 'markers+text',
+              textposition: 'top center',
+              textfont: {size: 11, color: '#333'},
+              marker: {size: 9, color: g.key_points.map(function(p){return p.color||'#e94560';})},
+              showlegend: false
+            });
+          }
+          var layout = {
+            margin: {t: 16, b: 44, l: 52, r: 16},
+            xaxis: {
+              title: 'x', range: g.x_range,
+              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
+              gridcolor: '#eaeaea'
+            },
+            yaxis: {
+              title: 'f(x)', range: g.y_range,
+              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
+              gridcolor: '#eaeaea'
+            },
+            paper_bgcolor: '#fff',
+            plot_bgcolor: '#fafbfe',
+            showlegend: false,
+            font: {family: 'Georgia, serif', size: 12}
+          };
+          Plotly.newPlot(item.id, traces, layout, {responsive: true, displayModeBar: false});
+        });
+      }
     </script>
   </body>
 </html>
