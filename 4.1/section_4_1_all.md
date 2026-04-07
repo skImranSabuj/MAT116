@@ -15,63 +15,83 @@
 
 > f(x) = (x + 2)^4 - 3
 
-### Step 1 — Write Down the Standard Form
+### Step 1 - Start with the Parent Function (Ignore the numbers)
 
-Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
+Just look at the POWER for a moment - ignore everything else.
 
-For the given function, identify:
-- $a = 1$ (vertical scaling / reflection)
-- $h = -2$ (horizontal shift)
-- $n = 4$ (degree / shape)
-- $k = -3$ (vertical shift)
+Parent function:  y = x^4
 
-### Step 2 — Identify the Parent Function
+What does y = x^4 look like?
+  Shape    : U-shaped (like a bowl)
+  Opens    : upward
+  Key Pt   : Vertex at (0, 0)
+  Symmetry : symmetric about the y-axis
 
-Remove $a$, $h$, and $k$ and look at the bare power:
+### Step 2 - Understand the Changes (Transformations)
 
-$$y = x^{4}$$
+Now compare y = x^4 with the given function:
 
-This is an **even-degree** power function.  Its graph is U-shaped, symmetric about the y-axis, with a minimum at the origin.
+$$f(x) = 1\left(x - (-2)\right)^{4} - 3$$
 
-### Step 3 — List Every Transformation (Apply in Order)
+There are 2 change(s) from the parent:
 
-Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
+  Change 1: SHIFT LEFT by 2 units
+     You see (x + 2) inside the bracket.
+     Trick: PLUS inside = move LEFT. (Feels backwards - but it is correct!)
 
-1. Shift **2 unit(s) to the left** (factor is $(x + 2)$).
-2. Shift **3 unit(s) down**.
+  Change 2: SHIFT DOWN by 3 units
+     The -3 is OUTSIDE the bracket, so the whole graph moves down.
 
-### Step 4 — Locate the Key Point (Vertex)
+### Step 3 - Find the New Vertex
 
-The parent's key point is at $(0,\ 0)$.
+The parent's key point starts at (0, 0).
 
-After the horizontal shift by $h = -2$ and vertical shift by $k = -3$:
+Apply the shifts one at a time:
+  Horizontal shift: move left 2 unit(s)  ->  x becomes -2
+  Vertical shift  : move down 3 unit(s)  ->  y becomes -3
 
-$$\text{Vertex} = (-2,\ -3)$$
+New Vertex = (-2, -3)
 
-This is the **minimum** of the graph.
+This is the LOWEST point on the graph.
 
-### Step 5 — End Behavior
+### Step 4 - Shape of the Graph
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+The power is 4, which is EVEN.
 
-### Step 6 — y-intercept
+Even power (+ a = 1):
+  -> Graph opens UPWARD (U-shape)
+  -> Symmetric about the vertical line x = -2
 
-Substitute $x = 0$ into $f(x)$:
+### Step 5 - y-intercept (where does the graph cross the y-axis?)
 
-$$f(0) = 1(0 - (-2))^{4} + -3 = 13$$
+Plug in x = 0:
 
-So the y-intercept is $(0,\ 13)$.
+$$f(0) = 1(0 - (-2))^{4} - 3$$
+$$f(0) = 1 \times 16 - 3$$
+$$f(0) = 16 - 3 = 13$$
 
-### Step 7 — Sketch Notes
+y-intercept = (0, 13)
 
-1. Plot the vertex at $(-2,\ -3)$.
-2. Plot the y-intercept at $(0,\ 13)$.
-3. Use the end-behavior arrows from Step 5.
-4. The graph is symmetric about the vertical line $x = -2$.
+### Step 6 - End Behavior (what happens at the far left and right?)
+
+Look at the leading term to decide:
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph rises on BOTH sides (like a U-shape).
+
+### Step 7 - Final Summary (copy this into your exam answer!)
+
+  Parent Function : y = x^4
+  Transformation  : SHIFT LEFT by 2 units, SHIFT DOWN by 3 units
+  Vertex          : (-2, -3)
+  y-intercept     : (0, 13)
+  Shape           : U-shape, opens UP
+  End Behavior    : The graph rises on BOTH sides (like a U-shape).
 
 ### Final Answer
 
-> Parent: $y = x^{4}$.  Vertex: $(-2,\ -3)$.  y-intercept: $(0,\ 13)$.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+> Parent: $y = x^{4}$ | Vertex: (-2, -3) | y-intercept: (0, 13) | The graph rises on BOTH sides (like a U-shape).
 
 ---
 
@@ -83,63 +103,82 @@ So the y-intercept is $(0,\ 13)$.
 
 > f(x) = (x - 1)^5 + 2
 
-### Step 1 — Write Down the Standard Form
+### Step 1 - Start with the Parent Function (Ignore the numbers)
 
-Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
+Just look at the POWER for a moment - ignore everything else.
 
-For the given function, identify:
-- $a = 1$ (vertical scaling / reflection)
-- $h = 1$ (horizontal shift)
-- $n = 5$ (degree / shape)
-- $k = 2$ (vertical shift)
+Parent function:  y = x^5
 
-### Step 2 — Identify the Parent Function
+What does y = x^5 look like?
+  Shape    : S-shaped (like a cubic curve)
+  Direction: goes from bottom-left to top-right
+  Key Pt   : Inflection point at (0, 0)
 
-Remove $a$, $h$, and $k$ and look at the bare power:
+### Step 2 - Understand the Changes (Transformations)
 
-$$y = x^{5}$$
+Now compare y = x^5 with the given function:
 
-This is an **odd-degree** power function.  Its graph is S-shaped (like a cubic), with an inflection point at the origin.
+$$f(x) = 1\left(x - (1)\right)^{5} + 2$$
 
-### Step 3 — List Every Transformation (Apply in Order)
+There are 2 change(s) from the parent:
 
-Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
+  Change 1: SHIFT RIGHT by 1 units
+     You see (x - 1) inside the bracket.
+     Trick: MINUS inside = move RIGHT.
 
-1. Shift **1 unit(s) to the right** (factor is $(x - 1)$).
-2. Shift **2 unit(s) up**.
+  Change 2: SHIFT UP by 2 units
+     The +2 is OUTSIDE the bracket, so the whole graph moves up.
 
-### Step 4 — Locate the Key Point (Inflection Point)
+### Step 3 - Find the New Inflection Point
 
-The parent's key point is at $(0,\ 0)$.
+The parent's key point starts at (0, 0).
 
-After the horizontal shift by $h = 1$ and vertical shift by $k = 2$:
+Apply the shifts one at a time:
+  Horizontal shift: move right 1 unit(s)  ->  x becomes 1
+  Vertical shift  : move up 2 unit(s)  ->  y becomes 2
 
-$$\text{Inflection Point} = (1,\ 2)$$
+New Inflection Point = (1, 2)
 
-This is the **inflection point** of the graph (where the graph changes concavity).
+This is where the S-curve changes its bend (inflection point).
 
-### Step 5 — End Behavior
+### Step 4 - Shape of the Graph
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+The power is 5, which is ODD.
 
-### Step 6 — y-intercept
+Odd power (a = 1):
+  -> Bottom-left to top-right (rises on the right)
+  -> 180-degree rotational symmetry about (1, 2)
 
-Substitute $x = 0$ into $f(x)$:
+### Step 5 - y-intercept (where does the graph cross the y-axis?)
 
-$$f(0) = 1(0 - (1))^{5} + 2 = 1$$
+Plug in x = 0:
 
-So the y-intercept is $(0,\ 1)$.
+$$f(0) = 1(0 - (1))^{5} + 2$$
+$$f(0) = 1 \times -1 + 2$$
+$$f(0) = -1 + 2 = 1$$
 
-### Step 7 — Sketch Notes
+y-intercept = (0, 1)
 
-1. Plot the inflection point at $(1,\ 2)$.
-2. Plot the y-intercept at $(0,\ 1)$.
-3. Use the end-behavior arrows from Step 5.
-4. The graph has 180° rotational symmetry about $(1,\ 2)$.
+### Step 6 - End Behavior (what happens at the far left and right?)
+
+Look at the leading term to decide:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
+
+### Step 7 - Final Summary (copy this into your exam answer!)
+
+  Parent Function : y = x^5
+  Transformation  : SHIFT RIGHT by 1 units, SHIFT UP by 2 units
+  Inflection Point: (1, 2)
+  y-intercept     : (0, 1)
+  Shape           : S-shape
+  End Behavior    : The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Parent: $y = x^{5}$.  Inflection Point: $(1,\ 2)$.  y-intercept: $(0,\ 1)$.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Parent: $y = x^{5}$ | Inflection Point: (1, 2) | y-intercept: (0, 1) | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -151,64 +190,85 @@ So the y-intercept is $(0,\ 1)$.
 
 > f(x) = (1/2)(x - 1)^5 - 2
 
-### Step 1 — Write Down the Standard Form
+### Step 1 - Start with the Parent Function (Ignore the numbers)
 
-Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
+Just look at the POWER for a moment - ignore everything else.
 
-For the given function, identify:
-- $a = 0.5$ (vertical scaling / reflection)
-- $h = 1$ (horizontal shift)
-- $n = 5$ (degree / shape)
-- $k = -2$ (vertical shift)
+Parent function:  y = x^5
 
-### Step 2 — Identify the Parent Function
+What does y = x^5 look like?
+  Shape    : S-shaped (like a cubic curve)
+  Direction: goes from bottom-left to top-right
+  Key Pt   : Inflection point at (0, 0)
 
-Remove $a$, $h$, and $k$ and look at the bare power:
+### Step 2 - Understand the Changes (Transformations)
 
-$$y = x^{5}$$
+Now compare y = x^5 with the given function:
 
-This is an **odd-degree** power function.  Its graph is S-shaped (like a cubic), with an inflection point at the origin.
+$$f(x) = 0.5\left(x - (1)\right)^{5} - 2$$
 
-### Step 3 — List Every Transformation (Apply in Order)
+There are 3 change(s) from the parent:
 
-Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
+  Change 1: VERTICAL COMPRESSION by 0.5
+     The graph gets shorter and wider.
 
-1. Vertically **compress** by factor $|a| = 0.5$.
-2. Shift **1 unit(s) to the right** (factor is $(x - 1)$).
-3. Shift **2 unit(s) down**.
+  Change 2: SHIFT RIGHT by 1 units
+     You see (x - 1) inside the bracket.
+     Trick: MINUS inside = move RIGHT.
 
-### Step 4 — Locate the Key Point (Inflection Point)
+  Change 3: SHIFT DOWN by 2 units
+     The -2 is OUTSIDE the bracket, so the whole graph moves down.
 
-The parent's key point is at $(0,\ 0)$.
+### Step 3 - Find the New Inflection Point
 
-After the horizontal shift by $h = 1$ and vertical shift by $k = -2$:
+The parent's key point starts at (0, 0).
 
-$$\text{Inflection Point} = (1,\ -2)$$
+Apply the shifts one at a time:
+  Horizontal shift: move right 1 unit(s)  ->  x becomes 1
+  Vertical shift  : move down 2 unit(s)  ->  y becomes -2
 
-This is the **inflection point** of the graph (where the graph changes concavity).
+New Inflection Point = (1, -2)
 
-### Step 5 — End Behavior
+This is where the S-curve changes its bend (inflection point).
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+### Step 4 - Shape of the Graph
 
-### Step 6 — y-intercept
+The power is 5, which is ODD.
 
-Substitute $x = 0$ into $f(x)$:
+Odd power (a = 0.5):
+  -> Bottom-left to top-right (rises on the right)
+  -> 180-degree rotational symmetry about (1, -2)
 
-$$f(0) = 0.5(0 - (1))^{5} + -2 = -2.5$$
+### Step 5 - y-intercept (where does the graph cross the y-axis?)
 
-So the y-intercept is $(0,\ -2.5)$.
+Plug in x = 0:
 
-### Step 7 — Sketch Notes
+$$f(0) = 0.5(0 - (1))^{5} - 2$$
+$$f(0) = 0.5 \times -1 - 2$$
+$$f(0) = -0.5 - 2 = -2.5$$
 
-1. Plot the inflection point at $(1,\ -2)$.
-2. Plot the y-intercept at $(0,\ -2.5)$.
-3. Use the end-behavior arrows from Step 5.
-4. The graph has 180° rotational symmetry about $(1,\ -2)$.
+y-intercept = (0, -2.5)
+
+### Step 6 - End Behavior (what happens at the far left and right?)
+
+Look at the leading term to decide:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
+
+### Step 7 - Final Summary (copy this into your exam answer!)
+
+  Parent Function : y = x^5
+  Transformation  : VERTICAL COMPRESSION by 0.5, SHIFT RIGHT by 1 units, SHIFT DOWN by 2 units
+  Inflection Point: (1, -2)
+  y-intercept     : (0, -2.5)
+  Shape           : S-shape
+  End Behavior    : The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Parent: $y = x^{5}$.  Inflection Point: $(1,\ -2)$.  y-intercept: $(0,\ -2.5)$.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Parent: $y = x^{5}$ | Inflection Point: (1, -2) | y-intercept: (0, -2.5) | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -220,64 +280,86 @@ So the y-intercept is $(0,\ -2.5)$.
 
 > f(x) = 2(x + 1)^4 + 1
 
-### Step 1 — Write Down the Standard Form
+### Step 1 - Start with the Parent Function (Ignore the numbers)
 
-Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
+Just look at the POWER for a moment - ignore everything else.
 
-For the given function, identify:
-- $a = 2$ (vertical scaling / reflection)
-- $h = -1$ (horizontal shift)
-- $n = 4$ (degree / shape)
-- $k = 1$ (vertical shift)
+Parent function:  y = x^4
 
-### Step 2 — Identify the Parent Function
+What does y = x^4 look like?
+  Shape    : U-shaped (like a bowl)
+  Opens    : upward
+  Key Pt   : Vertex at (0, 0)
+  Symmetry : symmetric about the y-axis
 
-Remove $a$, $h$, and $k$ and look at the bare power:
+### Step 2 - Understand the Changes (Transformations)
 
-$$y = x^{4}$$
+Now compare y = x^4 with the given function:
 
-This is an **even-degree** power function.  Its graph is U-shaped, symmetric about the y-axis, with a minimum at the origin.
+$$f(x) = 2\left(x - (-1)\right)^{4} + 1$$
 
-### Step 3 — List Every Transformation (Apply in Order)
+There are 3 change(s) from the parent:
 
-Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
+  Change 1: VERTICAL STRETCH by 2
+     The graph gets taller and narrower.
 
-1. Vertically **stretch** by factor $|a| = 2$.
-2. Shift **1 unit(s) to the left** (factor is $(x + 1)$).
-3. Shift **1 unit(s) up**.
+  Change 2: SHIFT LEFT by 1 units
+     You see (x + 1) inside the bracket.
+     Trick: PLUS inside = move LEFT. (Feels backwards - but it is correct!)
 
-### Step 4 — Locate the Key Point (Vertex)
+  Change 3: SHIFT UP by 1 units
+     The +1 is OUTSIDE the bracket, so the whole graph moves up.
 
-The parent's key point is at $(0,\ 0)$.
+### Step 3 - Find the New Vertex
 
-After the horizontal shift by $h = -1$ and vertical shift by $k = 1$:
+The parent's key point starts at (0, 0).
 
-$$\text{Vertex} = (-1,\ 1)$$
+Apply the shifts one at a time:
+  Horizontal shift: move left 1 unit(s)  ->  x becomes -1
+  Vertical shift  : move up 1 unit(s)  ->  y becomes 1
 
-This is the **minimum** of the graph.
+New Vertex = (-1, 1)
 
-### Step 5 — End Behavior
+This is the LOWEST point on the graph.
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+### Step 4 - Shape of the Graph
 
-### Step 6 — y-intercept
+The power is 4, which is EVEN.
 
-Substitute $x = 0$ into $f(x)$:
+Even power (+ a = 2):
+  -> Graph opens UPWARD (U-shape)
+  -> Symmetric about the vertical line x = -1
 
-$$f(0) = 2(0 - (-1))^{4} + 1 = 3$$
+### Step 5 - y-intercept (where does the graph cross the y-axis?)
 
-So the y-intercept is $(0,\ 3)$.
+Plug in x = 0:
 
-### Step 7 — Sketch Notes
+$$f(0) = 2(0 - (-1))^{4} + 1$$
+$$f(0) = 2 \times 1 + 1$$
+$$f(0) = 2 + 1 = 3$$
 
-1. Plot the vertex at $(-1,\ 1)$.
-2. Plot the y-intercept at $(0,\ 3)$.
-3. Use the end-behavior arrows from Step 5.
-4. The graph is symmetric about the vertical line $x = -1$.
+y-intercept = (0, 3)
+
+### Step 6 - End Behavior (what happens at the far left and right?)
+
+Look at the leading term to decide:
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph rises on BOTH sides (like a U-shape).
+
+### Step 7 - Final Summary (copy this into your exam answer!)
+
+  Parent Function : y = x^4
+  Transformation  : VERTICAL STRETCH by 2, SHIFT LEFT by 1 units, SHIFT UP by 1 units
+  Vertex          : (-1, 1)
+  y-intercept     : (0, 3)
+  Shape           : U-shape, opens UP
+  End Behavior    : The graph rises on BOTH sides (like a U-shape).
 
 ### Final Answer
 
-> Parent: $y = x^{4}$.  Vertex: $(-1,\ 1)$.  y-intercept: $(0,\ 3)$.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+> Parent: $y = x^{4}$ | Vertex: (-1, 1) | y-intercept: (0, 3) | The graph rises on BOTH sides (like a U-shape).
 
 ---
 
@@ -289,64 +371,87 @@ So the y-intercept is $(0,\ 3)$.
 
 > f(x) = 3 - (x + 2)^4
 
-### Step 1 — Write Down the Standard Form
+### Step 1 - Start with the Parent Function (Ignore the numbers)
 
-Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
+Just look at the POWER for a moment - ignore everything else.
 
-For the given function, identify:
-- $a = -1$ (vertical scaling / reflection)
-- $h = -2$ (horizontal shift)
-- $n = 4$ (degree / shape)
-- $k = 3$ (vertical shift)
+Parent function:  y = x^4
 
-### Step 2 — Identify the Parent Function
+What does y = x^4 look like?
+  Shape    : U-shaped (like a bowl)
+  Opens    : upward
+  Key Pt   : Vertex at (0, 0)
+  Symmetry : symmetric about the y-axis
 
-Remove $a$, $h$, and $k$ and look at the bare power:
+### Step 2 - Understand the Changes (Transformations)
 
-$$y = x^{4}$$
+Now compare y = x^4 with the given function:
 
-This is an **even-degree** power function.  Its graph is U-shaped, symmetric about the y-axis, with a minimum at the origin.
+$$f(x) = -1\left(x - (-2)\right)^{4} + 3$$
 
-### Step 3 — List Every Transformation (Apply in Order)
+There are 3 change(s) from the parent:
 
-Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
+  Change 1: FLIP (Reflection over x-axis)
+     The graph turns upside down.
+     Reason: the minus sign in front of the function.
 
-1. Reflect over the x-axis (multiply by $-1$).
-2. Shift **2 unit(s) to the left** (factor is $(x + 2)$).
-3. Shift **3 unit(s) up**.
+  Change 2: SHIFT LEFT by 2 units
+     You see (x + 2) inside the bracket.
+     Trick: PLUS inside = move LEFT. (Feels backwards - but it is correct!)
 
-### Step 4 — Locate the Key Point (Vertex)
+  Change 3: SHIFT UP by 3 units
+     The +3 is OUTSIDE the bracket, so the whole graph moves up.
 
-The parent's key point is at $(0,\ 0)$.
+### Step 3 - Find the New Vertex
 
-After the horizontal shift by $h = -2$ and vertical shift by $k = 3$:
+The parent's key point starts at (0, 0).
 
-$$\text{Vertex} = (-2,\ 3)$$
+Apply the shifts one at a time:
+  Horizontal shift: move left 2 unit(s)  ->  x becomes -2
+  Vertical shift  : move up 3 unit(s)  ->  y becomes 3
 
-This is the **maximum** of the graph.
+New Vertex = (-2, 3)
 
-### Step 5 — End Behavior
+This is the HIGHEST point on the graph.
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+### Step 4 - Shape of the Graph
 
-### Step 6 — y-intercept
+The power is 4, which is EVEN.
 
-Substitute $x = 0$ into $f(x)$:
+Even power (+ a = -1):
+  -> Graph opens DOWNWARD (upside-down U)
+  -> Symmetric about the vertical line x = -2
 
-$$f(0) = -1(0 - (-2))^{4} + 3 = -13$$
+### Step 5 - y-intercept (where does the graph cross the y-axis?)
 
-So the y-intercept is $(0,\ -13)$.
+Plug in x = 0:
 
-### Step 7 — Sketch Notes
+$$f(0) = -1(0 - (-2))^{4} + 3$$
+$$f(0) = -1 \times 16 + 3$$
+$$f(0) = -16 + 3 = -13$$
 
-1. Plot the vertex at $(-2,\ 3)$.
-2. Plot the y-intercept at $(0,\ -13)$.
-3. Use the end-behavior arrows from Step 5.
-4. The graph is symmetric about the vertical line $x = -2$.
+y-intercept = (0, -13)
+
+### Step 6 - End Behavior (what happens at the far left and right?)
+
+Look at the leading term to decide:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+
+In plain words: The graph falls on BOTH sides (like an upside-down U).
+
+### Step 7 - Final Summary (copy this into your exam answer!)
+
+  Parent Function : y = x^4
+  Transformation  : FLIP (Reflection over x-axis), SHIFT LEFT by 2 units, SHIFT UP by 3 units
+  Vertex          : (-2, 3)
+  y-intercept     : (0, -13)
+  Shape           : U-shape, opens DOWN
+  End Behavior    : The graph falls on BOTH sides (like an upside-down U).
 
 ### Final Answer
 
-> Parent: $y = x^{4}$.  Vertex: $(-2,\ 3)$.  y-intercept: $(0,\ -13)$.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+> Parent: $y = x^{4}$ | Vertex: (-2, 3) | y-intercept: (0, -13) | The graph falls on BOTH sides (like an upside-down U).
 
 ---
 
@@ -358,64 +463,86 @@ So the y-intercept is $(0,\ -13)$.
 
 > f(x) = 4 - (x - 2)^5
 
-### Step 1 — Write Down the Standard Form
+### Step 1 - Start with the Parent Function (Ignore the numbers)
 
-Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
+Just look at the POWER for a moment - ignore everything else.
 
-For the given function, identify:
-- $a = -1$ (vertical scaling / reflection)
-- $h = 2$ (horizontal shift)
-- $n = 5$ (degree / shape)
-- $k = 4$ (vertical shift)
+Parent function:  y = x^5
 
-### Step 2 — Identify the Parent Function
+What does y = x^5 look like?
+  Shape    : S-shaped (like a cubic curve)
+  Direction: goes from bottom-left to top-right
+  Key Pt   : Inflection point at (0, 0)
 
-Remove $a$, $h$, and $k$ and look at the bare power:
+### Step 2 - Understand the Changes (Transformations)
 
-$$y = x^{5}$$
+Now compare y = x^5 with the given function:
 
-This is an **odd-degree** power function.  Its graph is S-shaped (like a cubic), with an inflection point at the origin.
+$$f(x) = -1\left(x - (2)\right)^{5} + 4$$
 
-### Step 3 — List Every Transformation (Apply in Order)
+There are 3 change(s) from the parent:
 
-Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
+  Change 1: FLIP (Reflection over x-axis)
+     The graph turns upside down.
+     Reason: the minus sign in front of the function.
 
-1. Reflect over the x-axis (multiply by $-1$).
-2. Shift **2 unit(s) to the right** (factor is $(x - 2)$).
-3. Shift **4 unit(s) up**.
+  Change 2: SHIFT RIGHT by 2 units
+     You see (x - 2) inside the bracket.
+     Trick: MINUS inside = move RIGHT.
 
-### Step 4 — Locate the Key Point (Inflection Point)
+  Change 3: SHIFT UP by 4 units
+     The +4 is OUTSIDE the bracket, so the whole graph moves up.
 
-The parent's key point is at $(0,\ 0)$.
+### Step 3 - Find the New Inflection Point
 
-After the horizontal shift by $h = 2$ and vertical shift by $k = 4$:
+The parent's key point starts at (0, 0).
 
-$$\text{Inflection Point} = (2,\ 4)$$
+Apply the shifts one at a time:
+  Horizontal shift: move right 2 unit(s)  ->  x becomes 2
+  Vertical shift  : move up 4 unit(s)  ->  y becomes 4
 
-This is the **inflection point** of the graph (where the graph changes concavity).
+New Inflection Point = (2, 4)
 
-### Step 5 — End Behavior
+This is where the S-curve changes its bend (inflection point).
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+### Step 4 - Shape of the Graph
 
-### Step 6 — y-intercept
+The power is 5, which is ODD.
 
-Substitute $x = 0$ into $f(x)$:
+Odd power (a = -1):
+  -> Top-left to bottom-right (falls on the right)
+  -> 180-degree rotational symmetry about (2, 4)
 
-$$f(0) = -1(0 - (2))^{5} + 4 = 36$$
+### Step 5 - y-intercept (where does the graph cross the y-axis?)
 
-So the y-intercept is $(0,\ 36)$.
+Plug in x = 0:
 
-### Step 7 — Sketch Notes
+$$f(0) = -1(0 - (2))^{5} + 4$$
+$$f(0) = -1 \times -32 + 4$$
+$$f(0) = 32 + 4 = 36$$
 
-1. Plot the inflection point at $(2,\ 4)$.
-2. Plot the y-intercept at $(0,\ 36)$.
-3. Use the end-behavior arrows from Step 5.
-4. The graph has 180° rotational symmetry about $(2,\ 4)$.
+y-intercept = (0, 36)
+
+### Step 6 - End Behavior (what happens at the far left and right?)
+
+Look at the leading term to decide:
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+
+In plain words: The graph rises to the LEFT and falls to the RIGHT.
+
+### Step 7 - Final Summary (copy this into your exam answer!)
+
+  Parent Function : y = x^5
+  Transformation  : FLIP (Reflection over x-axis), SHIFT RIGHT by 2 units, SHIFT UP by 4 units
+  Inflection Point: (2, 4)
+  y-intercept     : (0, 36)
+  Shape           : S-shape
+  End Behavior    : The graph rises to the LEFT and falls to the RIGHT.
 
 ### Final Answer
 
-> Parent: $y = x^{5}$.  Inflection Point: $(2,\ 4)$.  y-intercept: $(0,\ 36)$.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+> Parent: $y = x^{5}$ | Inflection Point: (2, 4) | y-intercept: (0, 36) | The graph rises to the LEFT and falls to the RIGHT.
 
 ---
 
@@ -427,39 +554,53 @@ So the y-intercept is $(0,\ 36)$.
 
 > Zeros: -1, 1, 3; degree 3
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
-- Zero $x = 1$ with multiplicity $1$ $\Rightarrow$ factor $((x - 1))$
-- Zero $x = 3$ with multiplicity $1$ $\Rightarrow$ factor $((x - 3))$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -1  ->  factor: (x + 1)
+  Zero x = 1  ->  factor: (x - 1)
+  Zero x = 3  ->  factor: (x - 3)
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 1) \cdot (x - 1) \cdot (x - 3)$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^3 - 3x^2 - x + 3$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 3** ✓
+  x = -1,  multiplicity 1
+  x = 1,  multiplicity 1
+  x = 3,  multiplicity 1
+  Total = 3
+
+Degree = 3  (matches!)
 
 ### Final Answer
 
@@ -475,39 +616,53 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -2, 2, 3; degree 3
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -2$ with multiplicity $1$ $\Rightarrow$ factor $((x + 2))$
-- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
-- Zero $x = 3$ with multiplicity $1$ $\Rightarrow$ factor $((x - 3))$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -2  ->  factor: (x + 2)
+  Zero x = 2  ->  factor: (x - 2)
+  Zero x = 3  ->  factor: (x - 3)
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 2) \cdot (x - 2) \cdot (x - 3)$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^3 - 3x^2 - 4x + 12$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 3** ✓
+  x = -2,  multiplicity 1
+  x = 2,  multiplicity 1
+  x = 3,  multiplicity 1
+  Total = 3
+
+Degree = 3  (matches!)
 
 ### Final Answer
 
@@ -523,39 +678,53 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -4, 0, 2; degree 3
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -4$ with multiplicity $1$ $\Rightarrow$ factor $((x + 4))$
-- Zero $x = 0$ with multiplicity $1$ $\Rightarrow$ factor $(x)$
-- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -4  ->  factor: (x + 4)
+  Zero x = 0  ->  factor: x
+  Zero x = 2  ->  factor: (x - 2)
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 4) \cdot x \cdot (x - 2)$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^3 + 2x^2 - 8x$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 3** ✓
+  x = -4,  multiplicity 1
+  x = 0,  multiplicity 1
+  x = 2,  multiplicity 1
+  Total = 3
+
+Degree = 3  (matches!)
 
 ### Final Answer
 
@@ -571,39 +740,53 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -3, 0, 4; degree 3
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -3$ with multiplicity $1$ $\Rightarrow$ factor $((x + 3))$
-- Zero $x = 0$ with multiplicity $1$ $\Rightarrow$ factor $(x)$
-- Zero $x = 4$ with multiplicity $1$ $\Rightarrow$ factor $((x - 4))$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -3  ->  factor: (x + 3)
+  Zero x = 0  ->  factor: x
+  Zero x = 4  ->  factor: (x - 4)
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 3) \cdot x \cdot (x - 4)$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^3 - x^2 - 12x$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 3** ✓
+  x = -3,  multiplicity 1
+  x = 0,  multiplicity 1
+  x = 4,  multiplicity 1
+  Total = 3
+
+Degree = 3  (matches!)
 
 ### Final Answer
 
@@ -619,40 +802,55 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -3, -1, 2, 5; degree 4
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -3$ with multiplicity $1$ $\Rightarrow$ factor $((x + 3))$
-- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
-- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
-- Zero $x = 5$ with multiplicity $1$ $\Rightarrow$ factor $((x - 5))$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -3  ->  factor: (x + 3)
+  Zero x = -1  ->  factor: (x + 1)
+  Zero x = 2  ->  factor: (x - 2)
+  Zero x = 5  ->  factor: (x - 5)
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 3) \cdot (x + 1) \cdot (x - 2) \cdot (x - 5)$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^4 - 3x^3 - 15x^2 + 19x + 30$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 4** ✓
+  x = -3,  multiplicity 1
+  x = -1,  multiplicity 1
+  x = 2,  multiplicity 1
+  x = 5,  multiplicity 1
+  Total = 4
+
+Degree = 4  (matches!)
 
 ### Final Answer
 
@@ -668,40 +866,55 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -4, -1, 2, 3; degree 4
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -4$ with multiplicity $1$ $\Rightarrow$ factor $((x + 4))$
-- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
-- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
-- Zero $x = 3$ with multiplicity $1$ $\Rightarrow$ factor $((x - 3))$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -4  ->  factor: (x + 4)
+  Zero x = -1  ->  factor: (x + 1)
+  Zero x = 2  ->  factor: (x - 2)
+  Zero x = 3  ->  factor: (x - 3)
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 4) \cdot (x + 1) \cdot (x - 2) \cdot (x - 3)$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^4 - 15x^2 + 10x + 24$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 4** ✓
+  x = -4,  multiplicity 1
+  x = -1,  multiplicity 1
+  x = 2,  multiplicity 1
+  x = 3,  multiplicity 1
+  Total = 4
+
+Degree = 4  (matches!)
 
 ### Final Answer
 
@@ -717,38 +930,52 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -2 (multiplicity 2), 4 (multiplicity 1); degree 3
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -2$ with multiplicity $2$ $\Rightarrow$ factor $((x + 2)^{2})$
-- Zero $x = 4$ with multiplicity $1$ $\Rightarrow$ factor $((x - 4))$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -2  ->  factor: (x + 2)^{2}
+  Zero x = 4  ->  factor: (x - 4)
+  Note: x = -2 has multiplicity 2, so (x + 2)^{2} is used 2 times as a factor.
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 2)^{2} \cdot (x - 4)$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^3 - 12x - 16$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 3** ✓
+  x = -2,  multiplicity 2
+  x = 4,  multiplicity 1
+  Total = 3
+
+Degree = 3  (matches!)
 
 ### Final Answer
 
@@ -764,38 +991,52 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -1 (multiplicity 1), 3 (multiplicity 2); degree 3
 
-### Step 1 — Recall the Factor Theorem
+### Step 1 - What Does a 'Zero' Mean?
 
-The **Factor Theorem** states:
+A zero (or root) is an x-value that makes f(x) = 0.
+Visually: the graph CROSSES or TOUCHES the x-axis at each zero.
 
-> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
+The Factor Theorem says:
 
-If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
+  If x = r is a zero, then (x - r) is a FACTOR of f(x).
 
-### Step 2 — Write One Factor for Each Zero
+  Quick examples:
+    Zero at x =  3  ->  factor is (x - 3)
+    Zero at x = -2  ->  factor is (x - (-2)) = (x + 2)
+    Zero at x =  0  ->  factor is (x - 0) = x
 
-From the given zeros, build the factors:
+### Step 2 - Convert Each Zero to a Factor
 
-- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
-- Zero $x = 3$ with multiplicity $2$ $\Rightarrow$ factor $((x - 3)^{2})$
+Apply the Factor Theorem to every zero:
 
-### Step 3 — Write in Factored Form (use $a = 1$)
+  Zero x = -1  ->  factor: (x + 1)
+  Zero x = 3  ->  factor: (x - 3)^{2}
+  Note: x = 3 has multiplicity 2, so (x - 3)^{2} is used 2 times as a factor.
 
-With leading coefficient $a = 1$:
+### Step 3 - Write the Factored Form
+
+Multiply all factors together. Use leading coefficient a = 1:
 
 $$f(x) = (x + 1) \cdot (x - 3)^{2}$$
 
-### Step 4 — Expand to Standard Form
+Note: We use a = 1 because the problem does not specify a value.
+Any non-zero multiple of this polynomial has the same zeros.
 
-Multiply out all factors (use FOIL / distributive property):
+### Step 4 - Expand to Standard Form
+
+Multiply out all the brackets (FOIL or distributive property):
 
 $$f(x) = x^3 - 5x^2 + 3x + 9$$
 
-### Step 5 — Verify Degree
+### Step 5 - Verify the Degree
 
-The highest power of $x$ in the expanded form gives the degree.
+Add up all the multiplicities - this must equal the stated degree:
 
-**Degree = 3** ✓
+  x = -1,  multiplicity 1
+  x = 3,  multiplicity 2
+  Total = 3
+
+Degree = 3  (matches!)
 
 ### Final Answer
 
@@ -811,41 +1052,65 @@ The highest power of $x$ in the expanded form gives the degree.
 
 > Zeros: -2, 0, 2  |  Point: (-4, 16)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 2) \cdot x \cdot (x - 2)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(-4,\ 16)$, so $f(-4) = 16$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = -4$ into the base (without $a$):
+The point (-4, 16) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=-4: \quad (x + 2) \cdot x \cdot (x - 2)\Big|_{x=-4} = -48$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot -48 = 16$$
+Convert each zero to a factor:
+  - (x + 2)
+  - x
+  - (x - 2)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 2) \cdot x \cdot (x - 2)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(-4) = 16  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = -4 (leave 'a' out for now):
+
+$$\text{Base at } x = -4: \quad (x + 2) \cdot x \cdot (x - 2)\big|_{x=-4} = -48$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times -48 = 16$$
+
 $$a = \frac{16}{-48} = -1/3$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = -1/3((x + 2) \cdot x \cdot (x - 2))$$
+Substitute a = -1/3:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = -1/3 \cdot (x + 2) \cdot x \cdot (x - 2)$$
 
+Standard form (expanded):
 $$f(x) = -x^3/3 + 4x/3$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(-4,\ 16)$:
+Plug x = -4 back in to double-check:
 
-$$f(-4) = -1/3 \cdot -48 = 16 \checkmark$$
+$$f(-4) = -1/3 \times -48 = 16 \checkmark$$
+
+The point (-4, 16) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = -1/3((x + 2) \cdot x \cdot (x - 2)) = -x^3/3 + 4x/3$
+> a = -1/3  =>  $f(x) = -1/3((x + 2) \cdot x \cdot (x - 2)) = -x^3/3 + 4x/3$
 
 ---
 
@@ -857,41 +1122,65 @@ $$f(-4) = -1/3 \cdot -48 = 16 \checkmark$$
 
 > Zeros: -3, 1, 4  |  Point: (6, 180)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 3) \cdot (x - 1) \cdot (x - 4)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(6,\ 180)$, so $f(6) = 180$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 6$ into the base (without $a$):
+The point (6, 180) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=6: \quad (x + 3) \cdot (x - 1) \cdot (x - 4)\Big|_{x=6} = 90$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 90 = 180$$
+Convert each zero to a factor:
+  - (x + 3)
+  - (x - 1)
+  - (x - 4)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 3) \cdot (x - 1) \cdot (x - 4)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(6) = 180  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 6 (leave 'a' out for now):
+
+$$\text{Base at } x = 6: \quad (x + 3) \cdot (x - 1) \cdot (x - 4)\big|_{x=6} = 90$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 90 = 180$$
+
 $$a = \frac{180}{90} = 2$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = 2((x + 3) \cdot (x - 1) \cdot (x - 4))$$
+Substitute a = 2:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = 2 \cdot (x + 3) \cdot (x - 1) \cdot (x - 4)$$
 
+Standard form (expanded):
 $$f(x) = 2x^3 - 4x^2 - 22x + 24$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(6,\ 180)$:
+Plug x = 6 back in to double-check:
 
-$$f(6) = 2 \cdot 90 = 180 \checkmark$$
+$$f(6) = 2 \times 90 = 180 \checkmark$$
+
+The point (6, 180) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = 2((x + 3) \cdot (x - 1) \cdot (x - 4)) = 2x^3 - 4x^2 - 22x + 24$
+> a = 2  =>  $f(x) = 2((x + 3) \cdot (x - 1) \cdot (x - 4)) = 2x^3 - 4x^2 - 22x + 24$
 
 ---
 
@@ -903,41 +1192,66 @@ $$f(6) = 2 \cdot 90 = 180 \checkmark$$
 
 > Zeros: -5, -1, 2, 6  |  Point: (5/2, 15)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(2.5,\ 15)$, so $f(2.5) = 15$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 2.5$ into the base (without $a$):
+The point (2.5, 15) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=2.5: \quad (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)\Big|_{x=2.5} = -45.94$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot -45.94 = 15$$
+Convert each zero to a factor:
+  - (x + 5)
+  - (x + 1)
+  - (x - 2)
+  - (x - 6)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(2.5) = 15  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 2.5 (leave 'a' out for now):
+
+$$\text{Base at } x = 2.5: \quad (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)\big|_{x=2.5} = -45.94$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times -45.94 = 15$$
+
 $$a = \frac{15}{-45.94} = -16/49$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = -16/49((x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6))$$
+Substitute a = -16/49:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = -16/49 \cdot (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)$$
 
+Standard form (expanded):
 $$f(x) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(2.5,\ 15)$:
+Plug x = 2.5 back in to double-check:
 
-$$f(2.5) = -16/49 \cdot -45.94 = 15 \checkmark$$
+$$f(2.5) = -16/49 \times -45.94 = 15 \checkmark$$
+
+The point (2.5, 15) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = -16/49((x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49$
+> a = -16/49  =>  $f(x) = -16/49((x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49$
 
 ---
 
@@ -949,41 +1263,66 @@ $$f(2.5) = -16/49 \cdot -45.94 = 15 \checkmark$$
 
 > Zeros: -1, 0, 2, 4  |  Point: (1/2, 63)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(0.5,\ 63)$, so $f(0.5) = 63$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 0.5$ into the base (without $a$):
+The point (0.5, 63) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=0.5: \quad (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)\Big|_{x=0.5} = 3.938$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 3.938 = 63$$
+Convert each zero to a factor:
+  - (x + 1)
+  - x
+  - (x - 2)
+  - (x - 4)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(0.5) = 63  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 0.5 (leave 'a' out for now):
+
+$$\text{Base at } x = 0.5: \quad (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)\big|_{x=0.5} = 3.938$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 3.938 = 63$$
+
 $$a = \frac{63}{3.938} = 16$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = 16((x + 1) \cdot x \cdot (x - 2) \cdot (x - 4))$$
+Substitute a = 16:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = 16 \cdot (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)$$
 
+Standard form (expanded):
 $$f(x) = 16x^4 - 80x^3 + 32x^2 + 128x$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(0.5,\ 63)$:
+Plug x = 0.5 back in to double-check:
 
-$$f(0.5) = 16 \cdot 3.938 = 63 \checkmark$$
+$$f(0.5) = 16 \times 3.938 = 63 \checkmark$$
+
+The point (0.5, 63) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = 16((x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)) = 16x^4 - 80x^3 + 32x^2 + 128x$
+> a = 16  =>  $f(x) = 16((x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)) = 16x^4 - 80x^3 + 32x^2 + 128x$
 
 ---
 
@@ -995,41 +1334,65 @@ $$f(0.5) = 16 \cdot 3.938 = 63 \checkmark$$
 
 > Zeros: -1 (multiplicity 2), 0 (multiplicity 2), 3 (multiplicity 2)  |  Point: (1, -48)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(1,\ -48)$, so $f(1) = -48$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 1$ into the base (without $a$):
+The point (1, -48) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=1: \quad (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}\Big|_{x=1} = 16$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 16 = -48$$
+Convert each zero to a factor:
+  - (x + 1)^{2}
+  - x^{2}
+  - (x - 3)^{2}
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(1) = -48  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 1 (leave 'a' out for now):
+
+$$\text{Base at } x = 1: \quad (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}\big|_{x=1} = 16$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 16 = -48$$
+
 $$a = \frac{-48}{16} = -3$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = -3((x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2})$$
+Substitute a = -3:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = -3 \cdot (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}$$
 
+Standard form (expanded):
 $$f(x) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(1,\ -48)$:
+Plug x = 1 back in to double-check:
 
-$$f(1) = -3 \cdot 16 = -48 \checkmark$$
+$$f(1) = -3 \times 16 = -48 \checkmark$$
+
+The point (1, -48) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = -3((x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2$
+> a = -3  =>  $f(x) = -3((x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2$
 
 ---
 
@@ -1041,41 +1404,64 @@ $$f(1) = -3 \cdot 16 = -48 \checkmark$$
 
 > Zeros: -1 (multiplicity 2), 1 (multiplicity 2)  |  Point: (-2, 45)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 1)^{2} \cdot (x - 1)^{2}$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(-2,\ 45)$, so $f(-2) = 45$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = -2$ into the base (without $a$):
+The point (-2, 45) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=-2: \quad (x + 1)^{2} \cdot (x - 1)^{2}\Big|_{x=-2} = 9$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 9 = 45$$
+Convert each zero to a factor:
+  - (x + 1)^{2}
+  - (x - 1)^{2}
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 1)^{2} \cdot (x - 1)^{2}$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(-2) = 45  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = -2 (leave 'a' out for now):
+
+$$\text{Base at } x = -2: \quad (x + 1)^{2} \cdot (x - 1)^{2}\big|_{x=-2} = 9$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 9 = 45$$
+
 $$a = \frac{45}{9} = 5$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = 5((x + 1)^{2} \cdot (x - 1)^{2})$$
+Substitute a = 5:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = 5 \cdot (x + 1)^{2} \cdot (x - 1)^{2}$$
 
+Standard form (expanded):
 $$f(x) = 5x^4 - 10x^2 + 5$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(-2,\ 45)$:
+Plug x = -2 back in to double-check:
 
-$$f(-2) = 5 \cdot 9 = 45 \checkmark$$
+$$f(-2) = 5 \times 9 = 45 \checkmark$$
+
+The point (-2, 45) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = 5((x + 1)^{2} \cdot (x - 1)^{2}) = 5x^4 - 10x^2 + 5$
+> a = 5  =>  $f(x) = 5((x + 1)^{2} \cdot (x - 1)^{2}) = 5x^4 - 10x^2 + 5$
 
 ---
 
@@ -1089,50 +1475,66 @@ $$f(-2) = 5 \cdot 9 = 45 \checkmark$$
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = 3x^3 - 3x^2 - 99x - 189$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = 3
+  Leading term                = 3x^{3}
 
-**Leading coefficient:** $a_n = 3$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $3x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -3  (multiplicity 2)
+  x = 7  (multiplicity 1)
 
-- $x = -3$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 7$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = -189$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = -189$, so the y-intercept is $(0,\ -189)$.
+y-intercept = (0, -189)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -3$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 7$: graph **crosses** the x-axis (odd multiplicity).
+  x = -3  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 7  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $3x^{3}$:
+Focus only on the leading term: 3x^{3}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = 3  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $3x^{3}$.  Zeros: $x=-3$ (mult 2); $x=7$ (mult 1).  y-intercept: $(0,\ -189)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 3 | Leading term: $3x^{3}$ | Zeros: x = -3 (mult 2); x = 7 (mult 1) | y-intercept: (0, -189) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1146,50 +1548,66 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = 4x^4 + 52x^3 + 252x^2 + 540x + 432$$
 
-**Degree:** $n = 4$
+  Degree (highest power of x) = 4
+  Leading coefficient         = 4
+  Leading term                = 4x^{4}
 
-**Leading coefficient:** $a_n = 4$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $4x^{4}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 1)
+  x = -3  (multiplicity 3)
 
-- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = -3$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 432$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 432$, so the y-intercept is $(0,\ 432)$.
+y-intercept = (0, 432)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
-At $x = -3$: graph **crosses** the x-axis (odd multiplicity).
+  x = -4  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = -3  mult 3 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 4 - 1 = \mathbf{3}$$
+Formula:  Maximum turning points = degree - 1
+
+  4 - 1 = 3
+
+This graph can have AT MOST 3 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $4x^{4}$:
+Focus only on the leading term: 4x^{4}
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+  Degree = 4  (EVEN)
+  Leading coefficient = 4  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph rises on BOTH sides (like a U-shape).
 
 ### Final Answer
 
-> Degree: 4.  Leading term: $4x^{4}$.  Zeros: $x=-4$ (mult 1); $x=-3$ (mult 3).  y-intercept: $(0,\ 432)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+> Degree: 4 | Leading term: $4x^{4}$ | Zeros: x = -4 (mult 1); x = -3 (mult 3) | y-intercept: (0, 432) | Max turning pts: 3 | The graph rises on BOTH sides (like a U-shape).
 
 ---
 
@@ -1203,47 +1621,64 @@ As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = 2x^7 - 6x^6 + 24x^5 - 72x^4 + 96x^3 - 288x^2 + 128x - 384$$
 
-**Degree:** $n = 7$
+  Degree (highest power of x) = 7
+  Leading coefficient         = 2
+  Leading term                = 2x^{7}
 
-**Leading coefficient:** $a_n = 2$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $2x^{7}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = 3  (multiplicity 1)
 
-- $x = 3$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-**y-intercept:** Set $x = 0$:  $f(0) = -384$, so the y-intercept is $(0,\ -384)$.
+$$f(0) = -384$$
 
-### (c) Crosses or Touches the x-axis?
+y-intercept = (0, -384)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-At $x = 3$: graph **crosses** the x-axis (odd multiplicity).
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
+
+  x = 3  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 7 - 1 = \mathbf{6}$$
+Formula:  Maximum turning points = degree - 1
+
+  7 - 1 = 6
+
+This graph can have AT MOST 6 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $2x^{7}$:
+Focus only on the leading term: 2x^{7}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 7  (ODD)
+  Leading coefficient = 2  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Degree: 7.  Leading term: $2x^{7}$.  Zeros: $x=3$ (mult 1).  y-intercept: $(0,\ -384)$.  Max turning pts: 6.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 7 | Leading term: $2x^{7}$ | Zeros: x = 3 (mult 1) | y-intercept: (0, -384) | Max turning pts: 6 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1257,47 +1692,64 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = 4x^5 - 24x^4 + 52x^3 - 56x^2 + 48x - 32$$
 
-**Degree:** $n = 5$
+  Degree (highest power of x) = 5
+  Leading coefficient         = 4
+  Leading term                = 4x^{5}
 
-**Leading coefficient:** $a_n = 4$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $4x^{5}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = 2  (multiplicity 3)
 
-- $x = 2$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-**y-intercept:** Set $x = 0$:  $f(0) = -32$, so the y-intercept is $(0,\ -32)$.
+$$f(0) = -32$$
 
-### (c) Crosses or Touches the x-axis?
+y-intercept = (0, -32)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-At $x = 2$: graph **crosses** the x-axis (odd multiplicity).
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
+
+  x = 2  mult 3 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 5 - 1 = \mathbf{4}$$
+Formula:  Maximum turning points = degree - 1
+
+  5 - 1 = 4
+
+This graph can have AT MOST 4 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $4x^{5}$:
+Focus only on the leading term: 4x^{5}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 5  (ODD)
+  Leading coefficient = 4  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Degree: 5.  Leading term: $4x^{5}$.  Zeros: $x=2$ (mult 3).  y-intercept: $(0,\ -32)$.  Max turning pts: 4.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 5 | Leading term: $4x^{5}$ | Zeros: x = 2 (mult 3) | y-intercept: (0, -32) | Max turning pts: 4 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1311,50 +1763,66 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^5 - 11x^4/3 + 46x^3/9 - 10x^2/3 + x - 1/9$$
 
-**Degree:** $n = 5$
+  Degree (highest power of x) = 5
+  Leading coefficient         = 1
+  Leading term                = x^{5}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{5}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = 1/3  (multiplicity 2)
+  x = 1  (multiplicity 3)
 
-- $x = 1/3$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 1$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = -0.1111$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = -0.1111$, so the y-intercept is $(0,\ -0.1111)$.
+y-intercept = (0, -0.1111)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = 1/3$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+  x = 1/3  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 1  mult 3 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 5 - 1 = \mathbf{4}$$
+Formula:  Maximum turning points = degree - 1
+
+  5 - 1 = 4
+
+This graph can have AT MOST 4 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{5}$:
+Focus only on the leading term: x^{5}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 5  (ODD)
+  Leading coefficient = 1  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Degree: 5.  Leading term: $x^{5}$.  Zeros: $x=1/3$ (mult 2); $x=1$ (mult 3).  y-intercept: $(0,\ -0.1111)$.  Max turning pts: 4.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 5 | Leading term: $x^{5}$ | Zeros: x = 1/3 (mult 2); x = 1 (mult 3) | y-intercept: (0, -0.1111) | Max turning pts: 4 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1368,50 +1836,66 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = -2x^5 - 26x^4 - 241x^3/2 - 230x^2 - 152x - 32$$
 
-**Degree:** $n = 5$
+  Degree (highest power of x) = 5
+  Leading coefficient         = -2
+  Leading term                = -2x^{5}
 
-**Leading coefficient:** $a_n = -2$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $-2x^{5}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 3)
+  x = -1/2  (multiplicity 2)
 
-- $x = -4$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = -1/2$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+$$f(0) = -32$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = -32$, so the y-intercept is $(0,\ -32)$.
+y-intercept = (0, -32)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
-At $x = -1/2$: graph **touches** (bounces) the x-axis (even multiplicity).
+  x = -4  mult 3 (ODD)   ->  CROSSES the x-axis
+  x = -1/2  mult 2 (EVEN)  ->  TOUCHES (bounces back)
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 5 - 1 = \mathbf{4}$$
+Formula:  Maximum turning points = degree - 1
+
+  5 - 1 = 4
+
+This graph can have AT MOST 4 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $-2x^{5}$:
+Focus only on the leading term: -2x^{5}
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+  Degree = 5  (ODD)
+  Leading coefficient = -2  (NEGATIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+
+In plain words: The graph rises to the LEFT and falls to the RIGHT.
 
 ### Final Answer
 
-> Degree: 5.  Leading term: $-2x^{5}$.  Zeros: $x=-4$ (mult 3); $x=-1/2$ (mult 2).  y-intercept: $(0,\ -32)$.  Max turning pts: 4.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+> Degree: 5 | Leading term: $-2x^{5}$ | Zeros: x = -4 (mult 3); x = -1/2 (mult 2) | y-intercept: (0, -32) | Max turning pts: 4 | The graph rises to the LEFT and falls to the RIGHT.
 
 ---
 
@@ -1425,50 +1909,66 @@ As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^6 - 8x^5 + 2*sqrt(3)x^5 - 16*sqrt(3)x^4 + 27x^4 - 56x^3 + 48*sqrt(3)x^3 - 64*sqrt(3)x^2 + 88x^2 - 96x + 32*sqrt(3)x + 48$$
 
-**Degree:** $n = 6$
+  Degree (highest power of x) = 6
+  Leading coefficient         = 1
+  Leading term                = x^{6}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{6}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -sqrt(3)  (multiplicity 2)
+  x = 2  (multiplicity 4)
 
-- $x = -sqrt(3)$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 2$ — multiplicity $\mathbf{4}$ — **touches** the x-axis and turns back (even multiplicity)
+$$f(0) = 48$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 48$, so the y-intercept is $(0,\ 48)$.
+y-intercept = (0, 48)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -sqrt(3)$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 2$: graph **touches** (bounces) the x-axis (even multiplicity).
+  x = -sqrt(3)  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 2  mult 4 (EVEN)  ->  TOUCHES (bounces back)
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 6 - 1 = \mathbf{5}$$
+Formula:  Maximum turning points = degree - 1
+
+  6 - 1 = 5
+
+This graph can have AT MOST 5 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{6}$:
+Focus only on the leading term: x^{6}
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+  Degree = 6  (EVEN)
+  Leading coefficient = 1  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph rises on BOTH sides (like a U-shape).
 
 ### Final Answer
 
-> Degree: 6.  Leading term: $x^{6}$.  Zeros: $x=-sqrt(3)$ (mult 2); $x=2$ (mult 4).  y-intercept: $(0,\ 48)$.  Max turning pts: 5.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+> Degree: 6 | Leading term: $x^{6}$ | Zeros: x = -sqrt(3) (mult 2); x = 2 (mult 4) | y-intercept: (0, 48) | Max turning pts: 5 | The graph rises on BOTH sides (like a U-shape).
 
 ---
 
@@ -1482,50 +1982,66 @@ As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^5 - 7x^4 - 29x^3 + 235x^2 + 200x - 2000$$
 
-**Degree:** $n = 5$
+  Degree (highest power of x) = 5
+  Leading coefficient         = 1
+  Leading term                = x^{5}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{5}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 2)
+  x = 5  (multiplicity 3)
 
-- $x = -4$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 5$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = -2000$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = -2000$, so the y-intercept is $(0,\ -2000)$.
+y-intercept = (0, -2000)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -4$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 5$: graph **crosses** the x-axis (odd multiplicity).
+  x = -4  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 5  mult 3 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 5 - 1 = \mathbf{4}$$
+Formula:  Maximum turning points = degree - 1
+
+  5 - 1 = 4
+
+This graph can have AT MOST 4 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{5}$:
+Focus only on the leading term: x^{5}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 5  (ODD)
+  Leading coefficient = 1  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Degree: 5.  Leading term: $x^{5}$.  Zeros: $x=-4$ (mult 2); $x=5$ (mult 3).  y-intercept: $(0,\ -2000)$.  Max turning pts: 4.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 5 | Leading term: $x^{5}$ | Zeros: x = -4 (mult 2); x = 5 (mult 3) | y-intercept: (0, -2000) | Max turning pts: 4 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1539,45 +2055,59 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = -2x^6 - 18x^4 - 54x^2 - 54$$
 
-**Degree:** $n = 6$
+  Degree (highest power of x) = 6
+  Leading coefficient         = -2
+  Leading term                = -2x^{6}
 
-**Leading coefficient:** $a_n = -2$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $-2x^{6}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero...
 
-Setting each factor to zero:
+  No REAL zeros exist - all roots are complex numbers.
+  The graph never crosses or touches the x-axis.
 
-- No **real** zeros exist (all factors give complex roots).
+y-intercept: substitute x = 0:
 
-The graph does not cross or touch the x-axis.
+$$f(0) = -54$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = -54$, so the y-intercept is $(0,\ -54)$.
+y-intercept = (0, -54)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-No real zeros → the graph never crosses or touches the x-axis.
+No real zeros -> the graph never reaches the x-axis.
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 6 - 1 = \mathbf{5}$$
+Formula:  Maximum turning points = degree - 1
+
+  6 - 1 = 5
+
+This graph can have AT MOST 5 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $-2x^{6}$:
+Focus only on the leading term: -2x^{6}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+  Degree = 6  (EVEN)
+  Leading coefficient = -2  (NEGATIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+
+In plain words: The graph falls on BOTH sides (like an upside-down U).
 
 ### Final Answer
 
-> Degree: 6.  Leading term: $-2x^{6}$.  Zeros: no real zeros.  y-intercept: $(0,\ -54)$.  Max turning pts: 5.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+> Degree: 6 | Leading term: $-2x^{6}$ | Zeros: no real zeros | y-intercept: (0, -54) | Max turning pts: 5 | The graph falls on BOTH sides (like an upside-down U).
 
 ---
 
@@ -1591,45 +2121,59 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = 3x^6 + 78x^4 + 675x^2 + 1944$$
 
-**Degree:** $n = 6$
+  Degree (highest power of x) = 6
+  Leading coefficient         = 3
+  Leading term                = 3x^{6}
 
-**Leading coefficient:** $a_n = 3$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $3x^{6}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero...
 
-Setting each factor to zero:
+  No REAL zeros exist - all roots are complex numbers.
+  The graph never crosses or touches the x-axis.
 
-- No **real** zeros exist (all factors give complex roots).
+y-intercept: substitute x = 0:
 
-The graph does not cross or touch the x-axis.
+$$f(0) = 1944$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 1944$, so the y-intercept is $(0,\ 1944)$.
+y-intercept = (0, 1944)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-No real zeros → the graph never crosses or touches the x-axis.
+No real zeros -> the graph never reaches the x-axis.
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 6 - 1 = \mathbf{5}$$
+Formula:  Maximum turning points = degree - 1
+
+  6 - 1 = 5
+
+This graph can have AT MOST 5 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $3x^{6}$:
+Focus only on the leading term: 3x^{6}
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+  Degree = 6  (EVEN)
+  Leading coefficient = 3  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph rises on BOTH sides (like a U-shape).
 
 ### Final Answer
 
-> Degree: 6.  Leading term: $3x^{6}$.  Zeros: no real zeros.  y-intercept: $(0,\ 1944)$.  Max turning pts: 5.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+> Degree: 6 | Leading term: $3x^{6}$ | Zeros: no real zeros | y-intercept: (0, 1944) | Max turning pts: 5 | The graph rises on BOTH sides (like a U-shape).
 
 ---
 
@@ -1643,53 +2187,68 @@ As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = 4x^3 - 12x$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = 4
+  Leading term                = 4x^{3}
 
-**Leading coefficient:** $a_n = 4$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $4x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -sqrt(3)  (multiplicity 1)
+  x = 0  (multiplicity 1)
+  x = sqrt(3)  (multiplicity 1)
 
-- $x = -sqrt(3)$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 0$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 0$$
 
-- $x = sqrt(3)$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept = (0, 0)
 
-**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-### (c) Crosses or Touches the x-axis?
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
-
-At $x = -sqrt(3)$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 0$: graph **crosses** the x-axis (odd multiplicity).
-At $x = sqrt(3)$: graph **crosses** the x-axis (odd multiplicity).
+  x = -sqrt(3)  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 0  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = sqrt(3)  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $4x^{3}$:
+Focus only on the leading term: 4x^{3}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = 4  (POSITIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
+
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $4x^{3}$.  Zeros: $x=-sqrt(3)$ (mult 1); $x=0$ (mult 1); $x=sqrt(3)$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 3 | Leading term: $4x^{3}$ | Zeros: x = -sqrt(3) (mult 1); x = 0 (mult 1); x = sqrt(3) (mult 1) | y-intercept: (0, 0) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1703,53 +2262,68 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = -2x^4 + 4x^2$$
 
-**Degree:** $n = 4$
+  Degree (highest power of x) = 4
+  Leading coefficient         = -2
+  Leading term                = -2x^{4}
 
-**Leading coefficient:** $a_n = -2$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $-2x^{4}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -sqrt(2)  (multiplicity 1)
+  x = 0  (multiplicity 2)
+  x = sqrt(2)  (multiplicity 1)
 
-- $x = -sqrt(2)$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 0$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+$$f(0) = 0$$
 
-- $x = sqrt(2)$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept = (0, 0)
 
-**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-### (c) Crosses or Touches the x-axis?
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
-
-At $x = -sqrt(2)$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 0$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = sqrt(2)$: graph **crosses** the x-axis (odd multiplicity).
+  x = -sqrt(2)  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 0  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = sqrt(2)  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 4 - 1 = \mathbf{3}$$
+Formula:  Maximum turning points = degree - 1
+
+  4 - 1 = 3
+
+This graph can have AT MOST 3 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $-2x^{4}$:
+Focus only on the leading term: -2x^{4}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+  Degree = 4  (EVEN)
+  Leading coefficient = -2  (NEGATIVE)
+
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
+
+In plain words: The graph falls on BOTH sides (like an upside-down U).
 
 ### Final Answer
 
-> Degree: 4.  Leading term: $-2x^{4}$.  Zeros: $x=-sqrt(2)$ (mult 1); $x=0$ (mult 2); $x=sqrt(2)$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+> Degree: 4 | Leading term: $-2x^{4}$ | Zeros: x = -sqrt(2) (mult 1); x = 0 (mult 2); x = sqrt(2) (mult 1) | y-intercept: (0, 0) | Max turning pts: 3 | The graph falls on BOTH sides (like an upside-down U).
 
 ---
 
@@ -1763,62 +2337,77 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$ 
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^3 - 3x^2$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = 1
+  Leading term                = x^{3}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = 0  (multiplicity 2)
+  x = 3  (multiplicity 1)
 
-- $x = 0$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 3$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 0$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+y-intercept = (0, 0)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = 0$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 3$: graph **crosses** the x-axis (odd multiplicity).
+  x = 0  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 3  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{3}$:
+Focus only on the leading term: x^{3}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = 1  (POSITIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
-1. **y-intercept:** $(0,\ 0)$
-2. **x-intercepts (zeros):**
-   - $x = 0$ (touches/bounces)
-   - $x = 3$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
-4. **At most 2 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 0).
+  2. At x = 0: touch and bounce back.
+  2. At x = 3: cross straight through.
+  3. Draw end-behavior arrows: The graph falls to the LEFT and rises to the RIGHT.
+  4. The graph turns at most 2 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=0$ (mult 2); $x=3$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 3 | Leading term: $x^{3}$ | Zeros: x = 0 (mult 2); x = 3 (mult 1) | y-intercept: (0, 0) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1832,62 +2421,77 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^3 + 4x^2 + 4x$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = 1
+  Leading term                = x^{3}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -2  (multiplicity 2)
+  x = 0  (multiplicity 1)
 
-- $x = -2$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 0$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 0$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+y-intercept = (0, 0)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -2$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 0$: graph **crosses** the x-axis (odd multiplicity).
+  x = -2  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 0  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{3}$:
+Focus only on the leading term: x^{3}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = 1  (POSITIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
-1. **y-intercept:** $(0,\ 0)$
-2. **x-intercepts (zeros):**
-   - $x = -2$ (touches/bounces)
-   - $x = 0$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
-4. **At most 2 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 0).
+  2. At x = -2: touch and bounce back.
+  2. At x = 0: cross straight through.
+  3. Draw end-behavior arrows: The graph falls to the LEFT and rises to the RIGHT.
+  4. The graph turns at most 2 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-2$ (mult 2); $x=0$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -2 (mult 2); x = 0 (mult 1) | y-intercept: (0, 0) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1901,62 +2505,77 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^3 + 5x^2 + 3x - 9$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = 1
+  Leading term                = x^{3}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -3  (multiplicity 2)
+  x = 1  (multiplicity 1)
 
-- $x = -3$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = -9$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = -9$, so the y-intercept is $(0,\ -9)$.
+y-intercept = (0, -9)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -3$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+  x = -3  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 1  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{3}$:
+Focus only on the leading term: x^{3}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = 1  (POSITIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
-1. **y-intercept:** $(0,\ -9)$
-2. **x-intercepts (zeros):**
-   - $x = -3$ (touches/bounces)
-   - $x = 1$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
-4. **At most 2 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, -9).
+  2. At x = -3: touch and bounce back.
+  2. At x = 1: cross straight through.
+  3. Draw end-behavior arrows: The graph falls to the LEFT and rises to the RIGHT.
+  4. The graph turns at most 2 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-3$ (mult 2); $x=1$ (mult 1).  y-intercept: $(0,\ -9)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -3 (mult 2); x = 1 (mult 1) | y-intercept: (0, -9) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -1970,62 +2589,77 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = -x^3 - 7x^2 - 8x + 16$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = -1
+  Leading term                = -x^{3}
 
-**Leading coefficient:** $a_n = -1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $-x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 2)
+  x = 1  (multiplicity 1)
 
-- $x = -4$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 16$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 16$, so the y-intercept is $(0,\ 16)$.
+y-intercept = (0, 16)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -4$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+  x = -4  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 1  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $-x^{3}$:
+Focus only on the leading term: -x^{3}
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = -1  (NEGATIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph rises to the LEFT and falls to the RIGHT.
 
-1. **y-intercept:** $(0,\ 16)$
-2. **x-intercepts (zeros):**
-   - $x = -4$ (touches/bounces)
-   - $x = 1$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
-4. **At most 2 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 16).
+  2. At x = -4: touch and bounce back.
+  2. At x = 1: cross straight through.
+  3. Draw end-behavior arrows: The graph rises to the LEFT and falls to the RIGHT.
+  4. The graph turns at most 2 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $-x^{3}$.  Zeros: $x=-4$ (mult 2); $x=1$ (mult 1).  y-intercept: $(0,\ 16)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+> Degree: 3 | Leading term: $-x^{3}$ | Zeros: x = -4 (mult 2); x = 1 (mult 1) | y-intercept: (0, 16) | Max turning pts: 2 | The graph rises to the LEFT and falls to the RIGHT.
 
 ---
 
@@ -2039,62 +2673,77 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = -x^4/2 - x^3/2 + 9x^2/2 - 11x/2 + 2$$
 
-**Degree:** $n = 4$
+  Degree (highest power of x) = 4
+  Leading coefficient         = -0.5
+  Leading term                = -0.5x^{4}
 
-**Leading coefficient:** $a_n = -0.5$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $-0.5x^{4}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 1)
+  x = 1  (multiplicity 3)
 
-- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 1$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 2$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 2$, so the y-intercept is $(0,\ 2)$.
+y-intercept = (0, 2)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+  x = -4  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 1  mult 3 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 4 - 1 = \mathbf{3}$$
+Formula:  Maximum turning points = degree - 1
+
+  4 - 1 = 3
+
+This graph can have AT MOST 3 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $-0.5x^{4}$:
+Focus only on the leading term: -0.5x^{4}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+  Degree = 4  (EVEN)
+  Leading coefficient = -0.5  (NEGATIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph falls on BOTH sides (like an upside-down U).
 
-1. **y-intercept:** $(0,\ 2)$
-2. **x-intercepts (zeros):**
-   - $x = -4$ (crosses)
-   - $x = 1$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
-4. **At most 3 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 2).
+  2. At x = -4: cross straight through.
+  2. At x = 1: cross straight through.
+  3. Draw end-behavior arrows: The graph falls on BOTH sides (like an upside-down U).
+  4. The graph turns at most 3 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 4.  Leading term: $-0.5x^{4}$.  Zeros: $x=-4$ (mult 1); $x=1$ (mult 3).  y-intercept: $(0,\ 2)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+> Degree: 4 | Leading term: $-0.5x^{4}$ | Zeros: x = -4 (mult 1); x = 1 (mult 3) | y-intercept: (0, 2) | Max turning pts: 3 | The graph falls on BOTH sides (like an upside-down U).
 
 ---
 
@@ -2108,62 +2757,77 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = -2x^4 + 8x^3 - 32x + 32$$
 
-**Degree:** $n = 4$
+  Degree (highest power of x) = 4
+  Leading coefficient         = -2
+  Leading term                = -2x^{4}
 
-**Leading coefficient:** $a_n = -2$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $-2x^{4}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -2  (multiplicity 1)
+  x = 2  (multiplicity 3)
 
-- $x = -2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 2$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 32$$
 
-**y-intercept:** Set $x = 0$:  $f(0) = 32$, so the y-intercept is $(0,\ 32)$.
+y-intercept = (0, 32)
 
-### (c) Crosses or Touches the x-axis?
+### (c) Does the Graph Cross or Touch the x-axis?
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-At $x = -2$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 2$: graph **crosses** the x-axis (odd multiplicity).
+  x = -2  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 2  mult 3 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 4 - 1 = \mathbf{3}$$
+Formula:  Maximum turning points = degree - 1
+
+  4 - 1 = 3
+
+This graph can have AT MOST 3 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $-2x^{4}$:
+Focus only on the leading term: -2x^{4}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+  Degree = 4  (EVEN)
+  Leading coefficient = -2  (NEGATIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph falls on BOTH sides (like an upside-down U).
 
-1. **y-intercept:** $(0,\ 32)$
-2. **x-intercepts (zeros):**
-   - $x = -2$ (crosses)
-   - $x = 2$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
-4. **At most 3 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 32).
+  2. At x = -2: cross straight through.
+  2. At x = 2: cross straight through.
+  3. Draw end-behavior arrows: The graph falls on BOTH sides (like an upside-down U).
+  4. The graph turns at most 3 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 4.  Leading term: $-2x^{4}$.  Zeros: $x=-2$ (mult 1); $x=2$ (mult 3).  y-intercept: $(0,\ 32)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+> Degree: 4 | Leading term: $-2x^{4}$ | Zeros: x = -2 (mult 1); x = 2 (mult 3) | y-intercept: (0, 32) | Max turning pts: 3 | The graph falls on BOTH sides (like an upside-down U).
 
 ---
 
@@ -2177,66 +2841,80 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^3 - 13x + 12$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = 1
+  Leading term                = x^{3}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 1)
+  x = 1  (multiplicity 1)
+  x = 3  (multiplicity 1)
 
-- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = 12$$
 
-- $x = 3$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept = (0, 12)
 
-**y-intercept:** Set $x = 0$:  $f(0) = 12$, so the y-intercept is $(0,\ 12)$.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-### (c) Crosses or Touches the x-axis?
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
-
-At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 3$: graph **crosses** the x-axis (odd multiplicity).
+  x = -4  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 1  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 3  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{3}$:
+Focus only on the leading term: x^{3}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = 1  (POSITIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
-1. **y-intercept:** $(0,\ 12)$
-2. **x-intercepts (zeros):**
-   - $x = -4$ (crosses)
-   - $x = 1$ (crosses)
-   - $x = 3$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
-4. **At most 2 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 12).
+  2. At x = -4: cross straight through.
+  2. At x = 1: cross straight through.
+  2. At x = 3: cross straight through.
+  3. Draw end-behavior arrows: The graph falls to the LEFT and rises to the RIGHT.
+  4. The graph turns at most 2 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-4$ (mult 1); $x=1$ (mult 1); $x=3$ (mult 1).  y-intercept: $(0,\ 12)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -4 (mult 1); x = 1 (mult 1); x = 3 (mult 1) | y-intercept: (0, 12) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -2250,66 +2928,80 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^3 + 3x^2 - 6x - 8$$
 
-**Degree:** $n = 3$
+  Degree (highest power of x) = 3
+  Leading coefficient         = 1
+  Leading term                = x^{3}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{3}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 1)
+  x = -1  (multiplicity 1)
+  x = 2  (multiplicity 1)
 
-- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = -1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+$$f(0) = -8$$
 
-- $x = 2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept = (0, -8)
 
-**y-intercept:** Set $x = 0$:  $f(0) = -8$, so the y-intercept is $(0,\ -8)$.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-### (c) Crosses or Touches the x-axis?
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
-
-At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
-At $x = -1$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 2$: graph **crosses** the x-axis (odd multiplicity).
+  x = -4  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = -1  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 2  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 3 - 1 = \mathbf{2}$$
+Formula:  Maximum turning points = degree - 1
+
+  3 - 1 = 2
+
+This graph can have AT MOST 2 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{3}$:
+Focus only on the leading term: x^{3}
 
-As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+  Degree = 3  (ODD)
+  Leading coefficient = 1  (POSITIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph falls to the LEFT and rises to the RIGHT.
 
-1. **y-intercept:** $(0,\ -8)$
-2. **x-intercepts (zeros):**
-   - $x = -4$ (crosses)
-   - $x = -1$ (crosses)
-   - $x = 2$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
-4. **At most 2 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, -8).
+  2. At x = -4: cross straight through.
+  2. At x = -1: cross straight through.
+  2. At x = 2: cross straight through.
+  3. Draw end-behavior arrows: The graph falls to the LEFT and rises to the RIGHT.
+  4. The graph turns at most 2 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-4$ (mult 1); $x=-1$ (mult 1); $x=2$ (mult 1).  y-intercept: $(0,\ -8)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+> Degree: 3 | Leading term: $x^{3}$ | Zeros: x = -4 (mult 1); x = -1 (mult 1); x = 2 (mult 1) | y-intercept: (0, -8) | Max turning pts: 2 | The graph falls to the LEFT and rises to the RIGHT.
 
 ---
 
@@ -2323,66 +3015,80 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^4 + x^3 - 12x^2$$
 
-**Degree:** $n = 4$
+  Degree (highest power of x) = 4
+  Leading coefficient         = 1
+  Leading term                = x^{4}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{4}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -4  (multiplicity 1)
+  x = 0  (multiplicity 2)
+  x = 3  (multiplicity 1)
 
-- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 0$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+$$f(0) = 0$$
 
-- $x = 3$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept = (0, 0)
 
-**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-### (c) Crosses or Touches the x-axis?
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
-
-At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 0$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 3$: graph **crosses** the x-axis (odd multiplicity).
+  x = -4  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 0  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 3  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 4 - 1 = \mathbf{3}$$
+Formula:  Maximum turning points = degree - 1
+
+  4 - 1 = 3
+
+This graph can have AT MOST 3 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{4}$:
+Focus only on the leading term: x^{4}
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+  Degree = 4  (EVEN)
+  Leading coefficient = 1  (POSITIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph rises on BOTH sides (like a U-shape).
 
-1. **y-intercept:** $(0,\ 0)$
-2. **x-intercepts (zeros):**
-   - $x = -4$ (crosses)
-   - $x = 0$ (touches/bounces)
-   - $x = 3$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
-4. **At most 3 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 0).
+  2. At x = -4: cross straight through.
+  2. At x = 0: touch and bounce back.
+  2. At x = 3: cross straight through.
+  3. Draw end-behavior arrows: The graph rises on BOTH sides (like a U-shape).
+  4. The graph turns at most 3 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 4.  Leading term: $x^{4}$.  Zeros: $x=-4$ (mult 1); $x=0$ (mult 2); $x=3$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+> Degree: 4 | Leading term: $x^{4}$ | Zeros: x = -4 (mult 1); x = 0 (mult 2); x = 3 (mult 1) | y-intercept: (0, 0) | Max turning pts: 3 | The graph rises on BOTH sides (like a U-shape).
 
 ---
 
@@ -2396,65 +3102,79 @@ Combine all information to sketch the graph:
 
 ### (a) Degree and Leading Term
 
-Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
+Expand the polynomial so the highest power is clear:
 
 $$f(x) = x^4 - 4x^2$$
 
-**Degree:** $n = 4$
+  Degree (highest power of x) = 4
+  Leading coefficient         = 1
+  Leading term                = x^{4}
 
-**Leading coefficient:** $a_n = 1$
+The leading term determines the overall behavior of the graph at the extremes.
 
-**Leading term:** $x^{4}$
+### (b) x-Intercepts and y-Intercept
 
-### (b) x-Intercepts (Zeros) and y-Intercept
+Set each factor equal to zero and solve:
 
-Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+  x = -2  (multiplicity 1)
+  x = 0  (multiplicity 2)
+  x = 2  (multiplicity 1)
 
-- $x = -2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept: substitute x = 0:
 
-- $x = 0$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+$$f(0) = 0$$
 
-- $x = 2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+y-intercept = (0, 0)
 
-**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+### (c) Does the Graph Cross or Touch the x-axis?
 
-### (c) Crosses or Touches the x-axis?
+Simple Rule:
+  ODD multiplicity  ->  graph CROSSES through the x-axis
+                        (goes straight through, like x = 0 in y = x)
+  EVEN multiplicity ->  graph TOUCHES and BOUNCES BACK
+                        (like a ball hitting the floor, x = 0 in y = x^2)
 
-**Rule:**
-- **Odd** multiplicity → graph **crosses** the x-axis.
-- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
-
-At $x = -2$: graph **crosses** the x-axis (odd multiplicity).
-At $x = 0$: graph **touches** (bounces) the x-axis (even multiplicity).
-At $x = 2$: graph **crosses** the x-axis (odd multiplicity).
+  x = -2  mult 1 (ODD)   ->  CROSSES the x-axis
+  x = 0  mult 2 (EVEN)  ->  TOUCHES (bounces back)
+  x = 2  mult 1 (ODD)   ->  CROSSES the x-axis
 
 ### (d) Maximum Number of Turning Points
 
-A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+A turning point is where the graph switches between going up and going down
+(a hill becomes a valley, or a valley becomes a hill).
 
-$$n - 1 = 4 - 1 = \mathbf{3}$$
+Formula:  Maximum turning points = degree - 1
+
+  4 - 1 = 3
+
+This graph can have AT MOST 3 turning point(s).
 
 ### (e) End Behavior
 
-Determined by the **leading term** $x^{4}$:
+Focus only on the leading term: x^{4}
 
-As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+  Degree = 4  (EVEN)
+  Leading coefficient = 1  (POSITIVE)
 
-### Step 5 — Rough Sketch Guide
+In math notation:
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$
 
-Combine all information to sketch the graph:
+In plain words: The graph rises on BOTH sides (like a U-shape).
 
-1. **y-intercept:** $(0,\ 0)$
-2. **x-intercepts (zeros):**
-   - $x = -2$ (crosses)
-   - $x = 0$ (touches/bounces)
-   - $x = 2$ (crosses)
-3. **End behavior:** As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
-4. **At most 3 turning point(s).**
-5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
+### Step 5 - How to Sketch the Graph
+
+Combine everything above:
+
+  1. Plot the y-intercept at (0, 0).
+  2. At x = -2: cross straight through.
+  2. At x = 0: touch and bounce back.
+  2. At x = 2: cross straight through.
+  3. Draw end-behavior arrows: The graph rises on BOTH sides (like a U-shape).
+  4. The graph turns at most 3 time(s).
+  5. Connect all points with a smooth, continuous curve.
 
 ### Final Answer
 
-> Degree: 4.  Leading term: $x^{4}$.  Zeros: $x=-2$ (mult 1); $x=0$ (mult 2); $x=2$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+> Degree: 4 | Leading term: $x^{4}$ | Zeros: x = -2 (mult 1); x = 0 (mult 2); x = 2 (mult 1) | y-intercept: (0, 0) | Max turning pts: 3 | The graph rises on BOTH sides (like a U-shape).
 
 ---

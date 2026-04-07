@@ -15,41 +15,65 @@
 
 > Zeros: -2, 0, 2  |  Point: (-4, 16)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 2) \cdot x \cdot (x - 2)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(-4,\ 16)$, so $f(-4) = 16$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = -4$ into the base (without $a$):
+The point (-4, 16) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=-4: \quad (x + 2) \cdot x \cdot (x - 2)\Big|_{x=-4} = -48$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot -48 = 16$$
+Convert each zero to a factor:
+  - (x + 2)
+  - x
+  - (x - 2)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 2) \cdot x \cdot (x - 2)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(-4) = 16  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = -4 (leave 'a' out for now):
+
+$$\text{Base at } x = -4: \quad (x + 2) \cdot x \cdot (x - 2)\big|_{x=-4} = -48$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times -48 = 16$$
+
 $$a = \frac{16}{-48} = -1/3$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = -1/3((x + 2) \cdot x \cdot (x - 2))$$
+Substitute a = -1/3:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = -1/3 \cdot (x + 2) \cdot x \cdot (x - 2)$$
 
+Standard form (expanded):
 $$f(x) = -x^3/3 + 4x/3$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(-4,\ 16)$:
+Plug x = -4 back in to double-check:
 
-$$f(-4) = -1/3 \cdot -48 = 16 \checkmark$$
+$$f(-4) = -1/3 \times -48 = 16 \checkmark$$
+
+The point (-4, 16) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = -1/3((x + 2) \cdot x \cdot (x - 2)) = -x^3/3 + 4x/3$
+> a = -1/3  =>  $f(x) = -1/3((x + 2) \cdot x \cdot (x - 2)) = -x^3/3 + 4x/3$
 
 ---
 
@@ -61,41 +85,65 @@ $$f(-4) = -1/3 \cdot -48 = 16 \checkmark$$
 
 > Zeros: -3, 1, 4  |  Point: (6, 180)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 3) \cdot (x - 1) \cdot (x - 4)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(6,\ 180)$, so $f(6) = 180$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 6$ into the base (without $a$):
+The point (6, 180) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=6: \quad (x + 3) \cdot (x - 1) \cdot (x - 4)\Big|_{x=6} = 90$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 90 = 180$$
+Convert each zero to a factor:
+  - (x + 3)
+  - (x - 1)
+  - (x - 4)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 3) \cdot (x - 1) \cdot (x - 4)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(6) = 180  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 6 (leave 'a' out for now):
+
+$$\text{Base at } x = 6: \quad (x + 3) \cdot (x - 1) \cdot (x - 4)\big|_{x=6} = 90$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 90 = 180$$
+
 $$a = \frac{180}{90} = 2$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = 2((x + 3) \cdot (x - 1) \cdot (x - 4))$$
+Substitute a = 2:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = 2 \cdot (x + 3) \cdot (x - 1) \cdot (x - 4)$$
 
+Standard form (expanded):
 $$f(x) = 2x^3 - 4x^2 - 22x + 24$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(6,\ 180)$:
+Plug x = 6 back in to double-check:
 
-$$f(6) = 2 \cdot 90 = 180 \checkmark$$
+$$f(6) = 2 \times 90 = 180 \checkmark$$
+
+The point (6, 180) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = 2((x + 3) \cdot (x - 1) \cdot (x - 4)) = 2x^3 - 4x^2 - 22x + 24$
+> a = 2  =>  $f(x) = 2((x + 3) \cdot (x - 1) \cdot (x - 4)) = 2x^3 - 4x^2 - 22x + 24$
 
 ---
 
@@ -107,41 +155,66 @@ $$f(6) = 2 \cdot 90 = 180 \checkmark$$
 
 > Zeros: -5, -1, 2, 6  |  Point: (5/2, 15)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(2.5,\ 15)$, so $f(2.5) = 15$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 2.5$ into the base (without $a$):
+The point (2.5, 15) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=2.5: \quad (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)\Big|_{x=2.5} = -45.94$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot -45.94 = 15$$
+Convert each zero to a factor:
+  - (x + 5)
+  - (x + 1)
+  - (x - 2)
+  - (x - 6)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(2.5) = 15  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 2.5 (leave 'a' out for now):
+
+$$\text{Base at } x = 2.5: \quad (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)\big|_{x=2.5} = -45.94$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times -45.94 = 15$$
+
 $$a = \frac{15}{-45.94} = -16/49$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = -16/49((x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6))$$
+Substitute a = -16/49:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = -16/49 \cdot (x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)$$
 
+Standard form (expanded):
 $$f(x) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(2.5,\ 15)$:
+Plug x = 2.5 back in to double-check:
 
-$$f(2.5) = -16/49 \cdot -45.94 = 15 \checkmark$$
+$$f(2.5) = -16/49 \times -45.94 = 15 \checkmark$$
+
+The point (2.5, 15) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = -16/49((x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49$
+> a = -16/49  =>  $f(x) = -16/49((x + 5) \cdot (x + 1) \cdot (x - 2) \cdot (x - 6)) = -16x^4/49 + 32x^3/49 + 496x^2/49 - 512x/49 - 960/49$
 
 ---
 
@@ -153,41 +226,66 @@ $$f(2.5) = -16/49 \cdot -45.94 = 15 \checkmark$$
 
 > Zeros: -1, 0, 2, 4  |  Point: (1/2, 63)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(0.5,\ 63)$, so $f(0.5) = 63$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 0.5$ into the base (without $a$):
+The point (0.5, 63) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=0.5: \quad (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)\Big|_{x=0.5} = 3.938$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 3.938 = 63$$
+Convert each zero to a factor:
+  - (x + 1)
+  - x
+  - (x - 2)
+  - (x - 4)
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(0.5) = 63  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 0.5 (leave 'a' out for now):
+
+$$\text{Base at } x = 0.5: \quad (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)\big|_{x=0.5} = 3.938$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 3.938 = 63$$
+
 $$a = \frac{63}{3.938} = 16$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = 16((x + 1) \cdot x \cdot (x - 2) \cdot (x - 4))$$
+Substitute a = 16:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = 16 \cdot (x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)$$
 
+Standard form (expanded):
 $$f(x) = 16x^4 - 80x^3 + 32x^2 + 128x$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(0.5,\ 63)$:
+Plug x = 0.5 back in to double-check:
 
-$$f(0.5) = 16 \cdot 3.938 = 63 \checkmark$$
+$$f(0.5) = 16 \times 3.938 = 63 \checkmark$$
+
+The point (0.5, 63) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = 16((x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)) = 16x^4 - 80x^3 + 32x^2 + 128x$
+> a = 16  =>  $f(x) = 16((x + 1) \cdot x \cdot (x - 2) \cdot (x - 4)) = 16x^4 - 80x^3 + 32x^2 + 128x$
 
 ---
 
@@ -199,41 +297,65 @@ $$f(0.5) = 16 \cdot 3.938 = 63 \checkmark$$
 
 > Zeros: -1 (multiplicity 2), 0 (multiplicity 2), 3 (multiplicity 2)  |  Point: (1, -48)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(1,\ -48)$, so $f(1) = -48$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = 1$ into the base (without $a$):
+The point (1, -48) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=1: \quad (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}\Big|_{x=1} = 16$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 16 = -48$$
+Convert each zero to a factor:
+  - (x + 1)^{2}
+  - x^{2}
+  - (x - 3)^{2}
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(1) = -48  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = 1 (leave 'a' out for now):
+
+$$\text{Base at } x = 1: \quad (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}\big|_{x=1} = 16$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 16 = -48$$
+
 $$a = \frac{-48}{16} = -3$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = -3((x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2})$$
+Substitute a = -3:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = -3 \cdot (x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}$$
 
+Standard form (expanded):
 $$f(x) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(1,\ -48)$:
+Plug x = 1 back in to double-check:
 
-$$f(1) = -3 \cdot 16 = -48 \checkmark$$
+$$f(1) = -3 \times 16 = -48 \checkmark$$
+
+The point (1, -48) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = -3((x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2$
+> a = -3  =>  $f(x) = -3((x + 1)^{2} \cdot x^{2} \cdot (x - 3)^{2}) = -3x^6 + 12x^5 + 6x^4 - 36x^3 - 27x^2$
 
 ---
 
@@ -245,40 +367,63 @@ $$f(1) = -3 \cdot 16 = -48 \checkmark$$
 
 > Zeros: -1 (multiplicity 2), 1 (multiplicity 2)  |  Point: (-2, 45)
 
-### Step 1 — Write the General Form with Unknown Leading Coefficient
+### Step 1 - Why Do We Need the Extra Point?
 
-Since the zeros are fixed but the leading coefficient $a$ is unknown, write:
+From the zeros alone, the best we can write is:
 
 $$f(x) = a \cdot (x + 1)^{2} \cdot (x - 1)^{2}$$
 
-### Step 2 — Substitute the Given Point to Solve for $a$
+The 'a' (leading coefficient) is still unknown.
 
-The graph passes through $(-2,\ 45)$, so $f(-2) = 45$.
+Key idea: every value of 'a' produces a polynomial with the SAME zeros
+but a different vertical scale.
 
-Substitute $x = -2$ into the base (without $a$):
+The point (-2, 45) is like a clue that pins down the exact value of 'a'.
 
-$$\text{Base at } x=-2: \quad (x + 1)^{2} \cdot (x - 1)^{2}\Big|_{x=-2} = 9$$
+### Step 2 - Write the General Form
 
-Therefore:
-$$a \cdot 9 = 45$$
+Convert each zero to a factor:
+  - (x + 1)^{2}
+  - (x - 1)^{2}
+
+General form (a is unknown):
+
+$$f(x) = a \cdot (x + 1)^{2} \cdot (x - 1)^{2}$$
+
+### Step 3 - Plug In the Known Point to Solve for 'a'
+
+We know f(-2) = 45  (the graph passes through this point).
+
+Step 3a - Evaluate the base at x = -2 (leave 'a' out for now):
+
+$$\text{Base at } x = -2: \quad (x + 1)^{2} \cdot (x - 1)^{2}\big|_{x=-2} = 9$$
+
+Step 3b - Set up the equation and solve:
+
+$$a \times 9 = 45$$
+
 $$a = \frac{45}{9} = 5$$
 
-### Step 3 — Write the Final Factored Form
+### Step 4 - Write the Final Polynomial
 
-$$f(x) = 5((x + 1)^{2} \cdot (x - 1)^{2})$$
+Substitute a = 5:
 
-### Step 4 — Expand to Standard Form
+Factored form:
+$$f(x) = 5 \cdot (x + 1)^{2} \cdot (x - 1)^{2}$$
 
+Standard form (expanded):
 $$f(x) = 5x^4 - 10x^2 + 5$$
 
-### Step 5 — Verify
+### Step 5 - Verify Your Answer
 
-Check: substitute the given point $(-2,\ 45)$:
+Plug x = -2 back in to double-check:
 
-$$f(-2) = 5 \cdot 9 = 45 \checkmark$$
+$$f(-2) = 5 \times 9 = 45 \checkmark$$
+
+The point (-2, 45) lies on our polynomial. Correct!
 
 ### Final Answer
 
-> $f(x) = 5((x + 1)^{2} \cdot (x - 1)^{2}) = 5x^4 - 10x^2 + 5$
+> a = 5  =>  $f(x) = 5((x + 1)^{2} \cdot (x - 1)^{2}) = 5x^4 - 10x^2 + 5$
 
 ---
