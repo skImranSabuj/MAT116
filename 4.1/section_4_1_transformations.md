@@ -13,41 +13,65 @@
 
 ### Given
 
-> Graph f(x) = (x + 1)^3 using transformations.
+> f(x) = (x + 2)^4 - 3
 
-### Step 1: Identify the Parent Function
+### Step 1 — Write Down the Standard Form
 
-The expression inside the parentheses is raised to the power $n = 3$, so the **parent function** is $$y = x^{3}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
 
-### Step 2: Identify All Transformations
+For the given function, identify:
+- $a = 1$ (vertical scaling / reflection)
+- $h = -2$ (horizontal shift)
+- $n = 4$ (degree / shape)
+- $k = -3$ (vertical shift)
 
-Apply the following transformations **in order**:
+### Step 2 — Identify the Parent Function
 
-- **Horizontal shift** $|h| = 1.0$ unit(s) to the **left** (because the factor is $(x + 1.0)$).
+Remove $a$, $h$, and $k$ and look at the bare power:
 
-### Step 3: Find the Key Point (Inflection Point)
+$$y = x^{4}$$
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(-1,\ 0)$$ — this is the inflection point of the graph.
+This is an **even-degree** power function.  Its graph is U-shaped, symmetric about the y-axis, with a minimum at the origin.
 
-### Step 4: Symmetry
+### Step 3 — List Every Transformation (Apply in Order)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(-1,\ 0)$. They are **not** symmetric about a vertical axis.
+Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
 
-### Step 5: End Behavior
+1. Shift **2 unit(s) to the left** (factor is $(x + 2)$).
+2. Shift **3 unit(s) down**.
 
-As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+### Step 4 — Locate the Key Point (Vertex)
 
-### Step 6: How to Sketch the Graph
+The parent's key point is at $(0,\ 0)$.
 
-1. Plot the key point / inflection point at $(-1,\ 0)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 + 1)^{3} + 0$.
+After the horizontal shift by $h = -2$ and vertical shift by $k = -3$:
+
+$$\text{Vertex} = (-2,\ -3)$$
+
+This is the **minimum** of the graph.
+
+### Step 5 — End Behavior
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+
+### Step 6 — y-intercept
+
+Substitute $x = 0$ into $f(x)$:
+
+$$f(0) = 1(0 - (-2))^{4} + -3 = 13$$
+
+So the y-intercept is $(0,\ 13)$.
+
+### Step 7 — Sketch Notes
+
+1. Plot the vertex at $(-2,\ -3)$.
+2. Plot the y-intercept at $(0,\ 13)$.
+3. Use the end-behavior arrows from Step 5.
+4. The graph is symmetric about the vertical line $x = -2$.
 
 ### Final Answer
 
-> Parent function: $y = x^{3}$. Transformations: Horizontal shift $|h| = 1.0$ unit(s) to the left (because the factor is $(x + 1.0)$). Inflection Point: $(-1,\ 0)$. As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+> Parent: $y = x^{4}$.  Vertex: $(-2,\ -3)$.  y-intercept: $(0,\ 13)$.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
 
 ---
 
@@ -57,41 +81,65 @@ As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty
 
 ### Given
 
-> Graph f(x) = (x - 2)^3 using transformations.
+> f(x) = (x - 1)^5 + 2
 
-### Step 1: Identify the Parent Function
+### Step 1 — Write Down the Standard Form
 
-The expression inside the parentheses is raised to the power $n = 3$, so the **parent function** is $$y = x^{3}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
 
-### Step 2: Identify All Transformations
+For the given function, identify:
+- $a = 1$ (vertical scaling / reflection)
+- $h = 1$ (horizontal shift)
+- $n = 5$ (degree / shape)
+- $k = 2$ (vertical shift)
 
-Apply the following transformations **in order**:
+### Step 2 — Identify the Parent Function
 
-- **Horizontal shift** $|h| = 2.0$ unit(s) to the **right** (because the factor is $(x - 2.0)$).
+Remove $a$, $h$, and $k$ and look at the bare power:
 
-### Step 3: Find the Key Point (Inflection Point)
+$$y = x^{5}$$
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(2,\ 0)$$ — this is the inflection point of the graph.
+This is an **odd-degree** power function.  Its graph is S-shaped (like a cubic), with an inflection point at the origin.
 
-### Step 4: Symmetry
+### Step 3 — List Every Transformation (Apply in Order)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(2,\ 0)$. They are **not** symmetric about a vertical axis.
+Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
 
-### Step 5: End Behavior
+1. Shift **1 unit(s) to the right** (factor is $(x - 1)$).
+2. Shift **2 unit(s) up**.
 
-As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+### Step 4 — Locate the Key Point (Inflection Point)
 
-### Step 6: How to Sketch the Graph
+The parent's key point is at $(0,\ 0)$.
 
-1. Plot the key point / inflection point at $(2,\ 0)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 - 2)^{3} + 0$.
+After the horizontal shift by $h = 1$ and vertical shift by $k = 2$:
+
+$$\text{Inflection Point} = (1,\ 2)$$
+
+This is the **inflection point** of the graph (where the graph changes concavity).
+
+### Step 5 — End Behavior
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+
+### Step 6 — y-intercept
+
+Substitute $x = 0$ into $f(x)$:
+
+$$f(0) = 1(0 - (1))^{5} + 2 = 1$$
+
+So the y-intercept is $(0,\ 1)$.
+
+### Step 7 — Sketch Notes
+
+1. Plot the inflection point at $(1,\ 2)$.
+2. Plot the y-intercept at $(0,\ 1)$.
+3. Use the end-behavior arrows from Step 5.
+4. The graph has 180° rotational symmetry about $(1,\ 2)$.
 
 ### Final Answer
 
-> Parent function: $y = x^{3}$. Transformations: Horizontal shift $|h| = 2.0$ unit(s) to the right (because the factor is $(x - 2.0)$). Inflection Point: $(2,\ 0)$. As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+> Parent: $y = x^{5}$.  Inflection Point: $(1,\ 2)$.  y-intercept: $(0,\ 1)$.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
 
 ---
 
@@ -101,41 +149,66 @@ As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty
 
 ### Given
 
-> Graph f(x) = (x + 1)^4 using transformations.
+> f(x) = (1/2)(x - 1)^5 - 2
 
-### Step 1: Identify the Parent Function
+### Step 1 — Write Down the Standard Form
 
-The expression inside the parentheses is raised to the power $n = 4$, so the **parent function** is $$y = x^{4}$$
-This is an **even-degree** power function (U-shaped with both ends going up).
+Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
 
-### Step 2: Identify All Transformations
+For the given function, identify:
+- $a = 0.5$ (vertical scaling / reflection)
+- $h = 1$ (horizontal shift)
+- $n = 5$ (degree / shape)
+- $k = -2$ (vertical shift)
 
-Apply the following transformations **in order**:
+### Step 2 — Identify the Parent Function
 
-- **Horizontal shift** $|h| = 1.0$ unit(s) to the **left** (because the factor is $(x + 1.0)$).
+Remove $a$, $h$, and $k$ and look at the bare power:
 
-### Step 3: Find the Key Point (Vertex)
+$$y = x^{5}$$
 
-Start from the parent's key point at $(0, 0)$. After shifting, the vertex moves to:$$(-1,\ 0)$$ — this is the **minimum** of the graph.
+This is an **odd-degree** power function.  Its graph is S-shaped (like a cubic), with an inflection point at the origin.
 
-### Step 4: Axis of Symmetry
+### Step 3 — List Every Transformation (Apply in Order)
 
-For even-degree power functions the graph is symmetric about the vertical line through the vertex:$$x = -1$$
+Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
 
-### Step 5: End Behavior
+1. Vertically **compress** by factor $|a| = 0.5$.
+2. Shift **1 unit(s) to the right** (factor is $(x - 1)$).
+3. Shift **2 unit(s) down**.
 
-As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+### Step 4 — Locate the Key Point (Inflection Point)
 
-### Step 6: How to Sketch the Graph
+The parent's key point is at $(0,\ 0)$.
 
-1. Plot the key point / vertex at $(-1,\ 0)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 + 1)^{4} + 0$.
+After the horizontal shift by $h = 1$ and vertical shift by $k = -2$:
+
+$$\text{Inflection Point} = (1,\ -2)$$
+
+This is the **inflection point** of the graph (where the graph changes concavity).
+
+### Step 5 — End Behavior
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+
+### Step 6 — y-intercept
+
+Substitute $x = 0$ into $f(x)$:
+
+$$f(0) = 0.5(0 - (1))^{5} + -2 = -2.5$$
+
+So the y-intercept is $(0,\ -2.5)$.
+
+### Step 7 — Sketch Notes
+
+1. Plot the inflection point at $(1,\ -2)$.
+2. Plot the y-intercept at $(0,\ -2.5)$.
+3. Use the end-behavior arrows from Step 5.
+4. The graph has 180° rotational symmetry about $(1,\ -2)$.
 
 ### Final Answer
 
-> Parent function: $y = x^{4}$. Transformations: Horizontal shift $|h| = 1.0$ unit(s) to the left (because the factor is $(x + 1.0)$). Vertex: $(-1,\ 0)$. As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+> Parent: $y = x^{5}$.  Inflection Point: $(1,\ -2)$.  y-intercept: $(0,\ -2.5)$.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
 
 ---
 
@@ -145,41 +218,66 @@ As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty
 
 ### Given
 
-> Graph f(x) = (x - 2)^4 using transformations.
+> f(x) = 2(x + 1)^4 + 1
 
-### Step 1: Identify the Parent Function
+### Step 1 — Write Down the Standard Form
 
-The expression inside the parentheses is raised to the power $n = 4$, so the **parent function** is $$y = x^{4}$$
-This is an **even-degree** power function (U-shaped with both ends going up).
+Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
 
-### Step 2: Identify All Transformations
+For the given function, identify:
+- $a = 2$ (vertical scaling / reflection)
+- $h = -1$ (horizontal shift)
+- $n = 4$ (degree / shape)
+- $k = 1$ (vertical shift)
 
-Apply the following transformations **in order**:
+### Step 2 — Identify the Parent Function
 
-- **Horizontal shift** $|h| = 2.0$ unit(s) to the **right** (because the factor is $(x - 2.0)$).
+Remove $a$, $h$, and $k$ and look at the bare power:
 
-### Step 3: Find the Key Point (Vertex)
+$$y = x^{4}$$
 
-Start from the parent's key point at $(0, 0)$. After shifting, the vertex moves to:$$(2,\ 0)$$ — this is the **minimum** of the graph.
+This is an **even-degree** power function.  Its graph is U-shaped, symmetric about the y-axis, with a minimum at the origin.
 
-### Step 4: Axis of Symmetry
+### Step 3 — List Every Transformation (Apply in Order)
 
-For even-degree power functions the graph is symmetric about the vertical line through the vertex:$$x = 2$$
+Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
 
-### Step 5: End Behavior
+1. Vertically **stretch** by factor $|a| = 2$.
+2. Shift **1 unit(s) to the left** (factor is $(x + 1)$).
+3. Shift **1 unit(s) up**.
 
-As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+### Step 4 — Locate the Key Point (Vertex)
 
-### Step 6: How to Sketch the Graph
+The parent's key point is at $(0,\ 0)$.
 
-1. Plot the key point / vertex at $(2,\ 0)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 - 2)^{4} + 0$.
+After the horizontal shift by $h = -1$ and vertical shift by $k = 1$:
+
+$$\text{Vertex} = (-1,\ 1)$$
+
+This is the **minimum** of the graph.
+
+### Step 5 — End Behavior
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+
+### Step 6 — y-intercept
+
+Substitute $x = 0$ into $f(x)$:
+
+$$f(0) = 2(0 - (-1))^{4} + 1 = 3$$
+
+So the y-intercept is $(0,\ 3)$.
+
+### Step 7 — Sketch Notes
+
+1. Plot the vertex at $(-1,\ 1)$.
+2. Plot the y-intercept at $(0,\ 3)$.
+3. Use the end-behavior arrows from Step 5.
+4. The graph is symmetric about the vertical line $x = -1$.
 
 ### Final Answer
 
-> Parent function: $y = x^{4}$. Transformations: Horizontal shift $|h| = 2.0$ unit(s) to the right (because the factor is $(x - 2.0)$). Vertex: $(2,\ 0)$. As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+> Parent: $y = x^{4}$.  Vertex: $(-1,\ 1)$.  y-intercept: $(0,\ 3)$.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
 
 ---
 
@@ -189,42 +287,66 @@ As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty
 
 ### Given
 
-> Graph f(x) = (x - 1)^4 + 2 using transformations.
+> f(x) = 3 - (x + 2)^4
 
-### Step 1: Identify the Parent Function
+### Step 1 — Write Down the Standard Form
 
-The expression inside the parentheses is raised to the power $n = 4$, so the **parent function** is $$y = x^{4}$$
-This is an **even-degree** power function (U-shaped with both ends going up).
+Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
 
-### Step 2: Identify All Transformations
+For the given function, identify:
+- $a = -1$ (vertical scaling / reflection)
+- $h = -2$ (horizontal shift)
+- $n = 4$ (degree / shape)
+- $k = 3$ (vertical shift)
 
-Apply the following transformations **in order**:
+### Step 2 — Identify the Parent Function
 
-- **Horizontal shift** $|h| = 1.0$ unit(s) to the **right** (because the factor is $(x - 1.0)$).
-- **Vertical shift** $|k| = 2.0$ unit(s) **up**.
+Remove $a$, $h$, and $k$ and look at the bare power:
 
-### Step 3: Find the Key Point (Vertex)
+$$y = x^{4}$$
 
-Start from the parent's key point at $(0, 0)$. After shifting, the vertex moves to:$$(1,\ 2)$$ — this is the **minimum** of the graph.
+This is an **even-degree** power function.  Its graph is U-shaped, symmetric about the y-axis, with a minimum at the origin.
 
-### Step 4: Axis of Symmetry
+### Step 3 — List Every Transformation (Apply in Order)
 
-For even-degree power functions the graph is symmetric about the vertical line through the vertex:$$x = 1$$
+Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
 
-### Step 5: End Behavior
+1. Reflect over the x-axis (multiply by $-1$).
+2. Shift **2 unit(s) to the left** (factor is $(x + 2)$).
+3. Shift **3 unit(s) up**.
 
-As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+### Step 4 — Locate the Key Point (Vertex)
 
-### Step 6: How to Sketch the Graph
+The parent's key point is at $(0,\ 0)$.
 
-1. Plot the key point / vertex at $(1,\ 2)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 - 1)^{4} + 2$.
+After the horizontal shift by $h = -2$ and vertical shift by $k = 3$:
+
+$$\text{Vertex} = (-2,\ 3)$$
+
+This is the **maximum** of the graph.
+
+### Step 5 — End Behavior
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+
+### Step 6 — y-intercept
+
+Substitute $x = 0$ into $f(x)$:
+
+$$f(0) = -1(0 - (-2))^{4} + 3 = -13$$
+
+So the y-intercept is $(0,\ -13)$.
+
+### Step 7 — Sketch Notes
+
+1. Plot the vertex at $(-2,\ 3)$.
+2. Plot the y-intercept at $(0,\ -13)$.
+3. Use the end-behavior arrows from Step 5.
+4. The graph is symmetric about the vertical line $x = -2$.
 
 ### Final Answer
 
-> Parent function: $y = x^{4}$. Transformations: Horizontal shift $|h| = 1.0$ unit(s) to the right (because the factor is $(x - 1.0)$).; Vertical shift $|k| = 2.0$ unit(s) up. Vertex: $(1,\ 2)$. As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+> Parent: $y = x^{4}$.  Vertex: $(-2,\ 3)$.  y-intercept: $(0,\ -13)$.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
 
 ---
 
@@ -234,393 +356,449 @@ As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty
 
 ### Given
 
-> Graph f(x) = (x + 2)^4 - 3 using transformations.
+> f(x) = 4 - (x - 2)^5
 
-### Step 1: Identify the Parent Function
+### Step 1 — Write Down the Standard Form
 
-The expression inside the parentheses is raised to the power $n = 4$, so the **parent function** is $$y = x^{4}$$
-This is an **even-degree** power function (U-shaped with both ends going up).
+Any polynomial of the form $f(x) = a(x-h)^n + k$ is a **transformation** of the parent $y = x^n$.
 
-### Step 2: Identify All Transformations
+For the given function, identify:
+- $a = -1$ (vertical scaling / reflection)
+- $h = 2$ (horizontal shift)
+- $n = 5$ (degree / shape)
+- $k = 4$ (vertical shift)
 
-Apply the following transformations **in order**:
+### Step 2 — Identify the Parent Function
 
-- **Horizontal shift** $|h| = 2.0$ unit(s) to the **left** (because the factor is $(x + 2.0)$).
-- **Vertical shift** $|k| = 3.0$ unit(s) **down**.
+Remove $a$, $h$, and $k$ and look at the bare power:
 
-### Step 3: Find the Key Point (Vertex)
+$$y = x^{5}$$
 
-Start from the parent's key point at $(0, 0)$. After shifting, the vertex moves to:$$(-2,\ -3)$$ — this is the **minimum** of the graph.
+This is an **odd-degree** power function.  Its graph is S-shaped (like a cubic), with an inflection point at the origin.
 
-### Step 4: Axis of Symmetry
+### Step 3 — List Every Transformation (Apply in Order)
 
-For even-degree power functions the graph is symmetric about the vertical line through the vertex:$$x = -2$$
+Apply each transformation **one at a time**, in this order: reflect → stretch/compress → horizontal shift → vertical shift.
 
-### Step 5: End Behavior
+1. Reflect over the x-axis (multiply by $-1$).
+2. Shift **2 unit(s) to the right** (factor is $(x - 2)$).
+3. Shift **4 unit(s) up**.
 
-As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+### Step 4 — Locate the Key Point (Inflection Point)
 
-### Step 6: How to Sketch the Graph
+The parent's key point is at $(0,\ 0)$.
 
-1. Plot the key point / vertex at $(-2,\ -3)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 + 2)^{4} - 3$.
+After the horizontal shift by $h = 2$ and vertical shift by $k = 4$:
+
+$$\text{Inflection Point} = (2,\ 4)$$
+
+This is the **inflection point** of the graph (where the graph changes concavity).
+
+### Step 5 — End Behavior
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+
+### Step 6 — y-intercept
+
+Substitute $x = 0$ into $f(x)$:
+
+$$f(0) = -1(0 - (2))^{5} + 4 = 36$$
+
+So the y-intercept is $(0,\ 36)$.
+
+### Step 7 — Sketch Notes
+
+1. Plot the inflection point at $(2,\ 4)$.
+2. Plot the y-intercept at $(0,\ 36)$.
+3. Use the end-behavior arrows from Step 5.
+4. The graph has 180° rotational symmetry about $(2,\ 4)$.
 
 ### Final Answer
 
-> Parent function: $y = x^{4}$. Transformations: Horizontal shift $|h| = 2.0$ unit(s) to the left (because the factor is $(x + 2.0)$).; Vertical shift $|k| = 3.0$ unit(s) down. Vertex: $(-2,\ -3)$. As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+> Parent: $y = x^{5}$.  Inflection Point: $(2,\ 4)$.  y-intercept: $(0,\ 36)$.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
 
 ---
 
 ## Problem 43
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = -(x + 2)^3 using transformations.
+> Zeros: -1, 1, 3; degree 3
 
-### Step 1: Identify the Parent Function
+### Step 1 — Recall the Factor Theorem
 
-The expression inside the parentheses is raised to the power $n = 3$, so the **parent function** is $$y = x^{3}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+The **Factor Theorem** states:
 
-### Step 2: Identify All Transformations
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-Apply the following transformations **in order**:
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-- **Reflection** over the $x$-axis (because $a = -1.0 < 0$).
-- **Horizontal shift** $|h| = 2.0$ unit(s) to the **left** (because the factor is $(x + 2.0)$).
+### Step 2 — Write One Factor for Each Zero
 
-### Step 3: Find the Key Point (Inflection Point)
+From the given zeros, build the factors:
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(-2,\ 0)$$ — this is the inflection point of the graph.
+- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
+- Zero $x = 1$ with multiplicity $1$ $\Rightarrow$ factor $((x - 1))$
+- Zero $x = 3$ with multiplicity $1$ $\Rightarrow$ factor $((x - 3))$
 
-### Step 4: Symmetry
+### Step 3 — Write in Factored Form (use $a = 1$)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(-2,\ 0)$. They are **not** symmetric about a vertical axis.
+With leading coefficient $a = 1$:
 
-### Step 5: End Behavior
+$$f(x) = (x + 1) \cdot (x - 1) \cdot (x - 3)$$
 
-As $x \to -\infty$, $f(x) \to +\infty$ and as $x \to +\infty$, $f(x) \to -\infty$ (rises left, falls right).
+### Step 4 — Expand to Standard Form
 
-### Step 6: How to Sketch the Graph
+Multiply out all factors (use FOIL / distributive property):
 
-1. Plot the key point / inflection point at $(-2,\ 0)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = -1(0 + 2)^{3} + 0$.
+$$f(x) = x^3 - 3x^2 - x + 3$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 3** ✓
 
 ### Final Answer
 
-> Parent function: $y = x^{3}$. Transformations: Reflection over the $x$-axis (because $a = -1.0 < 0$).; Horizontal shift $|h| = 2.0$ unit(s) to the left (because the factor is $(x + 2.0)$). Inflection Point: $(-2,\ 0)$. As $x \to -\infty$, $f(x) \to +\infty$ and as $x \to +\infty$, $f(x) \to -\infty$ (rises left, falls right).
+> $f(x) = (x + 1) \cdot (x - 1) \cdot (x - 3) = x^3 - 3x^2 - x + 3$
 
 ---
 
 ## Problem 44
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = -(x - 3)^3 + 1 using transformations.
+> Zeros: -2, 2, 3; degree 3
 
-### Step 1: Identify the Parent Function
+### Step 1 — Recall the Factor Theorem
 
-The expression inside the parentheses is raised to the power $n = 3$, so the **parent function** is $$y = x^{3}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+The **Factor Theorem** states:
 
-### Step 2: Identify All Transformations
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-Apply the following transformations **in order**:
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-- **Reflection** over the $x$-axis (because $a = -1.0 < 0$).
-- **Horizontal shift** $|h| = 3.0$ unit(s) to the **right** (because the factor is $(x - 3.0)$).
-- **Vertical shift** $|k| = 1.0$ unit(s) **up**.
+### Step 2 — Write One Factor for Each Zero
 
-### Step 3: Find the Key Point (Inflection Point)
+From the given zeros, build the factors:
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(3,\ 1)$$ — this is the inflection point of the graph.
+- Zero $x = -2$ with multiplicity $1$ $\Rightarrow$ factor $((x + 2))$
+- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
+- Zero $x = 3$ with multiplicity $1$ $\Rightarrow$ factor $((x - 3))$
 
-### Step 4: Symmetry
+### Step 3 — Write in Factored Form (use $a = 1$)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(3,\ 1)$. They are **not** symmetric about a vertical axis.
+With leading coefficient $a = 1$:
 
-### Step 5: End Behavior
+$$f(x) = (x + 2) \cdot (x - 2) \cdot (x - 3)$$
 
-As $x \to -\infty$, $f(x) \to +\infty$ and as $x \to +\infty$, $f(x) \to -\infty$ (rises left, falls right).
+### Step 4 — Expand to Standard Form
 
-### Step 6: How to Sketch the Graph
+Multiply out all factors (use FOIL / distributive property):
 
-1. Plot the key point / inflection point at $(3,\ 1)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = -1(0 - 3)^{3} + 1$.
+$$f(x) = x^3 - 3x^2 - 4x + 12$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 3** ✓
 
 ### Final Answer
 
-> Parent function: $y = x^{3}$. Transformations: Reflection over the $x$-axis (because $a = -1.0 < 0$).; Horizontal shift $|h| = 3.0$ unit(s) to the right (because the factor is $(x - 3.0)$).; Vertical shift $|k| = 1.0$ unit(s) up. Inflection Point: $(3,\ 1)$. As $x \to -\infty$, $f(x) \to +\infty$ and as $x \to +\infty$, $f(x) \to -\infty$ (rises left, falls right).
+> $f(x) = (x + 2) \cdot (x - 2) \cdot (x - 3) = x^3 - 3x^2 - 4x + 12$
 
 ---
 
 ## Problem 45
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = 2(x - 1)^4 using transformations.
+> Zeros: -4, 0, 2; degree 3
 
-### Step 1: Identify the Parent Function
+### Step 1 — Recall the Factor Theorem
 
-The expression inside the parentheses is raised to the power $n = 4$, so the **parent function** is $$y = x^{4}$$
-This is an **even-degree** power function (U-shaped with both ends going up).
+The **Factor Theorem** states:
 
-### Step 2: Identify All Transformations
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-Apply the following transformations **in order**:
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-- **Vertical stretch** by a factor of $|a| = 2.0$.
-- **Horizontal shift** $|h| = 1.0$ unit(s) to the **right** (because the factor is $(x - 1.0)$).
+### Step 2 — Write One Factor for Each Zero
 
-### Step 3: Find the Key Point (Vertex)
+From the given zeros, build the factors:
 
-Start from the parent's key point at $(0, 0)$. After shifting, the vertex moves to:$$(1,\ 0)$$ — this is the **minimum** of the graph.
+- Zero $x = -4$ with multiplicity $1$ $\Rightarrow$ factor $((x + 4))$
+- Zero $x = 0$ with multiplicity $1$ $\Rightarrow$ factor $(x)$
+- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
 
-### Step 4: Axis of Symmetry
+### Step 3 — Write in Factored Form (use $a = 1$)
 
-For even-degree power functions the graph is symmetric about the vertical line through the vertex:$$x = 1$$
+With leading coefficient $a = 1$:
 
-### Step 5: End Behavior
+$$f(x) = (x + 4) \cdot x \cdot (x - 2)$$
 
-As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+### Step 4 — Expand to Standard Form
 
-### Step 6: How to Sketch the Graph
+Multiply out all factors (use FOIL / distributive property):
 
-1. Plot the key point / vertex at $(1,\ 0)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 2(0 - 1)^{4} + 0$.
+$$f(x) = x^3 + 2x^2 - 8x$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 3** ✓
 
 ### Final Answer
 
-> Parent function: $y = x^{4}$. Transformations: Vertical stretch by a factor of $|a| = 2.0$.; Horizontal shift $|h| = 1.0$ unit(s) to the right (because the factor is $(x - 1.0)$). Vertex: $(1,\ 0)$. As $x \to +\infty$, $f(x) \to +\infty$ and as $x \to -\infty$, $f(x) \to +\infty$ (both ends rise — $\cup$ shape).
+> $f(x) = (x + 4) \cdot x \cdot (x - 2) = x^3 + 2x^2 - 8x$
 
 ---
 
 ## Problem 46
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = (1/2)(x + 1)^4 - 2 using transformations.
+> Zeros: -3, 0, 4; degree 3
 
-### Step 1: Read and Understand the Problem
+### Step 1 — Recall the Factor Theorem
 
-Carefully read the given information and identify what is being asked.
+The **Factor Theorem** states:
 
-### Step 2: Identify Relevant Techniques
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-This problem may involve:
-- Polynomial arithmetic (expanding, factoring)
-- Transformation of graphs
-- Zero/root analysis
-- End behaviour of polynomials
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-### Step 3: Solve Step by Step
+### Step 2 — Write One Factor for Each Zero
 
-Apply the relevant technique systematically, showing all intermediate work.
+From the given zeros, build the factors:
 
-### Step 4: Verify
+- Zero $x = -3$ with multiplicity $1$ $\Rightarrow$ factor $((x + 3))$
+- Zero $x = 0$ with multiplicity $1$ $\Rightarrow$ factor $(x)$
+- Zero $x = 4$ with multiplicity $1$ $\Rightarrow$ factor $((x - 4))$
 
-Check your answer by substituting back or using a graphing utility.
+### Step 3 — Write in Factored Form (use $a = 1$)
+
+With leading coefficient $a = 1$:
+
+$$f(x) = (x + 3) \cdot x \cdot (x - 4)$$
+
+### Step 4 — Expand to Standard Form
+
+Multiply out all factors (use FOIL / distributive property):
+
+$$f(x) = x^3 - x^2 - 12x$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 3** ✓
 
 ### Final Answer
 
-> See work above.
+> $f(x) = (x + 3) \cdot x \cdot (x - 4) = x^3 - x^2 - 12x$
 
 ---
 
 ## Problem 47
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = (x - 1)^5 using transformations.
+> Zeros: -3, -1, 2, 5; degree 4
 
-### Step 1: Identify the Parent Function
+### Step 1 — Recall the Factor Theorem
 
-The expression inside the parentheses is raised to the power $n = 5$, so the **parent function** is $$y = x^{5}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+The **Factor Theorem** states:
 
-### Step 2: Identify All Transformations
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-Apply the following transformations **in order**:
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-- **Horizontal shift** $|h| = 1.0$ unit(s) to the **right** (because the factor is $(x - 1.0)$).
+### Step 2 — Write One Factor for Each Zero
 
-### Step 3: Find the Key Point (Inflection Point)
+From the given zeros, build the factors:
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(1,\ 0)$$ — this is the inflection point of the graph.
+- Zero $x = -3$ with multiplicity $1$ $\Rightarrow$ factor $((x + 3))$
+- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
+- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
+- Zero $x = 5$ with multiplicity $1$ $\Rightarrow$ factor $((x - 5))$
 
-### Step 4: Symmetry
+### Step 3 — Write in Factored Form (use $a = 1$)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(1,\ 0)$. They are **not** symmetric about a vertical axis.
+With leading coefficient $a = 1$:
 
-### Step 5: End Behavior
+$$f(x) = (x + 3) \cdot (x + 1) \cdot (x - 2) \cdot (x - 5)$$
 
-As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+### Step 4 — Expand to Standard Form
 
-### Step 6: How to Sketch the Graph
+Multiply out all factors (use FOIL / distributive property):
 
-1. Plot the key point / inflection point at $(1,\ 0)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 - 1)^{5} + 0$.
+$$f(x) = x^4 - 3x^3 - 15x^2 + 19x + 30$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 4** ✓
 
 ### Final Answer
 
-> Parent function: $y = x^{5}$. Transformations: Horizontal shift $|h| = 1.0$ unit(s) to the right (because the factor is $(x - 1.0)$). Inflection Point: $(1,\ 0)$. As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+> $f(x) = (x + 3) \cdot (x + 1) \cdot (x - 2) \cdot (x - 5) = x^4 - 3x^3 - 15x^2 + 19x + 30$
 
 ---
 
 ## Problem 48
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = (x + 2)^5 - 3 using transformations.
+> Zeros: -4, -1, 2, 3; degree 4
 
-### Step 1: Identify the Parent Function
+### Step 1 — Recall the Factor Theorem
 
-The expression inside the parentheses is raised to the power $n = 5$, so the **parent function** is $$y = x^{5}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+The **Factor Theorem** states:
 
-### Step 2: Identify All Transformations
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-Apply the following transformations **in order**:
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-- **Horizontal shift** $|h| = 2.0$ unit(s) to the **left** (because the factor is $(x + 2.0)$).
-- **Vertical shift** $|k| = 3.0$ unit(s) **down**.
+### Step 2 — Write One Factor for Each Zero
 
-### Step 3: Find the Key Point (Inflection Point)
+From the given zeros, build the factors:
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(-2,\ -3)$$ — this is the inflection point of the graph.
+- Zero $x = -4$ with multiplicity $1$ $\Rightarrow$ factor $((x + 4))$
+- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
+- Zero $x = 2$ with multiplicity $1$ $\Rightarrow$ factor $((x - 2))$
+- Zero $x = 3$ with multiplicity $1$ $\Rightarrow$ factor $((x - 3))$
 
-### Step 4: Symmetry
+### Step 3 — Write in Factored Form (use $a = 1$)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(-2,\ -3)$. They are **not** symmetric about a vertical axis.
+With leading coefficient $a = 1$:
 
-### Step 5: End Behavior
+$$f(x) = (x + 4) \cdot (x + 1) \cdot (x - 2) \cdot (x - 3)$$
 
-As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+### Step 4 — Expand to Standard Form
 
-### Step 6: How to Sketch the Graph
+Multiply out all factors (use FOIL / distributive property):
 
-1. Plot the key point / inflection point at $(-2,\ -3)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 1(0 + 2)^{5} - 3$.
+$$f(x) = x^4 - 15x^2 + 10x + 24$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 4** ✓
 
 ### Final Answer
 
-> Parent function: $y = x^{5}$. Transformations: Horizontal shift $|h| = 2.0$ unit(s) to the left (because the factor is $(x + 2.0)$).; Vertical shift $|k| = 3.0$ unit(s) down. Inflection Point: $(-2,\ -3)$. As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+> $f(x) = (x + 4) \cdot (x + 1) \cdot (x - 2) \cdot (x - 3) = x^4 - 15x^2 + 10x + 24$
 
 ---
 
 ## Problem 49
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = -2(x + 1)^5 + 3 using transformations.
+> Zeros: -2 (multiplicity 2), 4 (multiplicity 1); degree 3
 
-### Step 1: Identify the Parent Function
+### Step 1 — Recall the Factor Theorem
 
-The expression inside the parentheses is raised to the power $n = 5$, so the **parent function** is $$y = x^{5}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+The **Factor Theorem** states:
 
-### Step 2: Identify All Transformations
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-Apply the following transformations **in order**:
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-- **Reflection** over the $x$-axis (because $a = -2.0 < 0$).
-- **Vertical stretch** by a factor of $|a| = 2.0$.
-- **Horizontal shift** $|h| = 1.0$ unit(s) to the **left** (because the factor is $(x + 1.0)$).
-- **Vertical shift** $|k| = 3.0$ unit(s) **up**.
+### Step 2 — Write One Factor for Each Zero
 
-### Step 3: Find the Key Point (Inflection Point)
+From the given zeros, build the factors:
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(-1,\ 3)$$ — this is the inflection point of the graph.
+- Zero $x = -2$ with multiplicity $2$ $\Rightarrow$ factor $((x + 2)^{2})$
+- Zero $x = 4$ with multiplicity $1$ $\Rightarrow$ factor $((x - 4))$
 
-### Step 4: Symmetry
+### Step 3 — Write in Factored Form (use $a = 1$)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(-1,\ 3)$. They are **not** symmetric about a vertical axis.
+With leading coefficient $a = 1$:
 
-### Step 5: End Behavior
+$$f(x) = (x + 2)^{2} \cdot (x - 4)$$
 
-As $x \to -\infty$, $f(x) \to +\infty$ and as $x \to +\infty$, $f(x) \to -\infty$ (rises left, falls right).
+### Step 4 — Expand to Standard Form
 
-### Step 6: How to Sketch the Graph
+Multiply out all factors (use FOIL / distributive property):
 
-1. Plot the key point / inflection point at $(-1,\ 3)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = -2(0 + 1)^{5} + 3$.
+$$f(x) = x^3 - 12x - 16$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 3** ✓
 
 ### Final Answer
 
-> Parent function: $y = x^{5}$. Transformations: Reflection over the $x$-axis (because $a = -2.0 < 0$).; Vertical stretch by a factor of $|a| = 2.0$.; Horizontal shift $|h| = 1.0$ unit(s) to the left (because the factor is $(x + 1.0)$).; Vertical shift $|k| = 3.0$ unit(s) up. Inflection Point: $(-1,\ 3)$. As $x \to -\infty$, $f(x) \to +\infty$ and as $x \to +\infty$, $f(x) \to -\infty$ (rises left, falls right).
+> $f(x) = (x + 2)^{2} \cdot (x - 4) = x^3 - 12x - 16$
 
 ---
 
 ## Problem 50
 
-**Type:** Graphing with Transformations  
+**Type:** Form a Polynomial  
 
 ### Given
 
-> Graph f(x) = 3(x - 2)^5 - 1 using transformations.
+> Zeros: -1 (multiplicity 1), 3 (multiplicity 2); degree 3
 
-### Step 1: Identify the Parent Function
+### Step 1 — Recall the Factor Theorem
 
-The expression inside the parentheses is raised to the power $n = 5$, so the **parent function** is $$y = x^{5}$$
-This is an **odd-degree** power function (S-shaped, falls left / rises right).
+The **Factor Theorem** states:
 
-### Step 2: Identify All Transformations
+> If $r$ is a zero of polynomial $f(x)$, then $(x - r)$ is a factor.
 
-Apply the following transformations **in order**:
+If $r$ has **multiplicity $m$**, then $(x - r)^m$ is a factor.
 
-- **Vertical stretch** by a factor of $|a| = 3.0$.
-- **Horizontal shift** $|h| = 2.0$ unit(s) to the **right** (because the factor is $(x - 2.0)$).
-- **Vertical shift** $|k| = 1.0$ unit(s) **down**.
+### Step 2 — Write One Factor for Each Zero
 
-### Step 3: Find the Key Point (Inflection Point)
+From the given zeros, build the factors:
 
-Start from the parent's key point at $(0, 0)$. After shifting, the inflection point moves to:$$(2,\ -1)$$ — this is the inflection point of the graph.
+- Zero $x = -1$ with multiplicity $1$ $\Rightarrow$ factor $((x + 1))$
+- Zero $x = 3$ with multiplicity $2$ $\Rightarrow$ factor $((x - 3)^{2})$
 
-### Step 4: Symmetry
+### Step 3 — Write in Factored Form (use $a = 1$)
 
-Odd-degree power functions have **point symmetry** (rotational symmetry of 180°) about the inflection point $(2,\ -1)$. They are **not** symmetric about a vertical axis.
+With leading coefficient $a = 1$:
 
-### Step 5: End Behavior
+$$f(x) = (x + 1) \cdot (x - 3)^{2}$$
 
-As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+### Step 4 — Expand to Standard Form
 
-### Step 6: How to Sketch the Graph
+Multiply out all factors (use FOIL / distributive property):
 
-1. Plot the key point / inflection point at $(2,\ -1)$.
-2. Apply end-behavior arrows.
-3. Use the symmetry noted above to mirror the curve.
-4. Note that the graph passes **through** $y$-axis at $x = 0$:  $f(0) = 3(0 - 2)^{5} - 1$.
+$$f(x) = x^3 - 5x^2 + 3x + 9$$
+
+### Step 5 — Verify Degree
+
+The highest power of $x$ in the expanded form gives the degree.
+
+**Degree = 3** ✓
 
 ### Final Answer
 
-> Parent function: $y = x^{5}$. Transformations: Vertical stretch by a factor of $|a| = 3.0$.; Horizontal shift $|h| = 2.0$ unit(s) to the right (because the factor is $(x - 2.0)$).; Vertical shift $|k| = 1.0$ unit(s) down. Inflection Point: $(2,\ -1)$. As $x \to -\infty$, $f(x) \to -\infty$ and as $x \to +\infty$, $f(x) \to +\infty$ (falls left, rises right).
+> $f(x) = (x + 1) \cdot (x - 3)^{2} = x^3 - 5x^2 + 3x + 9$
 
 ---

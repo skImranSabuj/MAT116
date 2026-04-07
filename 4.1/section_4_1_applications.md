@@ -9,325 +9,706 @@
 
 ## Problem 81
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> A box with no top is to be made from a 12-inch by 12-inch piece of cardboard by cutting equal squares of side x from each corner and folding up the sides. (a) Express the volume V as a function of x. (b) What is the domain of V? (c) Find the maximum volume and the value of x that gives it.
+> f(x) = x^2(x - 3)
 
-### Step 1: Define Variables and Diagram
+### (a) Degree and Leading Term
 
-Let $x$ = the side length (in inches) of each square cut from the corners. After cutting and folding:\n- Length of box $= 12 - 2x$\n- Width of box $= 12 - 2x$\n- Height of box $= x$
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-### Step 2: Write the Volume Function
+$$f(x) = x^3 - 3x^2$$
 
-$$V(x) = \text{length} \times \text{width} \times \text{height}$$$$V(x) = (12 - 2x)(12 - 2x)(x)$$
+**Degree:** $n = 3$
 
-### Step 3: State the Domain
+**Leading coefficient:** $a_n = 1$
 
-We need each dimension to be **positive**:\n- $x > 0$\n- $12 - 2x > 0 \Rightarrow x < 6$\n\nTherefore the domain is $0 < x < 6$.
+**Leading term:** $x^{3}$
 
-### Step 4: Expand V(x)
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-First multiply the two binomials:$$(12 - 2x)(12 - 2x) = 144 - 24x - 24x + 4x^2 = 4x^2 - 48x + 144$$Now multiply by $x$:$$V(x) = 4x^3 - 48x^2 + 144x$$
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-### Step 5: Maximize Volume
+- $x = 0$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
 
-Take the derivative and set it to zero (Calculus approach), or use a graphing utility:\n$$V'(x) = 12x^2 - 96x + 144$$Setting $V'(x) = 0$ and solving gives the $x$-value that maximises $V$.\n\nUsing the quadratic formula or a graph, find $x = x_{max}$ in the domain $\left(0, 6\right)$.
+- $x = 3$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = 0$: graph **touches** (bounces) the x-axis (even multiplicity).
+At $x = 3$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 3 - 1 = \mathbf{2}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $x^{3}$:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 0)$
+2. **x-intercepts (zeros):**
+   - $x = 0$ (touches/bounces)
+   - $x = 3$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+4. **At most 2 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> $V(x) = (12 - 2x)(12 - 2x)(x) = 4x^3 - 48x^2 + 144x$, domain: $0 < x < 6$.
+> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=0$ (mult 2); $x=3$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
 
 ---
 
 ## Problem 82
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> A box with no top is to be made from a 10-inch by 16-inch piece of cardboard by cutting equal squares of side x from each corner and folding up the sides. (a) Express the volume V as a function of x. (b) What is the domain of V? (c) Find the maximum volume and the value of x that gives it.
+> f(x) = x(x + 2)^2
 
-### Step 1: Define Variables and Diagram
+### (a) Degree and Leading Term
 
-Let $x$ = the side length (in inches) of each square cut from the corners. After cutting and folding:\n- Length of box $= 10 - 2x$\n- Width of box $= 16 - 2x$\n- Height of box $= x$
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-### Step 2: Write the Volume Function
+$$f(x) = x^3 + 4x^2 + 4x$$
 
-$$V(x) = \text{length} \times \text{width} \times \text{height}$$$$V(x) = (10 - 2x)(16 - 2x)(x)$$
+**Degree:** $n = 3$
 
-### Step 3: State the Domain
+**Leading coefficient:** $a_n = 1$
 
-We need each dimension to be **positive**:\n- $x > 0$\n- $10 - 2x > 0 \Rightarrow x < 5$ and $16 - 2x > 0 \Rightarrow x < 8$\n\nTherefore the domain is $0 < x < 5$.
+**Leading term:** $x^{3}$
 
-### Step 4: Expand V(x)
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-First multiply the two binomials:$$(10 - 2x)(16 - 2x) = 160 - 20x - 32x + 4x^2 = 4x^2 - 52x + 160$$Now multiply by $x$:$$V(x) = 4x^3 - 52x^2 + 160x$$
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-### Step 5: Maximize Volume
+- $x = -2$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
 
-Take the derivative and set it to zero (Calculus approach), or use a graphing utility:\n$$V'(x) = 12x^2 - 104x + 160$$Setting $V'(x) = 0$ and solving gives the $x$-value that maximises $V$.\n\nUsing the quadratic formula or a graph, find $x = x_{max}$ in the domain $\left(0, 5\right)$.
+- $x = 0$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -2$: graph **touches** (bounces) the x-axis (even multiplicity).
+At $x = 0$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 3 - 1 = \mathbf{2}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $x^{3}$:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 0)$
+2. **x-intercepts (zeros):**
+   - $x = -2$ (touches/bounces)
+   - $x = 0$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+4. **At most 2 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> $V(x) = (10 - 2x)(16 - 2x)(x) = 4x^3 - 52x^2 + 160x$, domain: $0 < x < 5$.
+> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-2$ (mult 2); $x=0$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
 
 ---
 
 ## Problem 83
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> The revenue R received by a company selling x units of a product is R(x) = -0.5x^2 + 100x. (a) Find the revenue at x = 50 and x = 120. (b) Find the number of units that maximises revenue. (c) What is the maximum revenue?
+> f(x) = (x - 1)(x + 3)^2
 
-### Step 1: Identify the Revenue Function
+### (a) Degree and Leading Term
 
-From the problem: $R(x) = -0.5x^2 + 100x$. This is a **downward-opening parabola** (leading coefficient $< 0$), so it has a maximum.
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-### Step 2: Find Revenue at Given Points
+$$f(x) = x^3 + 5x^2 + 3x - 9$$
 
-$R(50) = -0.5(50)^2 + 100(50) = -1250 + 5000 = \$3750$
+**Degree:** $n = 3$
 
-$R(120) = -0.5(120)^2 + 100(120) = -7200 + 12000 = \$4800$
+**Leading coefficient:** $a_n = 1$
 
-### Step 3: Maximize Revenue
+**Leading term:** $x^{3}$
 
-For a quadratic $R(x) = ax^2 + bx + c$, maximum is at $x = -\dfrac{b}{2a}$.
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-$$x = -\frac{100}{2(-0.5)} = -\frac{100}{-1} = 100 \text{ units}$$
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-### Step 4: Maximum Revenue
+- $x = -3$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
 
-$$R(100) = -0.5(100)^2 + 100(100) = -5000 + 10000 = \$5000$$
+- $x = 1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
 
-The **maximum revenue** is **$5000** at $x = 100$ units.
+**y-intercept:** Set $x = 0$:  $f(0) = -9$, so the y-intercept is $(0,\ -9)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -3$: graph **touches** (bounces) the x-axis (even multiplicity).
+At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 3 - 1 = \mathbf{2}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $x^{3}$:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ -9)$
+2. **x-intercepts (zeros):**
+   - $x = -3$ (touches/bounces)
+   - $x = 1$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+4. **At most 2 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> Max revenue = $\$5000$ at $x = 100$ units.
+> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-3$ (mult 2); $x=1$ (mult 1).  y-intercept: $(0,\ -9)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
 
 ---
 
 ## Problem 84
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> A farmer with 200 feet of fencing wants to enclose a rectangular area and then divide it in half with a fence parallel to one of the sides. (a) Express the total area A enclosed as a function of the width w. (b) What is the maximum area? (c) What dimensions give the maximum area?
+> f(x) = (x + 4)^2 (1 - x)
 
-### Step 1: Set Up Variables
+### (a) Degree and Leading Term
 
-Let $w$ = width of the rectangle (feet). The fence creates 3 widths and 2 lengths.
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-Constraint: $3w + 2\ell = 200 \Rightarrow \ell = \dfrac{200 - 3w}{2}$
+$$f(x) = -x^3 - 7x^2 - 8x + 16$$
 
-### Step 2: Express Area as Function of w
+**Degree:** $n = 3$
 
-$$A(w) = w \cdot \ell = w \cdot \frac{200 - 3w}{2} = \frac{200w - 3w^2}{2}$$
+**Leading coefficient:** $a_n = -1$
 
-$$A(w) = -\frac{3}{2}w^2 + 100w$$
+**Leading term:** $-x^{3}$
 
-### Step 3: Find the Maximum
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-Vertex at $w = -\dfrac{100}{2 \cdot (-3/2)} = -\dfrac{100}{-3} = \dfrac{100}{3} \approx 33.33$ ft
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-### Step 4: Compute Maximum Area
+- $x = -4$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
 
-$$A\!\left(\tfrac{100}{3}\right)= -\tfrac{3}{2}\!\left(\tfrac{100}{3}\right)^{\!2} + 100\cdot\tfrac{100}{3}= -\tfrac{3}{2}\cdot\tfrac{10000}{9} + \tfrac{10000}{3}= -\tfrac{5000}{3} + \tfrac{10000}{3} = \tfrac{5000}{3} \approx 1666.67 \text{ ft}^2$$
+- $x = 1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 16$, so the y-intercept is $(0,\ 16)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -4$: graph **touches** (bounces) the x-axis (even multiplicity).
+At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 3 - 1 = \mathbf{2}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $-x^{3}$:
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 16)$
+2. **x-intercepts (zeros):**
+   - $x = -4$ (touches/bounces)
+   - $x = 1$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
+4. **At most 2 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> Max area $\approx 1666.67$ ft² at $w = \tfrac{100}{3}$ ft.
+> Degree: 3.  Leading term: $-x^{3}$.  Zeros: $x=-4$ (mult 2); $x=1$ (mult 1).  y-intercept: $(0,\ 16)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (rises to the left, falls to the right).
 
 ---
 
 ## Problem 85
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> A manufacturer finds that the cost C (in dollars) of producing x units is C(x) = 0.002x^3 - 3x^2 + 1500x + 4000. Find the production level x that minimises the marginal cost C'(x).
+> f(x) = -(1/2)(x + 4)(x - 1)^3
 
-### Step 1: Identify the Marginal Cost
+### (a) Degree and Leading Term
 
-The cost function is $C(x) = 0.002x^3 - 3x^2 + 1500x + 4000$.
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-Marginal cost = $C'(x)$ (the derivative):
+$$f(x) = -x^4/2 - x^3/2 + 9x^2/2 - 11x/2 + 2$$
 
-$$C'(x) = 0.006x^2 - 6x + 1500$$
+**Degree:** $n = 4$
 
-### Step 2: Minimise Marginal Cost
+**Leading coefficient:** $a_n = -0.5$
 
-$C'(x)$ is itself a quadratic in $x$, opening upward ($a = 0.006 > 0$). Its minimum occurs at its vertex:
+**Leading term:** $-0.5x^{4}$
 
-$$x = -\frac{b}{2a} = -\frac{-6}{2(0.006)} = \frac{6}{0.012} = 500 \text{ units}$$
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-### Step 3: Verify
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-$$C'(500) = 0.006(500)^2 - 6(500) + 1500 = 1500 - 3000 + 1500 = 0$$
+- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
 
-This confirms $x = 500$ is indeed the minimum of the marginal cost.
+- $x = 1$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 2$, so the y-intercept is $(0,\ 2)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
+At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 4 - 1 = \mathbf{3}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $-0.5x^{4}$:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 2)$
+2. **x-intercepts (zeros):**
+   - $x = -4$ (crosses)
+   - $x = 1$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+4. **At most 3 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> Marginal cost is minimised at $x = 500$ units.
+> Degree: 4.  Leading term: $-0.5x^{4}$.  Zeros: $x=-4$ (mult 1); $x=1$ (mult 3).  y-intercept: $(0,\ 2)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
 
 ---
 
 ## Problem 86
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> The profit P (in thousands of dollars) a company earns from selling x hundred units is P(x) = -x^3 + 6x^2 + 15x - 12. Find all values of x for which P(x) > 0 (profitable range).
+> f(x) = -2(x + 2)(x - 2)^3
 
-### Step 1: Write the Profit Function
+### (a) Degree and Leading Term
 
-$P(x) = -x^3 + 6x^2 + 15x - 12$ (in thousands of dollars, $x$ = hundreds of units).
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-### Step 2: Find Zeros
+$$f(x) = -2x^4 + 8x^3 - 32x + 32$$
 
-Use the Rational Root Theorem — test $x = \frac{p}{q}$ for factors of 12.
+**Degree:** $n = 4$
 
-Try $x = -3$: $P(-3) = -(-27) + 6(9) + 15(-3) - 12 = 27 + 54 - 45 - 12 = 24 \ne 0$
+**Leading coefficient:** $a_n = -2$
 
-Try $x = \frac{1}{1} = 1$: $P(1) = -1 + 6 + 15 - 12 = 8 \ne 0$
+**Leading term:** $-2x^{4}$
 
-Use numerical methods or a graphing utility to find the roots approximately, then determine the interval where $P(x) > 0$.
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-### Step 3: Sign Analysis
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-Find all real zeros $x_1 < x_2 < x_3$ using a graphing tool. $P(x) > 0$ on the intervals between zeros where the cubic is positive. Because the leading coefficient is $-1 < 0$, the cubic rises on the left and falls on the right.
+- $x = -2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+- $x = 2$ — multiplicity $\mathbf{3}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 32$, so the y-intercept is $(0,\ 32)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -2$: graph **crosses** the x-axis (odd multiplicity).
+At $x = 2$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 4 - 1 = \mathbf{3}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $-2x^{4}$:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 32)$
+2. **x-intercepts (zeros):**
+   - $x = -2$ (crosses)
+   - $x = 2$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
+4. **At most 3 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> Use sign analysis on $P(x) = -x^3 + 6x^2 + 15x - 12$ to find the profitable range.
+> Degree: 4.  Leading term: $-2x^{4}$.  Zeros: $x=-2$ (mult 1); $x=2$ (mult 3).  y-intercept: $(0,\ 32)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$  (graph falls on both sides, like $\cap$).
 
 ---
 
 ## Problem 87
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> A projectile is launched from the ground. Its height h (in feet) after t seconds is modelled by h(t) = -16t^2 + 80t. (a) Find the maximum height. (b) When does it return to the ground?
+> f(x) = (x - 1)(x + 4)(x - 3)
 
-### Step 1: Write the Height Function
+### (a) Degree and Leading Term
 
-$h(t) = -16t^2 + 80t$ (height in feet, $t$ in seconds).
-This is a downward-opening parabola (maximum height exists).
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-### Step 2: Maximum Height (vertex)
+$$f(x) = x^3 - 13x + 12$$
 
-Vertex at $t = -\dfrac{80}{2(-16)} = -\dfrac{80}{-32} = 2.5$ seconds.
+**Degree:** $n = 3$
 
-$$h(2.5) = -16(2.5)^2 + 80(2.5) = -100 + 200 = 100 \text{ feet}$$
+**Leading coefficient:** $a_n = 1$
 
-### Step 3: When Does It Return to the Ground?
+**Leading term:** $x^{3}$
 
-Set $h(t) = 0$: $-16t^2 + 80t = 0 \Rightarrow t(-16t + 80) = 0$
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-$t = 0$ (launch) or $t = \dfrac{80}{16} = 5$ seconds.
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-The projectile returns to the ground at $t = 5$ seconds.
+- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+- $x = 1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+- $x = 3$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 12$, so the y-intercept is $(0,\ 12)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
+At $x = 1$: graph **crosses** the x-axis (odd multiplicity).
+At $x = 3$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 3 - 1 = \mathbf{2}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $x^{3}$:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 12)$
+2. **x-intercepts (zeros):**
+   - $x = -4$ (crosses)
+   - $x = 1$ (crosses)
+   - $x = 3$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+4. **At most 2 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> Max height: 100 ft at $t = 2.5$ s; returns to ground at $t = 5$ s.
+> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-4$ (mult 1); $x=1$ (mult 1); $x=3$ (mult 1).  y-intercept: $(0,\ 12)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
 
 ---
 
 ## Problem 88
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> The population P (in thousands) of a city t years after 2000 is modelled by P(t) = -0.01t^3 + 0.3t^2 + 2t + 50. (a) What was the population in 2000? (b) Predict the population in 2020.
+> f(x) = (x + 1)(x - 2)(x + 4)
 
-### Step 1: Identify the Model
+### (a) Degree and Leading Term
 
-$P(t) = -0.01t^3 + 0.3t^2 + 2t + 50$ (thousands), $t$ = years after 2000.
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-### Step 2: Population in 2000 (t = 0)
+$$f(x) = x^3 + 3x^2 - 6x - 8$$
 
-$$P(0) = -0.01(0)^3 + 0.3(0)^2 + 2(0) + 50 = 50 \text{ thousand}$$
+**Degree:** $n = 3$
 
-### Step 3: Population in 2020 (t = 20)
+**Leading coefficient:** $a_n = 1$
 
-$$P(20) = -0.01(8000) + 0.3(400) + 2(20) + 50$$
+**Leading term:** $x^{3}$
 
-$$= -80 + 120 + 40 + 50 = 130 \text{ thousand}$$
+### (b) x-Intercepts (Zeros) and y-Intercept
+
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+
+- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+- $x = -1$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+- $x = 2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = -8$, so the y-intercept is $(0,\ -8)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
+At $x = -1$: graph **crosses** the x-axis (odd multiplicity).
+At $x = 2$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 3 - 1 = \mathbf{2}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $x^{3}$:
+
+As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ -8)$
+2. **x-intercepts (zeros):**
+   - $x = -4$ (crosses)
+   - $x = -1$ (crosses)
+   - $x = 2$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
+4. **At most 2 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> Year 2000: 50,000; Year 2020: 130,000.
+> Degree: 3.  Leading term: $x^{3}$.  Zeros: $x=-4$ (mult 1); $x=-1$ (mult 1); $x=2$ (mult 1).  y-intercept: $(0,\ -8)$.  Max turning pts: 2.  As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (falls to the left, rises to the right).
 
 ---
 
 ## Problem 89
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> A tank in the shape of an inverted cone has height 10 m and base radius 4 m. Water is poured in to a depth of x metres. (a) Express the volume V of water as a polynomial in x. (b) Find V when x = 5.
+> f(x) = x^2(x - 3)(x + 4)
 
-### Step 1: Set Up Similar Triangles
+### (a) Degree and Leading Term
 
-The full cone has height 10 m and base radius 4 m. At depth $x$, the water radius $r$ satisfies:
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-$$\frac{r}{x} = \frac{4}{10} = \frac{2}{5} \implies r = \frac{2x}{5}$$
+$$f(x) = x^4 + x^3 - 12x^2$$
 
-### Step 2: Write Volume as a Polynomial
+**Degree:** $n = 4$
 
-$$V(x) = \frac{1}{3}\pi r^2 x = \frac{1}{3}\pi \left(\frac{2x}{5}\right)^2 x = \frac{1}{3}\pi \cdot \frac{4x^2}{25} \cdot x = \frac{4\pi}{75}x^3$$
+**Leading coefficient:** $a_n = 1$
 
-### Step 3: Evaluate at x = 5
+**Leading term:** $x^{4}$
 
-$$V(5) = \frac{4\pi}{75}(125) = \frac{500\pi}{75} = \frac{20\pi}{3}\approx 20.94 \text{ m}^3$$
+### (b) x-Intercepts (Zeros) and y-Intercept
+
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
+
+- $x = -4$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+- $x = 0$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+
+- $x = 3$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -4$: graph **crosses** the x-axis (odd multiplicity).
+At $x = 0$: graph **touches** (bounces) the x-axis (even multiplicity).
+At $x = 3$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 4 - 1 = \mathbf{3}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $x^{4}$:
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 0)$
+2. **x-intercepts (zeros):**
+   - $x = -4$ (crosses)
+   - $x = 0$ (touches/bounces)
+   - $x = 3$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+4. **At most 3 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> $V(x) = \dfrac{4\pi}{75}x^3$; $V(5) = \dfrac{20\pi}{3} \approx 20.94$ m³.
+> Degree: 4.  Leading term: $x^{4}$.  Zeros: $x=-4$ (mult 1); $x=0$ (mult 2); $x=3$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
 
 ---
 
 ## Problem 90
 
-**Type:** Application Problem  
+**Type:** Analysis_Full  
 
 ### Given
 
-> A wire 36 inches long is cut into two pieces. One piece is bent into a square and the other into a circle. (a) Express the total area A as a function of the side s of the square. (b) Find the value of s that minimises the total area.
+> f(x) = x^2(x - 2)(x + 2)
 
-### Step 1: Define Variables
+### (a) Degree and Leading Term
 
-Total wire = 36 inches. Let $s$ = side of the square (inches). Wire for square = $4s$. Wire for circle = $36 - 4s$ = circumference $ = 2\pi r$, so $r = \dfrac{36-4s}{2\pi}$.
+Expand $f(x)$ — the highest-power term tells us the degree and leading coefficient.
 
-### Step 2: Express Total Area
+$$f(x) = x^4 - 4x^2$$
 
-$$A(s) = s^2 + \pi r^2 = s^2 + \pi\left(\frac{36 - 4s}{2\pi}\right)^2= s^2 + \frac{(36 - 4s)^2}{4\pi}$$
+**Degree:** $n = 4$
 
-### Step 3: Find Minimum
+**Leading coefficient:** $a_n = 1$
 
-Differentiate and set $A'(s) = 0$:
+**Leading term:** $x^{4}$
 
-$$A'(s) = 2s + \frac{2(36 - 4s)(-4)}{4\pi} = 2s - \frac{2(36 - 4s)}{\pi}$$
+### (b) x-Intercepts (Zeros) and y-Intercept
 
-Setting $A'(s) = 0$: $2s\pi = 2(36 - 4s) \Rightarrow \pi s = 36 - 4s$
+Set $f(x) = 0$.  The zeros come from setting each factor equal to zero:
 
-$$s(\pi + 4) = 36 \implies s = \frac{36}{\pi + 4} \approx 5.04 \text{ inches}$$
+- $x = -2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+- $x = 0$ — multiplicity $\mathbf{2}$ — **touches** the x-axis and turns back (even multiplicity)
+
+- $x = 2$ — multiplicity $\mathbf{1}$ — **crosses** the x-axis (odd multiplicity)
+
+**y-intercept:** Set $x = 0$:  $f(0) = 0$, so the y-intercept is $(0,\ 0)$.
+
+### (c) Crosses or Touches the x-axis?
+
+**Rule:**
+- **Odd** multiplicity → graph **crosses** the x-axis.
+- **Even** multiplicity → graph **touches** (bounces off) the x-axis.
+
+At $x = -2$: graph **crosses** the x-axis (odd multiplicity).
+At $x = 0$: graph **touches** (bounces) the x-axis (even multiplicity).
+At $x = 2$: graph **crosses** the x-axis (odd multiplicity).
+
+### (d) Maximum Number of Turning Points
+
+A degree-$n$ polynomial has **at most $n - 1$ turning points**.
+
+$$n - 1 = 4 - 1 = \mathbf{3}$$
+
+### (e) End Behavior
+
+Determined by the **leading term** $x^{4}$:
+
+As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+
+### Step 5 — Rough Sketch Guide
+
+Combine all information to sketch the graph:
+
+1. **y-intercept:** $(0,\ 0)$
+2. **x-intercepts (zeros):**
+   - $x = -2$ (crosses)
+   - $x = 0$ (touches/bounces)
+   - $x = 2$ (crosses)
+3. **End behavior:** As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
+4. **At most 3 turning point(s).**
+5. Connect the intercepts with a smooth curve obeying the end-behavior arrows.
 
 ### Final Answer
 
-> $A(s) = s^2 + \dfrac{(36-4s)^2}{4\pi}$; minimised at $s = \dfrac{36}{\pi+4} \approx 5.04$ in.
+> Degree: 4.  Leading term: $x^{4}$.  Zeros: $x=-2$ (mult 1); $x=0$ (mult 2); $x=2$ (mult 1).  y-intercept: $(0,\ 0)$.  Max turning pts: 3.  As $x \to -\infty,\ f(x) \to +\infty$ and as $x \to +\infty,\ f(x) \to +\infty$  (graph rises on both sides, like $\cup$).
 
 ---
