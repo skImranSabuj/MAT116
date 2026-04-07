@@ -9,7 +9,7 @@
 
 ## Problem 51
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -55,7 +55,7 @@ $$f(-4) = -1/3 \cdot -48 = 16 \checkmark$$
 
 ## Problem 52
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -101,7 +101,7 @@ $$f(6) = 2 \cdot 90 = 180 \checkmark$$
 
 ## Problem 53
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -147,7 +147,7 @@ $$f(2.5) = -16/49 \cdot -45.94 = 15 \checkmark$$
 
 ## Problem 54
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -193,7 +193,7 @@ $$f(0.5) = 16 \cdot 3.938 = 63 \checkmark$$
 
 ## Problem 55
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -239,7 +239,7 @@ $$f(1) = -3 \cdot 16 = -48 \checkmark$$
 
 ## Problem 56
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 

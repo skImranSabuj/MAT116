@@ -9,7 +9,7 @@
 
 ## Problem 81
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -78,7 +78,7 @@ Combine all information to sketch the graph:
 
 ## Problem 82
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -147,7 +147,7 @@ Combine all information to sketch the graph:
 
 ## Problem 83
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -216,7 +216,7 @@ Combine all information to sketch the graph:
 
 ## Problem 84
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -285,7 +285,7 @@ Combine all information to sketch the graph:
 
 ## Problem 85
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -354,7 +354,7 @@ Combine all information to sketch the graph:
 
 ## Problem 86
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -423,7 +423,7 @@ Combine all information to sketch the graph:
 
 ## Problem 87
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -496,7 +496,7 @@ Combine all information to sketch the graph:
 
 ## Problem 88
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -569,7 +569,7 @@ Combine all information to sketch the graph:
 
 ## Problem 89
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -642,7 +642,7 @@ Combine all information to sketch the graph:
 
 ## Problem 90
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
