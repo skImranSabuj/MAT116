@@ -805,7 +805,7 @@ The highest power of $x$ in the expanded form gives the degree.
 
 ## Problem 51
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -851,7 +851,7 @@ $$f(-4) = -1/3 \cdot -48 = 16 \checkmark$$
 
 ## Problem 52
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -897,7 +897,7 @@ $$f(6) = 2 \cdot 90 = 180 \checkmark$$
 
 ## Problem 53
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -943,7 +943,7 @@ $$f(2.5) = -16/49 \cdot -45.94 = 15 \checkmark$$
 
 ## Problem 54
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -989,7 +989,7 @@ $$f(0.5) = 16 \cdot 3.938 = 63 \checkmark$$
 
 ## Problem 55
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -1035,7 +1035,7 @@ $$f(1) = -3 \cdot 16 = -48 \checkmark$$
 
 ## Problem 56
 
-**Type:** Form_Polynomial_Point  
+**Type:** Polynomial Through a Point  
 
 ### Given
 
@@ -1755,7 +1755,7 @@ As $x \to -\infty,\ f(x) \to -\infty$ and as $x \to +\infty,\ f(x) \to -\infty$ 
 
 ## Problem 81
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -1824,7 +1824,7 @@ Combine all information to sketch the graph:
 
 ## Problem 82
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -1893,7 +1893,7 @@ Combine all information to sketch the graph:
 
 ## Problem 83
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -1962,7 +1962,7 @@ Combine all information to sketch the graph:
 
 ## Problem 84
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -2031,7 +2031,7 @@ Combine all information to sketch the graph:
 
 ## Problem 85
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -2100,7 +2100,7 @@ Combine all information to sketch the graph:
 
 ## Problem 86
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -2169,7 +2169,7 @@ Combine all information to sketch the graph:
 
 ## Problem 87
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -2242,7 +2242,7 @@ Combine all information to sketch the graph:
 
 ## Problem 88
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -2315,7 +2315,7 @@ Combine all information to sketch the graph:
 
 ## Problem 89
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 
@@ -2388,7 +2388,7 @@ Combine all information to sketch the graph:
 
 ## Problem 90
 
-**Type:** Analysis_Full  
+**Type:** Full Polynomial Analysis  
 
 ### Given
 

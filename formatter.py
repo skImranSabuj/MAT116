@@ -23,11 +23,13 @@ logger = logging.getLogger(__name__)
 # ── constants ─────────────────────────────────────────────────────────────────
 
 PROBLEM_TYPE_LABELS = {
-    "transformation":   "Graphing with Transformations",
-    "form_polynomial":  "Form a Polynomial",
-    "analysis":         "Polynomial Analysis",
-    "application":      "Application Problem",
-    "generic":          "General Problem",
+    "transformation":         "Graphing with Transformations",
+    "form_polynomial":         "Form a Polynomial",
+    "form_polynomial_point":   "Polynomial Through a Point",
+    "analysis":                "Polynomial Analysis",
+    "analysis_full":           "Full Polynomial Analysis",
+    "application":             "Application Problem",
+    "generic":                 "General Problem",
 }
 
 # ── helper ────────────────────────────────────────────────────────────────────
@@ -152,11 +154,23 @@ class Formatter:
                 autoescape=select_autoescape(["html"]),
             )
             template = env.get_template("base.html")
+            # Pre-build nav groups so the template doesn't need Jinja ns tricks
+            nav_groups: dict = {}
+            nav_order: list = []
+            for sol in solutions:
+                tl = PROBLEM_TYPE_LABELS.get(sol.get("type", ""), sol.get("type", "").title())
+                if tl not in nav_groups:
+                    nav_groups[tl] = []
+                    nav_order.append(tl)
+                nav_groups[tl].append(sol)
+
             html = template.render(
                 title=title,
                 section=section,
                 solutions=solutions,
                 type_labels=PROBLEM_TYPE_LABELS,
+                nav_groups=nav_groups,
+                nav_order=nav_order,
                 generated=date.today().strftime("%B %d, %Y"),
             )
         except Exception as e:
