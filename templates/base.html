@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+
+    <!-- MathJax 3 — renders all LaTeX inside $ … $ and $$ … $$ -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+          tags: "ams",
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <style>
+      /* ── Reset ─────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: #1a1a2e;
+        background: #f3f4f6;
+        padding: 0 1rem 5rem;
+      }
+
+      /* ── Layout ────────────────────────────────────────── */
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 2.5rem 3.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+      }
+
+      /* ── Header ────────────────────────────────────────── */
+      .page-header {
+        border-bottom: 4px solid #0f3460;
+        padding-bottom: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .page-header h1 {
+        font-size: 2.1rem;
+        color: #0f3460;
+        margin-bottom: 0.3rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: #666;
+        font-style: italic;
+      }
+
+      /* ── Table of Contents ─────────────────────────────── */
+      .toc {
+        background: #eef2ff;
+        border: 1px solid #c5cae9;
+        border-radius: 8px;
+        padding: 1.25rem 1.75rem;
+        margin: 1.5rem 0 2.5rem;
+      }
+      .toc h2 {
+        font-size: 1.05rem;
+        color: #0f3460;
+        border: none;
+        padding: 0;
+        margin: 0 0 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .toc ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+        gap: 0.3rem 0.75rem;
+      }
+      .toc a {
+        color: #0f3460;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .toc a:hover {
+        text-decoration: underline;
+        color: #e94560;
+      }
+
+      /* ── Problem card ──────────────────────────────────── */
+      .problem {
+        border: 1px solid #e0e4ec;
+        border-radius: 8px;
+        padding: 1.75rem 2rem;
+        margin: 2.25rem 0;
+        background: #fff;
+      }
+      .problem h2 {
+        font-size: 1.5rem;
+        color: #0f3460;
+        border-left: 5px solid #e94560;
+        padding-left: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        background: #0f3460;
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 0.18rem 0.65rem;
+        margin-bottom: 1.1rem;
+      }
+
+      /* ── Given box ─────────────────────────────────────── */
+      .given-label {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+      .given-box {
+        background: #f0f4ff;
+        border-left: 4px solid #0f3460;
+        border-radius: 4px;
+        padding: 0.85rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-family: "Courier New", monospace;
+        font-size: 0.95rem;
+        white-space: pre-wrap;
+      }
+
+      /* ── Solution steps ────────────────────────────────── */
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .step {
+        padding: 0.85rem 1.1rem;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+      }
+      .step-title {
+        font-weight: bold;
+        color: #16213e;
+        margin-bottom: 0.4rem;
+      }
+      .step-body {
+        white-space: pre-wrap;
+        font-size: 0.97rem;
+      }
+
+      /* ── Answer ────────────────────────────────────────── */
+      .answer-box {
+        margin-top: 1.1rem;
+        background: #e8f5e9;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        padding: 0.8rem 1.2rem;
+      }
+      .answer-box .label {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+
+      /* ── Divider ───────────────────────────────────────── */
+      hr {
+        border: none;
+        border-top: 1px solid #e8eaee;
+        margin: 2rem 0;
+      }
+
+      /* ── Inline code ───────────────────────────────────── */
+      code {
+        background: #f4f4f6;
+        font-family: "Courier New", monospace;
+        padding: 0.1em 0.4em;
+        border-radius: 3px;
+        font-size: 0.88em;
+      }
+
+      /* ── Back-to-top ───────────────────────────────────── */
+      .back-top {
+        display: block;
+        text-align: right;
+        font-size: 0.82rem;
+        color: #999;
+        text-decoration: none;
+        margin-top: 0.5rem;
+      }
+      .back-top:hover {
+        color: #e94560;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="page-header" id="top">
+        <h1>{{ title }}</h1>
+        <p class="subtitle">
+          MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan
+          <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section {{ section }}
+          &nbsp;|&nbsp; Generated: {{ generated }}
+        </p>
+      </header>
+
+      <!-- ── Table of Contents ─────────────────────────────── -->
+      <nav class="toc">
+        <h2>Contents</h2>
+        <ul>
+          {% for sol in solutions %}
+          <li><a href="#prob-{{ sol.number }}">Problem {{ sol.number }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <!-- ── Problems ──────────────────────────────────────── -->
+      {% for sol in solutions %} {% set type_label = type_labels.get(sol.type,
+      sol.type | title) %}
+      <div class="problem" id="prob-{{ sol.number }}">
+        <h2>Problem {{ sol.number }}</h2>
+        <span class="badge">{{ type_label }}</span>
+
+        <div class="given-label">Given</div>
+        <div class="given-box">{{ sol.question }}</div>
+
+        <div class="steps">
+          {% for step in sol.steps %}
+          <div class="step">
+            <div class="step-title">{{ step.title }}</div>
+            <div class="step-body">{{ step.body | replace("**", "") }}</div>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if sol.answer %}
+        <div class="answer-box">
+          <span class="label">Final Answer</span>
+          {{ sol.answer }}
+        </div>
+        {% endif %}
+
+        <a class="back-top" href="#top">&#8593; Back to top</a>
+      </div>
+      <hr />
+      {% endfor %}
+    </div>
+    <!-- /.container -->
+  </body>
+</html>

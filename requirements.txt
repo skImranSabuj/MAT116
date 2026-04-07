@@ -1,0 +1,4 @@
+PyMuPDF>=1.23.0
+sympy>=1.12
+markdown>=3.5
+jinja2>=3.1
