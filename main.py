@@ -229,7 +229,7 @@ def write_outputs(
                 section=section,
             )
             written.append(p)
-    elif section == "4.5":
+    elif section in ("4.2", "4.5"):
         part_asym = by_type(solutions, "rational_asymptotes")
         part_app  = by_type(solutions, "rational_application")
 

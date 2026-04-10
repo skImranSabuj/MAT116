@@ -687,7 +687,7 @@ class Solver:
         return steps, answer, answer_sections, graph
 
     # -----------------------------------------------------------------------
-    # 4.5 - Rational Function Asymptotes (47-56)
+    # 4.2 - Rational Function Asymptotes (47-56)
     # -----------------------------------------------------------------------
     def _rational_asymptotes(self, num: int, q: str, meta: dict) -> tuple:
         try:
@@ -871,7 +871,7 @@ class Solver:
             return self._generic(num, q, meta)
 
     # -----------------------------------------------------------------------
-    # 4.5 - Rational Application (58)
+    # 4.2 - Rational Application (58)
     # -----------------------------------------------------------------------
     def _rational_application(self, num: int, q: str, meta: dict) -> tuple:
         try:

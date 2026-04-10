@@ -153,6 +153,7 @@ SECTION_4_5_PROBLEMS: list[dict] = [
 
 SECTION_PROBLEMS: dict[str, list[dict]] = {
   "4.1": SECTION_4_1_PROBLEMS,
+  "4.2": SECTION_4_5_PROBLEMS,
   "4.5": SECTION_4_5_PROBLEMS,
 }
 
