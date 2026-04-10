@@ -28,6 +28,7 @@ PROBLEM_TYPE_LABELS = {
     "form_polynomial_point":   "Polynomial Through a Point",
     "analysis":                "Polynomial Analysis",
     "analysis_full":           "Full Polynomial Analysis",
+    "rational_graph_analysis": "Rational Graph Analysis",
   "rational_asymptotes":     "Rational Function Asymptotes",
   "rational_application":    "Rational Application",
     "application":             "Application Problem",

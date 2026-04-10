@@ -46,6 +46,7 @@ class Solver:
             "form_polynomial_point": self._form_polynomial_point,
             "analysis":              self._analysis,
             "analysis_full":         self._analysis_full,
+            "rational_graph_analysis": self._rational_graph_analysis,
             "rational_asymptotes":   self._rational_asymptotes,
             "rational_application":  self._rational_application,
         }
@@ -685,6 +686,267 @@ class Solver:
              "body": final_poly_body},
         ]
         return steps, answer, answer_sections, graph
+
+    # -----------------------------------------------------------------------
+    # 4.3 - Rational Graph Analysis (15-20)
+    # -----------------------------------------------------------------------
+    def _rational_graph_analysis(self, num: int, q: str, meta: dict) -> tuple:
+        try:
+            from sympy import (
+                symbols, factor, simplify, Poly, Eq, solveset, S,
+                cancel, limit
+            )
+            from sympy.parsing.sympy_parser import (
+                parse_expr, standard_transformations,
+                implicit_multiplication_application
+            )
+
+            x = symbols("x")
+            tf = standard_transformations + (implicit_multiplication_application,)
+
+            name = meta.get("name", "R")
+            num_raw = meta.get("numerator", "")
+            den_raw = meta.get("denominator", "")
+
+            n_expr = parse_expr(str(num_raw).replace("^", "**"), local_dict={"x": x}, transformations=tf)
+            d_expr = parse_expr(str(den_raw).replace("^", "**"), local_dict={"x": x}, transformations=tf)
+            f_expr = n_expr / d_expr
+
+            n_fact = factor(n_expr)
+            d_fact = factor(d_expr)
+            simp = cancel(f_expr)
+            simp_n, simp_d = simp.as_numer_denom()
+
+            # Step 1/2 foundations: domain, reduced form, holes
+            dom_restrict = sorted(solveset(Eq(d_expr, 0), x, domain=S.Reals), key=lambda v: float(v.evalf()))
+            va = sorted(solveset(Eq(simp_d, 0), x, domain=S.Reals), key=lambda v: float(v.evalf()))
+            holes = [r for r in dom_restrict if r not in va]
+
+            # Step 3: intercepts
+            xints_all = sorted(solveset(Eq(simp_n, 0), x, domain=S.Reals), key=lambda v: float(v.evalf()))
+            xints = [z for z in xints_all if z not in va and z not in holes]
+
+            yint = None
+            if simplify(d_expr.subs(x, 0)) != 0:
+                yint = simplify(f_expr.subs(x, 0))
+
+            # Step 4/5: asymptotes
+            pn = Poly(simplify(simp_n), x)
+            pd = Poly(simplify(simp_d), x)
+            dn, dd = pn.degree(), pd.degree()
+
+            h_asym = None
+            o_asym = None
+            if dn < dd:
+                h_asym = simplify(0)
+            elif dn == dd:
+                h_asym = simplify(pn.LC() / pd.LC())
+            elif dn == dd + 1:
+                q_poly, _ = pn.div(pd)
+                o_asym = simplify(q_poly.as_expr())
+
+            asym_intersections = []
+            try:
+                if h_asym is not None:
+                    sols = sorted(solveset(Eq(simp, h_asym), x, domain=S.Reals), key=lambda v: float(v.evalf()))
+                    asym_intersections = [s for s in sols if s not in dom_restrict]
+                elif o_asym is not None:
+                    sols = sorted(solveset(Eq(simp, o_asym), x, domain=S.Reals), key=lambda v: float(v.evalf()))
+                    asym_intersections = [s for s in sols if s not in dom_restrict]
+            except Exception:
+                asym_intersections = []
+
+            # Step 6: intervals and sign
+            critical = sorted(set([*xints, *va]), key=lambda v: float(v.evalf()))
+            intervals = []
+            if critical:
+                intervals.append((-S.Infinity, critical[0]))
+                for i in range(len(critical) - 1):
+                    intervals.append((critical[i], critical[i + 1]))
+                intervals.append((critical[-1], S.Infinity))
+            else:
+                intervals.append((-S.Infinity, S.Infinity))
+
+            def _sample(a, b):
+                if a is S.NegativeInfinity and b is S.Infinity:
+                    return simplify(0)
+                if a is S.NegativeInfinity:
+                    return simplify(b - 1)
+                if b is S.Infinity:
+                    return simplify(a + 1)
+                return simplify((a + b) / 2)
+
+            interval_rows = []
+            for a, b in intervals:
+                t = _sample(a, b)
+                try:
+                    val = simplify(simp.subs(x, t))
+                    pos = (val.evalf() > 0)
+                    loc = "Above x-axis" if pos else "Below x-axis"
+                except Exception:
+                    val = "undefined"
+                    loc = "undefined"
+                interval_rows.append((a, b, t, val, loc))
+
+            # Vertical asymptote one-sided behavior
+            va_beh = []
+            for v in va:
+                try:
+                    l = limit(simp, x, v, dir='-')
+                    r = limit(simp, x, v, dir='+')
+                    va_beh.append((v, l, r))
+                except Exception:
+                    va_beh.append((v, "?", "?"))
+
+            holes_text = []
+            hole_points = []
+            for h in holes:
+                y_h = simplify(simp.subs(x, h))
+                holes_text.append(f"({_expr_str(h)}, {_expr_str(y_h)})")
+                hole_points.append({"x": float(h.evalf()), "y": float(y_h.evalf()), "label": f"hole ({_expr_str(h)}, {_expr_str(y_h)})", "color": "#ff9800"})
+
+            step6_lines = []
+            for a, b, t, val, loc in interval_rows:
+                ia = "-∞" if a is S.NegativeInfinity else _expr_str(a)
+                ib = "+∞" if b is S.Infinity else _expr_str(b)
+                step6_lines.append(
+                    f"  ({ia}, {ib})  choose x = {_expr_str(t)}:  R(x) = {_expr_str(val)}  -> {loc}"
+                )
+
+            va_lines = []
+            for v, l, r in va_beh:
+                va_lines.append(
+                    f"  x = {_expr_str(v)}:  lim_(x→{_expr_str(v)}-) R(x) = {_expr_str(l)},  lim_(x→{_expr_str(v)}+) R(x) = {_expr_str(r)}"
+                )
+
+            asym_line = (
+                f"Horizontal asymptote: y = {_expr_str(h_asym)}" if h_asym is not None
+                else f"Oblique asymptote: y = {_expr_str(o_asym)}" if o_asym is not None
+                else "No horizontal or oblique asymptote"
+            )
+
+            inter_line = (
+                ", ".join([f"({_expr_str(s)}, {_expr_str(h_asym if h_asym is not None else o_asym)})" for s in asym_intersections])
+                if asym_intersections else "none"
+            )
+
+            steps = [
+                {
+                    "title": "Step 1 - Factor Numerator/Denominator and Domain",
+                    "body": (
+                        f"$$ {name}(x)=\\frac{{{_expr_str(n_expr)}}}{{{_expr_str(d_expr)}}} $$\n"
+                        f"Numerator factorization: {_expr_str(n_fact)}\n"
+                        f"Denominator factorization: {_expr_str(d_fact)}\n\n"
+                        "Domain restriction(s): "
+                        + (", ".join([f"x ≠ {_expr_str(r)}" for r in dom_restrict]) if dom_restrict else "none")
+                    ),
+                },
+                {
+                    "title": "Step 2 - Write in Lowest Terms",
+                    "body": (
+                        f"Simplified function:\n$$ {name}(x) = {_expr_str(simp)} $$\n\n"
+                        + ("Hole(s): " + ", ".join(holes_text) if holes_text else "No holes")
+                    ),
+                },
+                {
+                    "title": "Step 3 - Intercepts",
+                    "body": (
+                        "x-intercepts (set numerator = 0): "
+                        + (", ".join([f"({_expr_str(z)}, 0)" for z in xints]) if xints else "none")
+                        + "\n"
+                        + (f"y-intercept (x=0): (0, {_expr_str(yint)})" if yint is not None else "y-intercept: none (x=0 not in domain)")
+                    ),
+                },
+                {
+                    "title": "Step 4 - Vertical Asymptotes and Side Behavior",
+                    "body": (
+                        "Vertical asymptote(s): "
+                        + (", ".join([f"x = {_expr_str(v)}" for v in va]) if va else "none")
+                        + ("\n" + "\n".join(va_lines) if va_lines else "")
+                    ),
+                },
+                {
+                    "title": "Step 5 - Horizontal/Oblique Asymptote and Intersections",
+                    "body": (
+                        f"Degree(numerator)={dn}, Degree(denominator)={dd}\n"
+                        f"{asym_line}\n"
+                        f"Graph intersects this asymptote at: {inter_line}"
+                    ),
+                },
+                {
+                    "title": "Step 6 - Interval Sign Check",
+                    "body": "Use zeros and vertical asymptotes to split intervals:\n" + "\n".join(step6_lines),
+                },
+                {
+                    "title": "Step 7 - Graph Summary",
+                    "body": (
+                        "Plot intercepts and sample points from Step 6. Draw vertical asymptotes as dashed lines.\n"
+                        f"Approach {asym_line.lower()} on far left/right.\n"
+                        "Sketch branches in each interval based on sign and asymptote behavior."
+                    ),
+                },
+            ]
+
+            answer = (
+                f"Domain: "
+                + (", ".join([f"x ≠ {_expr_str(r)}" for r in dom_restrict]) if dom_restrict else "all real x")
+                + f" | VAs: {', '.join([f'x={_expr_str(v)}' for v in va]) if va else 'None'}"
+                + f" | {asym_line}"
+                + f" | x-int: {', '.join([f'({_expr_str(z)},0)' for z in xints]) if xints else 'None'}"
+                + f" | y-int: {(f'(0,{_expr_str(yint)})' if yint is not None else 'None')}"
+            )
+
+            answer_sections = [
+                {
+                    "label": "① Domain and Reduced Form",
+                    "body": (
+                        f"Domain restrictions: " + (", ".join([f"x ≠ {_expr_str(r)}" for r in dom_restrict]) if dom_restrict else "none")
+                        + f"\nReduced form: {_expr_str(simp)}"
+                        + (f"\nHole(s): {', '.join(holes_text)}" if holes_text else "")
+                    ),
+                },
+                {
+                    "label": "② Intercepts",
+                    "body": (
+                        f"x-intercepts: {', '.join([f'({_expr_str(z)},0)' for z in xints]) if xints else 'none'}\n"
+                        f"y-intercept: {(f'(0,{_expr_str(yint)})' if yint is not None else 'none')}"
+                    ),
+                },
+                {
+                    "label": "③ Asymptotes",
+                    "body": (
+                        f"Vertical asymptotes: {', '.join([f'x={_expr_str(v)}' for v in va]) if va else 'none'}\n"
+                        f"{asym_line}\n"
+                        f"Asymptote intersections: {inter_line}"
+                    ),
+                },
+                {
+                    "label": "④ Interval Sign/Point Table",
+                    "body": "\n".join(step6_lines),
+                },
+            ]
+
+            graph = None
+            try:
+                from sympy import lambdify
+                f_fn = lambdify(x, simp, "math")
+                crit = [float(v.evalf()) for v in set(dom_restrict) | set(xints)]
+                if crit:
+                    x_lo, x_hi = min(crit) - 3.0, max(crit) + 3.0
+                else:
+                    x_lo, x_hi = -6.0, 6.0
+                kp = [{"x": float(z.evalf()), "y": 0.0, "label": f"x-int ({_expr_str(z)}, 0)", "color": "#2e7d32"} for z in xints]
+                if yint is not None:
+                    kp.append({"x": 0.0, "y": float(yint.evalf()), "label": f"y-int (0, {_expr_str(yint)})", "color": "#0f3460"})
+                kp.extend(hole_points)
+                graph = self._make_graph(f_fn, x_lo, x_hi, kp)
+            except Exception:
+                graph = None
+
+            return steps, answer, answer_sections, graph
+        except Exception as e:
+            logger.warning(f"rational graph solver failed for '{q}': {e}")
+            return self._generic(num, q, meta)
 
     # -----------------------------------------------------------------------
     # 4.2 - Rational Function Asymptotes (47-56)

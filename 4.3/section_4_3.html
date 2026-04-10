@@ -1,0 +1,1392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section 4.3 – Complete Solutions</title>
+
+    <!-- MathJax 3 -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+          tags: "ams",
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <!-- Plotly.js basic (line + scatter, ~600 KB) -->
+    <script
+      src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js"
+      charset="utf-8"
+    ></script>
+
+    <style>
+      /* ── Reset ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      /* ── Variables ── */
+      :root {
+        --navy: #0f3460;
+        --red: #e94560;
+        --sidebar-w: 260px;
+        --topbar-h: 56px;
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --text: #1a1a2e;
+        --muted: #666;
+        --border: #e0e4ec;
+        --step-bg: #f8f9fa;
+      }
+
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: var(--text);
+        background: var(--bg);
+        min-height: 100vh;
+      }
+
+      /* ══ TOP BAR (mobile) ══ */
+      .topbar {
+        display: none;
+        align-items: center;
+        height: var(--topbar-h);
+        background: var(--navy);
+        color: #fff;
+        padding: 0 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        gap: 0.75rem;
+      }
+      .topbar-title {
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+
+      /* hamburger */
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .menu-btn span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition:
+          transform 0.25s,
+          opacity 0.25s;
+      }
+      body.nav-open .menu-btn span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      body.nav-open .menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-btn span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ══ SIDEBAR ══ */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-w);
+        height: 100vh;
+        background: var(--navy);
+        color: #fff;
+        overflow-y: auto;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-brand {
+        padding: 1.25rem 1.1rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .brand-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        line-height: 1.35;
+      }
+      .brand-sub {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 0.25rem;
+      }
+
+      .nav-group {
+        margin: 0.5rem 0;
+      }
+      .nav-group-title {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0.75rem 1.1rem 0.25rem;
+      }
+      .nav-group ul {
+        list-style: none;
+      }
+      .nav-group ul li a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.42rem 1.1rem;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-left: 3px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .nav-group ul li a:hover,
+      .nav-group ul li a.active {
+        background: rgba(255, 255, 255, 0.09);
+        border-left-color: var(--red);
+        color: #fff;
+      }
+      .nav-num {
+        display: inline-block;
+        min-width: 1.8rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+        font-size: 0.78rem;
+        padding: 0 0.3rem;
+        flex-shrink: 0;
+      }
+
+      /* ══ OVERLAY ══ */
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 90;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      body.nav-open .overlay {
+        opacity: 1;
+      }
+
+      /* ══ MAIN ══ */
+      .main {
+        margin-left: var(--sidebar-w);
+        min-height: 100vh;
+        padding: 2rem 1.5rem 5rem;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--card);
+        padding: 2.5rem 3.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+      }
+
+      /* header */
+      .page-header {
+        border-bottom: 4px solid var(--navy);
+        padding-bottom: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .page-header h1 {
+        font-size: 1.9rem;
+        color: var(--navy);
+        margin-bottom: 0.3rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      /* problem card */
+      .problem {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem 2rem;
+        margin: 2.25rem 0;
+        background: var(--card);
+        scroll-margin-top: 1.5rem;
+      }
+      .problem h2 {
+        font-size: 1.5rem;
+        color: var(--navy);
+        border-left: 5px solid var(--red);
+        padding-left: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 0.18rem 0.65rem;
+        margin-bottom: 1.1rem;
+      }
+
+      /* given */
+      .given-label {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+      .given-box {
+        background: #f0f4ff;
+        border-left: 4px solid var(--navy);
+        border-radius: 4px;
+        padding: 0.85rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-family: "Courier New", monospace;
+        font-size: 0.95rem;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      /* steps */
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .step {
+        padding: 0.85rem 1.1rem;
+        background: var(--step-bg);
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+      }
+      .step-title {
+        font-weight: bold;
+        color: #16213e;
+        margin-bottom: 0.4rem;
+      }
+      .step-body {
+        white-space: pre-wrap;
+        font-size: 0.97rem;
+        word-break: break-word;
+      }
+
+      /* answer */
+      .answer-box {
+        margin-top: 1.25rem;
+        background: #e8f5e9;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .answer-box-header {
+        font-weight: bold;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-sections {
+        padding: 0.6rem 1rem 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .answer-section {
+        padding: 0.45rem 0.75rem;
+        border-left: 3px solid #81c784;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 0 4px 4px 0;
+      }
+      .answer-sec-label {
+        font-family: "Georgia", serif;
+        font-size: 0.78rem;
+        font-weight: bold;
+        color: #1b5e20;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.2rem;
+      }
+      .answer-sec-body {
+        white-space: pre-wrap;
+        font-family: "Courier New", monospace;
+        font-size: 0.91rem;
+        line-height: 1.65;
+        color: #1a2e1a;
+        word-break: break-word;
+      }
+      /* fallback for old one-liner answers */
+      .answer-plain {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+        color: #1b5e20;
+        white-space: pre-wrap;
+      }
+
+      /* graph */
+      .graph-wrap {
+        margin: 1.25rem 0 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .graph-label {
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+      }
+      .graph-div {
+        height: 320px;
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        .graph-div {
+          height: 260px;
+        }
+      }
+
+      /* misc */
+      hr {
+        border: none;
+        border-top: 1px solid #e8eaee;
+        margin: 2rem 0;
+      }
+      code {
+        background: #f4f4f6;
+        font-family: "Courier New", monospace;
+        padding: 0.1em 0.4em;
+        border-radius: 3px;
+        font-size: 0.88em;
+      }
+      .back-top {
+        display: block;
+        text-align: right;
+        font-size: 0.82rem;
+        color: #999;
+        text-decoration: none;
+        margin-top: 0.5rem;
+      }
+      .back-top:hover {
+        color: var(--red);
+      }
+
+      /* ══ RESPONSIVE ══ */
+      @media (max-width: 768px) {
+        .topbar {
+          display: flex;
+        }
+        .sidebar {
+          top: 0;
+          transform: translateX(-100%);
+          z-index: 300;
+        }
+        body.nav-open .sidebar {
+          transform: translateX(0);
+        }
+        body.nav-open .overlay {
+          display: block;
+        }
+        .main {
+          margin-left: 0;
+          padding: calc(var(--topbar-h) + 1rem) 0.75rem 4rem;
+        }
+        .container {
+          padding: 1.25rem 1rem;
+          border-radius: 8px;
+        }
+        .page-header h1 {
+          font-size: 1.4rem;
+        }
+        .problem {
+          padding: 1.1rem 0.9rem;
+        }
+        .problem h2 {
+          font-size: 1.2rem;
+        }
+      }
+      @media (min-width: 769px) {
+        .overlay {
+          display: none !important;
+        }
+        .topbar {
+          display: none !important;
+        }
+      }
+      @media (max-width: 1100px) and (min-width: 769px) {
+        :root {
+          --sidebar-w: 220px;
+        }
+        .container {
+          padding: 2rem 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- MOBILE TOP BAR -->
+    <div class="topbar" id="topbar">
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="sidebar"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <span class="topbar-title">MAT 116 &mdash; Section 4.3</span>
+    </div>
+
+    <!-- BACKDROP -->
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar" id="sidebar" aria-label="Problem navigation">
+      <div class="sidebar-brand">
+        <div class="brand-title">MAT 116 Solutions</div>
+        <div class="brand-sub">
+          Sullivan Precalculus 10th Ed &middot; Section 4.3
+        </div>
+      </div>
+
+      
+      <div class="nav-group">
+        <div class="nav-group-title">Rational Graph Analysis</div>
+        <ul>
+          
+          <li>
+            <a
+              href="#prob-15"
+              data-target="prob-15"
+            >
+              <span class="nav-num">15</span>Problem 15
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-16"
+              data-target="prob-16"
+            >
+              <span class="nav-num">16</span>Problem 16
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-17"
+              data-target="prob-17"
+            >
+              <span class="nav-num">17</span>Problem 17
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-18"
+              data-target="prob-18"
+            >
+              <span class="nav-num">18</span>Problem 18
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-19"
+              data-target="prob-19"
+            >
+              <span class="nav-num">19</span>Problem 19
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-20"
+              data-target="prob-20"
+            >
+              <span class="nav-num">20</span>Problem 20
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <div class="container">
+        <header class="page-header" id="top">
+          <h1>Section 4.3 – Complete Solutions</h1>
+          <p class="subtitle">
+            MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan
+            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 4.3 &nbsp;|&nbsp; Generated: April 11, 2026
+          </p>
+        </header>
+
+         
+        <div class="problem" id="prob-15">
+          <h2>Problem 15</h2>
+          <span class="badge">Rational Graph Analysis</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">H(x) = (x^3 - 1)/(x^2 - 9)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Factor Numerator/Denominator and Domain</div>
+              <div class="step-body">$$ H(x)=\frac{x^3 - 1}{x^2 - 9} $$
+Numerator factorization: (x - 1)·(x^2 + x + 1)
+Denominator factorization: (x - 3)·(x + 3)
+
+Domain restriction(s): x ≠ -3, x ≠ 3</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Write in Lowest Terms</div>
+              <div class="step-body">Simplified function:
+$$ H(x) = (x^3 - 1)/(x^2 - 9) $$
+
+No holes</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Intercepts</div>
+              <div class="step-body">x-intercepts (set numerator = 0): (1, 0)
+y-intercept (x=0): (0, 1/9)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Vertical Asymptotes and Side Behavior</div>
+              <div class="step-body">Vertical asymptote(s): x = -3, x = 3
+  x = -3:  lim_(x→-3-) R(x) = -oo,  lim_(x→-3+) R(x) = oo
+  x = 3:  lim_(x→3-) R(x) = -oo,  lim_(x→3+) R(x) = oo</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Horizontal/Oblique Asymptote and Intersections</div>
+              <div class="step-body">Degree(numerator)=3, Degree(denominator)=2
+Oblique asymptote: y = x
+Graph intersects this asymptote at: (1/9, x)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 6 - Interval Sign Check</div>
+              <div class="step-body">Use zeros and vertical asymptotes to split intervals:
+  (-∞, -3)  choose x = -4:  R(x) = -65/7  -&gt; Below x-axis
+  (-3, 1)  choose x = -1:  R(x) = 1/4  -&gt; Above x-axis
+  (1, 3)  choose x = 2:  R(x) = -7/5  -&gt; Below x-axis
+  (3, +∞)  choose x = 4:  R(x) = 9  -&gt; Above x-axis</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 7 - Graph Summary</div>
+              <div class="step-body">Plot intercepts and sample points from Step 6. Draw vertical asymptotes as dashed lines.
+Approach oblique asymptote: y = x on far left/right.
+Sketch branches in each interval based on sign and asymptote behavior.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g15" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Domain and Reduced Form</div>
+                <div class="answer-sec-body">
+                  Domain restrictions: x ≠ -3, x ≠ 3
+Reduced form: (x^3 - 1)/(x^2 - 9)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Intercepts</div>
+                <div class="answer-sec-body">
+                  x-intercepts: (1,0)
+y-intercept: (0,1/9)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Asymptotes</div>
+                <div class="answer-sec-body">
+                  Vertical asymptotes: x=-3, x=3
+Oblique asymptote: y = x
+Asymptote intersections: (1/9, x)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Interval Sign/Point Table</div>
+                <div class="answer-sec-body">
+                    (-∞, -3)  choose x = -4:  R(x) = -65/7  -&gt; Below x-axis
+  (-3, 1)  choose x = -1:  R(x) = 1/4  -&gt; Above x-axis
+  (1, 3)  choose x = 2:  R(x) = -7/5  -&gt; Below x-axis
+  (3, +∞)  choose x = 4:  R(x) = 9  -&gt; Above x-axis
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-16">
+          <h2>Problem 16</h2>
+          <span class="badge">Rational Graph Analysis</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">G(x) = (x^3 + 1)/(x^2 + 2x)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Factor Numerator/Denominator and Domain</div>
+              <div class="step-body">$$ G(x)=\frac{x^3 + 1}{x^2 + 2x} $$
+Numerator factorization: (x + 1)·(x^2 - x + 1)
+Denominator factorization: x·(x + 2)
+
+Domain restriction(s): x ≠ -2, x ≠ 0</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Write in Lowest Terms</div>
+              <div class="step-body">Simplified function:
+$$ G(x) = (x^3 + 1)/(x^2 + 2x) $$
+
+No holes</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Intercepts</div>
+              <div class="step-body">x-intercepts (set numerator = 0): (-1, 0)
+y-intercept: none (x=0 not in domain)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Vertical Asymptotes and Side Behavior</div>
+              <div class="step-body">Vertical asymptote(s): x = -2, x = 0
+  x = -2:  lim_(x→-2-) R(x) = -oo,  lim_(x→-2+) R(x) = oo
+  x = 0:  lim_(x→0-) R(x) = -oo,  lim_(x→0+) R(x) = oo</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Horizontal/Oblique Asymptote and Intersections</div>
+              <div class="step-body">Degree(numerator)=3, Degree(denominator)=2
+Oblique asymptote: y = x - 2
+Graph intersects this asymptote at: (-1/4, x - 2)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 6 - Interval Sign Check</div>
+              <div class="step-body">Use zeros and vertical asymptotes to split intervals:
+  (-∞, -2)  choose x = -3:  R(x) = -26/3  -&gt; Below x-axis
+  (-2, -1)  choose x = -3/2:  R(x) = 19/6  -&gt; Above x-axis
+  (-1, 0)  choose x = -1/2:  R(x) = -7/6  -&gt; Below x-axis
+  (0, +∞)  choose x = 1:  R(x) = 2/3  -&gt; Above x-axis</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 7 - Graph Summary</div>
+              <div class="step-body">Plot intercepts and sample points from Step 6. Draw vertical asymptotes as dashed lines.
+Approach oblique asymptote: y = x - 2 on far left/right.
+Sketch branches in each interval based on sign and asymptote behavior.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g16" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Domain and Reduced Form</div>
+                <div class="answer-sec-body">
+                  Domain restrictions: x ≠ -2, x ≠ 0
+Reduced form: (x^3 + 1)/(x^2 + 2x)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Intercepts</div>
+                <div class="answer-sec-body">
+                  x-intercepts: (-1,0)
+y-intercept: none
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Asymptotes</div>
+                <div class="answer-sec-body">
+                  Vertical asymptotes: x=-2, x=0
+Oblique asymptote: y = x - 2
+Asymptote intersections: (-1/4, x - 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Interval Sign/Point Table</div>
+                <div class="answer-sec-body">
+                    (-∞, -2)  choose x = -3:  R(x) = -26/3  -&gt; Below x-axis
+  (-2, -1)  choose x = -3/2:  R(x) = 19/6  -&gt; Above x-axis
+  (-1, 0)  choose x = -1/2:  R(x) = -7/6  -&gt; Below x-axis
+  (0, +∞)  choose x = 1:  R(x) = 2/3  -&gt; Above x-axis
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-17">
+          <h2>Problem 17</h2>
+          <span class="badge">Rational Graph Analysis</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">R(x) = (x^2 + x - 12)/(x^2 - 4)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Factor Numerator/Denominator and Domain</div>
+              <div class="step-body">$$ R(x)=\frac{x^2 + x - 12}{x^2 - 4} $$
+Numerator factorization: (x - 3)·(x + 4)
+Denominator factorization: (x - 2)·(x + 2)
+
+Domain restriction(s): x ≠ -2, x ≠ 2</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Write in Lowest Terms</div>
+              <div class="step-body">Simplified function:
+$$ R(x) = (x^2 + x - 12)/(x^2 - 4) $$
+
+No holes</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Intercepts</div>
+              <div class="step-body">x-intercepts (set numerator = 0): (-4, 0), (3, 0)
+y-intercept (x=0): (0, 3)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Vertical Asymptotes and Side Behavior</div>
+              <div class="step-body">Vertical asymptote(s): x = -2, x = 2
+  x = -2:  lim_(x→-2-) R(x) = -oo,  lim_(x→-2+) R(x) = oo
+  x = 2:  lim_(x→2-) R(x) = oo,  lim_(x→2+) R(x) = -oo</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Horizontal/Oblique Asymptote and Intersections</div>
+              <div class="step-body">Degree(numerator)=2, Degree(denominator)=2
+Horizontal asymptote: y = 1
+Graph intersects this asymptote at: (8, 1)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 6 - Interval Sign Check</div>
+              <div class="step-body">Use zeros and vertical asymptotes to split intervals:
+  (-∞, -4)  choose x = -5:  R(x) = 8/21  -&gt; Above x-axis
+  (-4, -2)  choose x = -3:  R(x) = -6/5  -&gt; Below x-axis
+  (-2, 2)  choose x = 0:  R(x) = 3  -&gt; Above x-axis
+  (2, 3)  choose x = 5/2:  R(x) = -13/9  -&gt; Below x-axis
+  (3, +∞)  choose x = 4:  R(x) = 2/3  -&gt; Above x-axis</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 7 - Graph Summary</div>
+              <div class="step-body">Plot intercepts and sample points from Step 6. Draw vertical asymptotes as dashed lines.
+Approach horizontal asymptote: y = 1 on far left/right.
+Sketch branches in each interval based on sign and asymptote behavior.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g17" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Domain and Reduced Form</div>
+                <div class="answer-sec-body">
+                  Domain restrictions: x ≠ -2, x ≠ 2
+Reduced form: (x^2 + x - 12)/(x^2 - 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Intercepts</div>
+                <div class="answer-sec-body">
+                  x-intercepts: (-4,0), (3,0)
+y-intercept: (0,3)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Asymptotes</div>
+                <div class="answer-sec-body">
+                  Vertical asymptotes: x=-2, x=2
+Horizontal asymptote: y = 1
+Asymptote intersections: (8, 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Interval Sign/Point Table</div>
+                <div class="answer-sec-body">
+                    (-∞, -4)  choose x = -5:  R(x) = 8/21  -&gt; Above x-axis
+  (-4, -2)  choose x = -3:  R(x) = -6/5  -&gt; Below x-axis
+  (-2, 2)  choose x = 0:  R(x) = 3  -&gt; Above x-axis
+  (2, 3)  choose x = 5/2:  R(x) = -13/9  -&gt; Below x-axis
+  (3, +∞)  choose x = 4:  R(x) = 2/3  -&gt; Above x-axis
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-18">
+          <h2>Problem 18</h2>
+          <span class="badge">Rational Graph Analysis</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">R(x) = x^2/(x^2 + x - 6)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Factor Numerator/Denominator and Domain</div>
+              <div class="step-body">$$ R(x)=\frac{x^2}{x^2 + x - 6} $$
+Numerator factorization: x^2
+Denominator factorization: (x - 2)·(x + 3)
+
+Domain restriction(s): x ≠ -3, x ≠ 2</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Write in Lowest Terms</div>
+              <div class="step-body">Simplified function:
+$$ R(x) = x^2/(x^2 + x - 6) $$
+
+No holes</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Intercepts</div>
+              <div class="step-body">x-intercepts (set numerator = 0): (0, 0)
+y-intercept (x=0): (0, 0)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Vertical Asymptotes and Side Behavior</div>
+              <div class="step-body">Vertical asymptote(s): x = -3, x = 2
+  x = -3:  lim_(x→-3-) R(x) = oo,  lim_(x→-3+) R(x) = -oo
+  x = 2:  lim_(x→2-) R(x) = -oo,  lim_(x→2+) R(x) = oo</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Horizontal/Oblique Asymptote and Intersections</div>
+              <div class="step-body">Degree(numerator)=2, Degree(denominator)=2
+Horizontal asymptote: y = 1
+Graph intersects this asymptote at: (6, 1)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 6 - Interval Sign Check</div>
+              <div class="step-body">Use zeros and vertical asymptotes to split intervals:
+  (-∞, -3)  choose x = -4:  R(x) = 8/3  -&gt; Above x-axis
+  (-3, 0)  choose x = -3/2:  R(x) = -3/7  -&gt; Below x-axis
+  (0, 2)  choose x = 1:  R(x) = -1/4  -&gt; Below x-axis
+  (2, +∞)  choose x = 3:  R(x) = 3/2  -&gt; Above x-axis</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 7 - Graph Summary</div>
+              <div class="step-body">Plot intercepts and sample points from Step 6. Draw vertical asymptotes as dashed lines.
+Approach horizontal asymptote: y = 1 on far left/right.
+Sketch branches in each interval based on sign and asymptote behavior.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g18" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Domain and Reduced Form</div>
+                <div class="answer-sec-body">
+                  Domain restrictions: x ≠ -3, x ≠ 2
+Reduced form: x^2/(x^2 + x - 6)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Intercepts</div>
+                <div class="answer-sec-body">
+                  x-intercepts: (0,0)
+y-intercept: (0,0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Asymptotes</div>
+                <div class="answer-sec-body">
+                  Vertical asymptotes: x=-3, x=2
+Horizontal asymptote: y = 1
+Asymptote intersections: (6, 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Interval Sign/Point Table</div>
+                <div class="answer-sec-body">
+                    (-∞, -3)  choose x = -4:  R(x) = 8/3  -&gt; Above x-axis
+  (-3, 0)  choose x = -3/2:  R(x) = -3/7  -&gt; Below x-axis
+  (0, 2)  choose x = 1:  R(x) = -1/4  -&gt; Below x-axis
+  (2, +∞)  choose x = 3:  R(x) = 3/2  -&gt; Above x-axis
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-19">
+          <h2>Problem 19</h2>
+          <span class="badge">Rational Graph Analysis</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">G(x) = 3x/(x^2 - 1)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Factor Numerator/Denominator and Domain</div>
+              <div class="step-body">$$ G(x)=\frac{3x}{x^2 - 1} $$
+Numerator factorization: 3x
+Denominator factorization: (x - 1)·(x + 1)
+
+Domain restriction(s): x ≠ -1, x ≠ 1</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Write in Lowest Terms</div>
+              <div class="step-body">Simplified function:
+$$ G(x) = 3x/(x^2 - 1) $$
+
+No holes</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Intercepts</div>
+              <div class="step-body">x-intercepts (set numerator = 0): (0, 0)
+y-intercept (x=0): (0, 0)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Vertical Asymptotes and Side Behavior</div>
+              <div class="step-body">Vertical asymptote(s): x = -1, x = 1
+  x = -1:  lim_(x→-1-) R(x) = -oo,  lim_(x→-1+) R(x) = oo
+  x = 1:  lim_(x→1-) R(x) = -oo,  lim_(x→1+) R(x) = oo</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Horizontal/Oblique Asymptote and Intersections</div>
+              <div class="step-body">Degree(numerator)=1, Degree(denominator)=2
+Horizontal asymptote: y = 0
+Graph intersects this asymptote at: (0, 0)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 6 - Interval Sign Check</div>
+              <div class="step-body">Use zeros and vertical asymptotes to split intervals:
+  (-∞, -1)  choose x = -2:  R(x) = -2  -&gt; Below x-axis
+  (-1, 0)  choose x = -1/2:  R(x) = 2  -&gt; Above x-axis
+  (0, 1)  choose x = 1/2:  R(x) = -2  -&gt; Below x-axis
+  (1, +∞)  choose x = 2:  R(x) = 2  -&gt; Above x-axis</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 7 - Graph Summary</div>
+              <div class="step-body">Plot intercepts and sample points from Step 6. Draw vertical asymptotes as dashed lines.
+Approach horizontal asymptote: y = 0 on far left/right.
+Sketch branches in each interval based on sign and asymptote behavior.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g19" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Domain and Reduced Form</div>
+                <div class="answer-sec-body">
+                  Domain restrictions: x ≠ -1, x ≠ 1
+Reduced form: 3x/(x^2 - 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Intercepts</div>
+                <div class="answer-sec-body">
+                  x-intercepts: (0,0)
+y-intercept: (0,0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Asymptotes</div>
+                <div class="answer-sec-body">
+                  Vertical asymptotes: x=-1, x=1
+Horizontal asymptote: y = 0
+Asymptote intersections: (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Interval Sign/Point Table</div>
+                <div class="answer-sec-body">
+                    (-∞, -1)  choose x = -2:  R(x) = -2  -&gt; Below x-axis
+  (-1, 0)  choose x = -1/2:  R(x) = 2  -&gt; Above x-axis
+  (0, 1)  choose x = 1/2:  R(x) = -2  -&gt; Below x-axis
+  (1, +∞)  choose x = 2:  R(x) = 2  -&gt; Above x-axis
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-20">
+          <h2>Problem 20</h2>
+          <span class="badge">Rational Graph Analysis</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">G(x) = x/(x^2 - 4)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Factor Numerator/Denominator and Domain</div>
+              <div class="step-body">$$ G(x)=\frac{x}{x^2 - 4} $$
+Numerator factorization: x
+Denominator factorization: (x - 2)·(x + 2)
+
+Domain restriction(s): x ≠ -2, x ≠ 2</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Write in Lowest Terms</div>
+              <div class="step-body">Simplified function:
+$$ G(x) = x/(x^2 - 4) $$
+
+No holes</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Intercepts</div>
+              <div class="step-body">x-intercepts (set numerator = 0): (0, 0)
+y-intercept (x=0): (0, 0)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Vertical Asymptotes and Side Behavior</div>
+              <div class="step-body">Vertical asymptote(s): x = -2, x = 2
+  x = -2:  lim_(x→-2-) R(x) = -oo,  lim_(x→-2+) R(x) = oo
+  x = 2:  lim_(x→2-) R(x) = -oo,  lim_(x→2+) R(x) = oo</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Horizontal/Oblique Asymptote and Intersections</div>
+              <div class="step-body">Degree(numerator)=1, Degree(denominator)=2
+Horizontal asymptote: y = 0
+Graph intersects this asymptote at: (0, 0)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 6 - Interval Sign Check</div>
+              <div class="step-body">Use zeros and vertical asymptotes to split intervals:
+  (-∞, -2)  choose x = -3:  R(x) = -3/5  -&gt; Below x-axis
+  (-2, 0)  choose x = -1:  R(x) = 1/3  -&gt; Above x-axis
+  (0, 2)  choose x = 1:  R(x) = -1/3  -&gt; Below x-axis
+  (2, +∞)  choose x = 3:  R(x) = 3/5  -&gt; Above x-axis</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 7 - Graph Summary</div>
+              <div class="step-body">Plot intercepts and sample points from Step 6. Draw vertical asymptotes as dashed lines.
+Approach horizontal asymptote: y = 0 on far left/right.
+Sketch branches in each interval based on sign and asymptote behavior.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g20" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Domain and Reduced Form</div>
+                <div class="answer-sec-body">
+                  Domain restrictions: x ≠ -2, x ≠ 2
+Reduced form: x/(x^2 - 4)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Intercepts</div>
+                <div class="answer-sec-body">
+                  x-intercepts: (0,0)
+y-intercept: (0,0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Asymptotes</div>
+                <div class="answer-sec-body">
+                  Vertical asymptotes: x=-2, x=2
+Horizontal asymptote: y = 0
+Asymptote intersections: (0, 0)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Interval Sign/Point Table</div>
+                <div class="answer-sec-body">
+                    (-∞, -2)  choose x = -3:  R(x) = -3/5  -&gt; Below x-axis
+  (-2, 0)  choose x = -1:  R(x) = 1/3  -&gt; Above x-axis
+  (0, 2)  choose x = 1:  R(x) = -1/3  -&gt; Below x-axis
+  (2, +∞)  choose x = 3:  R(x) = 3/5  -&gt; Above x-axis
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+        
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var body = document.body,
+          sidebar = document.getElementById("sidebar"),
+          overlay = document.getElementById("overlay"),
+          btn = document.getElementById("menuBtn");
+        function openNav() {
+          body.classList.add("nav-open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+        function closeNav() {
+          body.classList.remove("nav-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+        btn.addEventListener("click", function () {
+          body.classList.contains("nav-open") ? closeNav() : openNav();
+        });
+        overlay.addEventListener("click", closeNav);
+        sidebar.querySelectorAll("a[data-target]").forEach(function (a) {
+          a.addEventListener("click", function () {
+            if (window.innerWidth <= 768) closeNav();
+          });
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeNav();
+        });
+
+        /* active link highlight */
+        var navLinks = {};
+        sidebar.querySelectorAll("a[data-target]").forEach(function (a) {
+          navLinks[a.dataset.target] = a;
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              var link = navLinks[entry.target.id];
+              if (!link) return;
+              if (entry.isIntersecting) {
+                Object.values(navLinks).forEach(function (l) {
+                  l.classList.remove("active");
+                });
+                link.classList.add("active");
+                link.scrollIntoView({ block: "nearest", behavior: "smooth" });
+              }
+            });
+          },
+          { rootMargin: "-10% 0px -80% 0px", threshold: 0 },
+        );
+        document.querySelectorAll(".problem[id]").forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
+    <script>
+      if (typeof Plotly !== 'undefined') {
+        var _GRAPHS = [
+          {"id":"g15","d":{"x":[-6.0,-5.95987,-5.91973,-5.8796,-5.83946,-5.79933,-5.7592,-5.71906,-5.67893,-5.6388,-5.59866,-5.55853,-5.51839,-5.47826,-5.43813,-5.39799,-5.35786,-5.31773,-5.27759,-5.23746,-5.19732,-5.15719,-5.11706,-5.07692,-5.03679,-4.99666,-4.95652,-4.91639,-4.87625,-4.83612,-4.79599,-4.75585,-4.71572,-4.67559,-4.63545,-4.59532,-4.55518,-4.51505,-4.47492,-4.43478,-4.39465,-4.35452,-4.31438,-4.27425,-4.23411,-4.19398,-4.15385,-4.11371,-4.07358,-4.03344,-3.99331,-3.95318,-3.91304,-3.87291,-3.83278,-3.79264,-3.75251,-3.71237,-3.67224,-3.63211,-3.59197,-3.55184,-3.51171,-3.47157,-3.43144,-3.3913,-3.35117,-3.31104,-3.2709,-3.23077,-3.19064,-3.1505,-3.11037,-3.07023,-3.0301,-2.98997,-2.94983,-2.9097,-2.86957,-2.82943,-2.7893,-2.74916,-2.70903,-2.6689,-2.62876,-2.58863,-2.54849,-2.50836,-2.46823,-2.42809,-2.38796,-2.34783,-2.30769,-2.26756,-2.22742,-2.18729,-2.14716,-2.10702,-2.06689,-2.02676,-1.98662,-1.94649,-1.90635,-1.86622,-1.82609,-1.78595,-1.74582,-1.70569,-1.66555,-1.62542,-1.58528,-1.54515,-1.50502,-1.46488,-1.42475,-1.38462,-1.34448,-1.30435,-1.26421,-1.22408,-1.18395,-1.14381,-1.10368,-1.06355,-1.02341,-0.98328,-0.94314,-0.90301,-0.86288,-0.82274,-0.78261,-0.74247,-0.70234,-0.66221,-0.62207,-0.58194,-0.54181,-0.50167,-0.46154,-0.4214,-0.38127,-0.34114,-0.301,-0.26087,-0.22074,-0.1806,-0.14047,-0.10033,-0.0602,-0.02007,0.02007,0.0602,0.10033,0.14047,0.1806,0.22074,0.26087,0.301,0.34114,0.38127,0.4214,0.46154,0.50167,0.54181,0.58194,0.62207,0.66221,0.70234,0.74247,0.78261,0.82274,0.86288,0.90301,0.94314,0.98328,1.02341,1.06355,1.10368,1.14381,1.18395,1.22408,1.26421,1.30435,1.34448,1.38462,1.42475,1.46488,1.50502,1.54515,1.58528,1.62542,1.66555,1.70569,1.74582,1.78595,1.82609,1.86622,1.90635,1.94649,1.98662,2.02676,2.06689,2.10702,2.14716,2.18729,2.22742,2.26756,2.30769,2.34783,2.38796,2.42809,2.46823,2.50836,2.54849,2.58863,2.62876,2.6689,2.70903,2.74916,2.7893,2.82943,2.86957,2.9097,2.94983,2.98997,3.0301,3.07023,3.11037,3.1505,3.19064,3.23077,3.2709,3.31104,3.35117,3.3913,3.43144,3.47157,3.51171,3.55184,3.59197,3.63211,3.67224,3.71237,3.75251,3.79264,3.83278,3.87291,3.91304,3.95318,3.99331,4.03344,4.07358,4.11371,4.15385,4.19398,4.23411,4.27425,4.31438,4.35452,4.39465,4.43478,4.47492,4.51505,4.55518,4.59532,4.63545,4.67559,4.71572,4.75585,4.79599,4.83612,4.87625,4.91639,4.95652,4.99666,5.03679,5.07692,5.11706,5.15719,5.19732,5.23746,5.27759,5.31773,5.35786,5.39799,5.43813,5.47826,5.51839,5.55853,5.59866,5.6388,5.67893,5.71906,5.7592,5.79933,5.83946,5.8796,5.91973,5.95987,6.0],"y":[-8.037,-8.0202,-8.0039,-7.9882,-7.9732,-7.9589,-7.9452,-7.9323,-7.9202,-7.9089,-7.8984,-7.8888,-7.8801,-7.8724,-7.8657,-7.8601,-7.8555,-7.8522,-7.85,-7.8492,-7.8497,-7.8517,-7.8552,-7.8603,-7.8672,-7.8758,-7.8863,-7.8989,-7.9137,-7.9307,-7.9502,-7.9723,-7.9973,-8.0252,-8.0564,-8.0911,-8.1295,-8.1719,-8.2187,-8.2702,-8.3268,-8.389,-8.4573,-8.5322,-8.6145,-8.7048,-8.804,-8.9131,-9.033,-9.1652,-9.311,-9.4723,-9.651,-9.8495,-10.0707,-10.3181,-10.5957,-10.9088,-11.2637,-11.6682,-12.1326,-12.6698,-13.297,-14.0371,-14.9217,-15.9952,-17.3223,-19.0012,-21.1883,-24.1485,-28.3701,-34.8625,-46.1024,-70.2285,-158.7858,461.3977,89.3441,48.0361,32.1699,23.7867,18.6103,15.1015,12.5703,10.661,9.172,7.9802,7.0063,6.197,5.515,4.9334,4.4326,3.9974,3.6166,3.2812,2.984,2.7194,2.4828,2.2704,2.0791,1.9062,1.7494,1.6071,1.4775,1.3593,1.2513,1.1525,1.062,0.979,0.9027,0.8327,0.7683,0.7091,0.6546,0.6045,0.5584,0.516,0.4769,0.4411,0.4081,0.3778,0.35,0.3246,0.3013,0.28,0.2605,0.2428,0.2267,0.2121,0.199,0.1871,0.1764,0.1668,0.1583,0.1507,0.1441,0.1382,0.1331,0.1287,0.125,0.1218,0.1192,0.117,0.1153,0.1139,0.1129,0.1122,0.1117,0.1113,0.1112,0.1111,0.1111,0.1111,0.1111,0.111,0.1109,0.1105,0.11,0.1092,0.1081,0.1067,0.1049,0.1026,0.0999,0.0966,0.0927,0.0882,0.0829,0.0768,0.0699,0.0621,0.0532,0.0433,0.0322,0.0199,0.0061,-0.009,-0.0258,-0.0443,-0.0645,-0.0868,-0.1112,-0.1379,-0.167,-0.1989,-0.2336,-0.2715,-0.3127,-0.3577,-0.4067,-0.46,-0.5181,-0.5815,-0.6506,-0.726,-0.8083,-0.8983,-0.9968,-1.1048,-1.2233,-1.3537,-1.4973,-1.6561,-1.8319,-2.0272,-2.245,-2.4888,-2.7628,-3.0723,-3.424,-3.8261,-4.2892,-4.8272,-5.4585,-6.208,-7.1102,-8.2148,-9.5954,-11.3663,-13.7147,-16.9708,-21.7753,-29.5576,-44.2883,-82.6436,-428.1198,147.767,65.5374,43.1367,32.7018,26.6755,22.7575,20.011,17.9824,16.4256,15.1955,14.201,13.3818,12.6968,12.1166,11.6201,11.1911,10.8178,10.4906,10.2021,9.9466,9.7192,9.5161,9.3341,9.1705,9.0231,8.89,8.7697,8.6606,8.5617,8.472,8.3905,8.3165,8.2493,8.1882,8.1329,8.0827,8.0372,7.9962,7.9592,7.926,7.8963,7.8697,7.8462,7.8255,7.8074,7.7917,7.7783,7.7671,7.7579,7.7505,7.745,7.7411,7.7388,7.7381,7.7387,7.7407,7.744,7.7484,7.754,7.7607,7.7685,7.7772,7.7869,7.7975,7.8089,7.8212,7.8342,7.848,7.8625,7.8777,7.8935,7.91,7.9271,7.9447,7.963],"key_points":[{"x":1.0,"y":0.0,"label":"x-int (1, 0)","color":"#2e7d32"},{"x":0.0,"y":0.1111111111111111,"label":"y-int (0, 1/9)","color":"#0f3460"}],"x_range":[-6.0,6.0],"y_range":[-5.14,5.26]}},
+          {"id":"g16","d":{"x":[-5.0,-4.97324,-4.94649,-4.91973,-4.89298,-4.86622,-4.83946,-4.81271,-4.78595,-4.7592,-4.73244,-4.70569,-4.67893,-4.65217,-4.62542,-4.59866,-4.57191,-4.54515,-4.51839,-4.49164,-4.46488,-4.43813,-4.41137,-4.38462,-4.35786,-4.3311,-4.30435,-4.27759,-4.25084,-4.22408,-4.19732,-4.17057,-4.14381,-4.11706,-4.0903,-4.06355,-4.03679,-4.01003,-3.98328,-3.95652,-3.92977,-3.90301,-3.87625,-3.8495,-3.82274,-3.79599,-3.76923,-3.74247,-3.71572,-3.68896,-3.66221,-3.63545,-3.6087,-3.58194,-3.55518,-3.52843,-3.50167,-3.47492,-3.44816,-3.4214,-3.39465,-3.36789,-3.34114,-3.31438,-3.28763,-3.26087,-3.23411,-3.20736,-3.1806,-3.15385,-3.12709,-3.10033,-3.07358,-3.04682,-3.02007,-2.99331,-2.96656,-2.9398,-2.91304,-2.88629,-2.85953,-2.83278,-2.80602,-2.77926,-2.75251,-2.72575,-2.699,-2.67224,-2.64548,-2.61873,-2.59197,-2.56522,-2.53846,-2.51171,-2.48495,-2.45819,-2.43144,-2.40468,-2.37793,-2.35117,-2.32441,-2.29766,-2.2709,-2.24415,-2.21739,-2.19064,-2.16388,-2.13712,-2.11037,-2.08361,-2.05686,-2.0301,-2.00334,-1.97659,-1.94983,-1.92308,-1.89632,-1.86957,-1.84281,-1.81605,-1.7893,-1.76254,-1.73579,-1.70903,-1.68227,-1.65552,-1.62876,-1.60201,-1.57525,-1.54849,-1.52174,-1.49498,-1.46823,-1.44147,-1.41472,-1.38796,-1.3612,-1.33445,-1.30769,-1.28094,-1.25418,-1.22742,-1.20067,-1.17391,-1.14716,-1.1204,-1.09365,-1.06689,-1.04013,-1.01338,-0.98662,-0.95987,-0.93311,-0.90635,-0.8796,-0.85284,-0.82609,-0.79933,-0.77258,-0.74582,-0.71906,-0.69231,-0.66555,-0.6388,-0.61204,-0.58528,-0.55853,-0.53177,-0.50502,-0.47826,-0.45151,-0.42475,-0.39799,-0.37124,-0.34448,-0.31773,-0.29097,-0.26421,-0.23746,-0.2107,-0.18395,-0.15719,-0.13043,-0.10368,-0.07692,-0.05017,-0.02341,0.00334,0.0301,0.05686,0.08361,0.11037,0.13712,0.16388,0.19064,0.21739,0.24415,0.2709,0.29766,0.32441,0.35117,0.37793,0.40468,0.43144,0.45819,0.48495,0.51171,0.53846,0.56522,0.59197,0.61873,0.64548,0.67224,0.699,0.72575,0.75251,0.77926,0.80602,0.83278,0.85953,0.88629,0.91304,0.9398,0.96656,0.99331,1.02007,1.04682,1.07358,1.10033,1.12709,1.15385,1.1806,1.20736,1.23411,1.26087,1.28763,1.31438,1.34114,1.36789,1.39465,1.4214,1.44816,1.47492,1.50167,1.52843,1.55518,1.58194,1.6087,1.63545,1.66221,1.68896,1.71572,1.74247,1.76923,1.79599,1.82274,1.8495,1.87625,1.90301,1.92977,1.95652,1.98328,2.01003,2.03679,2.06355,2.0903,2.11706,2.14381,2.17057,2.19732,2.22408,2.25084,2.27759,2.30435,2.3311,2.35786,2.38462,2.41137,2.43813,2.46488,2.49164,2.51839,2.54515,2.57191,2.59866,2.62542,2.65217,2.67893,2.70569,2.73244,2.7592,2.78595,2.81271,2.83946,2.86622,2.89298,2.91973,2.94649,2.97324,3.0],"y":[-8.2667,-8.2509,-8.2354,-8.2201,-8.205,-8.1901,-8.1754,-8.161,-8.1467,-8.1327,-8.119,-8.1055,-8.0923,-8.0793,-8.0666,-8.0542,-8.0421,-8.0303,-8.0188,-8.0077,-7.9968,-7.9863,-7.9762,-7.9664,-7.957,-7.948,-7.9394,-7.9312,-7.9234,-7.9161,-7.9093,-7.9029,-7.8971,-7.8917,-7.8869,-7.8827,-7.879,-7.876,-7.8736,-7.8718,-7.8707,-7.8703,-7.8707,-7.8718,-7.8737,-7.8765,-7.8801,-7.8847,-7.8902,-7.8968,-7.9044,-7.9131,-7.9229,-7.934,-7.9464,-7.9601,-7.9752,-7.9918,-8.01,-8.0299,-8.0515,-8.075,-8.1005,-8.1281,-8.1579,-8.1901,-8.2248,-8.2621,-8.3024,-8.3457,-8.3923,-8.4425,-8.4964,-8.5544,-8.6168,-8.6839,-8.7562,-8.8341,-8.918,-9.0086,-9.1064,-9.2121,-9.3265,-9.4506,-9.5853,-9.7318,-9.8914,-10.0658,-10.2568,-10.4664,-10.6973,-10.9524,-11.2354,-11.5506,-11.9034,-12.3003,-12.7495,-13.2614,-13.8493,-14.5305,-15.3282,-16.2737,-17.4108,-18.8026,-20.5429,-22.7785,-25.7521,-29.8955,-36.0594,-46.1836,-65.8588,-120.5542,-1050.7529,145.2705,65.5604,41.3169,29.5981,22.6963,18.1518,14.9359,12.5424,10.6932,9.223,8.0271,7.0363,6.2027,5.4922,4.88,4.3475,3.8805,3.4679,3.101,2.773,2.4781,2.2119,1.9704,1.7505,1.5497,1.3655,1.1962,1.04,0.8955,0.7616,0.637,0.5209,0.4124,0.3108,0.2154,0.1255,0.0407,-0.0396,-0.1158,-0.1884,-0.2577,-0.3242,-0.3881,-0.4499,-0.5098,-0.5683,-0.6256,-0.682,-0.7381,-0.794,-0.8503,-0.9073,-0.9656,-1.0257,-1.0882,-1.1539,-1.2237,-1.2987,-1.38,-1.4695,-1.5692,-1.6818,-1.8109,-1.9614,-2.1402,-2.3573,-2.6276,-2.9749,-3.4388,-4.0917,-5.0806,-6.7569,-10.2218,-21.6098,149.2504,16.3653,8.5526,5.7434,4.2991,3.4212,2.8324,2.4112,2.0958,1.8517,1.6578,1.5007,1.3714,1.2636,1.1728,1.0957,1.0298,0.9732,0.9245,0.8823,0.8458,0.8142,0.7869,0.7634,0.7431,0.7258,0.7111,0.6987,0.6885,0.6802,0.6737,0.6687,0.6652,0.6631,0.6622,0.6624,0.6637,0.666,0.6691,0.6732,0.678,0.6837,0.69,0.6969,0.7045,0.7127,0.7215,0.7308,0.7405,0.7508,0.7615,0.7726,0.7842,0.7961,0.8085,0.8211,0.8342,0.8475,0.8612,0.8751,0.8894,0.9039,0.9187,0.9338,0.9491,0.9646,0.9804,0.9964,1.0126,1.0291,1.0457,1.0625,1.0795,1.0967,1.1141,1.1316,1.1493,1.1672,1.1852,1.2034,1.2217,1.2401,1.2587,1.2775,1.2963,1.3153,1.3345,1.3537,1.3731,1.3925,1.4121,1.4318,1.4516,1.4715,1.4915,1.5117,1.5319,1.5522,1.5726,1.593,1.6136,1.6343,1.655,1.6758,1.6967,1.7177,1.7388,1.7599,1.7811,1.8024,1.8238,1.8452,1.8667],"key_points":[{"x":-1.0,"y":0.0,"label":"x-int (-1, 0)","color":"#2e7d32"}],"x_range":[-5.0,3.0],"y_range":[-5.2,5.2]}},
+          {"id":"g17","d":{"x":[-7.0,-6.95652,-6.91304,-6.86957,-6.82609,-6.78261,-6.73913,-6.69565,-6.65217,-6.6087,-6.56522,-6.52174,-6.47826,-6.43478,-6.3913,-6.34783,-6.30435,-6.26087,-6.21739,-6.17391,-6.13043,-6.08696,-6.04348,-6.0,-5.95652,-5.91304,-5.86957,-5.82609,-5.78261,-5.73913,-5.69565,-5.65217,-5.6087,-5.56522,-5.52174,-5.47826,-5.43478,-5.3913,-5.34783,-5.30435,-5.26087,-5.21739,-5.17391,-5.13043,-5.08696,-5.04348,-5.0,-4.95652,-4.91304,-4.86957,-4.82609,-4.78261,-4.73913,-4.69565,-4.65217,-4.6087,-4.56522,-4.52174,-4.47826,-4.43478,-4.3913,-4.34783,-4.30435,-4.26087,-4.21739,-4.17391,-4.13043,-4.08696,-4.04348,-4.0,-3.95652,-3.91304,-3.86957,-3.82609,-3.78261,-3.73913,-3.69565,-3.65217,-3.6087,-3.56522,-3.52174,-3.47826,-3.43478,-3.3913,-3.34783,-3.30435,-3.26087,-3.21739,-3.17391,-3.13043,-3.08696,-3.04348,-3.0,-2.95652,-2.91304,-2.86957,-2.82609,-2.78261,-2.73913,-2.69565,-2.65217,-2.6087,-2.56522,-2.52174,-2.47826,-2.43478,-2.3913,-2.34783,-2.30435,-2.26087,-2.21739,-2.17391,-2.13043,-2.08696,-2.04348,-2.0,-1.95652,-1.91304,-1.86957,-1.82609,-1.78261,-1.73913,-1.69565,-1.65217,-1.6087,-1.56522,-1.52174,-1.47826,-1.43478,-1.3913,-1.34783,-1.30435,-1.26087,-1.21739,-1.17391,-1.13043,-1.08696,-1.04348,-1.0,-0.95652,-0.91304,-0.86957,-0.82609,-0.78261,-0.73913,-0.69565,-0.65217,-0.6087,-0.56522,-0.52174,-0.47826,-0.43478,-0.3913,-0.34783,-0.30435,-0.26087,-0.21739,-0.17391,-0.13043,-0.08696,-0.04348,0.0,0.04348,0.08696,0.13043,0.17391,0.21739,0.26087,0.30435,0.34783,0.3913,0.43478,0.47826,0.52174,0.56522,0.6087,0.65217,0.69565,0.73913,0.78261,0.82609,0.86957,0.91304,0.95652,1.0,1.04348,1.08696,1.13043,1.17391,1.21739,1.26087,1.30435,1.34783,1.3913,1.43478,1.47826,1.52174,1.56522,1.6087,1.65217,1.69565,1.73913,1.78261,1.82609,1.86957,1.91304,1.95652,2.0,2.04348,2.08696,2.13043,2.17391,2.21739,2.26087,2.30435,2.34783,2.3913,2.43478,2.47826,2.52174,2.56522,2.6087,2.65217,2.69565,2.73913,2.78261,2.82609,2.86957,2.91304,2.95652,3.0,3.04348,3.08696,3.13043,3.17391,3.21739,3.26087,3.30435,3.34783,3.3913,3.43478,3.47826,3.52174,3.56522,3.6087,3.65217,3.69565,3.73913,3.78261,3.82609,3.86957,3.91304,3.95652,4.0,4.04348,4.08696,4.13043,4.17391,4.21739,4.26087,4.30435,4.34783,4.3913,4.43478,4.47826,4.52174,4.56522,4.6087,4.65217,4.69565,4.73913,4.78261,4.82609,4.86957,4.91304,4.95652,5.0,5.04348,5.08696,5.13043,5.17391,5.21739,5.26087,5.30435,5.34783,5.3913,5.43478,5.47826,5.52174,5.56522,5.6087,5.65217,5.69565,5.73913,5.78261,5.82609,5.86957,5.91304,5.95652,6.0],"y":[0.6667,0.6631,0.6594,0.6557,0.6519,0.6481,0.6441,0.6401,0.636,0.6318,0.6275,0.6231,0.6187,0.6141,0.6094,0.6047,0.5998,0.5948,0.5898,0.5846,0.5792,0.5738,0.5682,0.5625,0.5567,0.5507,0.5445,0.5383,0.5318,0.5252,0.5184,0.5115,0.5044,0.4971,0.4895,0.4818,0.4739,0.4658,0.4574,0.4488,0.4399,0.4308,0.4214,0.4118,0.4018,0.3915,0.381,0.37,0.3588,0.3471,0.3351,0.3227,0.3099,0.2966,0.2829,0.2686,0.2539,0.2386,0.2228,0.2063,0.1892,0.1715,0.153,0.1338,0.1138,0.093,0.0712,0.0485,0.0248,0.0,-0.026,-0.0531,-0.0817,-0.1116,-0.143,-0.1761,-0.211,-0.2478,-0.2866,-0.3277,-0.3712,-0.4174,-0.4664,-0.5186,-0.5744,-0.6339,-0.6976,-0.7661,-0.8397,-0.9192,-1.0051,-1.0984,-1.2,-1.311,-1.4328,-1.567,-1.7155,-1.8808,-2.0658,-2.2743,-2.5109,-2.7817,-3.0945,-3.4599,-3.8923,-4.4118,-5.0473,-5.8425,-6.8658,-8.2313,-10.1443,-13.0156,-17.8035,-27.383,-56.129,null,58.8791,30.1333,20.5543,15.767,12.8966,10.9845,9.6202,8.5982,7.8046,7.1707,6.6532,6.2229,5.8598,5.5495,5.2814,5.0477,4.8424,4.6607,4.4989,4.3542,4.224,4.1065,4.0,3.9032,3.8149,3.7343,3.6604,3.5926,3.5304,3.4731,3.4204,3.3719,3.3272,3.286,3.2481,3.2133,3.1813,3.152,3.1253,3.101,3.0789,3.059,3.0413,3.0256,3.0118,3.0,2.9901,2.982,2.9758,2.9714,2.9689,2.9683,2.9695,2.9727,2.9779,2.9851,2.9945,3.0061,3.02,3.0365,3.0555,3.0774,3.1024,3.1306,3.1624,3.1981,3.2382,3.2831,3.3333,3.3896,3.4527,3.5236,3.6035,3.6937,3.7961,3.9128,4.0468,4.2015,4.3817,4.5937,4.8462,5.1512,5.5261,5.997,6.605,7.4186,8.5609,10.2784,13.1461,18.8889,36.1319,null,-32.8817,-15.6383,-9.8947,-7.026,-5.3072,-4.1633,-3.3478,-2.7375,-2.264,-1.8863,-1.5781,-1.3221,-1.1062,-0.9218,-0.7626,-0.6238,-0.5019,-0.3939,-0.2978,-0.2116,-0.134,-0.0638,0.0,0.0582,0.1115,0.1604,0.2054,0.247,0.2856,0.3213,0.3546,0.3856,0.4145,0.4416,0.467,0.4909,0.5133,0.5344,0.5543,0.5731,0.5909,0.6077,0.6236,0.6387,0.653,0.6667,0.6796,0.692,0.7037,0.7149,0.7256,0.7358,0.7456,0.7549,0.7639,0.7724,0.7806,0.7885,0.796,0.8033,0.8102,0.8169,0.8233,0.8295,0.8355,0.8412,0.8467,0.852,0.8571,0.8621,0.8668,0.8714,0.8759,0.8802,0.8843,0.8883,0.8922,0.8959,0.8995,0.9031,0.9064,0.9097,0.9129,0.916,0.919,0.9219,0.9247,0.9274,0.93,0.9326,0.9351,0.9375],"key_points":[{"x":-4.0,"y":0.0,"label":"x-int (-4, 0)","color":"#2e7d32"},{"x":3.0,"y":0.0,"label":"x-int (3, 0)","color":"#2e7d32"},{"x":0.0,"y":3.0,"label":"y-int (0, 3)","color":"#0f3460"}],"x_range":[-7.0,6.0],"y_range":[-4.2,6.2]}},
+          {"id":"g18","d":{"x":[-6.0,-5.96321,-5.92642,-5.88963,-5.85284,-5.81605,-5.77926,-5.74247,-5.70569,-5.6689,-5.63211,-5.59532,-5.55853,-5.52174,-5.48495,-5.44816,-5.41137,-5.37458,-5.33779,-5.301,-5.26421,-5.22742,-5.19064,-5.15385,-5.11706,-5.08027,-5.04348,-5.00669,-4.9699,-4.93311,-4.89632,-4.85953,-4.82274,-4.78595,-4.74916,-4.71237,-4.67559,-4.6388,-4.60201,-4.56522,-4.52843,-4.49164,-4.45485,-4.41806,-4.38127,-4.34448,-4.30769,-4.2709,-4.23411,-4.19732,-4.16054,-4.12375,-4.08696,-4.05017,-4.01338,-3.97659,-3.9398,-3.90301,-3.86622,-3.82943,-3.79264,-3.75585,-3.71906,-3.68227,-3.64548,-3.6087,-3.57191,-3.53512,-3.49833,-3.46154,-3.42475,-3.38796,-3.35117,-3.31438,-3.27759,-3.2408,-3.20401,-3.16722,-3.13043,-3.09365,-3.05686,-3.02007,-2.98328,-2.94649,-2.9097,-2.87291,-2.83612,-2.79933,-2.76254,-2.72575,-2.68896,-2.65217,-2.61538,-2.5786,-2.54181,-2.50502,-2.46823,-2.43144,-2.39465,-2.35786,-2.32107,-2.28428,-2.24749,-2.2107,-2.17391,-2.13712,-2.10033,-2.06355,-2.02676,-1.98997,-1.95318,-1.91639,-1.8796,-1.84281,-1.80602,-1.76923,-1.73244,-1.69565,-1.65886,-1.62207,-1.58528,-1.54849,-1.51171,-1.47492,-1.43813,-1.40134,-1.36455,-1.32776,-1.29097,-1.25418,-1.21739,-1.1806,-1.14381,-1.10702,-1.07023,-1.03344,-0.99666,-0.95987,-0.92308,-0.88629,-0.8495,-0.81271,-0.77592,-0.73913,-0.70234,-0.66555,-0.62876,-0.59197,-0.55518,-0.51839,-0.48161,-0.44482,-0.40803,-0.37124,-0.33445,-0.29766,-0.26087,-0.22408,-0.18729,-0.1505,-0.11371,-0.07692,-0.04013,-0.00334,0.03344,0.07023,0.10702,0.14381,0.1806,0.21739,0.25418,0.29097,0.32776,0.36455,0.40134,0.43813,0.47492,0.51171,0.54849,0.58528,0.62207,0.65886,0.69565,0.73244,0.76923,0.80602,0.84281,0.8796,0.91639,0.95318,0.98997,1.02676,1.06355,1.10033,1.13712,1.17391,1.2107,1.24749,1.28428,1.32107,1.35786,1.39465,1.43144,1.46823,1.50502,1.54181,1.5786,1.61538,1.65217,1.68896,1.72575,1.76254,1.79933,1.83612,1.87291,1.9097,1.94649,1.98328,2.02007,2.05686,2.09365,2.13043,2.16722,2.20401,2.2408,2.27759,2.31438,2.35117,2.38796,2.42475,2.46154,2.49833,2.53512,2.57191,2.6087,2.64548,2.68227,2.71906,2.75585,2.79264,2.82943,2.86622,2.90301,2.9398,2.97659,3.01338,3.05017,3.08696,3.12375,3.16054,3.19732,3.23411,3.2709,3.30769,3.34448,3.38127,3.41806,3.45485,3.49164,3.52843,3.56522,3.60201,3.6388,3.67559,3.71237,3.74916,3.78595,3.82274,3.85953,3.89632,3.93311,3.9699,4.00669,4.04348,4.08027,4.11706,4.15385,4.19064,4.22742,4.26421,4.301,4.33779,4.37458,4.41137,4.44816,4.48495,4.52174,4.55853,4.59532,4.63211,4.6689,4.70569,4.74247,4.77926,4.81605,4.85284,4.88963,4.92642,4.96321,5.0],"y":[1.5,1.507,1.5142,1.5215,1.5291,1.5368,1.5448,1.553,1.5614,1.5701,1.579,1.5882,1.5977,1.6074,1.6175,1.6278,1.6385,1.6495,1.6609,1.6727,1.6848,1.6974,1.7104,1.7239,1.7378,1.7523,1.7673,1.7828,1.799,1.8158,1.8332,1.8514,1.8703,1.89,1.9105,1.932,1.9544,1.9779,2.0024,2.0281,2.0551,2.0835,2.1133,2.1447,2.1778,2.2127,2.2496,2.2887,2.3302,2.3743,2.4211,2.4711,2.5246,2.5818,2.6432,2.7093,2.7806,2.8578,2.9416,3.0329,3.1328,3.2424,3.3634,3.4974,3.6469,3.8145,4.0038,4.2192,4.4666,4.7535,5.0903,5.4912,5.9762,6.575,7.3328,8.3224,9.6692,11.6092,14.6441,20.0644,32.5006,90.5406,-106.8005,-32.7992,-19.0963,-13.3273,-10.1491,-8.1367,-6.7483,-5.7327,-4.9577,-4.347,-3.8533,-3.4462,-3.1046,-2.8141,-2.5639,-2.3464,-2.1555,-1.9867,-1.8364,-1.7017,-1.5803,-1.4705,-1.3706,-1.2794,-1.1958,-1.119,-1.0482,-0.9826,-0.9219,-0.8654,-0.8128,-0.7637,-0.7178,-0.6747,-0.6344,-0.5965,-0.5608,-0.5272,-0.4955,-0.4655,-0.4372,-0.4105,-0.3851,-0.3611,-0.3384,-0.3168,-0.2963,-0.2769,-0.2584,-0.2409,-0.2242,-0.2084,-0.1933,-0.179,-0.1655,-0.1526,-0.1404,-0.1288,-0.1178,-0.1074,-0.0975,-0.0882,-0.0794,-0.0712,-0.0634,-0.0561,-0.0493,-0.043,-0.0371,-0.0317,-0.0267,-0.0221,-0.018,-0.0143,-0.011,-0.0081,-0.0057,-0.0037,-0.0021,-0.001,-0.0003,-0.0,-0.0002,-0.0008,-0.0019,-0.0035,-0.0056,-0.0082,-0.0114,-0.0151,-0.0193,-0.0242,-0.0296,-0.0357,-0.0426,-0.0501,-0.0584,-0.0675,-0.0775,-0.0885,-0.1004,-0.1134,-0.1276,-0.143,-0.1597,-0.178,-0.1979,-0.2195,-0.2432,-0.269,-0.2972,-0.3282,-0.3622,-0.3997,-0.441,-0.4869,-0.5379,-0.5949,-0.6589,-0.7311,-0.8132,-0.9072,-1.0158,-1.1423,-1.2915,-1.47,-1.6869,-1.9559,-2.298,-2.747,-3.3617,-4.2538,-5.6641,-8.2259,-14.3139,-47.2012,40.5081,14.7146,9.1895,6.7825,5.4357,4.5754,3.9788,3.5409,3.206,2.9417,2.728,2.5517,2.4038,2.278,2.1698,2.0758,1.9934,1.9205,1.8558,1.7978,1.7457,1.6985,1.6557,1.6167,1.581,1.5482,1.518,1.4901,1.4643,1.4403,1.418,1.3972,1.3777,1.3595,1.3424,1.3264,1.3113,1.2971,1.2837,1.271,1.259,1.2477,1.2369,1.2267,1.217,1.2078,1.199,1.1907,1.1827,1.1751,1.1678,1.1609,1.1542,1.1479,1.1418,1.1359,1.1303,1.125,1.1198,1.1149,1.1101,1.1055,1.1011,1.0969,1.0928,1.0889,1.0851,1.0815,1.0779,1.0745,1.0713,1.0681,1.065,1.0621,1.0592,1.0565,1.0538,1.0512,1.0487,1.0463,1.0439,1.0417],"key_points":[{"x":0.0,"y":0.0,"label":"x-int (0, 0)","color":"#2e7d32"},{"x":0.0,"y":0.0,"label":"y-int (0, 0)","color":"#0f3460"}],"x_range":[-6.0,5.0],"y_range":[-5.2,5.2]}},
+          {"id":"g19","d":{"x":[-4.0,-3.97324,-3.94649,-3.91973,-3.89298,-3.86622,-3.83946,-3.81271,-3.78595,-3.7592,-3.73244,-3.70569,-3.67893,-3.65217,-3.62542,-3.59866,-3.57191,-3.54515,-3.51839,-3.49164,-3.46488,-3.43813,-3.41137,-3.38462,-3.35786,-3.3311,-3.30435,-3.27759,-3.25084,-3.22408,-3.19732,-3.17057,-3.14381,-3.11706,-3.0903,-3.06355,-3.03679,-3.01003,-2.98328,-2.95652,-2.92977,-2.90301,-2.87625,-2.8495,-2.82274,-2.79599,-2.76923,-2.74247,-2.71572,-2.68896,-2.66221,-2.63545,-2.6087,-2.58194,-2.55518,-2.52843,-2.50167,-2.47492,-2.44816,-2.4214,-2.39465,-2.36789,-2.34114,-2.31438,-2.28763,-2.26087,-2.23411,-2.20736,-2.1806,-2.15385,-2.12709,-2.10033,-2.07358,-2.04682,-2.02007,-1.99331,-1.96656,-1.9398,-1.91304,-1.88629,-1.85953,-1.83278,-1.80602,-1.77926,-1.75251,-1.72575,-1.699,-1.67224,-1.64548,-1.61873,-1.59197,-1.56522,-1.53846,-1.51171,-1.48495,-1.45819,-1.43144,-1.40468,-1.37793,-1.35117,-1.32441,-1.29766,-1.2709,-1.24415,-1.21739,-1.19064,-1.16388,-1.13712,-1.11037,-1.08361,-1.05686,-1.0301,-1.00334,-0.97659,-0.94983,-0.92308,-0.89632,-0.86957,-0.84281,-0.81605,-0.7893,-0.76254,-0.73579,-0.70903,-0.68227,-0.65552,-0.62876,-0.60201,-0.57525,-0.54849,-0.52174,-0.49498,-0.46823,-0.44147,-0.41472,-0.38796,-0.3612,-0.33445,-0.30769,-0.28094,-0.25418,-0.22742,-0.20067,-0.17391,-0.14716,-0.1204,-0.09365,-0.06689,-0.04013,-0.01338,0.01338,0.04013,0.06689,0.09365,0.1204,0.14716,0.17391,0.20067,0.22742,0.25418,0.28094,0.30769,0.33445,0.3612,0.38796,0.41472,0.44147,0.46823,0.49498,0.52174,0.54849,0.57525,0.60201,0.62876,0.65552,0.68227,0.70903,0.73579,0.76254,0.7893,0.81605,0.84281,0.86957,0.89632,0.92308,0.94983,0.97659,1.00334,1.0301,1.05686,1.08361,1.11037,1.13712,1.16388,1.19064,1.21739,1.24415,1.2709,1.29766,1.32441,1.35117,1.37793,1.40468,1.43144,1.45819,1.48495,1.51171,1.53846,1.56522,1.59197,1.61873,1.64548,1.67224,1.699,1.72575,1.75251,1.77926,1.80602,1.83278,1.85953,1.88629,1.91304,1.9398,1.96656,1.99331,2.02007,2.04682,2.07358,2.10033,2.12709,2.15385,2.1806,2.20736,2.23411,2.26087,2.28763,2.31438,2.34114,2.36789,2.39465,2.4214,2.44816,2.47492,2.50167,2.52843,2.55518,2.58194,2.6087,2.63545,2.66221,2.68896,2.71572,2.74247,2.76923,2.79599,2.82274,2.8495,2.87625,2.90301,2.92977,2.95652,2.98328,3.01003,3.03679,3.06355,3.0903,3.11706,3.14381,3.17057,3.19732,3.22408,3.25084,3.27759,3.30435,3.3311,3.35786,3.38462,3.41137,3.43813,3.46488,3.49164,3.51839,3.54515,3.57191,3.59866,3.62542,3.65217,3.67893,3.70569,3.73244,3.7592,3.78595,3.81271,3.83946,3.86622,3.89298,3.91973,3.94649,3.97324,4.0],"y":[-0.8,-0.8061,-0.8123,-0.8186,-0.8251,-0.8316,-0.8382,-0.845,-0.8518,-0.8588,-0.8659,-0.8732,-0.8805,-0.888,-0.8956,-0.9034,-0.9113,-0.9194,-0.9276,-0.936,-0.9445,-0.9532,-0.9621,-0.9711,-0.9804,-0.9898,-0.9994,-1.0093,-1.0193,-1.0295,-1.04,-1.0507,-1.0617,-1.0729,-1.0843,-1.096,-1.108,-1.1203,-1.1329,-1.1458,-1.159,-1.1725,-1.1864,-1.2007,-1.2153,-1.2303,-1.2458,-1.2616,-1.278,-1.2947,-1.312,-1.3298,-1.3481,-1.367,-1.3864,-1.4065,-1.4273,-1.4487,-1.4708,-1.4937,-1.5174,-1.542,-1.5674,-1.5938,-1.6212,-1.6497,-1.6793,-1.7101,-1.7421,-1.7756,-1.8105,-1.847,-1.8852,-1.9252,-1.9672,-2.0112,-2.0575,-2.1063,-2.1578,-2.2122,-2.2697,-2.3307,-2.3956,-2.4646,-2.5383,-2.6171,-2.7017,-2.7927,-2.8908,-2.9971,-3.1126,-3.2386,-3.3766,-3.5286,-3.6967,-3.8839,-4.0937,-4.3304,-4.5998,-4.9094,-5.269,-5.6922,-6.1976,-6.8122,-7.5765,-8.5532,-9.8463,-11.6409,-14.3017,-18.6599,-27.1116,-50.5722,-449.2487,63.3125,29.1307,18.72,13.6767,10.6977,8.7286,7.3286,6.2807,5.4659,4.8131,4.2775,3.8294,3.4483,3.1196,2.8326,2.5793,2.3535,2.1506,1.9668,1.7991,1.645,1.5026,1.3701,1.2462,1.1297,1.0196,0.915,0.8152,0.7195,0.6273,0.538,0.4512,0.3665,0.2834,0.2016,0.1206,0.0401,-0.0401,-0.1206,-0.2016,-0.2834,-0.3665,-0.4512,-0.538,-0.6273,-0.7195,-0.8152,-0.915,-1.0196,-1.1297,-1.2462,-1.3701,-1.5026,-1.645,-1.7991,-1.9668,-2.1506,-2.3535,-2.5793,-2.8326,-3.1196,-3.4483,-3.8294,-4.2775,-4.8131,-5.4659,-6.2807,-7.3286,-8.7286,-10.6977,-13.6767,-18.72,-29.1307,-63.3125,449.2487,50.5722,27.1116,18.6599,14.3017,11.6409,9.8463,8.5532,7.5765,6.8122,6.1976,5.6922,5.269,4.9094,4.5998,4.3304,4.0937,3.8839,3.6967,3.5286,3.3766,3.2386,3.1126,2.9971,2.8908,2.7927,2.7017,2.6171,2.5383,2.4646,2.3956,2.3307,2.2697,2.2122,2.1578,2.1063,2.0575,2.0112,1.9672,1.9252,1.8852,1.847,1.8105,1.7756,1.7421,1.7101,1.6793,1.6497,1.6212,1.5938,1.5674,1.542,1.5174,1.4937,1.4708,1.4487,1.4273,1.4065,1.3864,1.367,1.3481,1.3298,1.312,1.2947,1.278,1.2616,1.2458,1.2303,1.2153,1.2007,1.1864,1.1725,1.159,1.1458,1.1329,1.1203,1.108,1.096,1.0843,1.0729,1.0617,1.0507,1.04,1.0295,1.0193,1.0093,0.9994,0.9898,0.9804,0.9711,0.9621,0.9532,0.9445,0.936,0.9276,0.9194,0.9113,0.9034,0.8956,0.888,0.8805,0.8732,0.8659,0.8588,0.8518,0.845,0.8382,0.8316,0.8251,0.8186,0.8123,0.8061,0.8],"key_points":[{"x":0.0,"y":0.0,"label":"x-int (0, 0)","color":"#2e7d32"},{"x":0.0,"y":0.0,"label":"y-int (0, 0)","color":"#0f3460"}],"x_range":[-4.0,4.0],"y_range":[-5.2,5.2]}},
+          {"id":"g20","d":{"x":[-5.0,-4.96656,-4.93311,-4.89967,-4.86622,-4.83278,-4.79933,-4.76589,-4.73244,-4.699,-4.66555,-4.63211,-4.59866,-4.56522,-4.53177,-4.49833,-4.46488,-4.43144,-4.39799,-4.36455,-4.3311,-4.29766,-4.26421,-4.23077,-4.19732,-4.16388,-4.13043,-4.09699,-4.06355,-4.0301,-3.99666,-3.96321,-3.92977,-3.89632,-3.86288,-3.82943,-3.79599,-3.76254,-3.7291,-3.69565,-3.66221,-3.62876,-3.59532,-3.56187,-3.52843,-3.49498,-3.46154,-3.42809,-3.39465,-3.3612,-3.32776,-3.29431,-3.26087,-3.22742,-3.19398,-3.16054,-3.12709,-3.09365,-3.0602,-3.02676,-2.99331,-2.95987,-2.92642,-2.89298,-2.85953,-2.82609,-2.79264,-2.7592,-2.72575,-2.69231,-2.65886,-2.62542,-2.59197,-2.55853,-2.52508,-2.49164,-2.45819,-2.42475,-2.3913,-2.35786,-2.32441,-2.29097,-2.25753,-2.22408,-2.19064,-2.15719,-2.12375,-2.0903,-2.05686,-2.02341,-1.98997,-1.95652,-1.92308,-1.88963,-1.85619,-1.82274,-1.7893,-1.75585,-1.72241,-1.68896,-1.65552,-1.62207,-1.58863,-1.55518,-1.52174,-1.48829,-1.45485,-1.4214,-1.38796,-1.35452,-1.32107,-1.28763,-1.25418,-1.22074,-1.18729,-1.15385,-1.1204,-1.08696,-1.05351,-1.02007,-0.98662,-0.95318,-0.91973,-0.88629,-0.85284,-0.8194,-0.78595,-0.75251,-0.71906,-0.68562,-0.65217,-0.61873,-0.58528,-0.55184,-0.51839,-0.48495,-0.45151,-0.41806,-0.38462,-0.35117,-0.31773,-0.28428,-0.25084,-0.21739,-0.18395,-0.1505,-0.11706,-0.08361,-0.05017,-0.01672,0.01672,0.05017,0.08361,0.11706,0.1505,0.18395,0.21739,0.25084,0.28428,0.31773,0.35117,0.38462,0.41806,0.45151,0.48495,0.51839,0.55184,0.58528,0.61873,0.65217,0.68562,0.71906,0.75251,0.78595,0.8194,0.85284,0.88629,0.91973,0.95318,0.98662,1.02007,1.05351,1.08696,1.1204,1.15385,1.18729,1.22074,1.25418,1.28763,1.32107,1.35452,1.38796,1.4214,1.45485,1.48829,1.52174,1.55518,1.58863,1.62207,1.65552,1.68896,1.72241,1.75585,1.7893,1.82274,1.85619,1.88963,1.92308,1.95652,1.98997,2.02341,2.05686,2.0903,2.12375,2.15719,2.19064,2.22408,2.25753,2.29097,2.32441,2.35786,2.3913,2.42475,2.45819,2.49164,2.52508,2.55853,2.59197,2.62542,2.65886,2.69231,2.72575,2.7592,2.79264,2.82609,2.85953,2.89298,2.92642,2.95987,2.99331,3.02676,3.0602,3.09365,3.12709,3.16054,3.19398,3.22742,3.26087,3.29431,3.32776,3.3612,3.39465,3.42809,3.46154,3.49498,3.52843,3.56187,3.59532,3.62876,3.66221,3.69565,3.7291,3.76254,3.79599,3.82943,3.86288,3.89632,3.92977,3.96321,3.99666,4.0301,4.06355,4.09699,4.13043,4.16388,4.19732,4.23077,4.26421,4.29766,4.3311,4.36455,4.39799,4.43144,4.46488,4.49833,4.53177,4.56522,4.59866,4.63211,4.66555,4.699,4.73244,4.76589,4.79933,4.83278,4.86622,4.89967,4.93311,4.96656,5.0],"y":[-0.2381,-0.2403,-0.2426,-0.2449,-0.2473,-0.2497,-0.2522,-0.2547,-0.2573,-0.2599,-0.2626,-0.2654,-0.2682,-0.2711,-0.274,-0.2771,-0.2802,-0.2834,-0.2867,-0.29,-0.2935,-0.297,-0.3006,-0.3044,-0.3082,-0.3122,-0.3163,-0.3204,-0.3248,-0.3292,-0.3338,-0.3385,-0.3434,-0.3485,-0.3537,-0.3591,-0.3647,-0.3704,-0.3764,-0.3827,-0.3891,-0.3958,-0.4028,-0.41,-0.4176,-0.4254,-0.4337,-0.4422,-0.4512,-0.4606,-0.4704,-0.4807,-0.4916,-0.503,-0.515,-0.5277,-0.5411,-0.5553,-0.5704,-0.5864,-0.6035,-0.6217,-0.6412,-0.6621,-0.6846,-0.7089,-0.7351,-0.7637,-0.7947,-0.8288,-0.8662,-0.9076,-0.9535,-1.0049,-1.0627,-1.1283,-1.2034,-1.2902,-1.3916,-1.5119,-1.6569,-1.8349,-2.059,-2.3497,-2.7421,-3.3011,-4.1618,-5.6593,-8.9174,-21.4814,49.708,11.3736,6.3725,4.4018,3.3471,2.69,2.2411,1.9148,1.6669,1.472,1.3147,1.185,1.0761,0.9834,0.9035,0.8338,0.7725,0.718,0.6694,0.6256,0.5859,0.5498,0.5168,0.4864,0.4584,0.4324,0.4082,0.3856,0.3645,0.3447,0.326,0.3083,0.2916,0.2757,0.2606,0.2462,0.2324,0.2192,0.2065,0.1942,0.1824,0.1711,0.16,0.1493,0.1389,0.1288,0.1189,0.1093,0.0998,0.0906,0.0815,0.0725,0.0637,0.055,0.0464,0.0378,0.0294,0.0209,0.0125,0.0042,-0.0042,-0.0125,-0.0209,-0.0294,-0.0378,-0.0464,-0.055,-0.0637,-0.0725,-0.0815,-0.0906,-0.0998,-0.1093,-0.1189,-0.1288,-0.1389,-0.1493,-0.16,-0.1711,-0.1824,-0.1942,-0.2065,-0.2192,-0.2324,-0.2462,-0.2606,-0.2757,-0.2916,-0.3083,-0.326,-0.3447,-0.3645,-0.3856,-0.4082,-0.4324,-0.4584,-0.4864,-0.5168,-0.5498,-0.5859,-0.6256,-0.6694,-0.718,-0.7725,-0.8338,-0.9035,-0.9834,-1.0761,-1.185,-1.3147,-1.472,-1.6669,-1.9148,-2.2411,-2.69,-3.3471,-4.4018,-6.3725,-11.3736,-49.708,21.4814,8.9174,5.6593,4.1618,3.3011,2.7421,2.3497,2.059,1.8349,1.6569,1.5119,1.3916,1.2902,1.2034,1.1283,1.0627,1.0049,0.9535,0.9076,0.8662,0.8288,0.7947,0.7637,0.7351,0.7089,0.6846,0.6621,0.6412,0.6217,0.6035,0.5864,0.5704,0.5553,0.5411,0.5277,0.515,0.503,0.4916,0.4807,0.4704,0.4606,0.4512,0.4422,0.4337,0.4254,0.4176,0.41,0.4028,0.3958,0.3891,0.3827,0.3764,0.3704,0.3647,0.3591,0.3537,0.3485,0.3434,0.3385,0.3338,0.3292,0.3248,0.3204,0.3163,0.3122,0.3082,0.3044,0.3006,0.297,0.2935,0.29,0.2867,0.2834,0.2802,0.2771,0.274,0.2711,0.2682,0.2654,0.2626,0.2599,0.2573,0.2547,0.2522,0.2497,0.2473,0.2449,0.2426,0.2403,0.2381],"key_points":[{"x":0.0,"y":0.0,"label":"x-int (0, 0)","color":"#2e7d32"},{"x":0.0,"y":0.0,"label":"y-int (0, 0)","color":"#0f3460"}],"x_range":[-5.0,5.0],"y_range":[-5.2,5.2]}},
+          
+        ];
+        _GRAPHS.forEach(function (item) {
+          var g = item.d;
+          var traces = [{
+            x: g.x, y: g.y,
+            type: 'scatter', mode: 'lines',
+            name: 'f(x)',
+            line: {color: '#0f3460', width: 2.5},
+            connectgaps: false
+          }];
+          if (g.key_points && g.key_points.length) {
+            traces.push({
+              x: g.key_points.map(function(p){return p.x;}),
+              y: g.key_points.map(function(p){return p.y;}),
+              text: g.key_points.map(function(p){return p.label;}),
+              type: 'scatter', mode: 'markers+text',
+              textposition: 'top center',
+              textfont: {size: 11, color: '#333'},
+              marker: {size: 9, color: g.key_points.map(function(p){return p.color||'#e94560';})},
+              showlegend: false
+            });
+          }
+          var layout = {
+            margin: {t: 16, b: 44, l: 52, r: 16},
+            xaxis: {
+              title: 'x', range: g.x_range,
+              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
+              gridcolor: '#eaeaea'
+            },
+            yaxis: {
+              title: 'f(x)', range: g.y_range,
+              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
+              gridcolor: '#eaeaea'
+            },
+            paper_bgcolor: '#fff',
+            plot_bgcolor: '#fafbfe',
+            showlegend: false,
+            font: {family: 'Georgia, serif', size: 12}
+          };
+          Plotly.newPlot(item.id, traces, layout, {responsive: true, displayModeBar: false});
+        });
+      }
+    </script>
+  </body>
+</html>

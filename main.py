@@ -251,6 +251,18 @@ def write_outputs(
             )
             written.append(p)
 
+    elif section == "4.3":
+        part_graph = by_type(solutions, "rational_graph_analysis")
+
+        if part_graph:
+            p = fmt.write_markdown(
+                part_graph,
+                filename=f"section_{section.replace('.','_')}_rational_graph_analysis.md",
+                title=f"Section {section} – Analyzing Rational Graphs (Problems 15–20)",
+                section=section,
+            )
+            written.append(p)
+
     # ── full combined HTML ────────────────────────────────────────────────────
     html_path = fmt.write_html(
         solutions,

@@ -151,8 +151,49 @@ SECTION_4_5_PROBLEMS: list[dict] = [
 ]
 
 
+SECTION_4_3_PROBLEMS: list[dict] = [
+  {
+    "number": 15,
+    "question": "H(x) = (x^3 - 1)/(x^2 - 9)",
+    "type": "rational_graph_analysis",
+    "meta": {"name": "H", "numerator": "x^3 - 1", "denominator": "x^2 - 9"},
+  },
+  {
+    "number": 16,
+    "question": "G(x) = (x^3 + 1)/(x^2 + 2x)",
+    "type": "rational_graph_analysis",
+    "meta": {"name": "G", "numerator": "x^3 + 1", "denominator": "x^2 + 2x"},
+  },
+  {
+    "number": 17,
+    "question": "R(x) = (x^2 + x - 12)/(x^2 - 4)",
+    "type": "rational_graph_analysis",
+    "meta": {"name": "R", "numerator": "x^2 + x - 12", "denominator": "x^2 - 4"},
+  },
+  {
+    "number": 18,
+    "question": "R(x) = x^2/(x^2 + x - 6)",
+    "type": "rational_graph_analysis",
+    "meta": {"name": "R", "numerator": "x^2", "denominator": "x^2 + x - 6"},
+  },
+  {
+    "number": 19,
+    "question": "G(x) = 3x/(x^2 - 1)",
+    "type": "rational_graph_analysis",
+    "meta": {"name": "G", "numerator": "3x", "denominator": "x^2 - 1"},
+  },
+  {
+    "number": 20,
+    "question": "G(x) = x/(x^2 - 4)",
+    "type": "rational_graph_analysis",
+    "meta": {"name": "G", "numerator": "x", "denominator": "x^2 - 4"},
+  },
+]
+
+
 SECTION_PROBLEMS: dict[str, list[dict]] = {
   "4.1": SECTION_4_1_PROBLEMS,
+  "4.3": SECTION_4_3_PROBLEMS,
   "4.2": SECTION_4_5_PROBLEMS,
   "4.5": SECTION_4_5_PROBLEMS,
 }
