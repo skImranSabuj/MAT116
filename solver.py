@@ -30,6 +30,10 @@ def _fmt_zero(z) -> str:
     return str(z)
 
 
+def _expr_str(e) -> str:
+    return str(e).replace("**", "^").replace("*x", "x").replace("*", "·")
+
+
 class Solver:
     def solve(self, problem: dict) -> dict:
         ptype = problem.get("type", "generic")
@@ -42,6 +46,8 @@ class Solver:
             "form_polynomial_point": self._form_polynomial_point,
             "analysis":              self._analysis,
             "analysis_full":         self._analysis_full,
+            "rational_asymptotes":   self._rational_asymptotes,
+            "rational_application":  self._rational_application,
         }
         fn = dispatch.get(ptype, self._generic)
         result = fn(num, q, meta)
@@ -679,6 +685,309 @@ class Solver:
              "body": final_poly_body},
         ]
         return steps, answer, answer_sections, graph
+
+    # -----------------------------------------------------------------------
+    # 4.5 - Rational Function Asymptotes (47-56)
+    # -----------------------------------------------------------------------
+    def _rational_asymptotes(self, num: int, q: str, meta: dict) -> tuple:
+        try:
+            from sympy import (
+                symbols, factor, simplify, Poly, Eq, solveset,
+                S, cancel
+            )
+            from sympy.parsing.sympy_parser import (
+                parse_expr, standard_transformations,
+                implicit_multiplication_application
+            )
+
+            x = symbols("x")
+            tf = standard_transformations + (implicit_multiplication_application,)
+
+            name = meta.get("name", "f")
+            num_raw = meta.get("numerator", "")
+            den_raw = meta.get("denominator", "")
+            if not num_raw or not den_raw:
+                m = re.search(r"=\s*\((.+)\)/\((.+)\)", q.replace(" ", ""))
+                if m:
+                    num_raw, den_raw = m.group(1), m.group(2)
+
+            n_expr = parse_expr(str(num_raw).replace("^", "**"), local_dict={"x": x}, transformations=tf)
+            d_expr = parse_expr(str(den_raw).replace("^", "**"), local_dict={"x": x}, transformations=tf)
+
+            f_expr = n_expr / d_expr
+            n_fact = factor(n_expr)
+            d_fact = factor(d_expr)
+            simp = cancel(f_expr)
+
+            dom_restrict = sorted(solveset(Eq(d_expr, 0), x, domain=S.Reals), key=lambda v: float(v.evalf()))
+            simp_den = simplify(simp.as_numer_denom()[1])
+            va = sorted(solveset(Eq(simp_den, 0), x, domain=S.Reals), key=lambda v: float(v.evalf()))
+            holes = [r for r in dom_restrict if r not in va]
+
+            n_poly = Poly(simplify(simp.as_numer_denom()[0]), x)
+            d_poly = Poly(simplify(simp.as_numer_denom()[1]), x)
+            dn, dd = n_poly.degree(), d_poly.degree()
+
+            h_asym = None
+            s_asym = None
+            asym_explain = ""
+            if dn < dd:
+                h_asym = "y = 0"
+                asym_explain = "degree(numerator) < degree(denominator), so horizontal asymptote is y = 0."
+            elif dn == dd:
+                ratio = simplify(n_poly.LC() / d_poly.LC())
+                h_asym = f"y = {_expr_str(ratio)}"
+                asym_explain = "same degree on top and bottom, so horizontal asymptote is ratio of leading coefficients."
+            elif dn == dd + 1:
+                q_poly, _ = n_poly.div(d_poly)
+                s_asym = simplify(q_poly.as_expr())
+                asym_explain = "numerator degree is exactly 1 more, so there is a slant (oblique) asymptote from polynomial division."
+            else:
+                asym_explain = "numerator degree is more than 1 higher than denominator, so there is no horizontal or oblique asymptote."
+
+            va_lines = [f"x = {v}" for v in va] if va else ["None"]
+            hole_lines = []
+            hole_points = []
+            for h in holes:
+                y_h = simplify(simp.subs(x, h))
+                hole_lines.append(f"x = {_expr_str(h)} (hole at ({_expr_str(h)}, {_expr_str(y_h)}))")
+                hole_points.append({"x": float(h.evalf()), "y": float(y_h.evalf()), "label": f"hole ({h}, {y_h})", "color": "#ff9800"})
+            if not hole_lines:
+                hole_lines = ["None"]
+
+            steps = [
+                {
+                    "title": "Step 1 - Write the Rational Function and Factor",
+                    "body": (
+                        f"Given:\n$$ {name}(x)=\\frac{{{n_expr}}}{{{d_expr}}} $$\n\n"
+                        f"Factor numerator and denominator:\n"
+                        f"$$\\text{{Numerator}} = {_expr_str(n_fact)}$$\n"
+                        f"$$\\text{{Denominator}} = {_expr_str(d_fact)}$$"
+                    ),
+                },
+                {
+                    "title": "Step 2 - Domain Restrictions and Simplified Form",
+                    "body": (
+                        "Set denominator = 0 to find forbidden x-values:\n"
+                        + "\n".join([f"  x = {_expr_str(r)}" for r in dom_restrict] if dom_restrict else ["  (none)"])
+                        + f"\n\nSimplified function (after canceling common factors):\n$$ {name}(x) = {_expr_str(simp)} $$"
+                    ),
+                },
+                {
+                    "title": "Step 3 - Vertical Asymptotes and Holes",
+                    "body": (
+                        "Vertical asymptotes come from the simplified denominator = 0:\n"
+                        + "\n".join([f"  {v}" for v in va_lines])
+                        + "\n\nAny canceled restriction gives a hole:\n"
+                        + "\n".join([f"  {h}" for h in hole_lines])
+                    ),
+                },
+                {
+                    "title": "Step 4 - Horizontal or Oblique Asymptote",
+                    "body": (
+                        f"For the simplified function: degree(top) = {dn}, degree(bottom) = {dd}.\n"
+                        f"Rule used: {asym_explain}\n\n"
+                        + (f"Horizontal asymptote: {h_asym}" if h_asym else "No horizontal asymptote.")
+                        + (f"\nOblique asymptote: y = {_expr_str(s_asym)}" if s_asym is not None else "\nOblique asymptote: None")
+                    ),
+                },
+            ]
+
+            y_int = None
+            try:
+                y_int = simplify(f_expr.subs(x, 0))
+            except Exception:
+                y_int = None
+
+            answer_parts = [
+                f"Vertical asymptotes: {', '.join([f'x = {_expr_str(v)}' for v in va]) if va else 'None'}",
+                f"Horizontal asymptote: {h_asym if h_asym else 'None'}",
+                f"Oblique asymptote: {('y = ' + _expr_str(s_asym)) if s_asym is not None else 'None'}",
+            ]
+            if holes:
+                answer_parts.append(
+                    "Holes: " + ", ".join([f"({_expr_str(h)}, {_expr_str(simplify(simp.subs(x, h)))})" for h in holes])
+                )
+
+            answer = " | ".join(answer_parts)
+
+            answer_sections = [
+                {
+                    "label": "① Factor and Domain Restrictions",
+                    "body": (
+                        f"Numerator factorization  : {_expr_str(n_fact)}\n"
+                        f"Denominator factorization: {_expr_str(d_fact)}\n\n"
+                        + "Domain restrictions (from original denominator):\n"
+                        + "\n".join([f"  x = {_expr_str(r)}" for r in dom_restrict] if dom_restrict else ["  none"]) 
+                    ),
+                },
+                {
+                    "label": "② Vertical Asymptote Test",
+                    "body": (
+                        f"Simplified function: {_expr_str(simp)}\n\n"
+                        f"Set simplified denominator = 0:\n"
+                        + "\n".join([f"  x = {_expr_str(v)}  -> vertical asymptote" for v in va] if va else ["  none"]) 
+                    ),
+                },
+                {
+                    "label": "③ Hole Check (canceled factors)",
+                    "body": (
+                        "Cancellations create removable discontinuities (holes):\n"
+                        + "\n".join([f"  {h}" for h in hole_lines])
+                    ),
+                },
+                {
+                    "label": "④ Horizontal / Oblique Asymptote",
+                    "body": (
+                        f"Degree(top) = {dn}, Degree(bottom) = {dd}\n"
+                        f"Rule: {asym_explain}\n\n"
+                        f"Horizontal asymptote: {h_asym if h_asym else 'None'}\n"
+                        f"Oblique asymptote: {('y = ' + _expr_str(s_asym)) if s_asym is not None else 'None'}"
+                    ),
+                },
+            ]
+
+            graph = None
+            try:
+                from sympy import lambdify
+                f_num, f_den = simp.as_numer_denom()
+                f_fn = lambdify(x, f_num / f_den, "math")
+                xs = [float(v.evalf()) for v in dom_restrict] if dom_restrict else []
+                if xs:
+                    x_lo, x_hi = min(xs) - 4.0, max(xs) + 4.0
+                else:
+                    x_lo, x_hi = -6.0, 6.0
+                kp = [{"x": float(v.evalf()), "y": None, "label": f"VA x={v}", "color": "#e94560"} for v in va]
+                kp.extend(hole_points)
+                if y_int is not None and y_int.is_real:
+                    kp.append({"x": 0.0, "y": float(y_int.evalf()), "label": f"y-int (0, {y_int})", "color": "#0f3460"})
+                graph = self._make_graph(f_fn, x_lo, x_hi, kp)
+            except Exception:
+                graph = None
+
+            return steps, answer, answer_sections, graph
+        except Exception as e:
+            logger.warning(f"rational asymptote solver failed for '{q}': {e}")
+            return self._generic(num, q, meta)
+
+    # -----------------------------------------------------------------------
+    # 4.5 - Rational Application (58)
+    # -----------------------------------------------------------------------
+    def _rational_application(self, num: int, q: str, meta: dict) -> tuple:
+        try:
+            from sympy import symbols, simplify, Rational
+            from sympy.parsing.sympy_parser import (
+                parse_expr, standard_transformations,
+                implicit_multiplication_application
+            )
+
+            var = meta.get("variable", "t")
+            t = symbols(var)
+            tf = standard_transformations + (implicit_multiplication_application,)
+
+            name = meta.get("name", "P")
+            num_raw = meta.get("numerator", "50*(1 + 0.5*t)")
+            den_raw = meta.get("denominator", "2 + 0.01*t")
+
+            n_expr = parse_expr(str(num_raw).replace("^", "**"), local_dict={var: t}, transformations=tf)
+            d_expr = parse_expr(str(den_raw).replace("^", "**"), local_dict={var: t}, transformations=tf)
+            p_expr = simplify(n_expr / d_expr)
+
+            p0 = simplify(p_expr.subs(t, 0))
+            p5 = simplify(p_expr.subs(t, 5))
+
+            # Horizontal asymptote from leading coefficients of linear-over-linear form.
+            # Use expansion so coefficients are explicit.
+            n_lin = simplify(n_expr.expand())
+            d_lin = simplify(d_expr.expand())
+            n_a = n_lin.coeff(t, 1)
+            d_a = d_lin.coeff(t, 1)
+            h_asym = simplify(n_a / d_a) if d_a != 0 else None
+
+            steps = [
+                {
+                    "title": "Step 1 - Write the Model",
+                    "body": (
+                        f"Population model:\n$$ {name}({var}) = {p_expr} $$\n"
+                        f"where {var} is measured in months."
+                    ),
+                },
+                {
+                    "title": "Step 2 - Part (a): Population at t = 0",
+                    "body": (
+                        f"Substitute {var} = 0:\n"
+                        f"$$ {name}(0) = {p0} $$\n"
+                        f"So the initial population is {p0}."
+                    ),
+                },
+                {
+                    "title": "Step 3 - Part (b): Population after 5 months",
+                    "body": (
+                        f"Substitute {var} = 5:\n"
+                        f"$$ {name}(5) = {p5} $$\n"
+                        f"So after 5 months, population is {p5}."
+                    ),
+                },
+                {
+                    "title": "Step 4 - Part (c): Horizontal Asymptote and Meaning",
+                    "body": (
+                        "Because numerator and denominator are both degree 1,\n"
+                        "the horizontal asymptote is ratio of leading coefficients:\n"
+                        f"$$ y = {h_asym} $$\n"
+                        f"Interpretation: the population approaches {h_asym} insects as time becomes very large."
+                    ),
+                },
+            ]
+
+            answer = (
+                f"(a) {name}(0) = {p0} | "
+                f"(b) {name}(5) = {p5} | "
+                f"(c) Horizontal asymptote y = {h_asym}; sustainable largest population ≈ {h_asym}"
+            )
+
+            answer_sections = [
+                {
+                    "label": "(a) Initial Population",
+                    "body": (
+                        f"Substitute {var}=0:\n"
+                        f"  {name}(0) = {p0}\n"
+                        f"  Therefore initial population = {p0} insects."
+                    ),
+                },
+                {
+                    "label": "(b) Population after 5 months",
+                    "body": (
+                        f"Substitute {var}=5:\n"
+                        f"  {name}(5) = {p5}\n"
+                        f"  Therefore population after 5 months = {p5} insects."
+                    ),
+                },
+                {
+                    "label": "(c) Horizontal Asymptote and Practical Meaning",
+                    "body": (
+                        "Degree(top)=Degree(bottom)=1, so use ratio of leading coefficients.\n"
+                        f"  Horizontal asymptote: y = {h_asym}\n"
+                        f"  Interpretation: maximum sustainable population is about {h_asym} insects."
+                    ),
+                },
+            ]
+
+            graph = None
+            try:
+                from sympy import lambdify
+                f_fn = lambdify(t, p_expr, "math")
+                kp = [
+                    {"x": 0.0, "y": float(p0.evalf()), "label": f"(0, {p0})", "color": "#0f3460"},
+                    {"x": 5.0, "y": float(p5.evalf()), "label": f"(5, {p5})", "color": "#2e7d32"},
+                ]
+                graph = self._make_graph(f_fn, 0.0, 60.0, kp)
+            except Exception:
+                graph = None
+
+            return steps, answer, answer_sections, graph
+        except Exception as e:
+            logger.warning(f"rational application solver failed for '{q}': {e}")
+            return self._generic(num, q, meta)
 
     # -----------------------------------------------------------------------
     # 4. ANALYSIS  (57-68)

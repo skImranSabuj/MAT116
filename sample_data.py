@@ -68,10 +68,111 @@ SECTION_4_1_PROBLEMS: list[dict] = [
     {"number": 90, "question": "f(x) = x^2(x - 2)(x + 2)",             "type": "analysis_full"},
 ]
 
-PROBLEM_LOOKUP: dict[int, dict] = {p["number"]: p for p in SECTION_4_1_PROBLEMS}
+SECTION_4_5_PROBLEMS: list[dict] = [
+  # ── PROBLEMS 47-56: Rational asymptotes ─────────────────────────────────
+  {
+    "number": 47,
+    "question": "H(x) = (x^3 - 8)/(x^2 - 5x + 6)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "H", "numerator": "x^3 - 8", "denominator": "x^2 - 5x + 6"},
+  },
+  {
+    "number": 48,
+    "question": "G(x) = (x^3 + 1)/(x^2 - 5x - 14)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "G", "numerator": "x^3 + 1", "denominator": "x^2 - 5x - 14"},
+  },
+  {
+    "number": 49,
+    "question": "T(x) = x^3/(x^4 - 1)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "T", "numerator": "x^3", "denominator": "x^4 - 1"},
+  },
+  {
+    "number": 50,
+    "question": "P(x) = 4x^2/(x^3 - 1)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "P", "numerator": "4x^2", "denominator": "x^3 - 1"},
+  },
+  {
+    "number": 51,
+    "question": "F(x) = (x^2 + 6x + 5)/(2x^2 + 7x + 5)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "F", "numerator": "x^2 + 6x + 5", "denominator": "2x^2 + 7x + 5"},
+  },
+  {
+    "number": 52,
+    "question": "Q(x) = (2x^2 - 5x - 12)/(3x^2 - 11x - 4)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "Q", "numerator": "2x^2 - 5x - 12", "denominator": "3x^2 - 11x - 4"},
+  },
+  {
+    "number": 53,
+    "question": "R(x) = (8x^2 + 26x - 7)/(4x - 1)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "R", "numerator": "8x^2 + 26x - 7", "denominator": "4x - 1"},
+  },
+  {
+    "number": 54,
+    "question": "R(x) = (6x^2 + 7x - 5)/(3x + 5)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "R", "numerator": "6x^2 + 7x - 5", "denominator": "3x + 5"},
+  },
+  {
+    "number": 55,
+    "question": "F(x) = (x^4 - 16)/(x^2 - 2x)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "F", "numerator": "x^4 - 16", "denominator": "x^2 - 2x"},
+  },
+  {
+    "number": 56,
+    "question": "G(x) = (x^4 - 1)/(x^2 - x)",
+    "type": "rational_asymptotes",
+    "meta": {"name": "G", "numerator": "x^4 - 1", "denominator": "x^2 - x"},
+  },
+
+  # ── PROBLEM 58: Population model application ────────────────────────────
+  {
+    "number": 58,
+    "question": "P(t) = 50(1 + 0.5t)/(2 + 0.01t)",
+    "type": "rational_application",
+    "meta": {
+      "name": "P",
+      "numerator": "50*(1 + t/2)",
+      "denominator": "2 + t/100",
+      "variable": "t",
+      "parts": [
+        "(a) Population at t = 0",
+        "(b) Population at t = 5",
+        "(c) Horizontal asymptote and sustainable largest population",
+      ],
+    },
+  },
+]
 
 
-def get_problems(problem_ranges: list[str]) -> list[dict]:
-    from parser import expand_ranges
-    target = expand_ranges(problem_ranges)
-    return [PROBLEM_LOOKUP[n] for n in sorted(target) if n in PROBLEM_LOOKUP]
+SECTION_PROBLEMS: dict[str, list[dict]] = {
+  "4.1": SECTION_4_1_PROBLEMS,
+  "4.5": SECTION_4_5_PROBLEMS,
+}
+
+
+SECTION_LOOKUPS: dict[str, dict[int, dict]] = {
+  sec: {p["number"]: p for p in probs}
+  for sec, probs in SECTION_PROBLEMS.items()
+}
+
+# Backward compatibility for existing imports in 4.1 flow.
+PROBLEM_LOOKUP: dict[int, dict] = SECTION_LOOKUPS["4.1"]
+
+
+def get_problem_lookup(section: str = "4.1") -> dict[int, dict]:
+  return SECTION_LOOKUPS.get(section, {})
+
+
+def get_problems(problem_ranges: list[str], section: str = "4.1") -> list[dict]:
+  from parser import expand_ranges
+
+  lookup = get_problem_lookup(section)
+  target = expand_ranges(problem_ranges)
+  return [lookup[n] for n in sorted(target) if n in lookup]

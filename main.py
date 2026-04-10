@@ -124,7 +124,7 @@ def load_problems(
     if not problems:
         logger.info("Using built-in sample data for section %s.", section)
         from sample_data import get_problems
-        problems = get_problems(ranges)
+        problems = get_problems(ranges, section=section)
         logger.info(f"  → {len(problems)} sample problems loaded.")
 
     return problems
@@ -140,11 +140,12 @@ def merge_with_sample(
     look it up in sample_data and fill in the gap.
     """
     from parser import expand_ranges
-    from sample_data import PROBLEM_LOOKUP
+    from sample_data import get_problem_lookup
 
     target_nums = expand_ranges(ranges)
     found_nums  = {p["number"] for p in pdf_problems}
     missing     = target_nums - found_nums
+    lookup      = get_problem_lookup(section)
 
     if missing:
         logger.info(
@@ -152,7 +153,7 @@ def merge_with_sample(
             len(missing),
             sorted(missing),
         )
-        extra = [PROBLEM_LOOKUP[n] for n in sorted(missing) if n in PROBLEM_LOOKUP]
+        extra = [lookup[n] for n in sorted(missing) if n in lookup]
         pdf_problems = sorted(pdf_problems + extra, key=lambda p: p["number"])
 
     return pdf_problems
@@ -182,48 +183,73 @@ def write_outputs(
     def by_range(sols: list[dict], lo: int, hi: int) -> list[dict]:
         return [s for s in sols if lo <= s["number"] <= hi]
 
-    part1 = by_range(solutions, 37, 50)   # transformations
-    part2 = by_range(solutions, 51, 56)   # form polynomial
-    part3 = by_range(solutions, 57, 68)   # analysis
-    part4 = by_range(solutions, 69, 999)  # applications & rest
+    def by_type(sols: list[dict], ptype: str) -> list[dict]:
+        return [s for s in sols if s.get("type") == ptype]
 
     written: list[str] = []
 
-    if part1:
-        p = fmt.write_markdown(
-            part1,
-            filename=f"section_{section.replace('.','_')}_transformations.md",
-            title=f"Section {section} – Graphing with Transformations (Problems 37–50)",
-            section=section,
-        )
-        written.append(p)
+    if section == "4.1":
+        part1 = by_range(solutions, 37, 50)   # transformations
+        part2 = by_range(solutions, 51, 56)   # form polynomial
+        part3 = by_range(solutions, 57, 68)   # analysis
+        part4 = by_range(solutions, 69, 999)  # applications & rest
 
-    if part2:
-        p = fmt.write_markdown(
-            part2,
-            filename=f"section_{section.replace('.','_')}_form_polynomial.md",
-            title=f"Section {section} – Form a Polynomial (Problems 51–56)",
-            section=section,
-        )
-        written.append(p)
+        if part1:
+            p = fmt.write_markdown(
+                part1,
+                filename=f"section_{section.replace('.','_')}_transformations.md",
+                title=f"Section {section} – Graphing with Transformations (Problems 37–50)",
+                section=section,
+            )
+            written.append(p)
 
-    if part3:
-        p = fmt.write_markdown(
-            part3,
-            filename=f"section_{section.replace('.','_')}_analysis.md",
-            title=f"Section {section} – Polynomial Analysis (Problems 57–68)",
-            section=section,
-        )
-        written.append(p)
+        if part2:
+            p = fmt.write_markdown(
+                part2,
+                filename=f"section_{section.replace('.','_')}_form_polynomial.md",
+                title=f"Section {section} – Form a Polynomial (Problems 51–56)",
+                section=section,
+            )
+            written.append(p)
 
-    if part4:
-        p = fmt.write_markdown(
-            part4,
-            filename=f"section_{section.replace('.','_')}_applications.md",
-            title=f"Section {section} – Application Problems (Problems 81–90)",
-            section=section,
-        )
-        written.append(p)
+        if part3:
+            p = fmt.write_markdown(
+                part3,
+                filename=f"section_{section.replace('.','_')}_analysis.md",
+                title=f"Section {section} – Polynomial Analysis (Problems 57–68)",
+                section=section,
+            )
+            written.append(p)
+
+        if part4:
+            p = fmt.write_markdown(
+                part4,
+                filename=f"section_{section.replace('.','_')}_applications.md",
+                title=f"Section {section} – Application Problems (Problems 81–90)",
+                section=section,
+            )
+            written.append(p)
+    elif section == "4.5":
+        part_asym = by_type(solutions, "rational_asymptotes")
+        part_app  = by_type(solutions, "rational_application")
+
+        if part_asym:
+            p = fmt.write_markdown(
+                part_asym,
+                filename=f"section_{section.replace('.','_')}_rational_asymptotes.md",
+                title=f"Section {section} – Rational Asymptotes (Problems 47–56)",
+                section=section,
+            )
+            written.append(p)
+
+        if part_app:
+            p = fmt.write_markdown(
+                part_app,
+                filename=f"section_{section.replace('.','_')}_applications.md",
+                title=f"Section {section} – Application Problem (Problem 58)",
+                section=section,
+            )
+            written.append(p)
 
     # ── full combined HTML ────────────────────────────────────────────────────
     html_path = fmt.write_html(
