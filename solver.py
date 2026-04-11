@@ -49,6 +49,7 @@ class Solver:
             "rational_graph_analysis": self._rational_graph_analysis,
             "rational_asymptotes":   self._rational_asymptotes,
             "rational_application":  self._rational_application,
+            "inequality_sign_chart": self._inequality_sign_chart,
         }
         fn = dispatch.get(ptype, self._generic)
         result = fn(num, q, meta)
@@ -1249,6 +1250,265 @@ class Solver:
             return steps, answer, answer_sections, graph
         except Exception as e:
             logger.warning(f"rational application solver failed for '{q}': {e}")
+            return self._generic(num, q, meta)
+
+    # -----------------------------------------------------------------------
+    # 4.4 - Solving Inequalities Algebraically (selected problems)
+    # -----------------------------------------------------------------------
+    def _inequality_sign_chart(self, num: int, q: str, meta: dict) -> tuple:
+        try:
+            from sympy import (
+                Eq, FiniteSet, Gt, Ge, Interval, Le, Lt, S, Union,
+                cancel, factor, simplify, solveset, symbols, together, roots
+            )
+            from sympy.parsing.sympy_parser import (
+                parse_expr, standard_transformations,
+                implicit_multiplication_application
+            )
+            from sympy.sets.sets import EmptySet
+            from sympy.solvers.inequalities import solve_univariate_inequality
+
+            x = symbols("x")
+            tf = standard_transformations + (implicit_multiplication_application,)
+
+            left_raw = meta.get("left", "0")
+            right_raw = meta.get("right", "0")
+            relation = meta.get("relation", ">")
+
+            left_expr = parse_expr(str(left_raw).replace("^", "**"), local_dict={"x": x}, transformations=tf)
+            right_expr = parse_expr(str(right_raw).replace("^", "**"), local_dict={"x": x}, transformations=tf)
+
+            work_expr = simplify(left_expr - right_expr)
+            combined = together(work_expr)
+            num_expr, den_expr = combined.as_numer_denom()
+            red_expr = cancel(combined)
+            red_num, red_den = red_expr.as_numer_denom()
+
+            left_den = simplify(left_expr.as_numer_denom()[1])
+            right_den = simplify(right_expr.as_numer_denom()[1])
+            dom_restrict = sorted(
+                set(solveset(Eq(left_den, 0), x, domain=S.Reals))
+                | set(solveset(Eq(right_den, 0), x, domain=S.Reals)),
+                key=lambda v: float(v.evalf()),
+            )
+            reduced_undefined = sorted(
+                solveset(Eq(simplify(red_den), 0), x, domain=S.Reals),
+                key=lambda v: float(v.evalf()),
+            )
+            holes = [r for r in dom_restrict if r not in reduced_undefined]
+
+            zeros_all = sorted(
+                solveset(Eq(simplify(red_num), 0), x, domain=S.Reals),
+                key=lambda v: float(v.evalf()),
+            )
+            zeros = [z for z in zeros_all if z not in dom_restrict]
+            critical = sorted(set(dom_restrict + zeros), key=lambda v: float(v.evalf()))
+
+            zero_mult = roots(simplify(red_num), x)
+            pole_mult = roots(simplify(red_den), x)
+
+            def _sample_point(left, right):
+                if left is S.NegativeInfinity and right is S.Infinity:
+                    return S.Zero
+                if left is S.NegativeInfinity:
+                    return simplify(right - 1)
+                if right is S.Infinity:
+                    return simplify(left + 1)
+                return simplify((left + right) / 2)
+
+            def _make_interval(left, right):
+                if left is S.NegativeInfinity and right is S.Infinity:
+                    return S.Reals
+                return Interval(left, right, True, True)
+
+            def _fmt_bound(v):
+                if v is S.NegativeInfinity:
+                    return "-∞"
+                if v is S.Infinity:
+                    return "+∞"
+                return _expr_str(v)
+
+            def _fmt_set(sol):
+                if sol == EmptySet:
+                    return "No real solution"
+                if sol == S.Reals:
+                    return "(-∞, ∞)"
+                if isinstance(sol, Interval):
+                    lb = "(" if sol.left_open else "["
+                    rb = ")" if sol.right_open else "]"
+                    return f"{lb}{_fmt_bound(sol.start)}, {_fmt_bound(sol.end)}{rb}"
+                if isinstance(sol, FiniteSet):
+                    vals = sorted(sol, key=lambda t: float(t.evalf()))
+                    return "{" + ", ".join(_expr_str(v) for v in vals) + "}"
+                if isinstance(sol, Union):
+                    return " ∪ ".join(_fmt_set(part) for part in sol.args)
+                return str(sol)
+
+            intervals = []
+            if critical:
+                intervals.append((S.NegativeInfinity, critical[0]))
+                for i in range(len(critical) - 1):
+                    intervals.append((critical[i], critical[i + 1]))
+                intervals.append((critical[-1], S.Infinity))
+            else:
+                intervals.append((S.NegativeInfinity, S.Infinity))
+
+            want_positive = relation in (">", ">=")
+            include_equal = relation in (">=", "<=")
+
+            sign_rows = []
+            selected_pieces = []
+            for left, right in intervals:
+                test_x = _sample_point(left, right)
+                test_val = simplify(red_expr.subs(x, test_x))
+                is_positive = bool(test_val.evalf() > 0)
+                sign_symbol = "+" if is_positive else "−"
+                keep_interval = is_positive if want_positive else not is_positive
+                sign_rows.append({
+                    "left": left,
+                    "right": right,
+                    "test_x": test_x,
+                    "test_val": test_val,
+                    "sign": sign_symbol,
+                    "keep": keep_interval,
+                })
+                if keep_interval:
+                    selected_pieces.append(_make_interval(left, right))
+
+            if include_equal:
+                for z in zeros:
+                    selected_pieces.append(FiniteSet(z))
+
+            manual_solution = EmptySet if not selected_pieces else Union(*selected_pieces)
+
+            relation_obj = {
+                ">": Gt(work_expr, 0),
+                ">=": Ge(work_expr, 0),
+                "<": Lt(work_expr, 0),
+                "<=": Le(work_expr, 0),
+            }[relation]
+            exact_solution = solve_univariate_inequality(relation_obj, x, relational=False)
+            final_solution = exact_solution if exact_solution is not None else manual_solution
+
+            critical_lines = []
+            for c in critical:
+                if c in zeros:
+                    mult = zero_mult.get(c)
+                    if mult is not None:
+                        critical_lines.append(f"  x = {_expr_str(c)}  makes the numerator zero (multiplicity {mult})")
+                    else:
+                        critical_lines.append(f"  x = {_expr_str(c)}  makes the numerator zero")
+                else:
+                    mult = pole_mult.get(c)
+                    if mult is not None:
+                        critical_lines.append(f"  x = {_expr_str(c)}  makes the denominator zero, so it is excluded from the domain (multiplicity {mult})")
+                    else:
+                        critical_lines.append(f"  x = {_expr_str(c)}  makes the denominator zero, so it is excluded from the domain")
+
+            sign_lines = []
+            for row in sign_rows:
+                sign_lines.append(
+                    f"  ({_fmt_bound(row['left'])}, {_fmt_bound(row['right'])})  test x = {_expr_str(row['test_x'])}:  value = {_expr_str(row['test_val'])}  -> sign {row['sign']}"
+                    + ("  KEEP" if row["keep"] else "  REJECT")
+                )
+
+            zero_line = ", ".join(_expr_str(z) for z in zeros) if zeros else "none"
+            domain_line = ", ".join(f"x ≠ {_expr_str(r)}" for r in dom_restrict) if dom_restrict else "none"
+            holes_line = ", ".join(_expr_str(h) for h in holes) if holes else "none"
+
+            steps = [
+                {
+                    "title": "Step 1 - Move Everything to One Side",
+                    "body": (
+                        f"Start with the inequality:\n$$ {_expr_str(left_expr)} {relation} {_expr_str(right_expr)} $$\n\n"
+                        f"Move everything to the left so the right side is 0:\n$$ {_expr_str(combined)} {relation} 0 $$"
+                    ),
+                },
+                {
+                    "title": "Step 2 - Factor and State the Domain Restrictions",
+                    "body": (
+                        f"Numerator factorization: {_expr_str(factor(num_expr))}\n"
+                        f"Denominator factorization: {_expr_str(factor(den_expr))}\n"
+                        f"Reduced expression for sign testing: {_expr_str(red_expr)}\n"
+                        f"Domain restriction(s): {domain_line}"
+                        + (f"\nHole(s) after cancellation: {holes_line}" if holes else "")
+                    ),
+                },
+                {
+                    "title": "Step 3 - Find the Critical Numbers",
+                    "body": (
+                        "Critical numbers come from zeros of the numerator and denominator.\n"
+                        + "\n".join(critical_lines)
+                        + (f"\n\nPlace these on a number line in increasing order: {', '.join(_expr_str(c) for c in critical)}" if critical else "\n\nThere are no critical numbers.")
+                    ),
+                },
+                {
+                    "title": "Step 4 - Test the Sign on Each Interval",
+                    "body": "Use one test value in each interval:\n" + "\n".join(sign_lines),
+                },
+                {
+                    "title": "Step 5 - Write the Solution Set",
+                    "body": (
+                        f"We need the expression to be {'positive' if want_positive else 'negative'}"
+                        + (" or zero" if include_equal else "")
+                        + f".\nTherefore the solution is:\n{_fmt_set(final_solution)}"
+                        + (f"\nInclude zero(s) of the numerator because the inequality is {relation}." if include_equal and zeros else "")
+                        + (f"\nExclude x = {', '.join(_expr_str(r) for r in dom_restrict)} because the original expression is undefined there." if dom_restrict else "")
+                    ),
+                },
+            ]
+
+            answer = f"Solution: {_fmt_set(final_solution)}"
+
+            answer_sections = [
+                {
+                    "label": "① Rewrite in Standard Form",
+                    "body": (
+                        f"  {_expr_str(left_expr)} {relation} {_expr_str(right_expr)}\n"
+                        f"  ⇔ {_expr_str(combined)} {relation} 0"
+                    ),
+                },
+                {
+                    "label": "② Critical Numbers",
+                    "body": (
+                        f"  Zeros of numerator: {zero_line}\n"
+                        f"  Excluded values: {domain_line}\n"
+                        + (f"  Holes after cancellation: {holes_line}\n" if holes else "")
+                        + ("\n".join(critical_lines) if critical_lines else "  None")
+                    ),
+                },
+                {
+                    "label": "③ Sign Chart Decision",
+                    "body": "\n".join(sign_lines),
+                },
+                {
+                    "label": "④ Final Answer",
+                    "body": (
+                        f"  Solution set: {_fmt_set(final_solution)}\n"
+                        + (f"  Include zero(s) of the numerator because {relation} allows equality.\n" if include_equal and zeros else "")
+                        + (f"  Exclude x = {', '.join(_expr_str(r) for r in dom_restrict)} because the expression is undefined there." if dom_restrict else "")
+                    ),
+                },
+            ]
+
+            graph = None
+            try:
+                from sympy import lambdify
+                f_fn = lambdify(x, red_expr, "math")
+                finite_pts = [float(v.evalf()) for v in critical] if critical else []
+                x_lo = (min(finite_pts) - 3.0) if finite_pts else -6.0
+                x_hi = (max(finite_pts) + 3.0) if finite_pts else 6.0
+                kp = [
+                    {"x": float(z.evalf()), "y": 0.0, "label": f"zero x={_expr_str(z)}", "color": "#2e7d32"}
+                    for z in zeros
+                ]
+                graph = self._make_graph(f_fn, x_lo, x_hi, kp)
+            except Exception:
+                graph = None
+
+            return steps, answer, answer_sections, graph
+        except Exception as e:
+            logger.warning(f"inequality sign-chart solver failed for '{q}': {e}")
             return self._generic(num, q, meta)
 
     # -----------------------------------------------------------------------

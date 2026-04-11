@@ -263,6 +263,18 @@ def write_outputs(
             )
             written.append(p)
 
+    elif section == "4.4":
+        part_ineq = by_type(solutions, "inequality_sign_chart")
+
+        if part_ineq:
+            p = fmt.write_markdown(
+                part_ineq,
+                filename=f"section_{section.replace('.','_')}_inequalities.md",
+                title=f"Section {section} – Solving Inequalities Algebraically",
+                section=section,
+            )
+            written.append(p)
+
     # ── full combined HTML ────────────────────────────────────────────────────
     html_path = fmt.write_html(
         solutions,

@@ -191,9 +191,94 @@ SECTION_4_3_PROBLEMS: list[dict] = [
 ]
 
 
+SECTION_4_4_PROBLEMS: list[dict] = [
+  {
+    "number": 20,
+    "question": "(x - 5)^2 (x + 2) < 0",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "(x - 5)^2 (x + 2)",
+      "relation": "<",
+      "right": "0",
+    },
+  },
+  {
+    "number": 22,
+    "question": "x^3 + 8x^2 < 0",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "x^3 + 8x^2",
+      "relation": "<",
+      "right": "0",
+    },
+  },
+  {
+    "number": 28,
+    "question": "x^3 - 2x^2 - 3x > 0",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "x^3 - 2x^2 - 3x",
+      "relation": ">",
+      "right": "0",
+    },
+  },
+  {
+    "number": 35,
+    "question": "((x - 3)(x + 2))/(x - 1) <= 0",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "((x - 3)(x + 2))/(x - 1)",
+      "relation": "<=",
+      "right": "0",
+    },
+  },
+  {
+    "number": 37,
+    "question": "((x + 5)^2)/(x^2 - 4) >= 0",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "((x + 5)^2)/(x^2 - 4)",
+      "relation": ">=",
+      "right": "0",
+    },
+  },
+  {
+    "number": 40,
+    "question": "(x + 2)/(x - 4) >= 1",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "(x + 2)/(x - 4)",
+      "relation": ">=",
+      "right": "1",
+    },
+  },
+  {
+    "number": 43,
+    "question": "5/(x - 3) > 3/(x + 1)",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "5/(x - 3)",
+      "relation": ">",
+      "right": "3/(x + 1)",
+    },
+  },
+  {
+    "number": 44,
+    "question": "1/(x - 2) < 2/(3x - 9)",
+    "type": "inequality_sign_chart",
+    "meta": {
+      "left": "1/(x - 2)",
+      "relation": "<",
+      "right": "2/(3x - 9)",
+    },
+  },
+]
+
+
 SECTION_PROBLEMS: dict[str, list[dict]] = {
   "4.1": SECTION_4_1_PROBLEMS,
   "4.3": SECTION_4_3_PROBLEMS,
+  "4.4": SECTION_4_4_PROBLEMS,
   "4.2": SECTION_4_5_PROBLEMS,
   "4.5": SECTION_4_5_PROBLEMS,
 }

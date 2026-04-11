@@ -1,0 +1,1569 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section 4.4 – Complete Solutions</title>
+
+    <!-- MathJax 3 -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+          tags: "ams",
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+
+    <!-- Plotly.js basic (line + scatter, ~600 KB) -->
+    <script
+      src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js"
+      charset="utf-8"
+    ></script>
+
+    <style>
+      /* ── Reset ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      /* ── Variables ── */
+      :root {
+        --navy: #0f3460;
+        --red: #e94560;
+        --sidebar-w: 260px;
+        --topbar-h: 56px;
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --text: #1a1a2e;
+        --muted: #666;
+        --border: #e0e4ec;
+        --step-bg: #f8f9fa;
+      }
+
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: var(--text);
+        background: var(--bg);
+        min-height: 100vh;
+      }
+
+      /* ══ TOP BAR (mobile) ══ */
+      .topbar {
+        display: none;
+        align-items: center;
+        height: var(--topbar-h);
+        background: var(--navy);
+        color: #fff;
+        padding: 0 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        gap: 0.75rem;
+      }
+      .topbar-title {
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+
+      /* hamburger */
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .menu-btn span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition:
+          transform 0.25s,
+          opacity 0.25s;
+      }
+      body.nav-open .menu-btn span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      body.nav-open .menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-btn span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ══ SIDEBAR ══ */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-w);
+        height: 100vh;
+        background: var(--navy);
+        color: #fff;
+        overflow-y: auto;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-brand {
+        padding: 1.25rem 1.1rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .brand-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        line-height: 1.35;
+      }
+      .brand-sub {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 0.25rem;
+      }
+
+      .nav-group {
+        margin: 0.5rem 0;
+      }
+      .nav-group-title {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0.75rem 1.1rem 0.25rem;
+      }
+      .nav-group ul {
+        list-style: none;
+      }
+      .nav-group ul li a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.42rem 1.1rem;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-left: 3px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .nav-group ul li a:hover,
+      .nav-group ul li a.active {
+        background: rgba(255, 255, 255, 0.09);
+        border-left-color: var(--red);
+        color: #fff;
+      }
+      .nav-num {
+        display: inline-block;
+        min-width: 1.8rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+        font-size: 0.78rem;
+        padding: 0 0.3rem;
+        flex-shrink: 0;
+      }
+
+      /* ══ OVERLAY ══ */
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 90;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      body.nav-open .overlay {
+        opacity: 1;
+      }
+
+      /* ══ MAIN ══ */
+      .main {
+        margin-left: var(--sidebar-w);
+        min-height: 100vh;
+        padding: 2rem 1.5rem 5rem;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--card);
+        padding: 2.5rem 3.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+      }
+
+      /* header */
+      .page-header {
+        border-bottom: 4px solid var(--navy);
+        padding-bottom: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .page-header h1 {
+        font-size: 1.9rem;
+        color: var(--navy);
+        margin-bottom: 0.3rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      /* problem card */
+      .problem {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem 2rem;
+        margin: 2.25rem 0;
+        background: var(--card);
+        scroll-margin-top: 1.5rem;
+      }
+      .problem h2 {
+        font-size: 1.5rem;
+        color: var(--navy);
+        border-left: 5px solid var(--red);
+        padding-left: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 0.18rem 0.65rem;
+        margin-bottom: 1.1rem;
+      }
+
+      /* given */
+      .given-label {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+      .given-box {
+        background: #f0f4ff;
+        border-left: 4px solid var(--navy);
+        border-radius: 4px;
+        padding: 0.85rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-family: "Courier New", monospace;
+        font-size: 0.95rem;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      /* steps */
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .step {
+        padding: 0.85rem 1.1rem;
+        background: var(--step-bg);
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+      }
+      .step-title {
+        font-weight: bold;
+        color: #16213e;
+        margin-bottom: 0.4rem;
+      }
+      .step-body {
+        white-space: pre-wrap;
+        font-size: 0.97rem;
+        word-break: break-word;
+      }
+
+      /* answer */
+      .answer-box {
+        margin-top: 1.25rem;
+        background: #e8f5e9;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .answer-box-header {
+        font-weight: bold;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-sections {
+        padding: 0.6rem 1rem 0.9rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .answer-section {
+        padding: 0.45rem 0.75rem;
+        border-left: 3px solid #81c784;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 0 4px 4px 0;
+      }
+      .answer-sec-label {
+        font-family: "Georgia", serif;
+        font-size: 0.78rem;
+        font-weight: bold;
+        color: #1b5e20;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.2rem;
+      }
+      .answer-sec-body {
+        white-space: pre-wrap;
+        font-family: "Courier New", monospace;
+        font-size: 0.91rem;
+        line-height: 1.65;
+        color: #1a2e1a;
+        word-break: break-word;
+      }
+      /* fallback for old one-liner answers */
+      .answer-plain {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+        color: #1b5e20;
+        white-space: pre-wrap;
+      }
+
+      /* graph */
+      .graph-wrap {
+        margin: 1.25rem 0 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .graph-label {
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+      }
+      .graph-div {
+        height: 320px;
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        .graph-div {
+          height: 260px;
+        }
+      }
+
+      /* misc */
+      hr {
+        border: none;
+        border-top: 1px solid #e8eaee;
+        margin: 2rem 0;
+      }
+      code {
+        background: #f4f4f6;
+        font-family: "Courier New", monospace;
+        padding: 0.1em 0.4em;
+        border-radius: 3px;
+        font-size: 0.88em;
+      }
+      .back-top {
+        display: block;
+        text-align: right;
+        font-size: 0.82rem;
+        color: #999;
+        text-decoration: none;
+        margin-top: 0.5rem;
+      }
+      .back-top:hover {
+        color: var(--red);
+      }
+
+      /* ══ RESPONSIVE ══ */
+      @media (max-width: 768px) {
+        .topbar {
+          display: flex;
+        }
+        .sidebar {
+          top: 0;
+          transform: translateX(-100%);
+          z-index: 300;
+        }
+        body.nav-open .sidebar {
+          transform: translateX(0);
+        }
+        body.nav-open .overlay {
+          display: block;
+        }
+        .main {
+          margin-left: 0;
+          padding: calc(var(--topbar-h) + 1rem) 0.75rem 4rem;
+        }
+        .container {
+          padding: 1.25rem 1rem;
+          border-radius: 8px;
+        }
+        .page-header h1 {
+          font-size: 1.4rem;
+        }
+        .problem {
+          padding: 1.1rem 0.9rem;
+        }
+        .problem h2 {
+          font-size: 1.2rem;
+        }
+      }
+      @media (min-width: 769px) {
+        .overlay {
+          display: none !important;
+        }
+        .topbar {
+          display: none !important;
+        }
+      }
+      @media (max-width: 1100px) and (min-width: 769px) {
+        :root {
+          --sidebar-w: 220px;
+        }
+        .container {
+          padding: 2rem 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- MOBILE TOP BAR -->
+    <div class="topbar" id="topbar">
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="sidebar"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <span class="topbar-title">MAT 116 &mdash; Section 4.4</span>
+    </div>
+
+    <!-- BACKDROP -->
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar" id="sidebar" aria-label="Problem navigation">
+      <div class="sidebar-brand">
+        <div class="brand-title">MAT 116 Solutions</div>
+        <div class="brand-sub">
+          Sullivan Precalculus 10th Ed &middot; Section 4.4
+        </div>
+      </div>
+
+      
+      <div class="nav-group">
+        <div class="nav-group-title">Inequality Sign Chart</div>
+        <ul>
+          
+          <li>
+            <a
+              href="#prob-20"
+              data-target="prob-20"
+            >
+              <span class="nav-num">20</span>Problem 20
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-22"
+              data-target="prob-22"
+            >
+              <span class="nav-num">22</span>Problem 22
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-28"
+              data-target="prob-28"
+            >
+              <span class="nav-num">28</span>Problem 28
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-35"
+              data-target="prob-35"
+            >
+              <span class="nav-num">35</span>Problem 35
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-37"
+              data-target="prob-37"
+            >
+              <span class="nav-num">37</span>Problem 37
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-40"
+              data-target="prob-40"
+            >
+              <span class="nav-num">40</span>Problem 40
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-43"
+              data-target="prob-43"
+            >
+              <span class="nav-num">43</span>Problem 43
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-44"
+              data-target="prob-44"
+            >
+              <span class="nav-num">44</span>Problem 44
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <div class="container">
+        <header class="page-header" id="top">
+          <h1>Section 4.4 – Complete Solutions</h1>
+          <p class="subtitle">
+            MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan
+            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 4.4 &nbsp;|&nbsp; Generated: April 11, 2026
+          </p>
+        </header>
+
+         
+        <div class="problem" id="prob-20">
+          <h2>Problem 20</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">(x - 5)^2 (x + 2) &lt; 0</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ (x - 5)^2·(x + 2) &lt; 0 $$
+
+Move everything to the left so the right side is 0:
+$$ (x - 5)^2·(x + 2) &lt; 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: (x - 5)^2·(x + 2)
+Denominator factorization: 1
+Reduced expression for sign testing: x^3 - 8x^2 + 5x + 50
+Domain restriction(s): none</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = -2  makes the numerator zero (multiplicity 1)
+  x = 5  makes the numerator zero (multiplicity 2)
+
+Place these on a number line in increasing order: -2, 5</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, -2)  test x = -3:  value = -64  -&gt; sign −  KEEP
+  (-2, 5)  test x = 3/2:  value = 343/8  -&gt; sign +  REJECT
+  (5, +∞)  test x = 6:  value = 8  -&gt; sign +  REJECT</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be negative.
+Therefore the solution is:
+(-∞, -2)</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g20" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    (x - 5)^2·(x + 2) &lt; 0
+  ⇔ (x - 5)^2·(x + 2) &lt; 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: -2, 5
+  Excluded values: none
+  x = -2  makes the numerator zero (multiplicity 1)
+  x = 5  makes the numerator zero (multiplicity 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, -2)  test x = -3:  value = -64  -&gt; sign −  KEEP
+  (-2, 5)  test x = 3/2:  value = 343/8  -&gt; sign +  REJECT
+  (5, +∞)  test x = 6:  value = 8  -&gt; sign +  REJECT
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (-∞, -2)
+
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-22">
+          <h2>Problem 22</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">x^3 + 8x^2 &lt; 0</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ x^3 + 8x^2 &lt; 0 $$
+
+Move everything to the left so the right side is 0:
+$$ x^2·(x + 8) &lt; 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: x^2·(x + 8)
+Denominator factorization: 1
+Reduced expression for sign testing: x^3 + 8x^2
+Domain restriction(s): none</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = -8  makes the numerator zero (multiplicity 1)
+  x = 0  makes the numerator zero (multiplicity 2)
+
+Place these on a number line in increasing order: -8, 0</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, -8)  test x = -9:  value = -81  -&gt; sign −  KEEP
+  (-8, 0)  test x = -4:  value = 64  -&gt; sign +  REJECT
+  (0, +∞)  test x = 1:  value = 9  -&gt; sign +  REJECT</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be negative.
+Therefore the solution is:
+(-∞, -8)</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g22" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    x^3 + 8x^2 &lt; 0
+  ⇔ x^2·(x + 8) &lt; 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: -8, 0
+  Excluded values: none
+  x = -8  makes the numerator zero (multiplicity 1)
+  x = 0  makes the numerator zero (multiplicity 2)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, -8)  test x = -9:  value = -81  -&gt; sign −  KEEP
+  (-8, 0)  test x = -4:  value = 64  -&gt; sign +  REJECT
+  (0, +∞)  test x = 1:  value = 9  -&gt; sign +  REJECT
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (-∞, -8)
+
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-28">
+          <h2>Problem 28</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">x^3 - 2x^2 - 3x &gt; 0</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ x^3 - 2x^2 - 3x &gt; 0 $$
+
+Move everything to the left so the right side is 0:
+$$ x·(x^2 - 2x - 3) &gt; 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: x·(x - 3)·(x + 1)
+Denominator factorization: 1
+Reduced expression for sign testing: x^3 - 2x^2 - 3x
+Domain restriction(s): none</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = -1  makes the numerator zero (multiplicity 1)
+  x = 0  makes the numerator zero (multiplicity 1)
+  x = 3  makes the numerator zero (multiplicity 1)
+
+Place these on a number line in increasing order: -1, 0, 3</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, -1)  test x = -2:  value = -10  -&gt; sign −  REJECT
+  (-1, 0)  test x = -1/2:  value = 7/8  -&gt; sign +  KEEP
+  (0, 3)  test x = 3/2:  value = -45/8  -&gt; sign −  REJECT
+  (3, +∞)  test x = 4:  value = 20  -&gt; sign +  KEEP</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be positive.
+Therefore the solution is:
+(-1, 0) ∪ (3, +∞)</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g28" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    x^3 - 2x^2 - 3x &gt; 0
+  ⇔ x·(x^2 - 2x - 3) &gt; 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: -1, 0, 3
+  Excluded values: none
+  x = -1  makes the numerator zero (multiplicity 1)
+  x = 0  makes the numerator zero (multiplicity 1)
+  x = 3  makes the numerator zero (multiplicity 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, -1)  test x = -2:  value = -10  -&gt; sign −  REJECT
+  (-1, 0)  test x = -1/2:  value = 7/8  -&gt; sign +  KEEP
+  (0, 3)  test x = 3/2:  value = -45/8  -&gt; sign −  REJECT
+  (3, +∞)  test x = 4:  value = 20  -&gt; sign +  KEEP
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (-1, 0) ∪ (3, +∞)
+
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-35">
+          <h2>Problem 35</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">((x - 3)(x + 2))/(x - 1) &lt;= 0</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ (x - 3)·(x + 2)/(x - 1) &lt;= 0 $$
+
+Move everything to the left so the right side is 0:
+$$ (x - 3)·(x + 2)/(x - 1) &lt;= 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: (x - 3)·(x + 2)
+Denominator factorization: x - 1
+Reduced expression for sign testing: (x^2 - x - 6)/(x - 1)
+Domain restriction(s): x ≠ 1</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = -2  makes the numerator zero (multiplicity 1)
+  x = 1  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 3  makes the numerator zero (multiplicity 1)
+
+Place these on a number line in increasing order: -2, 1, 3</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, -2)  test x = -3:  value = -3/2  -&gt; sign −  KEEP
+  (-2, 1)  test x = -1/2:  value = 7/2  -&gt; sign +  REJECT
+  (1, 3)  test x = 2:  value = -4  -&gt; sign −  KEEP
+  (3, +∞)  test x = 4:  value = 2  -&gt; sign +  REJECT</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be negative or zero.
+Therefore the solution is:
+(-∞, -2] ∪ (1, 3]
+Include zero(s) of the numerator because the inequality is &lt;=.
+Exclude x = 1 because the original expression is undefined there.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g35" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    (x - 3)·(x + 2)/(x - 1) &lt;= 0
+  ⇔ (x - 3)·(x + 2)/(x - 1) &lt;= 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: -2, 3
+  Excluded values: x ≠ 1
+  x = -2  makes the numerator zero (multiplicity 1)
+  x = 1  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 3  makes the numerator zero (multiplicity 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, -2)  test x = -3:  value = -3/2  -&gt; sign −  KEEP
+  (-2, 1)  test x = -1/2:  value = 7/2  -&gt; sign +  REJECT
+  (1, 3)  test x = 2:  value = -4  -&gt; sign −  KEEP
+  (3, +∞)  test x = 4:  value = 2  -&gt; sign +  REJECT
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (-∞, -2] ∪ (1, 3]
+  Include zero(s) of the numerator because &lt;= allows equality.
+  Exclude x = 1 because the expression is undefined there.
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-37">
+          <h2>Problem 37</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">((x + 5)^2)/(x^2 - 4) &gt;= 0</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ (x + 5)^2/(x^2 - 4) &gt;= 0 $$
+
+Move everything to the left so the right side is 0:
+$$ (x + 5)^2/(x^2 - 4) &gt;= 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: (x + 5)^2
+Denominator factorization: (x - 2)·(x + 2)
+Reduced expression for sign testing: (x^2 + 10x + 25)/(x^2 - 4)
+Domain restriction(s): x ≠ -2, x ≠ 2</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = -5  makes the numerator zero (multiplicity 2)
+  x = -2  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 2  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+
+Place these on a number line in increasing order: -5, -2, 2</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, -5)  test x = -6:  value = 1/32  -&gt; sign +  KEEP
+  (-5, -2)  test x = -7/2:  value = 3/11  -&gt; sign +  KEEP
+  (-2, 2)  test x = 0:  value = -25/4  -&gt; sign −  REJECT
+  (2, +∞)  test x = 3:  value = 64/5  -&gt; sign +  KEEP</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be positive or zero.
+Therefore the solution is:
+(-∞, -2) ∪ (2, +∞)
+Include zero(s) of the numerator because the inequality is &gt;=.
+Exclude x = -2, 2 because the original expression is undefined there.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g37" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    (x + 5)^2/(x^2 - 4) &gt;= 0
+  ⇔ (x + 5)^2/(x^2 - 4) &gt;= 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: -5
+  Excluded values: x ≠ -2, x ≠ 2
+  x = -5  makes the numerator zero (multiplicity 2)
+  x = -2  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 2  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, -5)  test x = -6:  value = 1/32  -&gt; sign +  KEEP
+  (-5, -2)  test x = -7/2:  value = 3/11  -&gt; sign +  KEEP
+  (-2, 2)  test x = 0:  value = -25/4  -&gt; sign −  REJECT
+  (2, +∞)  test x = 3:  value = 64/5  -&gt; sign +  KEEP
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (-∞, -2) ∪ (2, +∞)
+  Include zero(s) of the numerator because &gt;= allows equality.
+  Exclude x = -2, 2 because the expression is undefined there.
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-40">
+          <h2>Problem 40</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">(x + 2)/(x - 4) &gt;= 1</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ (x + 2)/(x - 4) &gt;= 1 $$
+
+Move everything to the left so the right side is 0:
+$$ 6/(x - 4) &gt;= 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: 6
+Denominator factorization: x - 4
+Reduced expression for sign testing: 6/(x - 4)
+Domain restriction(s): x ≠ 4</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = 4  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+
+Place these on a number line in increasing order: 4</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, 4)  test x = 3:  value = -6  -&gt; sign −  REJECT
+  (4, +∞)  test x = 5:  value = 6  -&gt; sign +  KEEP</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be positive or zero.
+Therefore the solution is:
+(4, +∞)
+Exclude x = 4 because the original expression is undefined there.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g40" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    (x + 2)/(x - 4) &gt;= 1
+  ⇔ 6/(x - 4) &gt;= 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: none
+  Excluded values: x ≠ 4
+  x = 4  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, 4)  test x = 3:  value = -6  -&gt; sign −  REJECT
+  (4, +∞)  test x = 5:  value = 6  -&gt; sign +  KEEP
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (4, +∞)
+  Exclude x = 4 because the expression is undefined there.
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-43">
+          <h2>Problem 43</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">5/(x - 3) &gt; 3/(x + 1)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ 5/(x - 3) &gt; 3/(x + 1) $$
+
+Move everything to the left so the right side is 0:
+$$ 2·(x + 7)/((x - 3)·(x + 1)) &gt; 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: 2·(x + 7)
+Denominator factorization: (x - 3)·(x + 1)
+Reduced expression for sign testing: (2x + 14)/(x^2 - 2x - 3)
+Domain restriction(s): x ≠ -1, x ≠ 3</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = -7  makes the numerator zero (multiplicity 1)
+  x = -1  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 3  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+
+Place these on a number line in increasing order: -7, -1, 3</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, -7)  test x = -8:  value = -2/77  -&gt; sign −  REJECT
+  (-7, -1)  test x = -4:  value = 2/7  -&gt; sign +  KEEP
+  (-1, 3)  test x = 1:  value = -4  -&gt; sign −  REJECT
+  (3, +∞)  test x = 4:  value = 22/5  -&gt; sign +  KEEP</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be positive.
+Therefore the solution is:
+(-7, -1) ∪ (3, +∞)
+Exclude x = -1, 3 because the original expression is undefined there.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g43" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    5/(x - 3) &gt; 3/(x + 1)
+  ⇔ 2·(x + 7)/((x - 3)·(x + 1)) &gt; 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: -7
+  Excluded values: x ≠ -1, x ≠ 3
+  x = -7  makes the numerator zero (multiplicity 1)
+  x = -1  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 3  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, -7)  test x = -8:  value = -2/77  -&gt; sign −  REJECT
+  (-7, -1)  test x = -4:  value = 2/7  -&gt; sign +  KEEP
+  (-1, 3)  test x = 1:  value = -4  -&gt; sign −  REJECT
+  (3, +∞)  test x = 4:  value = 22/5  -&gt; sign +  KEEP
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (-7, -1) ∪ (3, +∞)
+  Exclude x = -1, 3 because the expression is undefined there.
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-44">
+          <h2>Problem 44</h2>
+          <span class="badge">Inequality Sign Chart</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">1/(x - 2) &lt; 2/(3x - 9)</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Step 1 - Move Everything to One Side</div>
+              <div class="step-body">Start with the inequality:
+$$ 1/(x - 2) &lt; 2/(3x - 9) $$
+
+Move everything to the left so the right side is 0:
+$$ (x - 5)/(3·(x - 3)·(x - 2)) &lt; 0 $$</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 2 - Factor and State the Domain Restrictions</div>
+              <div class="step-body">Numerator factorization: x - 5
+Denominator factorization: 3·(x - 3)·(x - 2)
+Reduced expression for sign testing: (x - 5)/(3x^2 - 15x + 18)
+Domain restriction(s): x ≠ 2, x ≠ 3</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 3 - Find the Critical Numbers</div>
+              <div class="step-body">Critical numbers come from zeros of the numerator and denominator.
+  x = 2  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 3  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 5  makes the numerator zero (multiplicity 1)
+
+Place these on a number line in increasing order: 2, 3, 5</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 4 - Test the Sign on Each Interval</div>
+              <div class="step-body">Use one test value in each interval:
+  (-∞, 2)  test x = 1:  value = -2/3  -&gt; sign −  KEEP
+  (2, 3)  test x = 5/2:  value = 10/3  -&gt; sign +  REJECT
+  (3, 5)  test x = 4:  value = -1/6  -&gt; sign −  KEEP
+  (5, +∞)  test x = 6:  value = 1/36  -&gt; sign +  REJECT</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Step 5 - Write the Solution Set</div>
+              <div class="step-body">We need the expression to be negative.
+Therefore the solution is:
+(-∞, 2) ∪ (3, 5)
+Exclude x = 2, 3 because the original expression is undefined there.</div>
+            </div>
+            
+          </div>
+          
+          <div class="graph-wrap">
+            <div class="graph-label">Graph of f(x)</div>
+            <div id="g44" class="graph-div"></div>
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-sections">
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">① Rewrite in Standard Form</div>
+                <div class="answer-sec-body">
+                    1/(x - 2) &lt; 2/(3x - 9)
+  ⇔ (x - 5)/(3·(x - 3)·(x - 2)) &lt; 0
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">② Critical Numbers</div>
+                <div class="answer-sec-body">
+                    Zeros of numerator: 5
+  Excluded values: x ≠ 2, x ≠ 3
+  x = 2  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 3  makes the denominator zero, so it is excluded from the domain (multiplicity 1)
+  x = 5  makes the numerator zero (multiplicity 1)
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">③ Sign Chart Decision</div>
+                <div class="answer-sec-body">
+                    (-∞, 2)  test x = 1:  value = -2/3  -&gt; sign −  KEEP
+  (2, 3)  test x = 5/2:  value = 10/3  -&gt; sign +  REJECT
+  (3, 5)  test x = 4:  value = -1/6  -&gt; sign −  KEEP
+  (5, +∞)  test x = 6:  value = 1/36  -&gt; sign +  REJECT
+                </div>
+              </div>
+              
+              <div class="answer-section">
+                <div class="answer-sec-label">④ Final Answer</div>
+                <div class="answer-sec-body">
+                    Solution set: (-∞, 2) ∪ (3, 5)
+  Exclude x = 2, 3 because the expression is undefined there.
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+        
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var body = document.body,
+          sidebar = document.getElementById("sidebar"),
+          overlay = document.getElementById("overlay"),
+          btn = document.getElementById("menuBtn");
+        function openNav() {
+          body.classList.add("nav-open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+        function closeNav() {
+          body.classList.remove("nav-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+        btn.addEventListener("click", function () {
+          body.classList.contains("nav-open") ? closeNav() : openNav();
+        });
+        overlay.addEventListener("click", closeNav);
+        sidebar.querySelectorAll("a[data-target]").forEach(function (a) {
+          a.addEventListener("click", function () {
+            if (window.innerWidth <= 768) closeNav();
+          });
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeNav();
+        });
+
+        /* active link highlight */
+        var navLinks = {};
+        sidebar.querySelectorAll("a[data-target]").forEach(function (a) {
+          navLinks[a.dataset.target] = a;
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              var link = navLinks[entry.target.id];
+              if (!link) return;
+              if (entry.isIntersecting) {
+                Object.values(navLinks).forEach(function (l) {
+                  l.classList.remove("active");
+                });
+                link.classList.add("active");
+                link.scrollIntoView({ block: "nearest", behavior: "smooth" });
+              }
+            });
+          },
+          { rootMargin: "-10% 0px -80% 0px", threshold: 0 },
+        );
+        document.querySelectorAll(".problem[id]").forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
+    <script>
+      if (typeof Plotly !== 'undefined') {
+        var _GRAPHS = [
+          {"id":"g20","d":{"x":[-5.0,-4.95652,-4.91304,-4.86957,-4.82609,-4.78261,-4.73913,-4.69565,-4.65217,-4.6087,-4.56522,-4.52174,-4.47826,-4.43478,-4.3913,-4.34783,-4.30435,-4.26087,-4.21739,-4.17391,-4.13043,-4.08696,-4.04348,-4.0,-3.95652,-3.91304,-3.86957,-3.82609,-3.78261,-3.73913,-3.69565,-3.65217,-3.6087,-3.56522,-3.52174,-3.47826,-3.43478,-3.3913,-3.34783,-3.30435,-3.26087,-3.21739,-3.17391,-3.13043,-3.08696,-3.04348,-3.0,-2.95652,-2.91304,-2.86957,-2.82609,-2.78261,-2.73913,-2.69565,-2.65217,-2.6087,-2.56522,-2.52174,-2.47826,-2.43478,-2.3913,-2.34783,-2.30435,-2.26087,-2.21739,-2.17391,-2.13043,-2.08696,-2.04348,-2.0,-1.95652,-1.91304,-1.86957,-1.82609,-1.78261,-1.73913,-1.69565,-1.65217,-1.6087,-1.56522,-1.52174,-1.47826,-1.43478,-1.3913,-1.34783,-1.30435,-1.26087,-1.21739,-1.17391,-1.13043,-1.08696,-1.04348,-1.0,-0.95652,-0.91304,-0.86957,-0.82609,-0.78261,-0.73913,-0.69565,-0.65217,-0.6087,-0.56522,-0.52174,-0.47826,-0.43478,-0.3913,-0.34783,-0.30435,-0.26087,-0.21739,-0.17391,-0.13043,-0.08696,-0.04348,0.0,0.04348,0.08696,0.13043,0.17391,0.21739,0.26087,0.30435,0.34783,0.3913,0.43478,0.47826,0.52174,0.56522,0.6087,0.65217,0.69565,0.73913,0.78261,0.82609,0.86957,0.91304,0.95652,1.0,1.04348,1.08696,1.13043,1.17391,1.21739,1.26087,1.30435,1.34783,1.3913,1.43478,1.47826,1.52174,1.56522,1.6087,1.65217,1.69565,1.73913,1.78261,1.82609,1.86957,1.91304,1.95652,2.0,2.04348,2.08696,2.13043,2.17391,2.21739,2.26087,2.30435,2.34783,2.3913,2.43478,2.47826,2.52174,2.56522,2.6087,2.65217,2.69565,2.73913,2.78261,2.82609,2.86957,2.91304,2.95652,3.0,3.04348,3.08696,3.13043,3.17391,3.21739,3.26087,3.30435,3.34783,3.3913,3.43478,3.47826,3.52174,3.56522,3.6087,3.65217,3.69565,3.73913,3.78261,3.82609,3.86957,3.91304,3.95652,4.0,4.04348,4.08696,4.13043,4.17391,4.21739,4.26087,4.30435,4.34783,4.3913,4.43478,4.47826,4.52174,4.56522,4.6087,4.65217,4.69565,4.73913,4.78261,4.82609,4.86957,4.91304,4.95652,5.0,5.04348,5.08696,5.13043,5.17391,5.21739,5.26087,5.30435,5.34783,5.3913,5.43478,5.47826,5.52174,5.56522,5.6087,5.65217,5.69565,5.73913,5.78261,5.82609,5.86957,5.91304,5.95652,6.0,6.04348,6.08696,6.13043,6.17391,6.21739,6.26087,6.30435,6.34783,6.3913,6.43478,6.47826,6.52174,6.56522,6.6087,6.65217,6.69565,6.73913,6.78261,6.82609,6.86957,6.91304,6.95652,7.0,7.04348,7.08696,7.13043,7.17391,7.21739,7.26087,7.30435,7.34783,7.3913,7.43478,7.47826,7.52174,7.56522,7.6087,7.65217,7.69565,7.73913,7.78261,7.82609,7.86957,7.91304,7.95652,8.0],"y":[-300.0,-293.0869,-286.2602,-279.5195,-272.8643,-266.2941,-259.8083,-253.4066,-247.0884,-240.8531,-234.7004,-228.6297,-222.6406,-216.7325,-210.9049,-205.1574,-199.4894,-193.9006,-188.3902,-182.958,-177.6034,-172.3258,-167.1248,-162.0,-156.9508,-151.9767,-147.0772,-142.2518,-137.5001,-132.8216,-128.2157,-123.6819,-119.2199,-114.829,-110.5088,-106.2587,-102.0784,-97.9673,-93.9249,-89.9507,-86.0442,-82.205,-78.4325,-74.7262,-71.0857,-67.5105,-64.0,-60.5538,-57.1714,-53.8522,-50.5959,-47.4018,-44.2696,-41.1987,-38.1885,-35.2388,-32.3488,-29.5182,-26.7464,-24.033,-21.3775,-18.7793,-16.238,-13.7531,-11.3241,-8.9504,-6.6317,-4.3674,-2.157,0.0,2.1041,4.1557,6.1553,8.1036,10.0008,11.8476,13.6444,15.3918,17.0902,18.74,20.3419,21.8963,23.4036,24.8645,26.2793,27.6486,28.9728,30.2525,31.4881,32.6802,33.8292,34.9356,36.0,37.0228,38.0044,38.9455,39.8465,40.7078,41.53,42.3136,43.0591,43.7669,44.4376,45.0716,45.6694,46.2316,46.7586,47.2509,47.709,48.1335,48.5247,48.8832,49.2095,49.5041,49.7674,50.0,50.2024,50.3749,50.5183,50.6329,50.7192,50.7777,50.8089,50.8133,50.7915,50.7438,50.6708,50.573,50.4509,50.3049,50.1356,49.9435,49.7289,49.4926,49.2348,48.9562,48.6572,48.3383,48.0,47.6428,47.2672,46.8737,46.4627,46.0348,45.5905,45.1303,44.6546,44.1639,43.6587,43.1396,42.6071,42.0615,41.5034,40.9333,40.3518,39.7592,39.1561,38.5429,37.9203,37.2886,36.6483,36.0,35.3441,34.6812,34.0117,33.3361,32.6549,31.9686,31.2777,30.5827,29.8841,29.1824,28.478,27.7715,27.0634,26.3541,25.6441,24.934,24.2242,23.5152,22.8076,22.1018,21.3982,20.6975,20.0,19.3063,18.6169,17.9323,17.2529,16.5793,15.9119,15.2513,14.5978,13.9522,13.3147,12.686,12.0664,11.4566,10.8569,10.2679,9.6901,9.124,8.5701,8.0288,7.5006,6.9861,6.4857,6.0,5.5294,5.0744,4.6355,4.2132,3.808,3.4204,3.0509,2.6999,2.368,2.0557,1.7635,1.4917,1.2411,1.0119,0.8048,0.6202,0.4586,0.3205,0.2065,0.1169,0.0523,0.0132,0.0,0.0133,0.0536,0.1213,0.217,0.3411,0.4941,0.6766,0.889,1.1317,1.4054,1.7105,2.0475,2.4169,2.8191,3.2547,3.7242,4.228,4.7667,5.3407,5.9505,6.5967,7.2797,8.0,8.7581,9.5545,10.3897,11.2642,12.1785,13.1331,14.1284,15.165,16.2433,17.3639,18.5272,19.7337,20.984,22.2785,23.6177,25.0021,26.4322,27.9084,29.4314,31.0016,32.6194,34.2854,36.0,37.7638,39.5772,41.4408,43.355,45.3203,47.3372,49.4063,51.5279,53.7026,55.931,58.2134,60.5503,62.9424,65.39,67.8936,70.4539,73.0711,75.7459,78.4787,81.27,84.1203,87.0302,90.0],"key_points":[{"x":-2.0,"y":0.0,"label":"zero x=-2","color":"#2e7d32"},{"x":5.0,"y":0.0,"label":"zero x=5","color":"#2e7d32"}],"x_range":[-5.0,8.0],"y_range":[-5.2,5.2]}},
+          {"id":"g22","d":{"x":[-11.0,-10.95318,-10.90635,-10.85953,-10.81271,-10.76589,-10.71906,-10.67224,-10.62542,-10.5786,-10.53177,-10.48495,-10.43813,-10.3913,-10.34448,-10.29766,-10.25084,-10.20401,-10.15719,-10.11037,-10.06355,-10.01672,-9.9699,-9.92308,-9.87625,-9.82943,-9.78261,-9.73579,-9.68896,-9.64214,-9.59532,-9.54849,-9.50167,-9.45485,-9.40803,-9.3612,-9.31438,-9.26756,-9.22074,-9.17391,-9.12709,-9.08027,-9.03344,-8.98662,-8.9398,-8.89298,-8.84615,-8.79933,-8.75251,-8.70569,-8.65886,-8.61204,-8.56522,-8.51839,-8.47157,-8.42475,-8.37793,-8.3311,-8.28428,-8.23746,-8.19064,-8.14381,-8.09699,-8.05017,-8.00334,-7.95652,-7.9097,-7.86288,-7.81605,-7.76923,-7.72241,-7.67559,-7.62876,-7.58194,-7.53512,-7.48829,-7.44147,-7.39465,-7.34783,-7.301,-7.25418,-7.20736,-7.16054,-7.11371,-7.06689,-7.02007,-6.97324,-6.92642,-6.8796,-6.83278,-6.78595,-6.73913,-6.69231,-6.64548,-6.59866,-6.55184,-6.50502,-6.45819,-6.41137,-6.36455,-6.31773,-6.2709,-6.22408,-6.17726,-6.13043,-6.08361,-6.03679,-5.98997,-5.94314,-5.89632,-5.8495,-5.80268,-5.75585,-5.70903,-5.66221,-5.61538,-5.56856,-5.52174,-5.47492,-5.42809,-5.38127,-5.33445,-5.28763,-5.2408,-5.19398,-5.14716,-5.10033,-5.05351,-5.00669,-4.95987,-4.91304,-4.86622,-4.8194,-4.77258,-4.72575,-4.67893,-4.63211,-4.58528,-4.53846,-4.49164,-4.44482,-4.39799,-4.35117,-4.30435,-4.25753,-4.2107,-4.16388,-4.11706,-4.07023,-4.02341,-3.97659,-3.92977,-3.88294,-3.83612,-3.7893,-3.74247,-3.69565,-3.64883,-3.60201,-3.55518,-3.50836,-3.46154,-3.41472,-3.36789,-3.32107,-3.27425,-3.22742,-3.1806,-3.13378,-3.08696,-3.04013,-2.99331,-2.94649,-2.89967,-2.85284,-2.80602,-2.7592,-2.71237,-2.66555,-2.61873,-2.57191,-2.52508,-2.47826,-2.43144,-2.38462,-2.33779,-2.29097,-2.24415,-2.19732,-2.1505,-2.10368,-2.05686,-2.01003,-1.96321,-1.91639,-1.86957,-1.82274,-1.77592,-1.7291,-1.68227,-1.63545,-1.58863,-1.54181,-1.49498,-1.44816,-1.40134,-1.35452,-1.30769,-1.26087,-1.21405,-1.16722,-1.1204,-1.07358,-1.02676,-0.97993,-0.93311,-0.88629,-0.83946,-0.79264,-0.74582,-0.699,-0.65217,-0.60535,-0.55853,-0.51171,-0.46488,-0.41806,-0.37124,-0.32441,-0.27759,-0.23077,-0.18395,-0.13712,-0.0903,-0.04348,0.00334,0.05017,0.09699,0.14381,0.19064,0.23746,0.28428,0.3311,0.37793,0.42475,0.47157,0.51839,0.56522,0.61204,0.65886,0.70569,0.75251,0.79933,0.84615,0.89298,0.9398,0.98662,1.03344,1.08027,1.12709,1.17391,1.22074,1.26756,1.31438,1.3612,1.40803,1.45485,1.50167,1.54849,1.59532,1.64214,1.68896,1.73579,1.78261,1.82943,1.87625,1.92308,1.9699,2.01672,2.06355,2.11037,2.15719,2.20401,2.25084,2.29766,2.34448,2.3913,2.43813,2.48495,2.53177,2.5786,2.62542,2.67224,2.71906,2.76589,2.81271,2.85953,2.90635,2.95318,3.0],"y":[-363.0,-354.2989,-345.7067,-337.223,-328.847,-320.5781,-312.4158,-304.3595,-296.4084,-288.562,-280.8197,-273.1809,-265.6449,-258.2111,-250.879,-243.6478,-236.5171,-229.486,-222.5542,-215.7208,-208.9854,-202.3473,-195.8059,-189.3605,-183.0106,-176.7555,-170.5946,-164.5274,-158.5531,-152.6712,-146.8811,-141.1821,-135.5736,-130.0551,-124.6258,-119.2852,-114.0327,-108.8676,-103.7894,-98.7973,-93.8909,-89.0694,-84.3323,-79.679,-75.1088,-70.6211,-66.2153,-61.8908,-57.647,-53.4832,-49.3988,-45.3933,-41.466,-37.6163,-33.8436,-30.1472,-26.5265,-22.981,-19.51,-16.1129,-12.7891,-9.5379,-6.3588,-3.2511,-0.2142,2.7524,5.6495,8.4777,11.2374,13.9294,16.5544,19.1128,21.6053,24.0325,26.3951,28.6937,30.9288,33.1011,35.2112,37.2598,39.2474,41.1746,43.0421,44.8505,46.6004,48.2924,49.9272,51.5053,53.0273,54.494,55.9058,57.2635,58.5676,59.8187,61.0175,62.1646,63.2606,64.3061,65.3017,66.248,67.1457,67.9954,68.7977,69.5531,70.2624,70.9262,71.5449,72.1194,72.6501,73.1378,73.5829,73.9862,74.3482,74.6696,74.951,75.193,75.3962,75.5612,75.6886,75.7792,75.8334,75.8518,75.8352,75.7841,75.6992,75.581,75.4302,75.2474,75.0331,74.7881,74.5129,74.2082,73.8746,73.5126,73.1229,72.7061,72.2629,71.7938,71.2995,70.7806,70.2376,69.6713,69.0821,68.4709,67.838,67.1843,66.5102,65.8165,65.1037,64.3724,63.6232,62.8569,62.0739,61.2749,60.4605,59.6314,58.7881,57.9313,57.0616,56.1795,55.2858,54.381,53.4657,52.5406,51.6063,50.6634,49.7124,48.7541,47.7891,46.8179,45.8411,44.8595,43.8735,42.8839,41.8912,40.8961,39.8991,38.9009,37.9021,36.9034,35.9052,34.9083,33.9133,32.9207,31.9313,30.9455,29.9641,28.9876,28.0167,27.0519,26.094,25.1434,24.2009,23.267,22.3423,21.4275,20.5233,19.6301,18.7486,17.8795,17.0233,16.1806,15.3522,14.5385,13.7403,12.9581,12.1925,11.4442,10.7138,10.0019,9.3091,8.636,7.9832,7.3514,6.7412,6.1531,5.5879,5.046,4.5283,4.0351,3.5672,3.1253,2.7098,2.3214,1.9608,1.6285,1.3251,1.0514,0.8078,0.5951,0.4137,0.2645,0.1478,0.0645,0.015,0.0001,0.0203,0.0762,0.1684,0.2977,0.4645,0.6695,0.9133,1.1966,1.5199,1.8839,2.2892,2.7363,3.226,3.7588,4.3354,4.9563,5.6222,6.3336,7.0913,7.8958,8.7478,9.6478,10.5965,11.5944,12.6423,13.7407,14.8902,16.0915,17.3452,18.6518,20.012,21.4265,22.8957,24.4205,26.0012,27.6387,29.3335,31.0861,32.8973,34.7677,36.6978,38.6882,40.7397,42.8528,45.0281,47.2662,49.5678,51.9334,54.3638,56.8594,59.421,62.0491,64.7443,67.5073,70.3387,73.2391,76.2091,79.2493,82.3604,85.5429,88.7975,92.1248,95.5255,99.0],"key_points":[{"x":-8.0,"y":0.0,"label":"zero x=-8","color":"#2e7d32"},{"x":0.0,"y":0.0,"label":"zero x=0","color":"#2e7d32"}],"x_range":[-11.0,3.0],"y_range":[-5.2,5.2]}},
+          {"id":"g28","d":{"x":[-4.0,-3.96656,-3.93311,-3.89967,-3.86622,-3.83278,-3.79933,-3.76589,-3.73244,-3.699,-3.66555,-3.63211,-3.59866,-3.56522,-3.53177,-3.49833,-3.46488,-3.43144,-3.39799,-3.36455,-3.3311,-3.29766,-3.26421,-3.23077,-3.19732,-3.16388,-3.13043,-3.09699,-3.06355,-3.0301,-2.99666,-2.96321,-2.92977,-2.89632,-2.86288,-2.82943,-2.79599,-2.76254,-2.7291,-2.69565,-2.66221,-2.62876,-2.59532,-2.56187,-2.52843,-2.49498,-2.46154,-2.42809,-2.39465,-2.3612,-2.32776,-2.29431,-2.26087,-2.22742,-2.19398,-2.16054,-2.12709,-2.09365,-2.0602,-2.02676,-1.99331,-1.95987,-1.92642,-1.89298,-1.85953,-1.82609,-1.79264,-1.7592,-1.72575,-1.69231,-1.65886,-1.62542,-1.59197,-1.55853,-1.52508,-1.49164,-1.45819,-1.42475,-1.3913,-1.35786,-1.32441,-1.29097,-1.25753,-1.22408,-1.19064,-1.15719,-1.12375,-1.0903,-1.05686,-1.02341,-0.98997,-0.95652,-0.92308,-0.88963,-0.85619,-0.82274,-0.7893,-0.75585,-0.72241,-0.68896,-0.65552,-0.62207,-0.58863,-0.55518,-0.52174,-0.48829,-0.45485,-0.4214,-0.38796,-0.35452,-0.32107,-0.28763,-0.25418,-0.22074,-0.18729,-0.15385,-0.1204,-0.08696,-0.05351,-0.02007,0.01338,0.04682,0.08027,0.11371,0.14716,0.1806,0.21405,0.24749,0.28094,0.31438,0.34783,0.38127,0.41472,0.44816,0.48161,0.51505,0.54849,0.58194,0.61538,0.64883,0.68227,0.71572,0.74916,0.78261,0.81605,0.8495,0.88294,0.91639,0.94983,0.98328,1.01672,1.05017,1.08361,1.11706,1.1505,1.18395,1.21739,1.25084,1.28428,1.31773,1.35117,1.38462,1.41806,1.45151,1.48495,1.51839,1.55184,1.58528,1.61873,1.65217,1.68562,1.71906,1.75251,1.78595,1.8194,1.85284,1.88629,1.91973,1.95318,1.98662,2.02007,2.05351,2.08696,2.1204,2.15385,2.18729,2.22074,2.25418,2.28763,2.32107,2.35452,2.38796,2.4214,2.45485,2.48829,2.52174,2.55518,2.58863,2.62207,2.65552,2.68896,2.72241,2.75585,2.7893,2.82274,2.85619,2.88963,2.92308,2.95652,2.98997,3.02341,3.05686,3.0903,3.12375,3.15719,3.19064,3.22408,3.25753,3.29097,3.32441,3.35786,3.3913,3.42475,3.45819,3.49164,3.52508,3.55853,3.59197,3.62542,3.65886,3.69231,3.72575,3.7592,3.79264,3.82609,3.85953,3.89298,3.92642,3.95987,3.99331,4.02676,4.0602,4.09365,4.12709,4.16054,4.19398,4.22742,4.26087,4.29431,4.32776,4.3612,4.39465,4.42809,4.46154,4.49498,4.52843,4.56187,4.59532,4.62876,4.66221,4.69565,4.7291,4.76254,4.79599,4.82943,4.86288,4.89632,4.92977,4.96321,4.99666,5.0301,5.06355,5.09699,5.13043,5.16388,5.19732,5.23077,5.26421,5.29766,5.3311,5.36455,5.39799,5.43144,5.46488,5.49833,5.53177,5.56522,5.59866,5.63211,5.66555,5.699,5.73244,5.76589,5.79933,5.83278,5.86622,5.89967,5.93311,5.96656,6.0],"y":[-84.0,-81.9755,-79.9821,-78.0195,-76.0876,-74.1861,-72.3149,-70.4736,-68.662,-66.88,-65.1272,-63.4036,-61.7088,-60.0426,-58.4048,-56.7952,-55.2135,-53.6596,-52.1332,-50.634,-49.162,-47.7167,-46.298,-44.9058,-43.5397,-42.1995,-40.885,-39.596,-38.3323,-37.0936,-35.8797,-34.6904,-33.5255,-32.3847,-31.2678,-30.1746,-29.1049,-28.0584,-27.0349,-26.0342,-25.0561,-24.1003,-23.1666,-22.2548,-21.3647,-20.4961,-19.6486,-18.8222,-18.0165,-17.2313,-16.4665,-15.7218,-14.997,-14.2918,-13.606,-12.9394,-12.2918,-11.663,-11.0526,-10.4606,-9.8866,-9.3305,-8.7921,-8.271,-7.7671,-7.2802,-6.81,-6.3563,-5.9189,-5.4975,-5.092,-4.702,-4.3275,-3.9681,-3.6237,-3.2939,-2.9787,-2.6777,-2.3907,-2.1176,-1.858,-1.6118,-1.3788,-1.1586,-0.9512,-0.7562,-0.5734,-0.4027,-0.2438,-0.0964,0.0396,0.1645,0.2786,0.3819,0.4748,0.5575,0.6302,0.6931,0.7465,0.7905,0.8255,0.8515,0.869,0.878,0.8788,0.8716,0.8567,0.8342,0.8045,0.7676,0.7239,0.6736,0.6169,0.554,0.4851,0.4106,0.3305,0.2451,0.1547,0.0594,-0.0405,-0.1448,-0.2532,-0.3655,-0.4816,-0.6011,-0.724,-0.8498,-0.9785,-1.1097,-1.2434,-1.3791,-1.5168,-1.6562,-1.797,-1.9391,-2.0822,-2.2261,-2.3705,-2.5153,-2.6602,-2.805,-2.9495,-3.0934,-3.2366,-3.3788,-3.5197,-3.6591,-3.7969,-3.9328,-4.0666,-4.198,-4.3269,-4.4529,-4.5759,-4.6957,-4.812,-4.9246,-5.0333,-5.1379,-5.2381,-5.3336,-5.4244,-5.5101,-5.5906,-5.6655,-5.7348,-5.7981,-5.8552,-5.906,-5.9501,-5.9874,-6.0176,-6.0406,-6.056,-6.0637,-6.0635,-6.055,-6.0382,-6.0127,-5.9783,-5.9349,-5.8821,-5.8199,-5.7478,-5.6658,-5.5736,-5.471,-5.3577,-5.2335,-5.0982,-4.9516,-4.7934,-4.6235,-4.4416,-4.2474,-4.0408,-3.8215,-3.5893,-3.344,-3.0853,-2.8131,-2.5271,-2.227,-1.9127,-1.584,-1.2405,-0.8821,-0.5086,-0.1197,0.2848,0.7051,1.1414,1.594,2.0631,2.5489,3.0517,3.5716,4.1089,4.6638,5.2366,5.8274,6.4365,7.0641,7.7105,8.3758,9.0603,9.7642,10.4877,11.2311,11.9945,12.7783,13.5826,14.4077,15.2537,16.121,17.0096,17.92,18.8522,19.8065,20.7831,21.7823,22.8042,23.8492,24.9174,26.009,27.1243,28.2635,29.4268,30.6145,31.8267,33.0638,34.3258,35.6131,36.9259,38.2643,39.6287,41.0192,42.4361,43.8796,45.3499,46.8472,48.3718,49.9239,51.5037,53.1114,54.7473,56.4116,58.1045,59.8262,61.577,63.3571,65.1667,67.006,68.8753,70.7747,72.7046,74.6651,76.6564,78.6789,80.7326,82.8179,84.9349,87.0839,89.2651,91.4787,93.725,96.0041,98.3164,100.662,103.0411,105.454,107.9009,110.382,112.8976,115.4478,118.033,120.6532,123.3088,126.0],"key_points":[{"x":-1.0,"y":0.0,"label":"zero x=-1","color":"#2e7d32"},{"x":0.0,"y":0.0,"label":"zero x=0","color":"#2e7d32"},{"x":3.0,"y":0.0,"label":"zero x=3","color":"#2e7d32"}],"x_range":[-4.0,6.0],"y_range":[-5.2,5.2]}},
+          {"id":"g35","d":{"x":[-5.0,-4.96321,-4.92642,-4.88963,-4.85284,-4.81605,-4.77926,-4.74247,-4.70569,-4.6689,-4.63211,-4.59532,-4.55853,-4.52174,-4.48495,-4.44816,-4.41137,-4.37458,-4.33779,-4.301,-4.26421,-4.22742,-4.19064,-4.15385,-4.11706,-4.08027,-4.04348,-4.00669,-3.9699,-3.93311,-3.89632,-3.85953,-3.82274,-3.78595,-3.74916,-3.71237,-3.67559,-3.6388,-3.60201,-3.56522,-3.52843,-3.49164,-3.45485,-3.41806,-3.38127,-3.34448,-3.30769,-3.2709,-3.23411,-3.19732,-3.16054,-3.12375,-3.08696,-3.05017,-3.01338,-2.97659,-2.9398,-2.90301,-2.86622,-2.82943,-2.79264,-2.75585,-2.71906,-2.68227,-2.64548,-2.6087,-2.57191,-2.53512,-2.49833,-2.46154,-2.42475,-2.38796,-2.35117,-2.31438,-2.27759,-2.2408,-2.20401,-2.16722,-2.13043,-2.09365,-2.05686,-2.02007,-1.98328,-1.94649,-1.9097,-1.87291,-1.83612,-1.79933,-1.76254,-1.72575,-1.68896,-1.65217,-1.61538,-1.5786,-1.54181,-1.50502,-1.46823,-1.43144,-1.39465,-1.35786,-1.32107,-1.28428,-1.24749,-1.2107,-1.17391,-1.13712,-1.10033,-1.06355,-1.02676,-0.98997,-0.95318,-0.91639,-0.8796,-0.84281,-0.80602,-0.76923,-0.73244,-0.69565,-0.65886,-0.62207,-0.58528,-0.54849,-0.51171,-0.47492,-0.43813,-0.40134,-0.36455,-0.32776,-0.29097,-0.25418,-0.21739,-0.1806,-0.14381,-0.10702,-0.07023,-0.03344,0.00334,0.04013,0.07692,0.11371,0.1505,0.18729,0.22408,0.26087,0.29766,0.33445,0.37124,0.40803,0.44482,0.48161,0.51839,0.55518,0.59197,0.62876,0.66555,0.70234,0.73913,0.77592,0.81271,0.8495,0.88629,0.92308,0.95987,0.99666,1.03344,1.07023,1.10702,1.14381,1.1806,1.21739,1.25418,1.29097,1.32776,1.36455,1.40134,1.43813,1.47492,1.51171,1.54849,1.58528,1.62207,1.65886,1.69565,1.73244,1.76923,1.80602,1.84281,1.8796,1.91639,1.95318,1.98997,2.02676,2.06355,2.10033,2.13712,2.17391,2.2107,2.24749,2.28428,2.32107,2.35786,2.39465,2.43144,2.46823,2.50502,2.54181,2.5786,2.61538,2.65217,2.68896,2.72575,2.76254,2.79933,2.83612,2.87291,2.9097,2.94649,2.98328,3.02007,3.05686,3.09365,3.13043,3.16722,3.20401,3.2408,3.27759,3.31438,3.35117,3.38796,3.42475,3.46154,3.49833,3.53512,3.57191,3.6087,3.64548,3.68227,3.71906,3.75585,3.79264,3.82943,3.86622,3.90301,3.9398,3.97659,4.01338,4.05017,4.08696,4.12375,4.16054,4.19732,4.23411,4.2709,4.30769,4.34448,4.38127,4.41806,4.45485,4.49164,4.52843,4.56522,4.60201,4.6388,4.67559,4.71237,4.74916,4.78595,4.82274,4.85953,4.89632,4.93311,4.9699,5.00669,5.04348,5.08027,5.11706,5.15385,5.19064,5.22742,5.26421,5.301,5.33779,5.37458,5.41137,5.44816,5.48495,5.52174,5.55853,5.59532,5.63211,5.6689,5.70569,5.74247,5.77926,5.81605,5.85284,5.88963,5.92642,5.96321,6.0],"y":[-4.0,-3.957,-3.914,-3.8709,-3.8277,-3.7844,-3.7411,-3.6976,-3.6541,-3.6105,-3.5668,-3.523,-3.4791,-3.4351,-3.391,-3.3469,-3.3026,-3.2582,-3.2137,-3.1691,-3.1244,-3.0796,-3.0347,-2.9897,-2.9445,-2.8992,-2.8538,-2.8083,-2.7626,-2.7168,-2.6709,-2.6248,-2.5786,-2.5323,-2.4858,-2.4391,-2.3923,-2.3454,-2.2982,-2.2509,-2.2035,-2.1558,-2.108,-2.06,-2.0118,-1.9634,-1.9148,-1.866,-1.8171,-1.7678,-1.7184,-1.6688,-1.6189,-1.5687,-1.5184,-1.4678,-1.4169,-1.3657,-1.3143,-1.2626,-1.2106,-1.1583,-1.1058,-1.0528,-0.9996,-0.946,-0.8921,-0.8379,-0.7832,-0.7282,-0.6728,-0.617,-0.5608,-0.5041,-0.447,-0.3894,-0.3314,-0.2728,-0.2138,-0.1542,-0.0941,-0.0334,0.0279,0.0898,0.1524,0.2156,0.2794,0.344,0.4094,0.4755,0.5424,0.6101,0.6787,0.7483,0.8187,0.8902,0.9627,1.0362,1.1109,1.1868,1.2639,1.3424,1.4222,1.5034,1.5861,1.6704,1.7564,1.8441,1.9336,2.0252,2.1187,2.2145,2.3126,2.4131,2.5162,2.6221,2.7309,2.8428,2.9581,3.0769,3.1995,3.3262,3.4573,3.5931,3.734,3.8803,4.0325,4.1911,4.3567,4.5298,4.7112,4.9016,5.1018,5.3129,5.536,5.7724,6.0235,6.291,6.5769,6.8835,7.2135,7.57,7.9568,8.3785,8.8405,9.3495,9.9138,10.5436,11.252,12.0558,12.9767,14.0439,15.2969,16.7909,18.6056,20.8596,23.7391,27.552,32.8484,40.7162,53.651,78.9231,150.4599,1794.9967,-178.3666,-84.3583,-54.9555,-40.5771,-32.0416,-26.3826,-22.3511,-19.3297,-16.9784,-15.0942,-13.5487,-12.2565,-11.1589,-10.2138,-9.3905,-8.6661,-8.0231,-7.4477,-6.9293,-6.4593,-6.0308,-5.638,-5.2762,-4.9417,-4.6311,-4.3416,-4.0708,-3.8169,-3.578,-3.3526,-3.1393,-2.9372,-2.7451,-2.5622,-2.3876,-2.2207,-2.0609,-1.9075,-1.7602,-1.6183,-1.4816,-1.3497,-1.2223,-1.0989,-0.9794,-0.8635,-0.751,-0.6416,-0.5352,-0.4316,-0.3307,-0.2322,-0.136,-0.042,0.0499,0.1398,0.2278,0.3141,0.3987,0.4817,0.5632,0.6432,0.7219,0.7993,0.8754,0.9503,1.024,1.0967,1.1684,1.239,1.3087,1.3775,1.4454,1.5124,1.5787,1.6441,1.7089,1.7729,1.8362,1.8988,1.9609,2.0223,2.0831,2.1433,2.203,2.2621,2.3208,2.3789,2.4365,2.4937,2.5505,2.6068,2.6627,2.7182,2.7732,2.828,2.8823,2.9363,2.9899,3.0432,3.0962,3.1488,3.2011,3.2532,3.3049,3.3564,3.4076,3.4585,3.5092,3.5596,3.6098,3.6597,3.7094,3.7589,3.8081,3.8572,3.906,3.9546,4.003,4.0512,4.0993,4.1471,4.1948,4.2423,4.2896,4.3368,4.3838,4.4306,4.4773,4.5238,4.5702,4.6165,4.6625,4.7085,4.7543,4.8],"key_points":[{"x":-2.0,"y":0.0,"label":"zero x=-2","color":"#2e7d32"},{"x":3.0,"y":0.0,"label":"zero x=3","color":"#2e7d32"}],"x_range":[-5.0,6.0],"y_range":[-5.2,5.2]}},
+          {"id":"g37","d":{"x":[-8.0,-7.95652,-7.91304,-7.86957,-7.82609,-7.78261,-7.73913,-7.69565,-7.65217,-7.6087,-7.56522,-7.52174,-7.47826,-7.43478,-7.3913,-7.34783,-7.30435,-7.26087,-7.21739,-7.17391,-7.13043,-7.08696,-7.04348,-7.0,-6.95652,-6.91304,-6.86957,-6.82609,-6.78261,-6.73913,-6.69565,-6.65217,-6.6087,-6.56522,-6.52174,-6.47826,-6.43478,-6.3913,-6.34783,-6.30435,-6.26087,-6.21739,-6.17391,-6.13043,-6.08696,-6.04348,-6.0,-5.95652,-5.91304,-5.86957,-5.82609,-5.78261,-5.73913,-5.69565,-5.65217,-5.6087,-5.56522,-5.52174,-5.47826,-5.43478,-5.3913,-5.34783,-5.30435,-5.26087,-5.21739,-5.17391,-5.13043,-5.08696,-5.04348,-5.0,-4.95652,-4.91304,-4.86957,-4.82609,-4.78261,-4.73913,-4.69565,-4.65217,-4.6087,-4.56522,-4.52174,-4.47826,-4.43478,-4.3913,-4.34783,-4.30435,-4.26087,-4.21739,-4.17391,-4.13043,-4.08696,-4.04348,-4.0,-3.95652,-3.91304,-3.86957,-3.82609,-3.78261,-3.73913,-3.69565,-3.65217,-3.6087,-3.56522,-3.52174,-3.47826,-3.43478,-3.3913,-3.34783,-3.30435,-3.26087,-3.21739,-3.17391,-3.13043,-3.08696,-3.04348,-3.0,-2.95652,-2.91304,-2.86957,-2.82609,-2.78261,-2.73913,-2.69565,-2.65217,-2.6087,-2.56522,-2.52174,-2.47826,-2.43478,-2.3913,-2.34783,-2.30435,-2.26087,-2.21739,-2.17391,-2.13043,-2.08696,-2.04348,-2.0,-1.95652,-1.91304,-1.86957,-1.82609,-1.78261,-1.73913,-1.69565,-1.65217,-1.6087,-1.56522,-1.52174,-1.47826,-1.43478,-1.3913,-1.34783,-1.30435,-1.26087,-1.21739,-1.17391,-1.13043,-1.08696,-1.04348,-1.0,-0.95652,-0.91304,-0.86957,-0.82609,-0.78261,-0.73913,-0.69565,-0.65217,-0.6087,-0.56522,-0.52174,-0.47826,-0.43478,-0.3913,-0.34783,-0.30435,-0.26087,-0.21739,-0.17391,-0.13043,-0.08696,-0.04348,0.0,0.04348,0.08696,0.13043,0.17391,0.21739,0.26087,0.30435,0.34783,0.3913,0.43478,0.47826,0.52174,0.56522,0.6087,0.65217,0.69565,0.73913,0.78261,0.82609,0.86957,0.91304,0.95652,1.0,1.04348,1.08696,1.13043,1.17391,1.21739,1.26087,1.30435,1.34783,1.3913,1.43478,1.47826,1.52174,1.56522,1.6087,1.65217,1.69565,1.73913,1.78261,1.82609,1.86957,1.91304,1.95652,2.0,2.04348,2.08696,2.13043,2.17391,2.21739,2.26087,2.30435,2.34783,2.3913,2.43478,2.47826,2.52174,2.56522,2.6087,2.65217,2.69565,2.73913,2.78261,2.82609,2.86957,2.91304,2.95652,3.0,3.04348,3.08696,3.13043,3.17391,3.21739,3.26087,3.30435,3.34783,3.3913,3.43478,3.47826,3.52174,3.56522,3.6087,3.65217,3.69565,3.73913,3.78261,3.82609,3.86957,3.91304,3.95652,4.0,4.04348,4.08696,4.13043,4.17391,4.21739,4.26087,4.30435,4.34783,4.3913,4.43478,4.47826,4.52174,4.56522,4.6087,4.65217,4.69565,4.73913,4.78261,4.82609,4.86957,4.91304,4.95652,5.0],"y":[0.15,0.1474,0.1448,0.1421,0.1395,0.1369,0.1342,0.1316,0.1289,0.1263,0.1236,0.121,0.1183,0.1156,0.1129,0.1103,0.1076,0.1049,0.1022,0.0996,0.0969,0.0942,0.0916,0.0889,0.0862,0.0836,0.0809,0.0783,0.0757,0.073,0.0704,0.0678,0.0652,0.0627,0.0601,0.0576,0.055,0.0525,0.0501,0.0476,0.0452,0.0428,0.0404,0.0381,0.0357,0.0335,0.0312,0.0291,0.0269,0.0248,0.0228,0.0208,0.0189,0.017,0.0152,0.0135,0.0118,0.0103,0.0088,0.0074,0.0061,0.0049,0.0038,0.0029,0.002,0.0013,0.0008,0.0003,0.0001,0.0,0.0001,0.0004,0.0009,0.0016,0.0025,0.0037,0.0051,0.0069,0.0089,0.0112,0.0139,0.017,0.0204,0.0242,0.0285,0.0333,0.0386,0.0444,0.0508,0.0579,0.0656,0.0741,0.0833,0.0934,0.1044,0.1165,0.1295,0.1438,0.1593,0.1762,0.1945,0.2145,0.2363,0.2601,0.2859,0.3142,0.345,0.3787,0.4156,0.456,0.5003,0.549,0.6027,0.6619,0.7274,0.8,0.8808,0.9709,1.0719,1.1854,1.3136,1.4593,1.6256,1.8168,2.0384,2.2974,2.6034,2.9691,3.4127,3.9604,4.6513,5.5469,6.75,8.4454,11.0026,15.2842,23.8777,49.7204,null,-53.8462,-28.0056,-19.4157,-15.1392,-12.5885,-10.9012,-9.7076,-8.8229,-8.1446,-7.611,-7.1829,-6.8344,-6.5472,-6.3086,-6.1091,-5.9416,-5.8008,-5.6824,-5.5833,-5.5007,-5.4326,-5.3773,-5.3333,-5.2996,-5.2752,-5.2593,-5.2513,-5.2506,-5.2567,-5.2694,-5.2882,-5.313,-5.3436,-5.3798,-5.4216,-5.4687,-5.5214,-5.5794,-5.643,-5.712,-5.7867,-5.8671,-5.9535,-6.0459,-6.1447,-6.25,-6.3622,-6.4815,-6.6084,-6.7433,-6.8867,-7.0389,-7.2008,-7.3728,-7.5558,-7.7505,-7.9579,-8.179,-8.415,-8.6672,-8.9371,-9.2263,-9.5369,-9.8711,-10.2313,-10.6206,-11.0424,-11.5006,-12.0,-12.5461,-13.1455,-13.8062,-14.5379,-15.3521,-16.2635,-17.2903,-18.4554,-19.7885,-21.3281,-23.126,-25.2525,-27.8061,-30.929,-34.8348,-39.8588,-46.5601,-55.9448,-70.0256,-93.4981,-140.45,-281.3187,null,282.1935,141.3245,94.3719,70.8984,56.8165,47.4303,40.7273,35.7013,31.7932,28.6676,26.1112,23.9816,22.1802,20.6368,19.2997,18.1302,17.0988,16.1823,15.3627,14.6254,13.9587,13.3529,12.8,12.2935,11.8277,11.398,11.0003,10.6312,10.2878,9.9675,9.668,9.3873,9.1239,8.8761,8.6425,8.4221,8.2137,8.0164,7.8293,7.6517,7.4829,7.3221,7.169,7.0229,6.8834,6.75,6.6224,6.5001,6.383,6.2706,6.1626,6.0589,5.9591,5.8631,5.7707,5.6816,5.5957,5.5128,5.4327,5.3554,5.2806,5.2083,5.1384,5.0706,5.005,4.9414,4.8798,4.8199,4.7619],"key_points":[{"x":-5.0,"y":0.0,"label":"zero x=-5","color":"#2e7d32"}],"x_range":[-8.0,5.0],"y_range":[-5.2,5.2]}},
+          {"id":"g40","d":{"x":[1.0,1.02007,1.04013,1.0602,1.08027,1.10033,1.1204,1.14047,1.16054,1.1806,1.20067,1.22074,1.2408,1.26087,1.28094,1.301,1.32107,1.34114,1.3612,1.38127,1.40134,1.4214,1.44147,1.46154,1.48161,1.50167,1.52174,1.54181,1.56187,1.58194,1.60201,1.62207,1.64214,1.66221,1.68227,1.70234,1.72241,1.74247,1.76254,1.78261,1.80268,1.82274,1.84281,1.86288,1.88294,1.90301,1.92308,1.94314,1.96321,1.98328,2.00334,2.02341,2.04348,2.06355,2.08361,2.10368,2.12375,2.14381,2.16388,2.18395,2.20401,2.22408,2.24415,2.26421,2.28428,2.30435,2.32441,2.34448,2.36455,2.38462,2.40468,2.42475,2.44482,2.46488,2.48495,2.50502,2.52508,2.54515,2.56522,2.58528,2.60535,2.62542,2.64548,2.66555,2.68562,2.70569,2.72575,2.74582,2.76589,2.78595,2.80602,2.82609,2.84615,2.86622,2.88629,2.90635,2.92642,2.94649,2.96656,2.98662,3.00669,3.02676,3.04682,3.06689,3.08696,3.10702,3.12709,3.14716,3.16722,3.18729,3.20736,3.22742,3.24749,3.26756,3.28763,3.30769,3.32776,3.34783,3.36789,3.38796,3.40803,3.42809,3.44816,3.46823,3.48829,3.50836,3.52843,3.54849,3.56856,3.58863,3.6087,3.62876,3.64883,3.6689,3.68896,3.70903,3.7291,3.74916,3.76923,3.7893,3.80936,3.82943,3.8495,3.86957,3.88963,3.9097,3.92977,3.94983,3.9699,3.98997,4.01003,4.0301,4.05017,4.07023,4.0903,4.11037,4.13043,4.1505,4.17057,4.19064,4.2107,4.23077,4.25084,4.2709,4.29097,4.31104,4.3311,4.35117,4.37124,4.3913,4.41137,4.43144,4.45151,4.47157,4.49164,4.51171,4.53177,4.55184,4.57191,4.59197,4.61204,4.63211,4.65217,4.67224,4.69231,4.71237,4.73244,4.75251,4.77258,4.79264,4.81271,4.83278,4.85284,4.87291,4.89298,4.91304,4.93311,4.95318,4.97324,4.99331,5.01338,5.03344,5.05351,5.07358,5.09365,5.11371,5.13378,5.15385,5.17391,5.19398,5.21405,5.23411,5.25418,5.27425,5.29431,5.31438,5.33445,5.35452,5.37458,5.39465,5.41472,5.43478,5.45485,5.47492,5.49498,5.51505,5.53512,5.55518,5.57525,5.59532,5.61538,5.63545,5.65552,5.67559,5.69565,5.71572,5.73579,5.75585,5.77592,5.79599,5.81605,5.83612,5.85619,5.87625,5.89632,5.91639,5.93645,5.95652,5.97659,5.99666,6.01672,6.03679,6.05686,6.07692,6.09699,6.11706,6.13712,6.15719,6.17726,6.19732,6.21739,6.23746,6.25753,6.27759,6.29766,6.31773,6.33779,6.35786,6.37793,6.39799,6.41806,6.43813,6.45819,6.47826,6.49833,6.51839,6.53846,6.55853,6.5786,6.59866,6.61873,6.6388,6.65886,6.67893,6.699,6.71906,6.73913,6.7592,6.77926,6.79933,6.8194,6.83946,6.85953,6.8796,6.89967,6.91973,6.9398,6.95987,6.97993,7.0],"y":[-2.0,-2.0135,-2.0271,-2.041,-2.055,-2.0692,-2.0836,-2.0982,-2.1131,-2.1281,-2.1434,-2.1588,-2.1745,-2.1905,-2.2066,-2.223,-2.2397,-2.2566,-2.2738,-2.2912,-2.3089,-2.3268,-2.3451,-2.3636,-2.3825,-2.4016,-2.4211,-2.4408,-2.4609,-2.4813,-2.5021,-2.5232,-2.5447,-2.5665,-2.5887,-2.6114,-2.6344,-2.6578,-2.6816,-2.7059,-2.7306,-2.7558,-2.7814,-2.8075,-2.8341,-2.8612,-2.8889,-2.9171,-2.9458,-2.9751,-3.005,-3.0355,-3.0667,-3.0984,-3.1309,-3.164,-3.1979,-3.2324,-3.2678,-3.3039,-3.3408,-3.3785,-3.4171,-3.4566,-3.4971,-3.5385,-3.5808,-3.6242,-3.6687,-3.7143,-3.761,-3.8089,-3.8581,-3.9085,-3.9603,-4.0134,-4.068,-4.1241,-4.1818,-4.2411,-4.3022,-4.365,-4.4296,-4.4962,-4.5649,-4.6357,-4.7087,-4.784,-4.8618,-4.9421,-5.0252,-5.1111,-5.2,-5.292,-5.3874,-5.4862,-5.5888,-5.6952,-5.8058,-5.9208,-6.0404,-6.1649,-6.2947,-6.4301,-6.5714,-6.7191,-6.8736,-7.0353,-7.2048,-7.3827,-7.5696,-7.7662,-7.9733,-8.1918,-8.4225,-8.6667,-8.9254,-9.2,-9.4921,-9.8033,-10.1356,-10.4912,-10.8727,-11.283,-11.7255,-12.2041,-12.7234,-13.2889,-13.907,-14.5854,-15.3333,-16.1622,-17.0857,-18.1212,-19.2903,-20.6207,-22.1481,-23.92,-26.0,-28.4762,-31.4737,-35.1765,-39.8667,-46.0,-54.3636,-66.4444,-85.4286,-119.6,-199.3333,-598.0,598.0,199.3333,119.6,85.4286,66.4444,54.3636,46.0,39.8667,35.1765,31.4737,28.4762,26.0,23.92,22.1481,20.6207,19.2903,18.1212,17.0857,16.1622,15.3333,14.5854,13.907,13.2889,12.7234,12.2041,11.7255,11.283,10.8727,10.4912,10.1356,9.8033,9.4921,9.2,8.9254,8.6667,8.4225,8.1918,7.9733,7.7662,7.5696,7.3827,7.2048,7.0353,6.8736,6.7191,6.5714,6.4301,6.2947,6.1649,6.0404,5.9208,5.8058,5.6952,5.5888,5.4862,5.3874,5.292,5.2,5.1111,5.0252,4.9421,4.8618,4.784,4.7087,4.6357,4.5649,4.4962,4.4296,4.365,4.3022,4.2411,4.1818,4.1241,4.068,4.0134,3.9603,3.9085,3.8581,3.8089,3.761,3.7143,3.6687,3.6242,3.5808,3.5385,3.4971,3.4566,3.4171,3.3785,3.3408,3.3039,3.2678,3.2324,3.1979,3.164,3.1309,3.0984,3.0667,3.0355,3.005,2.9751,2.9458,2.9171,2.8889,2.8612,2.8341,2.8075,2.7814,2.7558,2.7306,2.7059,2.6816,2.6578,2.6344,2.6114,2.5887,2.5665,2.5447,2.5232,2.5021,2.4813,2.4609,2.4408,2.4211,2.4016,2.3825,2.3636,2.3451,2.3268,2.3089,2.2912,2.2738,2.2566,2.2397,2.223,2.2066,2.1905,2.1745,2.1588,2.1434,2.1281,2.1131,2.0982,2.0836,2.0692,2.055,2.041,2.0271,2.0135,2.0],"key_points":[],"x_range":[1.0,7.0],"y_range":[-1554.8,1554.8]}},
+          {"id":"g43","d":{"x":[-10.0,-9.94649,-9.89298,-9.83946,-9.78595,-9.73244,-9.67893,-9.62542,-9.57191,-9.51839,-9.46488,-9.41137,-9.35786,-9.30435,-9.25084,-9.19732,-9.14381,-9.0903,-9.03679,-8.98328,-8.92977,-8.87625,-8.82274,-8.76923,-8.71572,-8.66221,-8.6087,-8.55518,-8.50167,-8.44816,-8.39465,-8.34114,-8.28763,-8.23411,-8.1806,-8.12709,-8.07358,-8.02007,-7.96656,-7.91304,-7.85953,-7.80602,-7.75251,-7.699,-7.64548,-7.59197,-7.53846,-7.48495,-7.43144,-7.37793,-7.32441,-7.2709,-7.21739,-7.16388,-7.11037,-7.05686,-7.00334,-6.94983,-6.89632,-6.84281,-6.7893,-6.73579,-6.68227,-6.62876,-6.57525,-6.52174,-6.46823,-6.41472,-6.3612,-6.30769,-6.25418,-6.20067,-6.14716,-6.09365,-6.04013,-5.98662,-5.93311,-5.8796,-5.82609,-5.77258,-5.71906,-5.66555,-5.61204,-5.55853,-5.50502,-5.45151,-5.39799,-5.34448,-5.29097,-5.23746,-5.18395,-5.13043,-5.07692,-5.02341,-4.9699,-4.91639,-4.86288,-4.80936,-4.75585,-4.70234,-4.64883,-4.59532,-4.54181,-4.48829,-4.43478,-4.38127,-4.32776,-4.27425,-4.22074,-4.16722,-4.11371,-4.0602,-4.00669,-3.95318,-3.89967,-3.84615,-3.79264,-3.73913,-3.68562,-3.63211,-3.5786,-3.52508,-3.47157,-3.41806,-3.36455,-3.31104,-3.25753,-3.20401,-3.1505,-3.09699,-3.04348,-2.98997,-2.93645,-2.88294,-2.82943,-2.77592,-2.72241,-2.6689,-2.61538,-2.56187,-2.50836,-2.45485,-2.40134,-2.34783,-2.29431,-2.2408,-2.18729,-2.13378,-2.08027,-2.02676,-1.97324,-1.91973,-1.86622,-1.81271,-1.7592,-1.70569,-1.65217,-1.59866,-1.54515,-1.49164,-1.43813,-1.38462,-1.3311,-1.27759,-1.22408,-1.17057,-1.11706,-1.06355,-1.01003,-0.95652,-0.90301,-0.8495,-0.79599,-0.74247,-0.68896,-0.63545,-0.58194,-0.52843,-0.47492,-0.4214,-0.36789,-0.31438,-0.26087,-0.20736,-0.15385,-0.10033,-0.04682,0.00669,0.0602,0.11371,0.16722,0.22074,0.27425,0.32776,0.38127,0.43478,0.48829,0.54181,0.59532,0.64883,0.70234,0.75585,0.80936,0.86288,0.91639,0.9699,1.02341,1.07692,1.13043,1.18395,1.23746,1.29097,1.34448,1.39799,1.45151,1.50502,1.55853,1.61204,1.66555,1.71906,1.77258,1.82609,1.8796,1.93311,1.98662,2.04013,2.09365,2.14716,2.20067,2.25418,2.30769,2.3612,2.41472,2.46823,2.52174,2.57525,2.62876,2.68227,2.73579,2.7893,2.84281,2.89632,2.94983,3.00334,3.05686,3.11037,3.16388,3.21739,3.2709,3.32441,3.37793,3.43144,3.48495,3.53846,3.59197,3.64548,3.699,3.75251,3.80602,3.85953,3.91304,3.96656,4.02007,4.07358,4.12709,4.1806,4.23411,4.28763,4.34114,4.39465,4.44816,4.50167,4.55518,4.6087,4.66221,4.71572,4.76923,4.82274,4.87625,4.92977,4.98328,5.03679,5.0903,5.14381,5.19732,5.25084,5.30435,5.35786,5.41137,5.46488,5.51839,5.57191,5.62542,5.67893,5.73244,5.78595,5.83946,5.89298,5.94649,6.0],"y":[-0.0513,-0.0509,-0.0505,-0.05,-0.0496,-0.0492,-0.0487,-0.0482,-0.0477,-0.0472,-0.0467,-0.0462,-0.0457,-0.0451,-0.0445,-0.044,-0.0434,-0.0427,-0.0421,-0.0415,-0.0408,-0.0401,-0.0394,-0.0387,-0.038,-0.0372,-0.0364,-0.0356,-0.0348,-0.034,-0.0331,-0.0322,-0.0313,-0.0304,-0.0294,-0.0284,-0.0274,-0.0264,-0.0253,-0.0242,-0.0231,-0.0219,-0.0207,-0.0195,-0.0182,-0.017,-0.0156,-0.0143,-0.0129,-0.0114,-0.0099,-0.0084,-0.0068,-0.0052,-0.0036,-0.0019,-0.0001,0.0017,0.0036,0.0055,0.0074,0.0095,0.0116,0.0137,0.0159,0.0182,0.0205,0.023,0.0255,0.028,0.0307,0.0334,0.0362,0.0391,0.0421,0.0452,0.0484,0.0517,0.0551,0.0586,0.0623,0.066,0.0699,0.0739,0.078,0.0823,0.0867,0.0913,0.0961,0.101,0.1061,0.1113,0.1168,0.1225,0.1283,0.1344,0.1407,0.1473,0.1541,0.1611,0.1685,0.1761,0.1841,0.1923,0.2009,0.2099,0.2192,0.2289,0.239,0.2496,0.2606,0.2721,0.2842,0.2968,0.3099,0.3237,0.3382,0.3533,0.3692,0.3859,0.4034,0.4218,0.4412,0.4616,0.4831,0.5059,0.5299,0.5552,0.5821,0.6105,0.6407,0.6728,0.707,0.7433,0.7821,0.8236,0.868,0.9156,0.9667,1.0218,1.0812,1.1455,1.2151,1.2908,1.3734,1.4637,1.5629,1.6721,1.7929,1.9271,2.0771,2.2455,2.4358,2.6524,2.9009,3.1886,3.5252,3.9239,4.403,4.9889,5.7207,6.6596,7.9062,9.6383,12.2044,16.3894,24.4141,45.9801,297.7531,-70.2637,-32.2121,-21.2322,-16.0221,-12.9854,-11.0006,-9.6047,-8.5719,-7.7788,-7.1523,-6.6464,-6.2306,-5.8842,-5.5922,-5.3437,-5.1308,-4.9473,-4.7884,-4.6505,-4.5304,-4.426,-4.3353,-4.2566,-4.1887,-4.1305,-4.0812,-4.0401,-4.0064,-3.9798,-3.9598,-3.9461,-3.9384,-3.9366,-3.9405,-3.95,-3.9651,-3.9859,-4.0123,-4.0444,-4.0826,-4.1269,-4.1776,-4.2351,-4.2998,-4.3721,-4.4527,-4.5421,-4.6412,-4.7509,-4.8723,-5.0067,-5.1556,-5.3208,-5.5045,-5.7093,-5.9385,-6.1959,-6.4863,-6.816,-7.1925,-7.6259,-8.1292,-8.7198,-9.4214,-10.2675,-11.3064,-12.6108,-14.2952,-16.5516,-19.7271,-24.5219,-32.5892,-48.9958,-100.4262,1494.2506,87.2017,44.5732,29.7897,22.2887,17.7544,14.7186,12.5448,10.9122,9.6414,8.6247,7.793,7.1003,6.5147,6.0132,5.5791,5.1998,4.8656,4.569,4.304,4.066,3.8511,3.656,3.4783,3.3158,3.1665,3.029,2.902,2.7843,2.675,2.5732,2.4782,2.3894,2.3061,2.2279,2.1544,2.0851,2.0197,1.9579,1.8994,1.844,1.7914,1.7415,1.6939,1.6487,1.6056,1.5644,1.5252,1.4876,1.4517,1.4172,1.3843,1.3526,1.3223,1.2931,1.2651,1.2381],"key_points":[{"x":-7.0,"y":0.0,"label":"zero x=-7","color":"#2e7d32"}],"x_range":[-10.0,6.0],"y_range":[-5.2,5.2]}},
+          {"id":"g44","d":{"x":[-1.0,-0.9699,-0.9398,-0.9097,-0.8796,-0.8495,-0.8194,-0.7893,-0.7592,-0.7291,-0.699,-0.6689,-0.6388,-0.6087,-0.5786,-0.54849,-0.51839,-0.48829,-0.45819,-0.42809,-0.39799,-0.36789,-0.33779,-0.30769,-0.27759,-0.24749,-0.21739,-0.18729,-0.15719,-0.12709,-0.09699,-0.06689,-0.03679,-0.00669,0.02341,0.05351,0.08361,0.11371,0.14381,0.17391,0.20401,0.23411,0.26421,0.29431,0.32441,0.35452,0.38462,0.41472,0.44482,0.47492,0.50502,0.53512,0.56522,0.59532,0.62542,0.65552,0.68562,0.71572,0.74582,0.77592,0.80602,0.83612,0.86622,0.89632,0.92642,0.95652,0.98662,1.01672,1.04682,1.07692,1.10702,1.13712,1.16722,1.19732,1.22742,1.25753,1.28763,1.31773,1.34783,1.37793,1.40803,1.43813,1.46823,1.49833,1.52843,1.55853,1.58863,1.61873,1.64883,1.67893,1.70903,1.73913,1.76923,1.79933,1.82943,1.85953,1.88963,1.91973,1.94983,1.97993,2.01003,2.04013,2.07023,2.10033,2.13043,2.16054,2.19064,2.22074,2.25084,2.28094,2.31104,2.34114,2.37124,2.40134,2.43144,2.46154,2.49164,2.52174,2.55184,2.58194,2.61204,2.64214,2.67224,2.70234,2.73244,2.76254,2.79264,2.82274,2.85284,2.88294,2.91304,2.94314,2.97324,3.00334,3.03344,3.06355,3.09365,3.12375,3.15385,3.18395,3.21405,3.24415,3.27425,3.30435,3.33445,3.36455,3.39465,3.42475,3.45485,3.48495,3.51505,3.54515,3.57525,3.60535,3.63545,3.66555,3.69565,3.72575,3.75585,3.78595,3.81605,3.84615,3.87625,3.90635,3.93645,3.96656,3.99666,4.02676,4.05686,4.08696,4.11706,4.14716,4.17726,4.20736,4.23746,4.26756,4.29766,4.32776,4.35786,4.38796,4.41806,4.44816,4.47826,4.50836,4.53846,4.56856,4.59866,4.62876,4.65886,4.68896,4.71906,4.74916,4.77926,4.80936,4.83946,4.86957,4.89967,4.92977,4.95987,4.98997,5.02007,5.05017,5.08027,5.11037,5.14047,5.17057,5.20067,5.23077,5.26087,5.29097,5.32107,5.35117,5.38127,5.41137,5.44147,5.47157,5.50167,5.53177,5.56187,5.59197,5.62207,5.65217,5.68227,5.71237,5.74247,5.77258,5.80268,5.83278,5.86288,5.89298,5.92308,5.95318,5.98328,6.01338,6.04348,6.07358,6.10368,6.13378,6.16388,6.19398,6.22408,6.25418,6.28428,6.31438,6.34448,6.37458,6.40468,6.43478,6.46488,6.49498,6.52508,6.55518,6.58528,6.61538,6.64548,6.67559,6.70569,6.73579,6.76589,6.79599,6.82609,6.85619,6.88629,6.91639,6.94649,6.97659,7.00669,7.03679,7.06689,7.09699,7.12709,7.15719,7.18729,7.21739,7.24749,7.27759,7.30769,7.33779,7.36789,7.39799,7.42809,7.45819,7.48829,7.51839,7.54849,7.5786,7.6087,7.6388,7.6689,7.699,7.7291,7.7592,7.7893,7.8194,7.8495,7.8796,7.9097,7.9398,7.9699,8.0],"y":[-0.1667,-0.1688,-0.1709,-0.1732,-0.1754,-0.1778,-0.1801,-0.1826,-0.1851,-0.1876,-0.1903,-0.193,-0.1957,-0.1986,-0.2015,-0.2045,-0.2076,-0.2108,-0.214,-0.2174,-0.2208,-0.2244,-0.228,-0.2318,-0.2357,-0.2397,-0.2438,-0.248,-0.2524,-0.2569,-0.2616,-0.2664,-0.2714,-0.2766,-0.282,-0.2875,-0.2932,-0.2992,-0.3053,-0.3117,-0.3184,-0.3253,-0.3324,-0.3399,-0.3476,-0.3557,-0.3641,-0.3729,-0.3821,-0.3917,-0.4017,-0.4122,-0.4232,-0.4347,-0.4467,-0.4594,-0.4728,-0.4868,-0.5016,-0.5172,-0.5337,-0.5511,-0.5696,-0.5892,-0.61,-0.6321,-0.6557,-0.6809,-0.7078,-0.7367,-0.7677,-0.801,-0.8371,-0.876,-0.9183,-0.9642,-1.0144,-1.0694,-1.1298,-1.1965,-1.2705,-1.3529,-1.4453,-1.5494,-1.6675,-1.8027,-1.9585,-2.1402,-2.3542,-2.6099,-2.9204,-3.3046,-3.7917,-4.4281,-5.2932,-6.5345,-8.4602,-11.8412,-19.2985,-49.1798,100.3401,25.6112,14.9551,10.7077,8.4333,7.0233,6.0693,5.3858,4.8765,4.4867,4.1827,3.9432,3.754,3.6053,3.4904,3.4048,3.3454,3.3106,3.2997,3.3131,3.3523,3.4202,3.5216,3.6635,3.857,4.1189,4.4767,4.9765,5.7029,6.8278,8.7619,12.7858,25.9442,-198.3367,-18.9657,-9.551,-6.2047,-4.4975,-3.4667,-2.7796,-2.2909,-1.9268,-1.6461,-1.4238,-1.244,-1.0959,-0.9722,-0.8677,-0.7783,-0.7013,-0.6343,-0.5757,-0.5241,-0.4784,-0.4377,-0.4013,-0.3686,-0.3391,-0.3125,-0.2883,-0.2663,-0.2462,-0.2278,-0.211,-0.1955,-0.1812,-0.1681,-0.1559,-0.1446,-0.1342,-0.1245,-0.1154,-0.107,-0.0991,-0.0918,-0.0849,-0.0785,-0.0725,-0.0669,-0.0616,-0.0566,-0.0519,-0.0475,-0.0433,-0.0394,-0.0357,-0.0322,-0.0289,-0.0258,-0.0228,-0.02,-0.0174,-0.0149,-0.0125,-0.0102,-0.0081,-0.0061,-0.0041,-0.0023,-0.0006,0.0011,0.0027,0.0042,0.0056,0.007,0.0083,0.0095,0.0107,0.0118,0.0129,0.0139,0.0149,0.0158,0.0167,0.0175,0.0183,0.0191,0.0198,0.0205,0.0212,0.0218,0.0224,0.023,0.0236,0.0241,0.0246,0.0251,0.0256,0.026,0.0264,0.0268,0.0272,0.0276,0.0279,0.0283,0.0286,0.0289,0.0292,0.0294,0.0297,0.03,0.0302,0.0304,0.0306,0.0308,0.031,0.0312,0.0314,0.0316,0.0317,0.0319,0.032,0.0321,0.0323,0.0324,0.0325,0.0326,0.0327,0.0328,0.0329,0.033,0.033,0.0331,0.0332,0.0332,0.0333,0.0333,0.0334,0.0334,0.0335,0.0335,0.0335,0.0336,0.0336,0.0336,0.0336,0.0336,0.0337,0.0337,0.0337,0.0337,0.0337,0.0337,0.0337,0.0337,0.0337,0.0336,0.0336,0.0336,0.0336,0.0336,0.0336,0.0335,0.0335,0.0335,0.0335,0.0334,0.0334,0.0334,0.0333],"key_points":[{"x":5.0,"y":0.0,"label":"zero x=5","color":"#2e7d32"}],"x_range":[-1.0,8.0],"y_range":[-5.2,5.2]}},
+          
+        ];
+        _GRAPHS.forEach(function (item) {
+          var g = item.d;
+          var traces = [{
+            x: g.x, y: g.y,
+            type: 'scatter', mode: 'lines',
+            name: 'f(x)',
+            line: {color: '#0f3460', width: 2.5},
+            connectgaps: false
+          }];
+          if (g.key_points && g.key_points.length) {
+            traces.push({
+              x: g.key_points.map(function(p){return p.x;}),
+              y: g.key_points.map(function(p){return p.y;}),
+              text: g.key_points.map(function(p){return p.label;}),
+              type: 'scatter', mode: 'markers+text',
+              textposition: 'top center',
+              textfont: {size: 11, color: '#333'},
+              marker: {size: 9, color: g.key_points.map(function(p){return p.color||'#e94560';})},
+              showlegend: false
+            });
+          }
+          var layout = {
+            margin: {t: 16, b: 44, l: 52, r: 16},
+            xaxis: {
+              title: 'x', range: g.x_range,
+              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
+              gridcolor: '#eaeaea'
+            },
+            yaxis: {
+              title: 'f(x)', range: g.y_range,
+              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
+              gridcolor: '#eaeaea'
+            },
+            paper_bgcolor: '#fff',
+            plot_bgcolor: '#fafbfe',
+            showlegend: false,
+            font: {family: 'Georgia, serif', size: 12}
+          };
+          Plotly.newPlot(item.id, traces, layout, {responsive: true, displayModeBar: false});
+        });
+      }
+    </script>
+  </body>
+</html>

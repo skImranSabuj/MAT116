@@ -29,8 +29,9 @@ PROBLEM_TYPE_LABELS = {
     "analysis":                "Polynomial Analysis",
     "analysis_full":           "Full Polynomial Analysis",
     "rational_graph_analysis": "Rational Graph Analysis",
-  "rational_asymptotes":     "Rational Function Asymptotes",
-  "rational_application":    "Rational Application",
+    "rational_asymptotes":     "Rational Function Asymptotes",
+    "rational_application":    "Rational Application",
+    "inequality_sign_chart":   "Inequality Sign Chart",
     "application":             "Application Problem",
     "generic":                 "General Problem",
 }
