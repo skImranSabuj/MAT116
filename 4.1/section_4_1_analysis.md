@@ -3,7 +3,7 @@
 > **Course:** MAT 116 — Precalculus  
 > **Textbook:** Sullivan *Precalculus* 10th Edition  
 > **Section:** 4.1  
-> **Generated:** April 08, 2026
+> **Generated:** April 11, 2026
 
 ---
 

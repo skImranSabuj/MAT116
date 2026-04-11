@@ -25,6 +25,26 @@
         padding: 1.25rem 1.5rem;
         margin-top: 1rem;
       }
+      .chapter-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin: 1.1rem 0 1.4rem;
+      }
+      .chapter-nav a {
+        color: #0f3460;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid #ccd6e0;
+        border-radius: 999px;
+        padding: 0.35rem 0.8rem;
+        background: #fff;
+      }
+      .chapter-nav a.active,
+      .chapter-nav a:hover {
+        background: #0f3460;
+        color: #fff;
+      }
       code {
         background: #f2f4f8;
         padding: 0.1rem 0.35rem;
@@ -37,6 +57,13 @@
   </head>
   <body>
     <h1>Section 4.3</h1>
+    <div class="chapter-nav">
+      <a href="../index.html">Home</a>
+      <a href="../4.1/section_4_1.html">4.1</a>
+      <a href="../4.2/section_4_2.html">4.2</a>
+      <a class="active" href="section_4_3.html">4.3</a>
+      <a href="../4.4/section_4_4.html">4.4</a>
+    </div>
     <div class="card">
       <p><strong>Status:</strong> Solutions are available.</p>
       <p>

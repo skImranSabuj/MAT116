@@ -190,6 +190,36 @@
         border-left-color: var(--red);
         color: #fff;
       }
+      .chapter-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+      .chapter-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 4.5rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: #eef3f8;
+        border: 1px solid #d6dfeb;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .chapter-link:hover,
+      .chapter-link.active {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
       .nav-num {
         display: inline-block;
         min-width: 1.8rem;
@@ -240,6 +270,14 @@
         font-size: 1.9rem;
         color: var(--navy);
         margin-bottom: 0.3rem;
+      }
+      .header-nav-label {
+        margin-top: 1rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
       }
       .subtitle {
         font-size: 0.875rem;
@@ -509,6 +547,37 @@
         <div class="brand-sub">
           Sullivan Precalculus 10th Ed &middot; Section 4.1
         </div>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Chapters</div>
+        <ul>
+          <li>
+            <a href="../index.html">
+              <span class="nav-num">Home</span>MAT116 Index
+            </a>
+          </li>
+          <li>
+            <a href="../4.1/section_4_1.html" class="active">
+              <span class="nav-num">4.1</span>Polynomial Functions
+            </a>
+          </li>
+          <li>
+            <a href="../4.2/section_4_2.html">
+              <span class="nav-num">4.2</span>Rational Asymptotes
+            </a>
+          </li>
+          <li>
+            <a href="../4.3/section_4_3.html">
+              <span class="nav-num">4.3</span>Rational Graphs
+            </a>
+          </li>
+          <li>
+            <a href="../4.4/section_4_4.html">
+              <span class="nav-num">4.4</span>Inequalities
+            </a>
+          </li>
+        </ul>
       </div>
 
       
@@ -934,8 +1003,16 @@
           <h1>Section 4.1 – Complete Solutions</h1>
           <p class="subtitle">
             MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan
-            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 4.1 &nbsp;|&nbsp; Generated: April 08, 2026
+            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 4.1 &nbsp;|&nbsp; Generated: April 11, 2026
           </p>
+          <div class="header-nav-label">Jump to Section</div>
+          <div class="chapter-nav">
+            <a class="chapter-link active" href="../4.1/section_4_1.html">4.1</a>
+            <a class="chapter-link" href="../4.2/section_4_2.html">4.2</a>
+            <a class="chapter-link" href="../4.3/section_4_3.html">4.3</a>
+            <a class="chapter-link" href="../4.4/section_4_4.html">4.4</a>
+            <a class="chapter-link" href="../index.html">Home</a>
+          </div>
         </header>
 
          
