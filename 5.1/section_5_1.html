@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ title }}</title>
+    <title>Section 5.1 - Composite Functions (Assigned Problems)</title>
 
     <!-- MathJax 3 -->
     <script>
@@ -534,7 +534,7 @@
       >
         <span></span><span></span><span></span>
       </button>
-      <span class="topbar-title">MAT 116 &mdash; Section {{ section }}</span>
+      <span class="topbar-title">MAT 116 &mdash; Section 5.1</span>
     </div>
 
     <!-- BACKDROP -->
@@ -545,7 +545,7 @@
       <div class="sidebar-brand">
         <div class="brand-title">MAT 116 Solutions</div>
         <div class="brand-sub">
-          Sullivan Precalculus 10th Ed &middot; Section {{ section }}
+          Sullivan Precalculus 10th Ed &middot; Section 5.1
         </div>
       </div>
 
@@ -558,129 +558,561 @@
             </a>
           </li>
           <li>
-            <a href="../4.1/section_4_1.html"{% if section == "4.1" %} class="active"{% endif %}>
+            <a href="../4.1/section_4_1.html">
               <span class="nav-num">4.1</span>Polynomial Functions
             </a>
           </li>
           <li>
-            <a href="../4.2/section_4_2.html"{% if section == "4.2" %} class="active"{% endif %}>
+            <a href="../4.2/section_4_2.html">
               <span class="nav-num">4.2</span>Rational Asymptotes
             </a>
           </li>
           <li>
-            <a href="../4.3/section_4_3.html"{% if section == "4.3" %} class="active"{% endif %}>
+            <a href="../4.3/section_4_3.html">
               <span class="nav-num">4.3</span>Rational Graphs
             </a>
           </li>
           <li>
-            <a href="../4.4/section_4_4.html"{% if section == "4.4" %} class="active"{% endif %}>
+            <a href="../4.4/section_4_4.html">
               <span class="nav-num">4.4</span>Inequalities
-            </a>
-          </li>
-          <li>
-            <a href="../5.1/section_5_1.html"{% if section == "5.1" %} class="active"{% endif %}>
-              <span class="nav-num">5.1</span>Composite Functions
-            </a>
-          </li>
-          <li>
-            <a href="../5.2/section_5_2.html"{% if section == "5.2" %} class="active"{% endif %}>
-              <span class="nav-num">5.2</span>Inverse Functions
-            </a>
-          </li>
-          <li>
-            <a href="../5.3/section_5_3.html"{% if section == "5.3" %} class="active"{% endif %}>
-              <span class="nav-num">5.3</span>Exponential Functions
             </a>
           </li>
         </ul>
       </div>
 
-      {% for gname in nav_order %}
+      
       <div class="nav-group">
-        <div class="nav-group-title">{{ gname }}</div>
+        <div class="nav-group-title">Composite Function Values</div>
         <ul>
-          {% for sol in nav_groups[gname] %}
+          
           <li>
             <a
-              href="#prob-{{ sol.number }}"
-              data-target="prob-{{ sol.number }}"
+              href="#prob-17"
+              data-target="prob-17"
             >
-              <span class="nav-num">{{ sol.number }}</span>Problem {{ sol.number
-              }}
+              <span class="nav-num">17</span>Problem 17
             </a>
           </li>
-          {% endfor %}
+          
+          <li>
+            <a
+              href="#prob-18"
+              data-target="prob-18"
+            >
+              <span class="nav-num">18</span>Problem 18
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-19"
+              data-target="prob-19"
+            >
+              <span class="nav-num">19</span>Problem 19
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-20"
+              data-target="prob-20"
+            >
+              <span class="nav-num">20</span>Problem 20
+            </a>
+          </li>
+          
         </ul>
       </div>
-      {% endfor %}
+      
+      <div class="nav-group">
+        <div class="nav-group-title">Composite Formulas and Domains</div>
+        <ul>
+          
+          <li>
+            <a
+              href="#prob-31"
+              data-target="prob-31"
+            >
+              <span class="nav-num">31</span>Problem 31
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-32"
+              data-target="prob-32"
+            >
+              <span class="nav-num">32</span>Problem 32
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-33"
+              data-target="prob-33"
+            >
+              <span class="nav-num">33</span>Problem 33
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-34"
+              data-target="prob-34"
+            >
+              <span class="nav-num">34</span>Problem 34
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-35"
+              data-target="prob-35"
+            >
+              <span class="nav-num">35</span>Problem 35
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-36"
+              data-target="prob-36"
+            >
+              <span class="nav-num">36</span>Problem 36
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-37"
+              data-target="prob-37"
+            >
+              <span class="nav-num">37</span>Problem 37
+            </a>
+          </li>
+          
+          <li>
+            <a
+              href="#prob-38"
+              data-target="prob-38"
+            >
+              <span class="nav-num">38</span>Problem 38
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      
     </nav>
 
     <!-- MAIN CONTENT -->
     <div class="main">
       <div class="container">
         <header class="page-header" id="top">
-          <h1>{{ title }}</h1>
+          <h1>Section 5.1 - Composite Functions (Assigned Problems)</h1>
           <p class="subtitle">
             MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan
-            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section {{ section
-            }} &nbsp;|&nbsp; Generated: {{ generated }}
+            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 5.1 &nbsp;|&nbsp; Generated: April 22, 2026
           </p>
           <div class="header-nav-label">Jump to Section</div>
           <div class="chapter-nav">
-            <a class="chapter-link{% if section == "4.1" %} active{% endif %}" href="../4.1/section_4_1.html">4.1</a>
-            <a class="chapter-link{% if section == "4.2" %} active{% endif %}" href="../4.2/section_4_2.html">4.2</a>
-            <a class="chapter-link{% if section == "4.3" %} active{% endif %}" href="../4.3/section_4_3.html">4.3</a>
-            <a class="chapter-link{% if section == "4.4" %} active{% endif %}" href="../4.4/section_4_4.html">4.4</a>
-            <a class="chapter-link{% if section == "5.1" %} active{% endif %}" href="../5.1/section_5_1.html">5.1</a>
-            <a class="chapter-link{% if section == "5.2" %} active{% endif %}" href="../5.2/section_5_2.html">5.2</a>
-            <a class="chapter-link{% if section == "5.3" %} active{% endif %}" href="../5.3/section_5_3.html">5.3</a>
+            <a class="chapter-link" href="../4.1/section_4_1.html">4.1</a>
+            <a class="chapter-link" href="../4.2/section_4_2.html">4.2</a>
+            <a class="chapter-link" href="../4.3/section_4_3.html">4.3</a>
+            <a class="chapter-link" href="../4.4/section_4_4.html">4.4</a>
             <a class="chapter-link" href="../index.html">Home</a>
           </div>
         </header>
 
-        {% for sol in solutions %} {% set type_label = type_labels.get(sol.type,
-        sol.type | title) %}
-        <div class="problem" id="prob-{{ sol.number }}">
-          <h2>Problem {{ sol.number }}</h2>
-          <span class="badge">{{ type_label }}</span>
+         
+        <div class="problem" id="prob-17">
+          <h2>Problem 17</h2>
+          <span class="badge">Composite_values</span>
           <div class="given-label">Given</div>
-          <div class="given-box">{{ sol.question }}</div>
+          <div class="given-box">f(x) = 2x + 1; g(x) = 3x. Find (a) (f o g)(4), (b) (g o f)(2), (c) (f o f)(1), (d) (g o g)(0).</div>
           <div class="steps">
-            {% for step in sol.steps %}
+            
             <div class="step">
-              <div class="step-title">{{ step.title }}</div>
-              <div class="step-body">{{ step.body | replace("**", "") }}</div>
+              <div class="step-title">Compute each composition value</div>
+              <div class="step-body">(a) (f o g)(4) = f(g(4)) = f(12) = 25
+(b) (g o f)(2) = g(f(2)) = g(5) = 15
+(c) (f o f)(1) = f(f(1)) = f(3) = 7
+(d) (g o g)(0) = g(g(0)) = g(0) = 0</div>
             </div>
-            {% endfor %}
+            
           </div>
-          {% if sol.graph %}
-          <div class="graph-wrap">
-            <div class="graph-label">Graph of f(x)</div>
-            <div id="g{{ sol.number }}" class="graph-div"></div>
-          </div>
-          {% endif %} {% if sol.answer_sections or sol.answer %}
+           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            {% if sol.answer_sections %}
-            <div class="answer-sections">
-              {% for sec in sol.answer_sections %}
-              <div class="answer-section">
-                <div class="answer-sec-label">{{ sec.label }}</div>
-                <div class="answer-sec-body">
-                  {{ sec.body | replace("**", "") }}
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-            {% else %}
-            <div class="answer-plain">{{ sol.answer }}</div>
-            {% endif %}
+            
+            <div class="answer-plain">(a) 25, (b) 15, (c) 7, (d) 0</div>
+            
           </div>
-          {% endif %}
+          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-        {% endfor %}
+         
+        <div class="problem" id="prob-18">
+          <h2>Problem 18</h2>
+          <span class="badge">Composite_values</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x) = sqrt(x); g(x) = 2x. Find (a) (f o g)(4), (b) (g o f)(2), (c) (f o f)(1), (d) (g o g)(0).</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compute each composition value</div>
+              <div class="step-body">(a) (f o g)(4) = f(8) = sqrt(8) = 2sqrt(2)
+(b) (g o f)(2) = g(sqrt(2)) = 2sqrt(2)
+(c) (f o f)(1) = f(1) = 1
+(d) (g o g)(0) = g(0) = 0</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">(a) 2sqrt(2), (b) 2sqrt(2), (c) 1, (d) 0</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-19">
+          <h2>Problem 19</h2>
+          <span class="badge">Composite_values</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x) = |x - 2|; g(x) = 3/(x^2 + 2). Find (a) (f o g)(4), (b) (g o f)(2), (c) (f o f)(1), (d) (g o g)(0).</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compute each composition value</div>
+              <div class="step-body">(a) (f o g)(4) = f(3/18) = |1/6 - 2| = 11/6
+(b) (g o f)(2) = g(0) = 3/2
+(c) (f o f)(1) = f(1) = 1
+(d) (g o g)(0) = g(3/2) = 3/((3/2)^2 + 2) = 12/17</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">(a) 11/6, (b) 3/2, (c) 1, (d) 12/17</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-20">
+          <h2>Problem 20</h2>
+          <span class="badge">Composite_values</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x) = |x|; g(x) = 1/(x^2 + 1). Find (a) (f o g)(4), (b) (g o f)(2), (c) (f o f)(1), (d) (g o g)(0).</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compute each composition value</div>
+              <div class="step-body">(a) (f o g)(4) = |1/17| = 1/17
+(b) (g o f)(2) = g(2) = 1/5
+(c) (f o f)(1) = f(1) = 1
+(d) (g o g)(0) = g(1) = 1/2</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">(a) 1/17, (b) 1/5, (c) 1, (d) 1/2</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-31">
+          <h2>Problem 31</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=x/(x+3), g(x)=2/x. Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = 2/(3x+2)
+g o f = 2(x+3)/x
+f o f = x/(4x+9)
+g o g = x</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">Dom(f o g): x != 0, -2/3
+Dom(g o f): x != -3, 0
+Dom(f o f): x != -3, -9/4
+Dom(g o g): x != 0</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">Composites and domains listed above.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-32">
+          <h2>Problem 32</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=x/(x-1), g(x)=-4/x. Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = 4/(x+4)
+g o f = -4(x-1)/x
+f o f = x
+g o g = x</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">Dom(f o g): x != 0, -4
+Dom(g o f): x != 1, 0
+Dom(f o f): x != 1
+Dom(g o g): x != 0</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">Composites and domains listed above.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-33">
+          <h2>Problem 33</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=2x-2, g(x)=1-2x. Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = -4x
+g o f = 5-4x
+f o f = 4x-6
+g o g = 4x-1</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">All four domains are all real numbers.</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">All composites are linear with domain R.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-34">
+          <h2>Problem 34</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=2x, g(x)=2x+3. Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = 4x+6
+g o f = 4x+3
+f o f = 4x
+g o g = 4x+9</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">All four domains are all real numbers.</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">All composites are linear with domain R.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-35">
+          <h2>Problem 35</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=x^2+4, g(x)=2x-2. Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = 4x^2-8x+8
+g o f = 2x^2+6
+f o f = x^4+8x^2+20
+g o g = 4x-6</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">All four domains are all real numbers.</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">All composites are polynomials with domain R.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-36">
+          <h2>Problem 36</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=x^2+1, g(x)=2x-1. Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = 4x^2-4x+2
+g o f = 2x^2+1
+f o f = x^4+2x^2+2
+g o g = 4x-3</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">All four domains are all real numbers.</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">All composites are polynomials with domain R.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-37">
+          <h2>Problem 37</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=(2x-1)/(x-2), g(x)=(x+4)/(2x-5). Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = -13/(3x-14)
+g o f = -3(2x-3)/(x-8)
+f o f = x
+g o g = -(9x-16)/(8x-33)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">Dom(f o g): x != 5/2, 14/3
+Dom(g o f): x != 2, 8
+Dom(f o f): x != 2
+Dom(g o g): x != 5/2, 33/8</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">Composites and domains listed above.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+         
+        <div class="problem" id="prob-38">
+          <h2>Problem 38</h2>
+          <span class="badge">Composite_formulas</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">f(x)=(x-5)/(x+1), g(x)=(x+2)/(x-3). Find f o g, g o f, f o f, g o g and state each domain.</div>
+          <div class="steps">
+            
+            <div class="step">
+              <div class="step-title">Compose functions</div>
+              <div class="step-body">f o g = -(4x-17)/(2x-1)
+g o f = -3(x-1)/(2(x+4))
+f o f = -(2x+5)/(x-2)
+g o g = -(3x-4)/(2x-11)</div>
+            </div>
+            
+            <div class="step">
+              <div class="step-title">Domains</div>
+              <div class="step-body">Dom(f o g): x != 3, 1/2
+Dom(g o f): x != -1, -4
+Dom(f o f): x != -1, 2
+Dom(g o g): x != 3, 11/2</div>
+            </div>
+            
+          </div>
+           
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            
+            <div class="answer-plain">Composites and domains listed above.</div>
+            
+          </div>
+          
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+        
       </div>
     </div>
 
@@ -740,8 +1172,7 @@
     <script>
       if (typeof Plotly !== 'undefined') {
         var _GRAPHS = [
-          {% for sol in solutions %}{% if sol.graph %}{"id":"g{{ sol.number }}","d":{{ sol.graph | tojson }}},
-          {% endif %}{% endfor %}
+          
         ];
         _GRAPHS.forEach(function (item) {
           var g = item.d;

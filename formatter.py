@@ -32,6 +32,12 @@ PROBLEM_TYPE_LABELS = {
     "rational_asymptotes":     "Rational Function Asymptotes",
     "rational_application":    "Rational Application",
     "inequality_sign_chart":   "Inequality Sign Chart",
+    "composite_values":        "Composite Function Values",
+    "composite_formulas":      "Composite Formulas and Domains",
+    "inverse_verify":          "Verify Inverse Pair",
+    "inverse_find":            "Find Inverse Function",
+    "exp_transform":           "Exponential Transformations",
+    "exp_equation":            "Exponential Equation",
     "application":             "Application Problem",
     "generic":                 "General Problem",
 }
