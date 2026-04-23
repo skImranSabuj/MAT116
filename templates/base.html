@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title }}</title>
 
+    <script>
+      // If this template is opened directly in a browser, redirect to the app index.
+      (function () {
+        var p = (window.location && window.location.pathname) || "";
+        if (p.indexOf("/templates/base.html") !== -1) {
+          window.location.replace("../index.html");
+        }
+      })();
+    </script>
+
     <!-- MathJax 3 -->
     <script>
       window.MathJax = {
@@ -673,7 +683,22 @@
               {% endfor %}
             </div>
             {% else %}
-            <div class="answer-plain">{{ sol.answer }}</div>
+            <div class="answer-sections">
+              {% for step in sol.steps %}
+              <div class="answer-section">
+                <div class="answer-sec-label">{{ step.title }}</div>
+                <div class="answer-sec-body">
+                  {{ step.body | replace("**", "") }}
+                </div>
+              </div>
+              {% endfor %}
+              {% if sol.answer %}
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">{{ sol.answer }}</div>
+              </div>
+              {% endif %}
+            </div>
             {% endif %}
           </div>
           {% endif %}

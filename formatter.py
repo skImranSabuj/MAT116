@@ -407,12 +407,22 @@ class Formatter:
                 )
 
             answer_html = ""
-            if answer:
-                answer_html = (
-                    f'      <div class="answer-box">'
-                    f'<strong>Final Answer:</strong> {self._md_to_html(answer)}'
-                    f'</div>\n'
+            if steps or answer:
+              answer_parts: list[str] = [
+                '      <div class="answer-box">',
+                '        <strong>Exam Solution:</strong><br>'
+              ]
+              for st in steps:
+                answer_parts.append(
+                  f'        <strong>{self._esc(st["title"])}:</strong><br>'
+                  f'        {self._md_to_html(st["body"])}<br><br>'
                 )
+              if answer:
+                answer_parts.append(
+                  f'        <strong>Final Answer:</strong> {self._md_to_html(answer)}'
+                )
+              answer_parts.append('      </div>\n')
+              answer_html = "\n".join(answer_parts)
 
             problem_blocks.append(
                 f'  <div class="problem" id="prob-{num}">\n'
