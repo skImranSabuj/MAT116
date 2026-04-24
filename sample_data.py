@@ -275,12 +275,86 @@ SECTION_4_4_PROBLEMS: list[dict] = [
 ]
 
 
+SECTION_5_6_PROBLEMS: list[dict] = [
+  # Problems 15-30: logarithmic equations
+  {"number": 15, "question": "Solve: 2 log_3(x + 4) - log_3 9 = 2", "type": "log_equation", "meta": {"equation": "2*log(x+4,3)-log(9,3)=2"}},
+  {"number": 16, "question": "Solve: 3 log_2(x - 1) + log_2 4 = 5", "type": "log_equation", "meta": {"equation": "3*log(x-1,2)+log(4,2)=5"}},
+  {"number": 17, "question": "Solve: log x + log(x - 21) = 2", "type": "log_equation", "meta": {"equation": "log(x,10)+log(x-21,10)=2"}},
+  {"number": 18, "question": "Solve: log x + log(x + 15) = 2", "type": "log_equation", "meta": {"equation": "log(x,10)+log(x+15,10)=2"}},
+  {"number": 19, "question": "Solve: log(2x) - log(x - 3) = 1", "type": "log_equation", "meta": {"equation": "log(2*x,10)-log(x-3,10)=1"}},
+  {"number": 20, "question": "Solve: log(2x + 1) = 1 + log(x - 2)", "type": "log_equation", "meta": {"equation": "log(2*x+1,10)=1+log(x-2,10)"}},
+  {"number": 21, "question": "Solve: log_2(x + 7) + log_2(x + 8) = 1", "type": "log_equation", "meta": {"equation": "log(x+7,2)+log(x+8,2)=1"}},
+  {"number": 22, "question": "Solve: log_6(x + 4) + log_6(x + 3) = 1", "type": "log_equation", "meta": {"equation": "log(x+4,6)+log(x+3,6)=1"}},
+  {"number": 23, "question": "Solve: log_5(x + 3) = 1 - log_5(x - 1)", "type": "log_equation", "meta": {"equation": "log(x+3,5)=1-log(x-1,5)"}},
+  {"number": 24, "question": "Solve: log_8(x + 6) = 1 - log_8(x + 4)", "type": "log_equation", "meta": {"equation": "log(x+6,8)=1-log(x+4,8)"}},
+  {"number": 25, "question": "Solve: ln(x + 1) - ln x = 2", "type": "log_equation", "meta": {"equation": "log(x+1)-log(x)=2"}},
+  {"number": 26, "question": "Solve: ln x + ln(x + 2) = 4", "type": "log_equation", "meta": {"equation": "log(x)+log(x+2)=4"}},
+  {"number": 27, "question": "Solve: log_2(x + 1) + log_2(x + 7) = 3", "type": "log_equation", "meta": {"equation": "log(x+1,2)+log(x+7,2)=3"}},
+  {"number": 28, "question": "Solve: log_3(x + 1) + log_3(x + 4) = 2", "type": "log_equation", "meta": {"equation": "log(x+1,3)+log(x+4,3)=2"}},
+  {"number": 29, "question": "Solve: log_4(x^2 - 9) - log_4(x + 3) = 3", "type": "log_equation", "meta": {"equation": "log(x**2-9,4)-log(x+3,4)=3"}},
+  {"number": 30, "question": "Solve: log_(1/3)(x^2 + x) - log_(1/3)(x^2 - x) = -1", "type": "log_equation", "meta": {"equation": "log(x**2+x,Rational(1,3))-log(x**2-x,Rational(1,3))=-1"}},
+
+  # Problems 57-68: exponential equations
+  {"number": 57, "question": "Solve: 3^(2x) + 3^x - 2 = 0", "type": "exp_equation", "meta": {"equation": "3**(2*x)+3**x-2=0"}},
+  {"number": 58, "question": "Solve: 2^(2x) + 2^x - 12 = 0", "type": "exp_equation", "meta": {"equation": "2**(2*x)+2**x-12=0"}},
+  {"number": 59, "question": "Solve: 2^(2x) + 2^(x+2) - 12 = 0", "type": "exp_equation", "meta": {"equation": "2**(2*x)+2**(x+2)-12=0"}},
+  {"number": 60, "question": "Solve: 3^(2x) + 3^(x+1) - 4 = 0", "type": "exp_equation", "meta": {"equation": "3**(2*x)+3**(x+1)-4=0"}},
+  {"number": 61, "question": "Solve: 16^x + 4^(x+1) - 3 = 0", "type": "exp_equation", "meta": {"equation": "16**x+4**(x+1)-3=0"}},
+  {"number": 62, "question": "Solve: 9^x - 3^(x+1) + 1 = 0", "type": "exp_equation", "meta": {"equation": "9**x-3**(x+1)+1=0"}},
+  {"number": 63, "question": "Solve: 6^x - 6*6^(-x) = -9", "type": "exp_equation", "meta": {"equation": "6**x-6*6**(-x)=-9"}},
+  {"number": 64, "question": "Solve: 5^x - 8*5^(-x) = -16", "type": "exp_equation", "meta": {"equation": "5**x-8*5**(-x)=-16"}},
+  {"number": 65, "question": "Solve: 2*49^x + 11*7^x + 5 = 0", "type": "exp_equation", "meta": {"equation": "2*49**x+11*7**x+5=0"}},
+  {"number": 66, "question": "Solve: 3*4^x + 4*2^x + 8 = 0", "type": "exp_equation", "meta": {"equation": "3*4**x+4*2**x+8=0"}},
+  {"number": 67, "question": "Solve: 3^x - 14*3^(-x) = 5", "type": "exp_equation", "meta": {"equation": "3**x-14*3**(-x)=5"}},
+  {"number": 68, "question": "Solve: 4^x - 10*4^(-x) = 3", "type": "exp_equation", "meta": {"equation": "4**x-10*4**(-x)=3"}},
+
+  # Problems 105-107: modeling
+  {
+    "number": 105,
+    "question": "Population model: P(t)=287(1.010)^(t-1999). Find when population reaches 307 million and 394 million.",
+    "type": "exp_growth_decay_model",
+    "meta": {
+      "model": "287*(1.010)**(t-1999)",
+      "variable": "t",
+      "targets": [307, 394],
+      "units": "million people",
+      "context": "population"
+    },
+  },
+  {
+    "number": 106,
+    "question": "Population model: P(t)=7.14(1.011)^(t-2014). Find when population reaches 9 and 12.5 billion.",
+    "type": "exp_growth_decay_model",
+    "meta": {
+      "model": "7.14*(1.011)**(t-2014)",
+      "variable": "t",
+      "targets": [9, 12.5],
+      "units": "billion people",
+      "context": "population"
+    },
+  },
+  {
+    "number": 107,
+    "question": "Depreciation model: V(t)=14162(0.832)^t. Find when value is $8000, $3000, and $1000.",
+    "type": "exp_growth_decay_model",
+    "meta": {
+      "model": "14162*(0.832)**t",
+      "variable": "t",
+      "targets": [8000, 3000, 1000],
+      "units": "dollars",
+      "context": "depreciation"
+    },
+  },
+]
+
+
 SECTION_PROBLEMS: dict[str, list[dict]] = {
   "4.1": SECTION_4_1_PROBLEMS,
   "4.3": SECTION_4_3_PROBLEMS,
   "4.4": SECTION_4_4_PROBLEMS,
   "4.2": SECTION_4_5_PROBLEMS,
   "4.5": SECTION_4_5_PROBLEMS,
+  "5.6": SECTION_5_6_PROBLEMS,
 }
 
 

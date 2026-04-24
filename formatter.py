@@ -38,6 +38,8 @@ PROBLEM_TYPE_LABELS = {
     "inverse_find":            "Find Inverse Function",
     "exp_transform":           "Exponential Transformations",
     "exp_equation":            "Exponential Equation",
+    "log_equation":            "Logarithmic Equation",
+    "exp_growth_decay_model":  "Exponential Growth/Decay Model",
     "application":             "Application Problem",
     "generic":                 "General Problem",
 }

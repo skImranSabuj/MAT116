@@ -50,6 +50,9 @@ class Solver:
             "rational_asymptotes":   self._rational_asymptotes,
             "rational_application":  self._rational_application,
             "inequality_sign_chart": self._inequality_sign_chart,
+            "log_equation":          self._log_equation,
+            "exp_equation":          self._exp_equation,
+            "exp_growth_decay_model": self._exp_growth_decay_model,
         }
         fn = dispatch.get(ptype, self._generic)
         result = fn(num, q, meta)
@@ -1509,6 +1512,294 @@ class Solver:
             return steps, answer, answer_sections, graph
         except Exception as e:
             logger.warning(f"inequality sign-chart solver failed for '{q}': {e}")
+            return self._generic(num, q, meta)
+
+    # -----------------------------------------------------------------------
+    # 5.6 - Logarithmic equations (15-30)
+    # -----------------------------------------------------------------------
+    def _log_equation(self, num: int, q: str, meta: dict) -> tuple:
+        try:
+            from sympy import Eq, Rational, S, log, simplify, solveset, symbols
+            from sympy.parsing.sympy_parser import (
+                parse_expr, standard_transformations,
+                implicit_multiplication_application,
+            )
+
+            x = symbols("x", real=True)
+            eq_raw = meta.get("equation", "")
+            if not eq_raw or "=" not in eq_raw:
+                return self._generic(num, q, meta)
+
+            left_raw, right_raw = [p.strip() for p in eq_raw.split("=", 1)]
+            tf = standard_transformations + (implicit_multiplication_application,)
+            local_dict = {"x": x, "log": log, "Rational": Rational}
+            left = parse_expr(left_raw, local_dict=local_dict, transformations=tf)
+            right = parse_expr(right_raw, local_dict=local_dict, transformations=tf)
+            eq = Eq(left, right)
+
+            # Domain restrictions come from log arguments > 0.
+            log_atoms = list(left.atoms(log) | right.atoms(log))
+            domain_checks = []
+            for lg in log_atoms:
+                if lg.args:
+                    arg_expr = simplify(lg.args[0])
+                    domain_checks.append(arg_expr)
+
+            def _in_domain(val) -> bool:
+                try:
+                    for arg_expr in domain_checks:
+                        test_val = simplify(arg_expr.subs(x, val))
+                        if not test_val.is_real:
+                            return False
+                        if float(test_val.evalf()) <= 0:
+                            return False
+                    return True
+                except Exception:
+                    return False
+
+            raw_sol = solveset(eq, x, domain=S.Reals)
+            candidate_vals = []
+            if raw_sol.is_FiniteSet:
+                candidate_vals = sorted(list(raw_sol), key=lambda v: float(v.evalf()))
+            filtered = [s for s in candidate_vals if _in_domain(s)]
+
+            # If symbolic solve returns a ConditionSet, solve numerically on a broad window.
+            if (not filtered) and (not raw_sol.is_FiniteSet):
+                from sympy import nsolve
+                numeric = []
+                for seed in range(-20, 21):
+                    try:
+                        guess = nsolve(left - right, seed)
+                        guess = simplify(guess)
+                        if guess.is_real and _in_domain(guess):
+                            fv = float(guess.evalf())
+                            if not any(abs(fv - float(v.evalf())) < 1e-6 for v in numeric):
+                                numeric.append(guess)
+                    except Exception:
+                        pass
+                filtered = sorted(numeric, key=lambda v: float(v.evalf()))
+
+            dom_text = "none"
+            if domain_checks:
+                dom_text = ", ".join([f"{_expr_str(c)} > 0" for c in domain_checks])
+
+            if filtered:
+                exact_text = ", ".join(_expr_str(s) for s in filtered)
+                approx_text = ", ".join(f"{float(s.evalf()):.3f}" for s in filtered)
+                final_text = f"x = {exact_text}"
+            else:
+                exact_text = "no real solution"
+                approx_text = "none"
+                final_text = "No real solution"
+
+            steps = [
+                {
+                    "title": "Step 1 - State Domain Restrictions",
+                    "body": (
+                        f"Given equation:\n$$ {_expr_str(left)} = {_expr_str(right)} $$\n\n"
+                        f"All logarithm arguments must be positive:\n{dom_text}"
+                    ),
+                },
+                {
+                    "title": "Step 2 - Use Log Properties to Rewrite",
+                    "body": (
+                        "Combine log terms on each side (product/quotient/power rules), "
+                        "then rewrite as an equivalent non-log equation."
+                    ),
+                },
+                {
+                    "title": "Step 3 - Solve the Resulting Algebraic Equation",
+                    "body": (
+                        f"Candidate real solution(s): {exact_text}\n"
+                        f"Decimal approximation(s): {approx_text}"
+                    ),
+                },
+                {
+                    "title": "Step 4 - Check for Extraneous Values",
+                    "body": (
+                        "Substitute each candidate into the original logarithmic equation.\n"
+                        f"Valid solution set: {final_text}"
+                    ),
+                },
+            ]
+
+            answer = final_text
+            answer_sections = [
+                {"label": "(i) Domain", "body": f"{dom_text}"},
+                {"label": "(ii) Solve", "body": f"Exact: {exact_text}\nApprox: {approx_text}"},
+                {"label": "(iii) Final Answer", "body": final_text},
+            ]
+
+            return steps, answer, answer_sections, None
+        except Exception as e:
+            logger.warning(f"log equation solver failed for '{q}': {e}")
+            return self._generic(num, q, meta)
+
+    # -----------------------------------------------------------------------
+    # 5.6 - Exponential equations (57-68)
+    # -----------------------------------------------------------------------
+    def _exp_equation(self, num: int, q: str, meta: dict) -> tuple:
+        try:
+            from sympy import Eq, S, simplify, solveset, symbols
+            from sympy.parsing.sympy_parser import (
+                parse_expr, standard_transformations,
+                implicit_multiplication_application,
+            )
+
+            x = symbols("x", real=True)
+            eq_raw = meta.get("equation", "")
+            if not eq_raw or "=" not in eq_raw:
+                return self._generic(num, q, meta)
+
+            left_raw, right_raw = [p.strip() for p in eq_raw.split("=", 1)]
+            tf = standard_transformations + (implicit_multiplication_application,)
+            left = parse_expr(left_raw, local_dict={"x": x}, transformations=tf)
+            right = parse_expr(right_raw, local_dict={"x": x}, transformations=tf)
+            eq = Eq(left, right)
+
+            sol = solveset(eq, x, domain=S.Reals)
+            if sol.is_FiniteSet:
+                vals = sorted(list(sol), key=lambda v: float(v.evalf()))
+            else:
+                vals = []
+
+            if vals:
+                exact_text = ", ".join(_expr_str(v) for v in vals)
+                approx_text = ", ".join(f"{float(v.evalf()):.3f}" for v in vals)
+                final_text = f"x = {exact_text}"
+            else:
+                exact_text = "no real solution"
+                approx_text = "none"
+                final_text = "No real solution"
+
+            steps = [
+                {
+                    "title": "Step 1 - Rewrite with a Common Exponential Base",
+                    "body": (
+                        f"Start from\n$$ {_expr_str(left)} = {_expr_str(right)} $$\n\n"
+                        "Rewrite terms so powers can be compared directly."
+                    ),
+                },
+                {
+                    "title": "Step 2 - Use Substitution (if needed)",
+                    "body": (
+                        "For expressions like a^(2x), a^x, and a^(-x), let u = a^x.\n"
+                        "Solve the resulting algebraic equation in u, then back-substitute u = a^x."
+                    ),
+                },
+                {
+                    "title": "Step 3 - Solve for x",
+                    "body": f"Exact: {exact_text}\nApprox: {approx_text}",
+                },
+                {
+                    "title": "Step 4 - Final Check",
+                    "body": (
+                        "Substitute values into the original equation to verify.\n"
+                        f"Valid solution set: {final_text}"
+                    ),
+                },
+            ]
+
+            answer = final_text
+            answer_sections = [
+                {"label": "(i) Convert/Set Substitution", "body": "Rewrite to common base and/or let u = a^x."},
+                {"label": "(ii) Solve", "body": f"Exact: {exact_text}\nApprox: {approx_text}"},
+                {"label": "(iii) Final Answer", "body": final_text},
+            ]
+
+            return steps, answer, answer_sections, None
+        except Exception as e:
+            logger.warning(f"exp equation solver failed for '{q}': {e}")
+            return self._generic(num, q, meta)
+
+    # -----------------------------------------------------------------------
+    # 5.6 - Growth/decay models (105-107)
+    # -----------------------------------------------------------------------
+    def _exp_growth_decay_model(self, num: int, q: str, meta: dict) -> tuple:
+        try:
+            from sympy import Eq, S, log, simplify, solveset, symbols
+            from sympy.parsing.sympy_parser import (
+                parse_expr, standard_transformations,
+                implicit_multiplication_application,
+            )
+
+            var_name = meta.get("variable", "t")
+            t = symbols(var_name, real=True)
+            model_raw = meta.get("model", "")
+            targets = meta.get("targets", [])
+            units = meta.get("units", "")
+            context = meta.get("context", "quantity")
+
+            tf = standard_transformations + (implicit_multiplication_application,)
+            model_expr = parse_expr(str(model_raw), local_dict={var_name: t}, transformations=tf)
+
+            part_lines = []
+            answer_lines = []
+            answer_sections = []
+            for idx, target in enumerate(targets):
+                eq = Eq(model_expr, target)
+                sol = solveset(eq, t, domain=S.Reals)
+                if sol.is_FiniteSet and sol:
+                    val = list(sol)[0]
+                    approx = float(val.evalf())
+                    year_like = int(round(approx))
+                    part_lines.append(
+                        f"({chr(97 + idx)}) Solve { _expr_str(model_expr) } = {target}\n"
+                        f"    {var_name} = {_expr_str(val)} ~= {approx:.3f}"
+                    )
+                    answer_lines.append(f"({chr(97 + idx)}) {var_name} ~= {approx:.3f}")
+                    answer_sections.append(
+                        {
+                            "label": f"({chr(97 + idx)}) Target {target}",
+                            "body": (
+                                f"Set model equal to target and solve:\n"
+                                f"  {_expr_str(model_expr)} = {target}\n"
+                                f"  {var_name} = {_expr_str(val)} ~= {approx:.3f}\n"
+                                f"Approximate year/value marker: {year_like}"
+                            ),
+                        }
+                    )
+                else:
+                    part_lines.append(f"({chr(97 + idx)}) No real solution for target {target}.")
+                    answer_lines.append(f"({chr(97 + idx)}) no real solution")
+                    answer_sections.append(
+                        {
+                            "label": f"({chr(97 + idx)}) Target {target}",
+                            "body": "No real solution.",
+                        }
+                    )
+
+            steps = [
+                {
+                    "title": "Step 1 - Write the Exponential Model",
+                    "body": (
+                        f"Model: $$ {_expr_str(model_expr)} $$\n"
+                        f"This is an exponential {'growth' if 'population' in context else 'decay'} model."
+                    ),
+                },
+                {
+                    "title": "Step 2 - Set Model Equal to Each Target Value",
+                    "body": "\n".join(part_lines),
+                },
+                {
+                    "title": "Step 3 - Solve Using Logarithms",
+                    "body": (
+                        "Isolate the exponential expression, then take natural logs to solve for the time variable."
+                    ),
+                },
+                {
+                    "title": "Step 4 - Interpret the Result",
+                    "body": (
+                        f"Interpret each solution in context ({context}) with units: {units}.\n"
+                        + "\n".join(answer_lines)
+                    ),
+                },
+            ]
+
+            answer = " | ".join(answer_lines)
+            return steps, answer, answer_sections, None
+        except Exception as e:
+            logger.warning(f"growth/decay solver failed for '{q}': {e}")
             return self._generic(num, q, meta)
 
     # -----------------------------------------------------------------------

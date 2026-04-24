@@ -275,6 +275,38 @@ def write_outputs(
             )
             written.append(p)
 
+    elif section == "5.6":
+        part_log = by_type(solutions, "log_equation")
+        part_exp = by_type(solutions, "exp_equation")
+        part_model = by_type(solutions, "exp_growth_decay_model")
+
+        if part_log:
+            p = fmt.write_markdown(
+                part_log,
+                filename=f"section_{section.replace('.','_')}_logarithmic_equations.md",
+                title=f"Section {section} - Logarithmic Equations (Problems 15-30)",
+                section=section,
+            )
+            written.append(p)
+
+        if part_exp:
+            p = fmt.write_markdown(
+                part_exp,
+                filename=f"section_{section.replace('.','_')}_exponential_equations.md",
+                title=f"Section {section} - Exponential Equations (Problems 57-68)",
+                section=section,
+            )
+            written.append(p)
+
+        if part_model:
+            p = fmt.write_markdown(
+                part_model,
+                filename=f"section_{section.replace('.','_')}_applications.md",
+                title=f"Section {section} - Exponential Models (Problems 105-107)",
+                section=section,
+            )
+            written.append(p)
+
     # ── full combined HTML ────────────────────────────────────────────────────
     html_path = fmt.write_html(
         solutions,
