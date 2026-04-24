@@ -4,19 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Section 5.2 - One-to-One and Inverse Functions (Assigned Problems)</title>
-
-    <!-- MathJax 3 -->
     <script>
       window.MathJax = {
         tex: {
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
-          ],
-          displayMath: [
-            ["$$", "$$"],
-            ["\\[", "\\]"],
-          ],
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
           processEscapes: true,
           tags: "ams",
         },
@@ -25,17 +17,8 @@
         },
       };
     </script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
-    ></script>
-
-    <!-- Plotly.js basic (line + scatter, ~600 KB) -->
-    <script
-      src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js"
-      charset="utf-8"
-    ></script>
-
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
     <style>
       /* ── Reset ── */
       *,
@@ -519,233 +502,126 @@
           padding: 2rem 2rem;
         }
       }
-    </style>
+    
+      /* ── Side Notes ── */
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.80rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+</style>
   </head>
-
   <body>
-    <!-- MOBILE TOP BAR -->
     <div class="topbar" id="topbar">
-      <button
-        class="menu-btn"
-        id="menuBtn"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        aria-controls="sidebar"
-      >
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
         <span></span><span></span><span></span>
       </button>
       <span class="topbar-title">MAT 116 &mdash; Section 5.2</span>
     </div>
-
-    <!-- BACKDROP -->
     <div class="overlay" id="overlay" aria-hidden="true"></div>
-
-    <!-- SIDEBAR -->
     <nav class="sidebar" id="sidebar" aria-label="Problem navigation">
       <div class="sidebar-brand">
         <div class="brand-title">MAT 116 Solutions</div>
-        <div class="brand-sub">
-          Sullivan Precalculus 10th Ed &middot; Section 5.2
-        </div>
+        <div class="brand-sub">Sullivan Precalculus 10th Ed &middot; Section 5.2</div>
       </div>
-
       <div class="nav-group">
         <div class="nav-group-title">Chapters</div>
         <ul>
           <li>
-            <a href="../index.html">
-              <span class="nav-num">Home</span>MAT116 Index
-            </a>
-          <li>
-            <a href="../5.6/section_5_6.html">
-              <span class="nav-num">5.6</span>Log and Exp Equations
-            </a>
-          </li>
+            <a href="../index.html"><span class="nav-num">Home</span>MAT116 Index</a>
           </li>
           <li>
-            <a href="../4.1/section_4_1.html">
-              <span class="nav-num">4.1</span>Polynomial Functions
-            </a>
+            <a href="../4.1/section_4_1.html"><span class="nav-num">4.1</span>Polynomial Functions</a>
           </li>
           <li>
-            <a href="../4.2/section_4_2.html">
-              <span class="nav-num">4.2</span>Rational Asymptotes
-            </a>
+            <a href="../4.2/section_4_2.html"><span class="nav-num">4.2</span>Rational Asymptotes</a>
           </li>
           <li>
-            <a href="../4.3/section_4_3.html">
-              <span class="nav-num">4.3</span>Rational Graphs
-            </a>
+            <a href="../4.3/section_4_3.html"><span class="nav-num">4.3</span>Rational Graphs</a>
           </li>
           <li>
-            <a href="../4.4/section_4_4.html">
-              <span class="nav-num">4.4</span>Inequalities
-            </a>
+            <a href="../4.4/section_4_4.html"><span class="nav-num">4.4</span>Inequalities</a>
+          </li>
+          <li>
+            <a href="../5.1/section_5_1.html"><span class="nav-num">5.1</span>Composite Functions</a>
+          </li>
+          <li>
+            <a href="../5.2/section_5_2.html" class="active"><span class="nav-num">5.2</span>Inverse Functions</a>
+          </li>
+          <li>
+            <a href="../5.3/section_5_3.html"><span class="nav-num">5.3</span>Exponential Functions</a>
+          </li>
+          <li>
+            <a href="../5.4/section_5_4.html"><span class="nav-num">5.4</span>Logarithmic Functions</a>
+          </li>
+          <li>
+            <a href="../5.5/section_5_5.html"><span class="nav-num">5.5</span>Log Properties</a>
+          </li>
+          <li>
+            <a href="../5.6/section_5_6.html"><span class="nav-num">5.6</span>Log & Exp Equations</a>
           </li>
         </ul>
       </div>
-
-      
       <div class="nav-group">
         <div class="nav-group-title">Verify Inverse Pair</div>
         <ul>
-          
-          <li>
-            <a
-              href="#prob-39"
-              data-target="prob-39"
-            >
-              <span class="nav-num">39</span>Problem 39
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-40"
-              data-target="prob-40"
-            >
-              <span class="nav-num">40</span>Problem 40
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-41"
-              data-target="prob-41"
-            >
-              <span class="nav-num">41</span>Problem 41
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-42"
-              data-target="prob-42"
-            >
-              <span class="nav-num">42</span>Problem 42
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-43"
-              data-target="prob-43"
-            >
-              <span class="nav-num">43</span>Problem 43
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-44"
-              data-target="prob-44"
-            >
-              <span class="nav-num">44</span>Problem 44
-            </a>
-          </li>
-          
+          <li><a href="#prob-39" data-target="prob-39"><span class="nav-num">39</span>Problem 39</a></li>
+          <li><a href="#prob-40" data-target="prob-40"><span class="nav-num">40</span>Problem 40</a></li>
+          <li><a href="#prob-41" data-target="prob-41"><span class="nav-num">41</span>Problem 41</a></li>
+          <li><a href="#prob-42" data-target="prob-42"><span class="nav-num">42</span>Problem 42</a></li>
+          <li><a href="#prob-43" data-target="prob-43"><span class="nav-num">43</span>Problem 43</a></li>
+          <li><a href="#prob-44" data-target="prob-44"><span class="nav-num">44</span>Problem 44</a></li>
         </ul>
       </div>
-      
       <div class="nav-group">
         <div class="nav-group-title">Find Inverse Function</div>
         <ul>
-          
-          <li>
-            <a
-              href="#prob-66"
-              data-target="prob-66"
-            >
-              <span class="nav-num">66</span>Problem 66
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-67"
-              data-target="prob-67"
-            >
-              <span class="nav-num">67</span>Problem 67
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-68"
-              data-target="prob-68"
-            >
-              <span class="nav-num">68</span>Problem 68
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-69"
-              data-target="prob-69"
-            >
-              <span class="nav-num">69</span>Problem 69
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-70"
-              data-target="prob-70"
-            >
-              <span class="nav-num">70</span>Problem 70
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-71"
-              data-target="prob-71"
-            >
-              <span class="nav-num">71</span>Problem 71
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-72"
-              data-target="prob-72"
-            >
-              <span class="nav-num">72</span>Problem 72
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-73"
-              data-target="prob-73"
-            >
-              <span class="nav-num">73</span>Problem 73
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-74"
-              data-target="prob-74"
-            >
-              <span class="nav-num">74</span>Problem 74
-            </a>
-          </li>
-          
+          <li><a href="#prob-66" data-target="prob-66"><span class="nav-num">66</span>Problem 66</a></li>
+          <li><a href="#prob-67" data-target="prob-67"><span class="nav-num">67</span>Problem 67</a></li>
+          <li><a href="#prob-68" data-target="prob-68"><span class="nav-num">68</span>Problem 68</a></li>
+          <li><a href="#prob-69" data-target="prob-69"><span class="nav-num">69</span>Problem 69</a></li>
+          <li><a href="#prob-70" data-target="prob-70"><span class="nav-num">70</span>Problem 70</a></li>
+          <li><a href="#prob-71" data-target="prob-71"><span class="nav-num">71</span>Problem 71</a></li>
+          <li><a href="#prob-72" data-target="prob-72"><span class="nav-num">72</span>Problem 72</a></li>
+          <li><a href="#prob-73" data-target="prob-73"><span class="nav-num">73</span>Problem 73</a></li>
+          <li><a href="#prob-74" data-target="prob-74"><span class="nav-num">74</span>Problem 74</a></li>
         </ul>
       </div>
-      
     </nav>
-
-    <!-- MAIN CONTENT -->
     <div class="main">
       <div class="container">
         <header class="page-header" id="top">
           <h1>Section 5.2 - One-to-One and Inverse Functions (Assigned Problems)</h1>
-          <p class="subtitle">
-            MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan
-            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 5.2 &nbsp;|&nbsp; Generated: April 22, 2026
-          </p>
+          <p class="subtitle">MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 5.2</p>
           <div class="header-nav-label">Jump to Section</div>
           <div class="chapter-nav">
             <a class="chapter-link" href="../4.1/section_4_1.html">4.1</a>
@@ -753,663 +629,597 @@
             <a class="chapter-link" href="../4.3/section_4_3.html">4.3</a>
             <a class="chapter-link" href="../4.4/section_4_4.html">4.4</a>
             <a class="chapter-link" href="../5.1/section_5_1.html">5.1</a>
-            <a class="chapter-link" href="../5.2/section_5_2.html">5.2</a>
+            <a class="chapter-link active" href="../5.2/section_5_2.html">5.2</a>
             <a class="chapter-link" href="../5.3/section_5_3.html">5.3</a>
+            <a class="chapter-link" href="../5.4/section_5_4.html">5.4</a>
+            <a class="chapter-link" href="../5.5/section_5_5.html">5.5</a>
             <a class="chapter-link" href="../5.6/section_5_6.html">5.6</a>
             <a class="chapter-link" href="../index.html">Home</a>
           </div>
         </header>
+        <div class="section-sidenotes">
+          <div class="sidenotes-title">&#9733; Key Notes for this Section</div>
+        <div class="sidenote">
+          <div class="sidenote-header">One-to-One Function</div>
+          <div class="sidenote-body">A function $f$ is one-to-one if $f(a) = f(b)$ implies $a = b$.
+Graphically: passes the Horizontal Line Test.
+Only one-to-one functions have an inverse $f^{-1}$.</div>
+        </div>
+        <div class="sidenote">
+          <div class="sidenote-header">Inverse Function Property</div>
+          <div class="sidenote-body">$(f^{-1} \circ f)(x) = x$ for all $x$ in Dom($f$)
+$(f \circ f^{-1})(x) = x$ for all $x$ in Dom($f^{-1}$)
+Dom($f^{-1}$) = Range($f$) and Range($f^{-1}$) = Dom($f$).</div>
+        </div>
+        <div class="sidenote">
+          <div class="sidenote-header">Procedure — Finding f⁻¹</div>
+          <div class="sidenote-body">1. Write $y = f(x)$.
+2. Swap $x$ and $y$: solve the equation $x = f(y)$ for $y$.
+3. Write $f^{-1}(x) = $ (result).
+4. State domain restrictions.</div>
+        </div>
+        </div>
 
-         
         <div class="problem" id="prob-39">
           <h2>Problem 39</h2>
           <span class="badge">Verify Inverse Pair</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Verify inverses: f(x)=x^3-8, g(x)=cuberoot(x+8).</div>
+          <div class="given-box">Verify that $f(x) = x^3 - 8$ and $g(x) = \sqrt[3]{x+8}$ are inverses.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Check f(g(x))</div>
-              <div class="step-body">f(g(x)) = (cuberoot(x+8))^3 - 8 = x</div>
+              <div class="step-title">Check f(g(x)) = x</div>
+              <div class="step-body">$f(g(x)) = \left(\sqrt[3]{x+8}\right)^3 - 8 = (x+8) - 8 = x$ ✓</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Check g(f(x))</div>
-              <div class="step-body">g(f(x)) = cuberoot((x^3-8)+8) = cuberoot(x^3) = x</div>
+              <div class="step-title">Check g(f(x)) = x</div>
+              <div class="step-body">$g(f(x)) = \sqrt[3]{(x^3-8)+8} = \sqrt[3]{x^3} = x$ ✓</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Check f(g(x))</div>
-                <div class="answer-sec-body">
-                  f(g(x)) = (cuberoot(x+8))^3 - 8 = x
-                </div>
+                <div class="answer-sec-label">Check f(g(x)) = x</div>
+                <div class="answer-sec-body">$f(g(x)) = \left(\sqrt[3]{x+8}\right)^3 - 8 = (x+8) - 8 = x$ ✓</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Check g(f(x))</div>
-                <div class="answer-sec-body">
-                  g(f(x)) = cuberoot((x^3-8)+8) = cuberoot(x^3) = x
-                </div>
+                <div class="answer-sec-label">Check g(f(x)) = x</div>
+                <div class="answer-sec-body">$g(f(x)) = \sqrt[3]{(x^3-8)+8} = \sqrt[3]{x^3} = x$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f and g are inverses on all real numbers.</div>
+                <div class="answer-sec-body">Since both compositions equal $x$, $f$ and $g$ are inverse functions on $(-\infty,\infty)$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-40">
           <h2>Problem 40</h2>
           <span class="badge">Verify Inverse Pair</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Verify inverses: f(x)=sqrt(x-2), x&gt;=2; g(x)=x^2+2.</div>
+          <div class="given-box">Verify that $f(x) = \sqrt{x-2}$ ($x \geq 2$) and $g(x) = x^2+2$ are inverses.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Check f(g(x))</div>
-              <div class="step-body">f(g(x)) = sqrt((x^2+2)-2) = sqrt(x^2) = x for x&gt;=0</div>
+              <div class="step-title">Check f(g(x)) = x for x ≥ 0</div>
+              <div class="step-body">$f(g(x)) = \sqrt{(x^2+2)-2} = \sqrt{x^2} = x$ for $x \geq 0$ ✓</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Check g(f(x))</div>
-              <div class="step-body">g(f(x)) = (sqrt(x-2))^2 + 2 = x for x&gt;=2</div>
+              <div class="step-title">Check g(f(x)) = x for x ≥ 2</div>
+              <div class="step-body">$g(f(x)) = \left(\sqrt{x-2}\right)^2 + 2 = (x-2)+2 = x$ for $x \geq 2$ ✓</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Check f(g(x))</div>
-                <div class="answer-sec-body">
-                  f(g(x)) = sqrt((x^2+2)-2) = sqrt(x^2) = x for x&gt;=0
-                </div>
+                <div class="answer-sec-label">Check f(g(x)) = x for x ≥ 0</div>
+                <div class="answer-sec-body">$f(g(x)) = \sqrt{(x^2+2)-2} = \sqrt{x^2} = x$ for $x \geq 0$ ✓</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Check g(f(x))</div>
-                <div class="answer-sec-body">
-                  g(f(x)) = (sqrt(x-2))^2 + 2 = x for x&gt;=2
-                </div>
+                <div class="answer-sec-label">Check g(f(x)) = x for x ≥ 2</div>
+                <div class="answer-sec-body">$g(f(x)) = \left(\sqrt{x-2}\right)^2 + 2 = (x-2)+2 = x$ for $x \geq 2$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">They are inverses with f-domain [2,inf) and g-domain [0,inf).</div>
+                <div class="answer-sec-body">They are inverse functions with Dom($f$) $= [2,\infty)$, Dom($g$) $= [0,\infty)$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-41">
           <h2>Problem 41</h2>
           <span class="badge">Verify Inverse Pair</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Verify inverses: f(x)=x, g(x)=x.</div>
+          <div class="given-box">Verify that $f(x) = x$ and $g(x) = x$ are inverses.</div>
           <div class="steps">
-            
             <div class="step">
               <div class="step-title">Compose</div>
-              <div class="step-body">f(g(x))=x and g(f(x))=x</div>
+              <div class="step-body">$f(g(x)) = f(x) = x$ and $g(f(x)) = g(x) = x$ ✓</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
                 <div class="answer-sec-label">Compose</div>
-                <div class="answer-sec-body">
-                  f(g(x))=x and g(f(x))=x
-                </div>
+                <div class="answer-sec-body">$f(g(x)) = f(x) = x$ and $g(f(x)) = g(x) = x$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">Inverse pair on all real numbers.</div>
+                <div class="answer-sec-body">The identity function $f(x)=x$ is its own inverse on $(-\infty,\infty)$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-42">
           <h2>Problem 42</h2>
           <span class="badge">Verify Inverse Pair</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Verify inverses: f(x)=1/x, g(x)=1/x.</div>
+          <div class="given-box">Verify that $f(x) = \dfrac{1}{x}$ and $g(x) = \dfrac{1}{x}$ are inverses.</div>
           <div class="steps">
-            
             <div class="step">
               <div class="step-title">Compose</div>
-              <div class="step-body">f(g(x)) = 1/(1/x)=x and g(f(x))=x</div>
+              <div class="step-body">$f(g(x)) = \dfrac{1}{1/x} = x$ ✓
+$g(f(x)) = \dfrac{1}{1/x} = x$ ✓
+Restriction: $x \neq 0$ for both functions.</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Restriction</div>
-              <div class="step-body">x!=0 for both functions.</div>
-            </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
                 <div class="answer-sec-label">Compose</div>
-                <div class="answer-sec-body">
-                  f(g(x)) = 1/(1/x)=x and g(f(x))=x
-                </div>
-              </div>
-              <div class="answer-section">
-                <div class="answer-sec-label">Restriction</div>
-                <div class="answer-sec-body">
-                  x!=0 for both functions.
-                </div>
+                <div class="answer-sec-body">$f(g(x)) = \dfrac{1}{1/x} = x$ ✓
+$g(f(x)) = \dfrac{1}{1/x} = x$ ✓
+Restriction: $x \neq 0$ for both functions.</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">Inverse pair with x != 0.</div>
+                <div class="answer-sec-body">$f(x) = \dfrac{1}{x}$ is its own inverse; Dom: $\{x \mid x \neq 0\}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-43">
           <h2>Problem 43</h2>
           <span class="badge">Verify Inverse Pair</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Verify inverses: f(x)=(x-5)/(2x+3), g(x)=(3x+5)/(1-2x).</div>
+          <div class="given-box">Verify that $f(x) = \dfrac{x-5}{2x+3}$ and $g(x) = \dfrac{3x+5}{1-2x}$ are inverses.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Compose</div>
-              <div class="step-body">f(g(x))=x and g(f(x))=x after simplification.</div>
+              <div class="step-title">Check f(g(x)) = x</div>
+              <div class="step-body">Num: $\dfrac{3x+5}{1-2x}-5 = \dfrac{3x+5-5(1-2x)}{1-2x} = \dfrac{13x}{1-2x}$
+Den: $2\cdot\dfrac{3x+5}{1-2x}+3 = \dfrac{6x+10+3(1-2x)}{1-2x} = \dfrac{13}{1-2x}$
+$f(g(x)) = \dfrac{13x}{13} = x$ ✓</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Restrictions</div>
-              <div class="step-body">For f: x != -3/2. For g: x != 1/2.</div>
+              <div class="step-title">State domain restrictions</div>
+              <div class="step-body">Dom($f$): $x \neq -\dfrac{3}{2}$; Dom($g$): $x \neq \dfrac{1}{2}$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Compose</div>
-                <div class="answer-sec-body">
-                  f(g(x))=x and g(f(x))=x after simplification.
-                </div>
+                <div class="answer-sec-label">Check f(g(x)) = x</div>
+                <div class="answer-sec-body">Num: $\dfrac{3x+5}{1-2x}-5 = \dfrac{3x+5-5(1-2x)}{1-2x} = \dfrac{13x}{1-2x}$
+Den: $2\cdot\dfrac{3x+5}{1-2x}+3 = \dfrac{6x+10+3(1-2x)}{1-2x} = \dfrac{13}{1-2x}$
+$f(g(x)) = \dfrac{13x}{13} = x$ ✓</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Restrictions</div>
-                <div class="answer-sec-body">
-                  For f: x != -3/2. For g: x != 1/2.
-                </div>
+                <div class="answer-sec-label">State domain restrictions</div>
+                <div class="answer-sec-body">Dom($f$): $x \neq -\dfrac{3}{2}$; Dom($g$): $x \neq \dfrac{1}{2}$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">Inverse pair with excluded values x!=-3/2 for f and x!=1/2 for g.</div>
+                <div class="answer-sec-body">Inverse pair verified. Dom($f$): $x \neq -\tfrac{3}{2}$; Dom($g$): $x \neq \tfrac{1}{2}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-44">
           <h2>Problem 44</h2>
           <span class="badge">Verify Inverse Pair</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Verify inverses: f(x)=(2x+3)/(x+4), g(x)=(4x-3)/(2-x).</div>
+          <div class="given-box">Verify that $f(x) = \dfrac{2x+3}{x+4}$ and $g(x) = \dfrac{4x-3}{2-x}$ are inverses.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Compose</div>
-              <div class="step-body">f(g(x))=x and g(f(x))=x after simplification.</div>
+              <div class="step-title">Check f(g(x)) = x</div>
+              <div class="step-body">Num: $2\cdot\dfrac{4x-3}{2-x}+3 = \dfrac{2(4x-3)+3(2-x)}{2-x} = \dfrac{5x}{2-x}$
+Den: $\dfrac{4x-3}{2-x}+4 = \dfrac{4x-3+4(2-x)}{2-x} = \dfrac{5}{2-x}$
+$f(g(x)) = x$ ✓</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Restrictions</div>
-              <div class="step-body">For f: x != -4. For g: x != 2.</div>
+              <div class="step-title">State domain restrictions</div>
+              <div class="step-body">Dom($f$): $x \neq -4$; Dom($g$): $x \neq 2$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Compose</div>
-                <div class="answer-sec-body">
-                  f(g(x))=x and g(f(x))=x after simplification.
-                </div>
+                <div class="answer-sec-label">Check f(g(x)) = x</div>
+                <div class="answer-sec-body">Num: $2\cdot\dfrac{4x-3}{2-x}+3 = \dfrac{2(4x-3)+3(2-x)}{2-x} = \dfrac{5x}{2-x}$
+Den: $\dfrac{4x-3}{2-x}+4 = \dfrac{4x-3+4(2-x)}{2-x} = \dfrac{5}{2-x}$
+$f(g(x)) = x$ ✓</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Restrictions</div>
-                <div class="answer-sec-body">
-                  For f: x != -4. For g: x != 2.
-                </div>
+                <div class="answer-sec-label">State domain restrictions</div>
+                <div class="answer-sec-body">Dom($f$): $x \neq -4$; Dom($g$): $x \neq 2$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">Inverse pair with excluded values x!=-4 for f and x!=2 for g.</div>
+                <div class="answer-sec-body">Inverse pair verified. Dom($f$): $x \neq -4$; Dom($g$): $x \neq 2$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-66">
           <h2>Problem 66</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=3x/(x+2), and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{3x}{x+2}$. State domain and range of $f$ and $f^{-1}$.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Solve y=3x/(x+2) for x</div>
-              <div class="step-body">y(x+2)=3x -&gt; yx+2y=3x -&gt; x(y-3)=-2y -&gt; x=2y/(3-y).</div>
+              <div class="step-title">Solve y = 3x/(x+2) for x</div>
+              <div class="step-body">$y(x+2) = 3x \Rightarrow xy + 2y = 3x \Rightarrow x(y-3) = -2y \Rightarrow x = \dfrac{2y}{3-y}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=2x/(3-x). Dom(f): x!= -2, Range(f): y!=3. Dom(f^{-1}): x!=3, Range(f^{-1}): y!=-2.</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{2x}{3-x}$
+Dom($f$): $x \neq -2$; Range($f$): $y \neq 3$
+Dom($f^{-1}$): $x \neq 3$; Range($f^{-1}$): $y \neq -2$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Solve y=3x/(x+2) for x</div>
-                <div class="answer-sec-body">
-                  y(x+2)=3x -&gt; yx+2y=3x -&gt; x(y-3)=-2y -&gt; x=2y/(3-y).
-                </div>
+                <div class="answer-sec-label">Solve y = 3x/(x+2) for x</div>
+                <div class="answer-sec-body">$y(x+2) = 3x \Rightarrow xy + 2y = 3x \Rightarrow x(y-3) = -2y \Rightarrow x = \dfrac{2y}{3-y}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=2x/(3-x). Dom(f): x!= -2, Range(f): y!=3. Dom(f^{-1}): x!=3, Range(f^{-1}): y!=-2.
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{2x}{3-x}$
+Dom($f$): $x \neq -2$; Range($f$): $y \neq 3$
+Dom($f^{-1}$): $x \neq 3$; Range($f^{-1}$): $y \neq -2$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=2x/(3-x); Dom(f)=R\{-2}, Range(f)=R\{3}.</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{2x}{3-x}$; Dom($f^{-1}$): $\{x \mid x \neq 3\}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-67">
           <h2>Problem 67</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=2x/(3x-1), and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{2x}{3x-1}$. State domain and range of $f$ and $f^{-1}$.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Solve y=2x/(3x-1) for x</div>
-              <div class="step-body">y(3x-1)=2x -&gt; 3yx-y=2x -&gt; x(3y-2)=y -&gt; x=y/(3y-2).</div>
+              <div class="step-title">Solve y = 2x/(3x-1) for x</div>
+              <div class="step-body">$y(3x-1) = 2x \Rightarrow 3xy - y = 2x \Rightarrow x(3y-2) = y \Rightarrow x = \dfrac{y}{3y-2}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=x/(3x-2). Dom(f): x!=1/3, Range(f): y!=2/3. Dom(f^{-1}): x!=2/3, Range(f^{-1}): y!=1/3.</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{x}{3x-2}$
+Dom($f$): $x \neq \dfrac{1}{3}$; Range($f$): $y \neq \dfrac{2}{3}$
+Dom($f^{-1}$): $x \neq \dfrac{2}{3}$; Range($f^{-1}$): $y \neq \dfrac{1}{3}$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Solve y=2x/(3x-1) for x</div>
-                <div class="answer-sec-body">
-                  y(3x-1)=2x -&gt; 3yx-y=2x -&gt; x(3y-2)=y -&gt; x=y/(3y-2).
-                </div>
+                <div class="answer-sec-label">Solve y = 2x/(3x-1) for x</div>
+                <div class="answer-sec-body">$y(3x-1) = 2x \Rightarrow 3xy - y = 2x \Rightarrow x(3y-2) = y \Rightarrow x = \dfrac{y}{3y-2}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=x/(3x-2). Dom(f): x!=1/3, Range(f): y!=2/3. Dom(f^{-1}): x!=2/3, Range(f^{-1}): y!=1/3.
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{x}{3x-2}$
+Dom($f$): $x \neq \dfrac{1}{3}$; Range($f$): $y \neq \dfrac{2}{3}$
+Dom($f^{-1}$): $x \neq \dfrac{2}{3}$; Range($f^{-1}$): $y \neq \dfrac{1}{3}$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=x/(3x-2).</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{x}{3x-2}$; Dom($f^{-1}$): $\{x \mid x \neq \tfrac{2}{3}\}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-68">
           <h2>Problem 68</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=(-3x+1)/x, and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{-3x+1}{x}$. State domain and range of $f$ and $f^{-1}$.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Solve y=(-3x+1)/x</div>
-              <div class="step-body">yx=-3x+1 -&gt; x(y+3)=1 -&gt; x=1/(y+3).</div>
+              <div class="step-title">Solve y = (-3x+1)/x for x</div>
+              <div class="step-body">$yx = -3x+1 \Rightarrow yx+3x = 1 \Rightarrow x(y+3) = 1 \Rightarrow x = \dfrac{1}{y+3}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=1/(x+3). Dom(f): x!=0, Range(f): y!=-3. Dom(f^{-1}): x!=-3, Range(f^{-1}): y!=0.</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{1}{x+3}$
+Dom($f$): $x \neq 0$; Range($f$): $y \neq -3$
+Dom($f^{-1}$): $x \neq -3$; Range($f^{-1}$): $y \neq 0$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Solve y=(-3x+1)/x</div>
-                <div class="answer-sec-body">
-                  yx=-3x+1 -&gt; x(y+3)=1 -&gt; x=1/(y+3).
-                </div>
+                <div class="answer-sec-label">Solve y = (-3x+1)/x for x</div>
+                <div class="answer-sec-body">$yx = -3x+1 \Rightarrow yx+3x = 1 \Rightarrow x(y+3) = 1 \Rightarrow x = \dfrac{1}{y+3}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=1/(x+3). Dom(f): x!=0, Range(f): y!=-3. Dom(f^{-1}): x!=-3, Range(f^{-1}): y!=0.
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{1}{x+3}$
+Dom($f$): $x \neq 0$; Range($f$): $y \neq -3$
+Dom($f^{-1}$): $x \neq -3$; Range($f^{-1}$): $y \neq 0$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=1/(x+3).</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{1}{x+3}$; Dom($f^{-1}$): $\{x \mid x \neq -3\}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-69">
           <h2>Problem 69</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=(2x-3)/(x+4), and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{2x-3}{x+4}$. State domain and range of $f$ and $f^{-1}$.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Solve y=(2x-3)/(x+4)</div>
-              <div class="step-body">y(x+4)=2x-3 -&gt; yx+4y=2x-3 -&gt; x(y-2)=-(4y+3) -&gt; x=(4y+3)/(2-y).</div>
+              <div class="step-title">Solve y = (2x-3)/(x+4) for x</div>
+              <div class="step-body">$y(x+4) = 2x-3 \Rightarrow xy+4y = 2x-3 \Rightarrow x(y-2) = -(4y+3) \Rightarrow x = \dfrac{4y+3}{2-y}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=(4x+3)/(2-x). Dom(f): x!=-4, Range(f): y!=2. Dom(f^{-1}): x!=2, Range(f^{-1}): y!=-4.</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{4x+3}{2-x}$
+Dom($f$): $x \neq -4$; Range($f$): $y \neq 2$
+Dom($f^{-1}$): $x \neq 2$; Range($f^{-1}$): $y \neq -4$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Solve y=(2x-3)/(x+4)</div>
-                <div class="answer-sec-body">
-                  y(x+4)=2x-3 -&gt; yx+4y=2x-3 -&gt; x(y-2)=-(4y+3) -&gt; x=(4y+3)/(2-y).
-                </div>
+                <div class="answer-sec-label">Solve y = (2x-3)/(x+4) for x</div>
+                <div class="answer-sec-body">$y(x+4) = 2x-3 \Rightarrow xy+4y = 2x-3 \Rightarrow x(y-2) = -(4y+3) \Rightarrow x = \dfrac{4y+3}{2-y}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=(4x+3)/(2-x). Dom(f): x!=-4, Range(f): y!=2. Dom(f^{-1}): x!=2, Range(f^{-1}): y!=-4.
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{4x+3}{2-x}$
+Dom($f$): $x \neq -4$; Range($f$): $y \neq 2$
+Dom($f^{-1}$): $x \neq 2$; Range($f^{-1}$): $y \neq -4$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=(4x+3)/(2-x).</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{4x+3}{2-x}$; Dom($f^{-1}$): $\{x \mid x \neq 2\}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-70">
           <h2>Problem 70</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=(3x+4)/(2x-3), and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{3x+4}{2x-3}$. State domain and range of $f$ and $f^{-1}$.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Solve y=(3x+4)/(2x-3)</div>
-              <div class="step-body">y(2x-3)=3x+4 -&gt; 2yx-3y=3x+4 -&gt; x(2y-3)=3y+4 -&gt; x=(3y+4)/(2y-3).</div>
+              <div class="step-title">Solve y = (3x+4)/(2x-3) for x</div>
+              <div class="step-body">$y(2x-3) = 3x+4 \Rightarrow 2xy-3y = 3x+4 \Rightarrow x(2y-3) = 3y+4 \Rightarrow x = \dfrac{3y+4}{2y-3}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=(3x+4)/(2x-3). Dom(f): x!=3/2, Range(f): y!=3/2.</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{3x+4}{2x-3}$
+Note: $f$ is its own inverse!
+Dom($f$) = Dom($f^{-1}$): $x \neq \dfrac{3}{2}$; Range: $y \neq \dfrac{3}{2}$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Solve y=(3x+4)/(2x-3)</div>
-                <div class="answer-sec-body">
-                  y(2x-3)=3x+4 -&gt; 2yx-3y=3x+4 -&gt; x(2y-3)=3y+4 -&gt; x=(3y+4)/(2y-3).
-                </div>
+                <div class="answer-sec-label">Solve y = (3x+4)/(2x-3) for x</div>
+                <div class="answer-sec-body">$y(2x-3) = 3x+4 \Rightarrow 2xy-3y = 3x+4 \Rightarrow x(2y-3) = 3y+4 \Rightarrow x = \dfrac{3y+4}{2y-3}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=(3x+4)/(2x-3). Dom(f): x!=3/2, Range(f): y!=3/2.
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{3x+4}{2x-3}$
+Note: $f$ is its own inverse!
+Dom($f$) = Dom($f^{-1}$): $x \neq \dfrac{3}{2}$; Range: $y \neq \dfrac{3}{2}$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">Self-inverse: f^{-1}(x)=(3x+4)/(2x-3).</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{3x+4}{2x-3} = f(x)$ (self-inverse); Dom: $x \neq \dfrac{3}{2}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-71">
           <h2>Problem 71</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=(-3x-4)/(x-2), and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{-3x-4}{x-2}$. State domain and range of $f$ and $f^{-1}$.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Solve y=(-3x-4)/(x-2)</div>
-              <div class="step-body">y(x-2)=-3x-4 -&gt; yx-2y=-3x-4 -&gt; x(y+3)=2y-4 -&gt; x=2(y-2)/(y+3).</div>
+              <div class="step-title">Solve y = (-3x-4)/(x-2) for x</div>
+              <div class="step-body">$y(x-2) = -3x-4 \Rightarrow xy-2y = -3x-4 \Rightarrow x(y+3) = 2y-4 \Rightarrow x = \dfrac{2(y-2)}{y+3}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=2(x-2)/(x+3). Dom(f): x!=2, Range(f): y!=-3. Dom(f^{-1}): x!=-3, Range(f^{-1}): y!=2.</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{2(x-2)}{x+3}$
+Dom($f$): $x \neq 2$; Range($f$): $y \neq -3$
+Dom($f^{-1}$): $x \neq -3$; Range($f^{-1}$): $y \neq 2$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Solve y=(-3x-4)/(x-2)</div>
-                <div class="answer-sec-body">
-                  y(x-2)=-3x-4 -&gt; yx-2y=-3x-4 -&gt; x(y+3)=2y-4 -&gt; x=2(y-2)/(y+3).
-                </div>
+                <div class="answer-sec-label">Solve y = (-3x-4)/(x-2) for x</div>
+                <div class="answer-sec-body">$y(x-2) = -3x-4 \Rightarrow xy-2y = -3x-4 \Rightarrow x(y+3) = 2y-4 \Rightarrow x = \dfrac{2(y-2)}{y+3}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=2(x-2)/(x+3). Dom(f): x!=2, Range(f): y!=-3. Dom(f^{-1}): x!=-3, Range(f^{-1}): y!=2.
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{2(x-2)}{x+3}$
+Dom($f$): $x \neq 2$; Range($f$): $y \neq -3$
+Dom($f^{-1}$): $x \neq -3$; Range($f^{-1}$): $y \neq 2$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=2(x-2)/(x+3).</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{2(x-2)}{x+3}$; Dom($f^{-1}$): $\{x \mid x \neq -3\}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-72">
           <h2>Problem 72</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=(2x+3)/(x+2), and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{2x+3}{x+2}$. State domain and range of $f$ and $f^{-1}$.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Solve y=(2x+3)/(x+2)</div>
-              <div class="step-body">y(x+2)=2x+3 -&gt; yx+2y=2x+3 -&gt; x(y-2)=3-2y -&gt; x=(3-2y)/(y-2).</div>
+              <div class="step-title">Solve y = (2x+3)/(x+2) for x</div>
+              <div class="step-body">$y(x+2) = 2x+3 \Rightarrow xy+2y = 2x+3 \Rightarrow x(y-2) = 3-2y \Rightarrow x = \dfrac{3-2y}{y-2}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=(3-2x)/(x-2). Dom(f): x!=-2, Range(f): y!=2. Dom(f^{-1}): x!=2, Range(f^{-1}): y!=-2.</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{3-2x}{x-2}$
+Dom($f$): $x \neq -2$; Range($f$): $y \neq 2$
+Dom($f^{-1}$): $x \neq 2$; Range($f^{-1}$): $y \neq -2$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Solve y=(2x+3)/(x+2)</div>
-                <div class="answer-sec-body">
-                  y(x+2)=2x+3 -&gt; yx+2y=2x+3 -&gt; x(y-2)=3-2y -&gt; x=(3-2y)/(y-2).
-                </div>
+                <div class="answer-sec-label">Solve y = (2x+3)/(x+2) for x</div>
+                <div class="answer-sec-body">$y(x+2) = 2x+3 \Rightarrow xy+2y = 2x+3 \Rightarrow x(y-2) = 3-2y \Rightarrow x = \dfrac{3-2y}{y-2}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=(3-2x)/(x-2). Dom(f): x!=-2, Range(f): y!=2. Dom(f^{-1}): x!=2, Range(f^{-1}): y!=-2.
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{3-2x}{x-2}$
+Dom($f$): $x \neq -2$; Range($f$): $y \neq 2$
+Dom($f^{-1}$): $x \neq 2$; Range($f^{-1}$): $y \neq -2$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=(3-2x)/(x-2).</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{3-2x}{x-2}$; Dom($f^{-1}$): $\{x \mid x \neq 2\}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-73">
           <h2>Problem 73</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=(x^2+3)/(3x^2), x&gt;0, and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{x^2+3}{3x^2}$, $x &gt; 0$. State domain and range.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Rewrite and solve</div>
-              <div class="step-body">y = 1/3 + 1/x^2 -&gt; y-1/3 = 1/x^2 -&gt; x^2 = 3/(3y-1). Since x&gt;0, x = sqrt(3/(3y-1)).</div>
+              <div class="step-title">Rewrite and solve for x</div>
+              <div class="step-body">$y = \dfrac{1}{3} + \dfrac{1}{x^2} \Rightarrow y - \dfrac{1}{3} = \dfrac{1}{x^2} \Rightarrow x^2 = \dfrac{1}{y-\frac{1}{3}} = \dfrac{3}{3y-1}$
+Since $x &gt; 0$: $x = \sqrt{\dfrac{3}{3y-1}}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=sqrt(3/(3x-1)). Dom(f)=(0,inf), Range(f)=(1/3,inf). Dom(f^{-1})=(1/3,inf), Range(f^{-1})=(0,inf).</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \sqrt{\dfrac{3}{3x-1}}$
+Dom($f$) $= (0,\infty)$; Range($f$) $= \left(\dfrac{1}{3},\infty\right)$
+Dom($f^{-1}$) $= \left(\dfrac{1}{3},\infty\right)$; Range($f^{-1}$) $= (0,\infty)$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Rewrite and solve</div>
-                <div class="answer-sec-body">
-                  y = 1/3 + 1/x^2 -&gt; y-1/3 = 1/x^2 -&gt; x^2 = 3/(3y-1). Since x&gt;0, x = sqrt(3/(3y-1)).
-                </div>
+                <div class="answer-sec-label">Rewrite and solve for x</div>
+                <div class="answer-sec-body">$y = \dfrac{1}{3} + \dfrac{1}{x^2} \Rightarrow y - \dfrac{1}{3} = \dfrac{1}{x^2} \Rightarrow x^2 = \dfrac{1}{y-\frac{1}{3}} = \dfrac{3}{3y-1}$
+Since $x &gt; 0$: $x = \sqrt{\dfrac{3}{3y-1}}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=sqrt(3/(3x-1)). Dom(f)=(0,inf), Range(f)=(1/3,inf). Dom(f^{-1})=(1/3,inf), Range(f^{-1})=(0,inf).
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \sqrt{\dfrac{3}{3x-1}}$
+Dom($f$) $= (0,\infty)$; Range($f$) $= \left(\dfrac{1}{3},\infty\right)$
+Dom($f^{-1}$) $= \left(\dfrac{1}{3},\infty\right)$; Range($f^{-1}$) $= (0,\infty)$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=sqrt(3/(3x-1)), x&gt;1/3.</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \sqrt{\dfrac{3}{3x-1}}$; Dom($f^{-1}$): $x &gt; \dfrac{1}{3}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-74">
           <h2>Problem 74</h2>
           <span class="badge">Find Inverse Function</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Find f^{-1} for f(x)=(x^2-4)/(2x^2), x&gt;0, and state domain/range of f and f^{-1}.</div>
+          <div class="given-box">Find $f^{-1}$ for $f(x) = \dfrac{x^2-4}{2x^2}$, $x &gt; 0$. State domain and range.</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Rewrite and solve</div>
-              <div class="step-body">y = 1/2 - 2/x^2 -&gt; 1/2-y = 2/x^2 -&gt; x^2 = 4/(1-2y). Since x&gt;0, x = 2/sqrt(1-2y).</div>
+              <div class="step-title">Rewrite and solve for x</div>
+              <div class="step-body">$y = \dfrac{1}{2} - \dfrac{2}{x^2} \Rightarrow \dfrac{1}{2}-y = \dfrac{2}{x^2} \Rightarrow x^2 = \dfrac{4}{1-2y}$
+Since $x &gt; 0$: $x = \dfrac{2}{\sqrt{1-2y}}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Write inverse and sets</div>
-              <div class="step-body">f^{-1}(x)=2/sqrt(1-2x). Dom(f)=(0,inf), Range(f)=(-inf,1/2). Dom(f^{-1})=(-inf,1/2), Range(f^{-1})=(0,inf).</div>
+              <div class="step-title">Write inverse and state sets</div>
+              <div class="step-body">$f^{-1}(x) = \dfrac{2}{\sqrt{1-2x}}$
+Dom($f$) $= (0,\infty)$; Range($f$) $= \left(-\infty,\dfrac{1}{2}\right)$
+Dom($f^{-1}$) $= \left(-\infty,\dfrac{1}{2}\right)$; Range($f^{-1}$) $= (0,\infty)$</div>
             </div>
-            
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Rewrite and solve</div>
-                <div class="answer-sec-body">
-                  y = 1/2 - 2/x^2 -&gt; 1/2-y = 2/x^2 -&gt; x^2 = 4/(1-2y). Since x&gt;0, x = 2/sqrt(1-2y).
-                </div>
+                <div class="answer-sec-label">Rewrite and solve for x</div>
+                <div class="answer-sec-body">$y = \dfrac{1}{2} - \dfrac{2}{x^2} \Rightarrow \dfrac{1}{2}-y = \dfrac{2}{x^2} \Rightarrow x^2 = \dfrac{4}{1-2y}$
+Since $x &gt; 0$: $x = \dfrac{2}{\sqrt{1-2y}}$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Write inverse and sets</div>
-                <div class="answer-sec-body">
-                  f^{-1}(x)=2/sqrt(1-2x). Dom(f)=(0,inf), Range(f)=(-inf,1/2). Dom(f^{-1})=(-inf,1/2), Range(f^{-1})=(0,inf).
-                </div>
+                <div class="answer-sec-label">Write inverse and state sets</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{2}{\sqrt{1-2x}}$
+Dom($f$) $= (0,\infty)$; Range($f$) $= \left(-\infty,\dfrac{1}{2}\right)$
+Dom($f^{-1}$) $= \left(-\infty,\dfrac{1}{2}\right)$; Range($f^{-1}$) $= (0,\infty)$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">f^{-1}(x)=2/sqrt(1-2x), x&lt;1/2.</div>
+                <div class="answer-sec-body">$f^{-1}(x) = \dfrac{2}{\sqrt{1-2x}}$; Dom($f^{-1}$): $x &lt; \dfrac{1}{2}$.</div>
               </div>
             </div>
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
-        <hr />
-        
       </div>
     </div>
 
@@ -1439,8 +1249,6 @@
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") closeNav();
         });
-
-        /* active link highlight */
         var navLinks = {};
         sidebar.querySelectorAll("a[data-target]").forEach(function (a) {
           navLinks[a.dataset.target] = a;
@@ -1451,67 +1259,16 @@
               var link = navLinks[entry.target.id];
               if (!link) return;
               if (entry.isIntersecting) {
-                Object.values(navLinks).forEach(function (l) {
-                  l.classList.remove("active");
-                });
+                Object.values(navLinks).forEach(function (l) { l.classList.remove("active"); });
                 link.classList.add("active");
                 link.scrollIntoView({ block: "nearest", behavior: "smooth" });
               }
             });
           },
-          { rootMargin: "-10% 0px -80% 0px", threshold: 0 },
+          { rootMargin: "-10% 0px -80% 0px", threshold: 0 }
         );
-        document.querySelectorAll(".problem[id]").forEach(function (el) {
-          io.observe(el);
-        });
+        document.querySelectorAll(".problem[id]").forEach(function (el) { io.observe(el); });
       })();
-    </script>
-    <script>
-      if (typeof Plotly !== 'undefined') {
-        var _GRAPHS = [
-          
-        ];
-        _GRAPHS.forEach(function (item) {
-          var g = item.d;
-          var traces = [{
-            x: g.x, y: g.y,
-            type: 'scatter', mode: 'lines',
-            name: 'f(x)',
-            line: {color: '#0f3460', width: 2.5},
-            connectgaps: false
-          }];
-          if (g.key_points && g.key_points.length) {
-            traces.push({
-              x: g.key_points.map(function(p){return p.x;}),
-              y: g.key_points.map(function(p){return p.y;}),
-              text: g.key_points.map(function(p){return p.label;}),
-              type: 'scatter', mode: 'markers+text',
-              textposition: 'top center',
-              textfont: {size: 11, color: '#333'},
-              marker: {size: 9, color: g.key_points.map(function(p){return p.color||'#e94560';})},
-              showlegend: false
-            });
-          }
-          var layout = {
-            margin: {t: 16, b: 44, l: 52, r: 16},
-            xaxis: {
-              title: 'x', range: g.x_range,
-              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
-              gridcolor: '#eaeaea'
-            },
-            yaxis: {
-              title: 'f(x)', range: g.y_range,
-              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
-              gridcolor: '#eaeaea'
-            },
-            paper_bgcolor: '#fff',
-            plot_bgcolor: '#fafbfe',
-            showlegend: false,
-            font: {family: 'Georgia, serif', size: 12}
-          };
-          Plotly.newPlot(item.id, traces, layout, {responsive: true, displayModeBar: false});
-        });
-      }
     </script>
   </body>
 </html>

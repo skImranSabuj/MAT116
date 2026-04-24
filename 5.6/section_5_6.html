@@ -3,30 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Section 5.6 – Complete Solutions</title>
-
-    <script>
-      // If this template is opened directly in a browser, redirect to the app index.
-      (function () {
-        var p = (window.location && window.location.pathname) || "";
-        if (p.indexOf("/templates/base.html") !== -1) {
-          window.location.replace("../index.html");
-        }
-      })();
-    </script>
-
-    <!-- MathJax 3 -->
+    <title>Section 5.6 - Logarithmic and Exponential Equations (Assigned Problems)</title>
     <script>
       window.MathJax = {
         tex: {
-          inlineMath: [
-            ["$", "$"],
-            ["\\(", "\\)"],
-          ],
-          displayMath: [
-            ["$$", "$$"],
-            ["\\[", "\\]"],
-          ],
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
           processEscapes: true,
           tags: "ams",
         },
@@ -35,17 +17,8 @@
         },
       };
     </script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
-    ></script>
-
-    <!-- Plotly.js basic (line + scatter, ~600 KB) -->
-    <script
-      src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js"
-      charset="utf-8"
-    ></script>
-
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
     <style>
       /* ── Reset ── */
       *,
@@ -529,399 +502,137 @@
           padding: 2rem 2rem;
         }
       }
-    </style>
+    
+      /* ── Side Notes ── */
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.80rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+</style>
   </head>
-
   <body>
-    <!-- MOBILE TOP BAR -->
     <div class="topbar" id="topbar">
-      <button
-        class="menu-btn"
-        id="menuBtn"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        aria-controls="sidebar"
-      >
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
         <span></span><span></span><span></span>
       </button>
       <span class="topbar-title">MAT 116 &mdash; Section 5.6</span>
     </div>
-
-    <!-- BACKDROP -->
     <div class="overlay" id="overlay" aria-hidden="true"></div>
-
-    <!-- SIDEBAR -->
     <nav class="sidebar" id="sidebar" aria-label="Problem navigation">
       <div class="sidebar-brand">
         <div class="brand-title">MAT 116 Solutions</div>
-        <div class="brand-sub">
-          Sullivan Precalculus 10th Ed &middot; Section 5.6
-        </div>
+        <div class="brand-sub">Sullivan Precalculus 10th Ed &middot; Section 5.6</div>
       </div>
-
       <div class="nav-group">
         <div class="nav-group-title">Chapters</div>
         <ul>
           <li>
-            <a href="../index.html">
-              <span class="nav-num">Home</span>MAT116 Index
-            </a>
+            <a href="../index.html"><span class="nav-num">Home</span>MAT116 Index</a>
           </li>
           <li>
-            <a href="../4.1/section_4_1.html">
-              <span class="nav-num">4.1</span>Polynomial Functions
-            </a>
+            <a href="../4.1/section_4_1.html"><span class="nav-num">4.1</span>Polynomial Functions</a>
           </li>
           <li>
-            <a href="../4.2/section_4_2.html">
-              <span class="nav-num">4.2</span>Rational Asymptotes
-            </a>
+            <a href="../4.2/section_4_2.html"><span class="nav-num">4.2</span>Rational Asymptotes</a>
           </li>
           <li>
-            <a href="../4.3/section_4_3.html">
-              <span class="nav-num">4.3</span>Rational Graphs
-            </a>
+            <a href="../4.3/section_4_3.html"><span class="nav-num">4.3</span>Rational Graphs</a>
           </li>
           <li>
-            <a href="../4.4/section_4_4.html">
-              <span class="nav-num">4.4</span>Inequalities
-            </a>
+            <a href="../4.4/section_4_4.html"><span class="nav-num">4.4</span>Inequalities</a>
           </li>
           <li>
-            <a href="../5.1/section_5_1.html">
-              <span class="nav-num">5.1</span>Composite Functions
-            </a>
+            <a href="../5.1/section_5_1.html"><span class="nav-num">5.1</span>Composite Functions</a>
           </li>
           <li>
-            <a href="../5.2/section_5_2.html">
-              <span class="nav-num">5.2</span>Inverse Functions
-            </a>
+            <a href="../5.2/section_5_2.html"><span class="nav-num">5.2</span>Inverse Functions</a>
           </li>
           <li>
-            <a href="../5.3/section_5_3.html">
-              <span class="nav-num">5.3</span>Exponential Functions
-            </a>
+            <a href="../5.3/section_5_3.html"><span class="nav-num">5.3</span>Exponential Functions</a>
           </li>
           <li>
-            <a href="../5.6/section_5_6.html" class="active">
-              <span class="nav-num">5.6</span>Log and Exp Equations
-            </a>
+            <a href="../5.4/section_5_4.html"><span class="nav-num">5.4</span>Logarithmic Functions</a>
+          </li>
+          <li>
+            <a href="../5.5/section_5_5.html"><span class="nav-num">5.5</span>Log Properties</a>
+          </li>
+          <li>
+            <a href="../5.6/section_5_6.html" class="active"><span class="nav-num">5.6</span>Log & Exp Equations</a>
           </li>
         </ul>
       </div>
-
-      
       <div class="nav-group">
-        <div class="nav-group-title">Logarithmic Equation</div>
+        <div class="nav-group-title">Logarithmic Equations</div>
         <ul>
-          
-          <li>
-            <a
-              href="#prob-15"
-              data-target="prob-15"
-            >
-              <span class="nav-num">15</span>Problem 15
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-16"
-              data-target="prob-16"
-            >
-              <span class="nav-num">16</span>Problem 16
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-17"
-              data-target="prob-17"
-            >
-              <span class="nav-num">17</span>Problem 17
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-18"
-              data-target="prob-18"
-            >
-              <span class="nav-num">18</span>Problem 18
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-19"
-              data-target="prob-19"
-            >
-              <span class="nav-num">19</span>Problem 19
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-20"
-              data-target="prob-20"
-            >
-              <span class="nav-num">20</span>Problem 20
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-21"
-              data-target="prob-21"
-            >
-              <span class="nav-num">21</span>Problem 21
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-22"
-              data-target="prob-22"
-            >
-              <span class="nav-num">22</span>Problem 22
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-23"
-              data-target="prob-23"
-            >
-              <span class="nav-num">23</span>Problem 23
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-24"
-              data-target="prob-24"
-            >
-              <span class="nav-num">24</span>Problem 24
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-25"
-              data-target="prob-25"
-            >
-              <span class="nav-num">25</span>Problem 25
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-26"
-              data-target="prob-26"
-            >
-              <span class="nav-num">26</span>Problem 26
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-27"
-              data-target="prob-27"
-            >
-              <span class="nav-num">27</span>Problem 27
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-28"
-              data-target="prob-28"
-            >
-              <span class="nav-num">28</span>Problem 28
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-29"
-              data-target="prob-29"
-            >
-              <span class="nav-num">29</span>Problem 29
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-30"
-              data-target="prob-30"
-            >
-              <span class="nav-num">30</span>Problem 30
-            </a>
-          </li>
-          
+          <li><a href="#prob-15" data-target="prob-15"><span class="nav-num">15</span>Problem 15</a></li>
+          <li><a href="#prob-16" data-target="prob-16"><span class="nav-num">16</span>Problem 16</a></li>
+          <li><a href="#prob-17" data-target="prob-17"><span class="nav-num">17</span>Problem 17</a></li>
+          <li><a href="#prob-18" data-target="prob-18"><span class="nav-num">18</span>Problem 18</a></li>
+          <li><a href="#prob-19" data-target="prob-19"><span class="nav-num">19</span>Problem 19</a></li>
+          <li><a href="#prob-20" data-target="prob-20"><span class="nav-num">20</span>Problem 20</a></li>
+          <li><a href="#prob-21" data-target="prob-21"><span class="nav-num">21</span>Problem 21</a></li>
+          <li><a href="#prob-22" data-target="prob-22"><span class="nav-num">22</span>Problem 22</a></li>
+          <li><a href="#prob-23" data-target="prob-23"><span class="nav-num">23</span>Problem 23</a></li>
+          <li><a href="#prob-24" data-target="prob-24"><span class="nav-num">24</span>Problem 24</a></li>
+          <li><a href="#prob-25" data-target="prob-25"><span class="nav-num">25</span>Problem 25</a></li>
+          <li><a href="#prob-26" data-target="prob-26"><span class="nav-num">26</span>Problem 26</a></li>
+          <li><a href="#prob-27" data-target="prob-27"><span class="nav-num">27</span>Problem 27</a></li>
+          <li><a href="#prob-28" data-target="prob-28"><span class="nav-num">28</span>Problem 28</a></li>
+          <li><a href="#prob-29" data-target="prob-29"><span class="nav-num">29</span>Problem 29</a></li>
+          <li><a href="#prob-30" data-target="prob-30"><span class="nav-num">30</span>Problem 30</a></li>
         </ul>
       </div>
-      
       <div class="nav-group">
-        <div class="nav-group-title">Exponential Equation</div>
+        <div class="nav-group-title">Exponential Equations</div>
         <ul>
-          
-          <li>
-            <a
-              href="#prob-57"
-              data-target="prob-57"
-            >
-              <span class="nav-num">57</span>Problem 57
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-58"
-              data-target="prob-58"
-            >
-              <span class="nav-num">58</span>Problem 58
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-59"
-              data-target="prob-59"
-            >
-              <span class="nav-num">59</span>Problem 59
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-60"
-              data-target="prob-60"
-            >
-              <span class="nav-num">60</span>Problem 60
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-61"
-              data-target="prob-61"
-            >
-              <span class="nav-num">61</span>Problem 61
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-62"
-              data-target="prob-62"
-            >
-              <span class="nav-num">62</span>Problem 62
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-63"
-              data-target="prob-63"
-            >
-              <span class="nav-num">63</span>Problem 63
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-64"
-              data-target="prob-64"
-            >
-              <span class="nav-num">64</span>Problem 64
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-65"
-              data-target="prob-65"
-            >
-              <span class="nav-num">65</span>Problem 65
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-66"
-              data-target="prob-66"
-            >
-              <span class="nav-num">66</span>Problem 66
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-67"
-              data-target="prob-67"
-            >
-              <span class="nav-num">67</span>Problem 67
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-68"
-              data-target="prob-68"
-            >
-              <span class="nav-num">68</span>Problem 68
-            </a>
-          </li>
-          
+          <li><a href="#prob-57" data-target="prob-57"><span class="nav-num">57</span>Problem 57</a></li>
+          <li><a href="#prob-58" data-target="prob-58"><span class="nav-num">58</span>Problem 58</a></li>
+          <li><a href="#prob-59" data-target="prob-59"><span class="nav-num">59</span>Problem 59</a></li>
+          <li><a href="#prob-60" data-target="prob-60"><span class="nav-num">60</span>Problem 60</a></li>
+          <li><a href="#prob-61" data-target="prob-61"><span class="nav-num">61</span>Problem 61</a></li>
+          <li><a href="#prob-62" data-target="prob-62"><span class="nav-num">62</span>Problem 62</a></li>
+          <li><a href="#prob-63" data-target="prob-63"><span class="nav-num">63</span>Problem 63</a></li>
+          <li><a href="#prob-64" data-target="prob-64"><span class="nav-num">64</span>Problem 64</a></li>
+          <li><a href="#prob-65" data-target="prob-65"><span class="nav-num">65</span>Problem 65</a></li>
+          <li><a href="#prob-66" data-target="prob-66"><span class="nav-num">66</span>Problem 66</a></li>
         </ul>
       </div>
-      
-      <div class="nav-group">
-        <div class="nav-group-title">Exponential Growth/Decay Model</div>
-        <ul>
-          
-          <li>
-            <a
-              href="#prob-105"
-              data-target="prob-105"
-            >
-              <span class="nav-num">105</span>Problem 105
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-106"
-              data-target="prob-106"
-            >
-              <span class="nav-num">106</span>Problem 106
-            </a>
-          </li>
-          
-          <li>
-            <a
-              href="#prob-107"
-              data-target="prob-107"
-            >
-              <span class="nav-num">107</span>Problem 107
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
     </nav>
-
-    <!-- MAIN CONTENT -->
     <div class="main">
       <div class="container">
         <header class="page-header" id="top">
-          <h1>Section 5.6 – Complete Solutions</h1>
-          <p class="subtitle">
-            MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan
-            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 5.6 &nbsp;|&nbsp; Generated: April 24, 2026
-          </p>
+          <h1>Section 5.6 - Logarithmic and Exponential Equations (Assigned Problems)</h1>
+          <p class="subtitle">MAT 116 &mdash; Precalculus &nbsp;|&nbsp; Sullivan <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Section 5.6</p>
           <div class="header-nav-label">Jump to Section</div>
           <div class="chapter-nav">
             <a class="chapter-link" href="../4.1/section_4_1.html">4.1</a>
@@ -931,2189 +642,1145 @@
             <a class="chapter-link" href="../5.1/section_5_1.html">5.1</a>
             <a class="chapter-link" href="../5.2/section_5_2.html">5.2</a>
             <a class="chapter-link" href="../5.3/section_5_3.html">5.3</a>
+            <a class="chapter-link" href="../5.4/section_5_4.html">5.4</a>
+            <a class="chapter-link" href="../5.5/section_5_5.html">5.5</a>
             <a class="chapter-link active" href="../5.6/section_5_6.html">5.6</a>
             <a class="chapter-link" href="../index.html">Home</a>
           </div>
         </header>
+        <div class="section-sidenotes">
+          <div class="sidenotes-title">&#9733; Key Notes for this Section</div>
+        <div class="sidenote">
+          <div class="sidenote-header">Solving Logarithmic Equations</div>
+          <div class="sidenote-body">1. State domain (argument of log must be $&gt; 0$)
+2. Combine logs on each side using log properties
+3. Convert to exponential form: $\log_a M = c \Leftrightarrow M = a^c$
+4. Solve the resulting equation
+5. Check all solutions against domain restrictions (reject extraneous)</div>
+        </div>
+        <div class="sidenote">
+          <div class="sidenote-header">Solving Exponential Equations — Substitution Method</div>
+          <div class="sidenote-body">For equations of the form $a^{2x} + b \cdot a^x + c = 0$:
+Let $u = a^x$, so $a^{2x} = u^2$
+Solve the quadratic in $u$
+Keep only $u &gt; 0$ (since $a^x &gt; 0$ always)
+Then solve $a^x = u$ for $x$</div>
+        </div>
+        </div>
 
-         
         <div class="problem" id="prob-15">
           <h2>Problem 15</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 2 log_3(x + 4) - log_3 9 = 2</div>
+          <div class="given-box">Solve: $\;2\log_3(x+4) - \log_3 9 = 2$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ 2·log(x + 4)/log(3) - 2 = 2 $$
-
-All logarithm arguments must be positive:
-3 &gt; 0, x + 4 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x+4 &gt; 0 \Rightarrow x &gt; -4$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log_3 9 = 2$, so $2\log_3(x+4) - 2 = 2$
+$2\log_3(x+4) = 4 \Rightarrow \log_3(x+4) = 2$
+$x+4 = 3^2 = 9 \Rightarrow x = 5$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 5
-Decimal approximation(s): 5.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $x=5 &gt; -4$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 5</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  3 &gt; 0, x + 4 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x+4 &gt; 0 \Rightarrow x &gt; -4$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 5
-Approx: 5.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log_3 9 = 2$, so $2\log_3(x+4) - 2 = 2$
+$2\log_3(x+4) = 4 \Rightarrow \log_3(x+4) = 2$
+$x+4 = 3^2 = 9 \Rightarrow x = 5$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 5
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $x=5 &gt; -4$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 5$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-16">
           <h2>Problem 16</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 3 log_2(x - 1) + log_2 4 = 5</div>
+          <div class="given-box">Solve: $\;3\log_2(x-1) + \log_2 4 = 5$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ 3·log(x - 1)/log(2) + 2 = 5 $$
-
-All logarithm arguments must be positive:
-2 &gt; 0, x - 1 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x-1 &gt; 0 \Rightarrow x &gt; 1$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log_2 4 = 2$, so $3\log_2(x-1) + 2 = 5$
+$3\log_2(x-1) = 3 \Rightarrow \log_2(x-1) = 1$
+$x-1 = 2 \Rightarrow x = 3$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 3
-Decimal approximation(s): 3.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $x=3 &gt; 1$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 3</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  2 &gt; 0, x - 1 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x-1 &gt; 0 \Rightarrow x &gt; 1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 3
-Approx: 3.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log_2 4 = 2$, so $3\log_2(x-1) + 2 = 5$
+$3\log_2(x-1) = 3 \Rightarrow \log_2(x-1) = 1$
+$x-1 = 2 \Rightarrow x = 3$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 3
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $x=3 &gt; 1$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 3$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-17">
           <h2>Problem 17</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log x + log(x - 21) = 2</div>
+          <div class="given-box">Solve: $\;\log x + \log(x-21) = 2$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x)/log(10) + log(x - 21)/log(10) = 2 $$
-
-All logarithm arguments must be positive:
-x - 21 &gt; 0, 10 &gt; 0, x &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 21$ (need both args positive)</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log[x(x-21)] = 2 \Rightarrow x(x-21) = 100$
+$x^2 - 21x - 100 = 0 \Rightarrow (x-25)(x+4) = 0$
+$x = 25$ or $x = -4$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 25.0000000000000
-Decimal approximation(s): 25.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Reject $x=-4$ (not in domain). Check $x=25$: $\log 25 + \log 4 = \log 100 = 2$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 25.0000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x - 21 &gt; 0, 10 &gt; 0, x &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 21$ (need both args positive)</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 25.0000000000000
-Approx: 25.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log[x(x-21)] = 2 \Rightarrow x(x-21) = 100$
+$x^2 - 21x - 100 = 0 \Rightarrow (x-25)(x+4) = 0$
+$x = 25$ or $x = -4$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 25.0000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Reject $x=-4$ (not in domain). Check $x=25$: $\log 25 + \log 4 = \log 100 = 2$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 25$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-18">
           <h2>Problem 18</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log x + log(x + 15) = 2</div>
+          <div class="given-box">Solve: $\;\log x + \log(x+15) = 2$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x)/log(10) + log(x + 15)/log(10) = 2 $$
-
-All logarithm arguments must be positive:
-x + 15 &gt; 0, 10 &gt; 0, x &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 0$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log[x(x+15)] = 2 \Rightarrow x^2+15x-100 = 0$
+$(x+20)(x-5) = 0 \Rightarrow x=5$ or $x=-20$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 5.00000000000000
-Decimal approximation(s): 5.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Reject $x=-20$. Check $x=5$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 5.00000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x + 15 &gt; 0, 10 &gt; 0, x &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 0$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 5.00000000000000
-Approx: 5.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log[x(x+15)] = 2 \Rightarrow x^2+15x-100 = 0$
+$(x+20)(x-5) = 0 \Rightarrow x=5$ or $x=-20$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 5.00000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Reject $x=-20$. Check $x=5$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 5$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-19">
           <h2>Problem 19</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log(2x) - log(x - 3) = 1</div>
+          <div class="given-box">Solve: $\;\log(2x) - \log(x-3) = 1$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(2x)/log(10) - log(x - 3)/log(10) = 1 $$
-
-All logarithm arguments must be positive:
-2x &gt; 0, x - 3 &gt; 0, 10 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 3$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log\!\left(\dfrac{2x}{x-3}\right) = 1 \Rightarrow \dfrac{2x}{x-3} = 10$
+$2x = 10x - 30 \Rightarrow 8x = 30 \Rightarrow x = \dfrac{15}{4}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 3.75000000000000
-Decimal approximation(s): 3.750</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $\dfrac{15}{4} &gt; 3$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 3.75000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  2x &gt; 0, x - 3 &gt; 0, 10 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 3$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 3.75000000000000
-Approx: 3.750
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log\!\left(\dfrac{2x}{x-3}\right) = 1 \Rightarrow \dfrac{2x}{x-3} = 10$
+$2x = 10x - 30 \Rightarrow 8x = 30 \Rightarrow x = \dfrac{15}{4}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 3.75000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $\dfrac{15}{4} &gt; 3$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \dfrac{15}{4}$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-20">
           <h2>Problem 20</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log(2x + 1) = 1 + log(x - 2)</div>
+          <div class="given-box">Solve: $\;\log(2x+1) = 1 + \log(x-2)$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(2x + 1)/log(10) = log(x - 2)/log(10) + 1 $$
-
-All logarithm arguments must be positive:
-x - 2 &gt; 0, 2x + 1 &gt; 0, 10 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 2$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log(2x+1) - \log(x-2) = 1 \Rightarrow \log\!\left(\dfrac{2x+1}{x-2}\right) = 1$
+$\dfrac{2x+1}{x-2} = 10 \Rightarrow 2x+1 = 10x-20 \Rightarrow x = \dfrac{21}{8}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 2.62500000000000
-Decimal approximation(s): 2.625</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $\dfrac{21}{8} &gt; 2$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 2.62500000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x - 2 &gt; 0, 2x + 1 &gt; 0, 10 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 2$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 2.62500000000000
-Approx: 2.625
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log(2x+1) - \log(x-2) = 1 \Rightarrow \log\!\left(\dfrac{2x+1}{x-2}\right) = 1$
+$\dfrac{2x+1}{x-2} = 10 \Rightarrow 2x+1 = 10x-20 \Rightarrow x = \dfrac{21}{8}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 2.62500000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $\dfrac{21}{8} &gt; 2$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \dfrac{21}{8}$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-21">
           <h2>Problem 21</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_2(x + 7) + log_2(x + 8) = 1</div>
+          <div class="given-box">Solve: $\;\log_2(x+7) + \log_2(x+8) = 1$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x + 7)/log(2) + log(x + 8)/log(2) = 1 $$
-
-All logarithm arguments must be positive:
-2 &gt; 0, x + 7 &gt; 0, x + 8 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; -7$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$(x+7)(x+8) = 2^1 = 2$
+$x^2 + 15x + 56 = 2 \Rightarrow x^2+15x+54 = 0$
+$(x+9)(x+6) = 0 \Rightarrow x=-9$ or $x=-6$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): -6.00000000000000
-Decimal approximation(s): -6.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Reject $x=-9$ ($-9 \not&gt; -7$). Check $x=-6$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = -6.00000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  2 &gt; 0, x + 7 &gt; 0, x + 8 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; -7$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: -6.00000000000000
-Approx: -6.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$(x+7)(x+8) = 2^1 = 2$
+$x^2 + 15x + 56 = 2 \Rightarrow x^2+15x+54 = 0$
+$(x+9)(x+6) = 0 \Rightarrow x=-9$ or $x=-6$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = -6.00000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Reject $x=-9$ ($-9 \not&gt; -7$). Check $x=-6$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = -6$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-22">
           <h2>Problem 22</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_6(x + 4) + log_6(x + 3) = 1</div>
+          <div class="given-box">Solve: $\;\log_6(x+4) + \log_6(x+3) = 1$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x + 3)/log(6) + log(x + 4)/log(6) = 1 $$
-
-All logarithm arguments must be positive:
-x + 3 &gt; 0, x + 4 &gt; 0, 6 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; -3$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$(x+4)(x+3) = 6$
+$x^2+7x+12=6 \Rightarrow x^2+7x+6=0$
+$(x+6)(x+1)=0 \Rightarrow x=-6$ or $x=-1$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): -1.00000000000000
-Decimal approximation(s): -1.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Reject $x=-6$. Check $x=-1$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = -1.00000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x + 3 &gt; 0, x + 4 &gt; 0, 6 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; -3$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: -1.00000000000000
-Approx: -1.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$(x+4)(x+3) = 6$
+$x^2+7x+12=6 \Rightarrow x^2+7x+6=0$
+$(x+6)(x+1)=0 \Rightarrow x=-6$ or $x=-1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = -1.00000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Reject $x=-6$. Check $x=-1$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = -1$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-23">
           <h2>Problem 23</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_5(x + 3) = 1 - log_5(x - 1)</div>
+          <div class="given-box">Solve: $\;\log_5(x+3) = 1 - \log_5(x-1)$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x + 3)/log(5) = -log(x - 1)/log(5) + 1 $$
-
-All logarithm arguments must be positive:
-x + 3 &gt; 0, 5 &gt; 0, x - 1 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 1$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log_5(x+3) + \log_5(x-1) = 1$
+$(x+3)(x-1) = 5 \Rightarrow x^2+2x-3=5 \Rightarrow x^2+2x-8=0$
+$(x+4)(x-2)=0 \Rightarrow x=-4$ or $x=2$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 2.00000000000000
-Decimal approximation(s): 2.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Reject $x=-4$. Check $x=2$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 2.00000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x + 3 &gt; 0, 5 &gt; 0, x - 1 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 2.00000000000000
-Approx: 2.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log_5(x+3) + \log_5(x-1) = 1$
+$(x+3)(x-1) = 5 \Rightarrow x^2+2x-3=5 \Rightarrow x^2+2x-8=0$
+$(x+4)(x-2)=0 \Rightarrow x=-4$ or $x=2$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 2.00000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Reject $x=-4$. Check $x=2$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 2$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-24">
           <h2>Problem 24</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_8(x + 6) = 1 - log_8(x + 4)</div>
+          <div class="given-box">Solve: $\;\log_8(x+6) = 1 - \log_8(x+4)$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x + 6)/log(8) = -log(x + 4)/log(8) + 1 $$
-
-All logarithm arguments must be positive:
-8 &gt; 0, x + 4 &gt; 0, x + 6 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; -4$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$(x+6)(x+4) = 8$
+$x^2+10x+24=8 \Rightarrow x^2+10x+16=0$
+$(x+8)(x+2)=0 \Rightarrow x=-8$ or $x=-2$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): -2.00000000000000
-Decimal approximation(s): -2.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Reject $x=-8$. Check $x=-2$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = -2.00000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  8 &gt; 0, x + 4 &gt; 0, x + 6 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; -4$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: -2.00000000000000
-Approx: -2.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$(x+6)(x+4) = 8$
+$x^2+10x+24=8 \Rightarrow x^2+10x+16=0$
+$(x+8)(x+2)=0 \Rightarrow x=-8$ or $x=-2$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = -2.00000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Reject $x=-8$. Check $x=-2$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = -2$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-25">
           <h2>Problem 25</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: ln(x + 1) - ln x = 2</div>
+          <div class="given-box">Solve: $\;\ln(x+1) - \ln x = 2$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ -log(x) + log(x + 1) = 2 $$
-
-All logarithm arguments must be positive:
-x + 1 &gt; 0, x &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 0$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\ln\!\left(\dfrac{x+1}{x}\right) = 2 \Rightarrow \dfrac{x+1}{x} = e^2$
+$x+1 = e^2 x \Rightarrow 1 = x(e^2-1) \Rightarrow x = \dfrac{1}{e^2-1}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 1/((-1 + E)·(1 + E))
-Decimal approximation(s): 0.157</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $x = \dfrac{1}{e^2-1} &gt; 0$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 1/((-1 + E)·(1 + E))</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x + 1 &gt; 0, x &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 0$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 1/((-1 + E)·(1 + E))
-Approx: 0.157
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\ln\!\left(\dfrac{x+1}{x}\right) = 2 \Rightarrow \dfrac{x+1}{x} = e^2$
+$x+1 = e^2 x \Rightarrow 1 = x(e^2-1) \Rightarrow x = \dfrac{1}{e^2-1}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 1/((-1 + E)·(1 + E))
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $x = \dfrac{1}{e^2-1} &gt; 0$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \dfrac{1}{e^2-1}$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-26">
           <h2>Problem 26</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: ln x + ln(x + 2) = 4</div>
+          <div class="given-box">Solve: $\;\ln x + \ln(x+2) = 4$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x) + log(x + 2) = 4 $$
-
-All logarithm arguments must be positive:
-x + 2 &gt; 0, x &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 0$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\ln[x(x+2)] = 4 \Rightarrow x^2+2x = e^4$
+$x^2+2x-e^4=0 \Rightarrow x = \dfrac{-2+\sqrt{4+4e^4}}{2} = -1+\sqrt{1+e^4}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): -1 + sqrt(1 + exp(4))
-Decimal approximation(s): 6.456</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $-1+\sqrt{1+e^4} \approx 6.46 &gt; 0$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = -1 + sqrt(1 + exp(4))</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x + 2 &gt; 0, x &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 0$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: -1 + sqrt(1 + exp(4))
-Approx: 6.456
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\ln[x(x+2)] = 4 \Rightarrow x^2+2x = e^4$
+$x^2+2x-e^4=0 \Rightarrow x = \dfrac{-2+\sqrt{4+4e^4}}{2} = -1+\sqrt{1+e^4}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = -1 + sqrt(1 + exp(4))
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $-1+\sqrt{1+e^4} \approx 6.46 &gt; 0$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = -1+\sqrt{1+e^4}$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-27">
           <h2>Problem 27</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_2(x + 1) + log_2(x + 7) = 3</div>
+          <div class="given-box">Solve: $\;\log_2(x+1) + \log_2(x+7) = 3$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x + 1)/log(2) + log(x + 7)/log(2) = 3 $$
-
-All logarithm arguments must be positive:
-2 &gt; 0, x + 1 &gt; 0, x + 7 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; -1$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$(x+1)(x+7) = 8$
+$x^2+8x+7=8 \Rightarrow x^2+8x-1=0$
+$x = \dfrac{-8 \pm \sqrt{68}}{2} = -4 \pm \sqrt{17}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 0.123105625617661
-Decimal approximation(s): 0.123</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Take $x = -4+\sqrt{17} \approx 0.12 &gt; -1$ ✓; reject $x=-4-\sqrt{17}$.</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 0.123105625617661</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  2 &gt; 0, x + 1 &gt; 0, x + 7 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; -1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 0.123105625617661
-Approx: 0.123
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$(x+1)(x+7) = 8$
+$x^2+8x+7=8 \Rightarrow x^2+8x-1=0$
+$x = \dfrac{-8 \pm \sqrt{68}}{2} = -4 \pm \sqrt{17}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 0.123105625617661
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Take $x = -4+\sqrt{17} \approx 0.12 &gt; -1$ ✓; reject $x=-4-\sqrt{17}$.</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = -4+\sqrt{17}$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-28">
           <h2>Problem 28</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_3(x + 1) + log_3(x + 4) = 2</div>
+          <div class="given-box">Solve: $\;\log_3(x+1) + \log_3(x+4) = 2$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x + 1)/log(3) + log(x + 4)/log(3) = 2 $$
-
-All logarithm arguments must be positive:
-x + 1 &gt; 0, 3 &gt; 0, x + 4 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; -1$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$(x+1)(x+4) = 9$
+$x^2+5x+4=9 \Rightarrow x^2+5x-5=0$
+$x = \dfrac{-5+\sqrt{45}}{2} = \dfrac{-5+3\sqrt{5}}{2}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 0.854101966249685
-Decimal approximation(s): 0.854</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $\approx 0.854 &gt; -1$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 0.854101966249685</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x + 1 &gt; 0, 3 &gt; 0, x + 4 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; -1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 0.854101966249685
-Approx: 0.854
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$(x+1)(x+4) = 9$
+$x^2+5x+4=9 \Rightarrow x^2+5x-5=0$
+$x = \dfrac{-5+\sqrt{45}}{2} = \dfrac{-5+3\sqrt{5}}{2}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 0.854101966249685
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $\approx 0.854 &gt; -1$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \dfrac{-5+3\sqrt{5}}{2}$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-29">
           <h2>Problem 29</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_4(x^2 - 9) - log_4(x + 3) = 3</div>
+          <div class="given-box">Solve: $\;\log_4(x^2-9) - \log_4(x+3) = 3$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ -log(x + 3)/log(4) + log(x^2 - 9)/log(4) = 3 $$
-
-All logarithm arguments must be positive:
-x^2 - 9 &gt; 0, x + 3 &gt; 0, 4 &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 3$ (need $x^2-9 &gt; 0$ and $x+3 &gt; 0$)</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log_4\!\left(\dfrac{x^2-9}{x+3}\right) = 3 \Rightarrow \dfrac{(x-3)(x+3)}{x+3} = x-3 = 4^3 = 64$
+$x = 67$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 67.0000000000000
-Decimal approximation(s): 67.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $x=67 &gt; 3$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 67.0000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x^2 - 9 &gt; 0, x + 3 &gt; 0, 4 &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 3$ (need $x^2-9 &gt; 0$ and $x+3 &gt; 0$)</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 67.0000000000000
-Approx: 67.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log_4\!\left(\dfrac{x^2-9}{x+3}\right) = 3 \Rightarrow \dfrac{(x-3)(x+3)}{x+3} = x-3 = 4^3 = 64$
+$x = 67$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 67.0000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $x=67 &gt; 3$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 67$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-30">
           <h2>Problem 30</h2>
           <span class="badge">Logarithmic Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: log_(1/3)(x^2 + x) - log_(1/3)(x^2 - x) = -1</div>
+          <div class="given-box">Solve: $\;\log_{1/3}(x^2+x) - \log_{1/3}(x^2-x) = -1$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - State Domain Restrictions</div>
-              <div class="step-body">Given equation:
-$$ log(x^2 - x)/log(3) - log(x^2 + x)/log(3) = -1 $$
-
-All logarithm arguments must be positive:
-x·(x + 1) &gt; 0, 3 &gt; 0, x·(x - 1) &gt; 0</div>
+              <div class="step-title">State domain restriction</div>
+              <div class="step-body">$x &gt; 1$ (from intersection of $x(x+1)&gt;0$ and $x(x-1)&gt;0$)</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Log Properties to Rewrite</div>
-              <div class="step-body">Combine log terms on each side (product/quotient/power rules), then rewrite as an equivalent non-log equation.</div>
+              <div class="step-title">Apply log properties and simplify</div>
+              <div class="step-body">$\log_{1/3}\!\left(\dfrac{x^2+x}{x^2-x}\right) = -1 \Rightarrow \dfrac{x+1}{x-1} = \left(\tfrac{1}{3}\right)^{-1} = 3$
+$x+1 = 3x-3 \Rightarrow x = 2$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 3 - Solve the Resulting Algebraic Equation</div>
-              <div class="step-body">Candidate real solution(s): 2.00000000000000
-Decimal approximation(s): 2.000</div>
+              <div class="step-title">Solve and check for extraneous values</div>
+              <div class="step-body">Check: $x=2 &gt; 1$ ✓</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Check for Extraneous Values</div>
-              <div class="step-body">Substitute each candidate into the original logarithmic equation.
-Valid solution set: x = 2.00000000000000</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Domain</div>
-                <div class="answer-sec-body">
-                  x·(x + 1) &gt; 0, 3 &gt; 0, x·(x - 1) &gt; 0
-                </div>
+                <div class="answer-sec-label">State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 1$ (from intersection of $x(x+1)&gt;0$ and $x(x-1)&gt;0$)</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 2.00000000000000
-Approx: 2.000
-                </div>
+                <div class="answer-sec-label">Apply log properties and simplify</div>
+                <div class="answer-sec-body">$\log_{1/3}\!\left(\dfrac{x^2+x}{x^2-x}\right) = -1 \Rightarrow \dfrac{x+1}{x-1} = \left(\tfrac{1}{3}\right)^{-1} = 3$
+$x+1 = 3x-3 \Rightarrow x = 2$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 2.00000000000000
-                </div>
+                <div class="answer-sec-label">Solve and check for extraneous values</div>
+                <div class="answer-sec-body">Check: $x=2 &gt; 1$ ✓</div>
               </div>
-              
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 2$</div>
+              </div>
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-57">
           <h2>Problem 57</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 3^(2x) + 3^x - 2 = 0</div>
+          <div class="given-box">Solve: $\;3^{2x} + 3^x - 2 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 3^(2x) + 3^x - 2 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">Let $u = 3^x$ ($u &gt; 0$): $u^2 + u - 2 = 0$
+$(u+2)(u-1) = 0 \Rightarrow u = -2$ (reject) or $u = 1$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: 0
-Approx: 0.000</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = 0</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">Let $u = 3^x$ ($u &gt; 0$): $u^2 + u - 2 = 0$
+$(u+2)(u-1) = 0 \Rightarrow u = -2$ (reject) or $u = 1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 0
-Approx: 0.000
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 0
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 0$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-58">
           <h2>Problem 58</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 2^(2x) + 2^x - 12 = 0</div>
+          <div class="given-box">Solve: $\;2^{2x} + 2^x - 12 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 2^(2x) + 2^x - 12 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">Let $u = 2^x$: $u^2 + u - 12 = 0$
+$(u+4)(u-3) = 0 \Rightarrow u = -4$ (reject) or $u = 3$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$2^x = 3 \Rightarrow x = \log_2 3 = \dfrac{\ln 3}{\ln 2}$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: log(3)/log(2)
-Approx: 1.585</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = log(3)/log(2)</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">Let $u = 2^x$: $u^2 + u - 12 = 0$
+$(u+4)(u-3) = 0 \Rightarrow u = -4$ (reject) or $u = 3$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: log(3)/log(2)
-Approx: 1.585
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$2^x = 3 \Rightarrow x = \log_2 3 = \dfrac{\ln 3}{\ln 2}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = log(3)/log(2)
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \log_2 3 \approx 1.585$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-59">
           <h2>Problem 59</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 2^(2x) + 2^(x+2) - 12 = 0</div>
+          <div class="given-box">Solve: $\;2^{2x} + 2^{x+2} - 12 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 2^(2x) + 2^(x + 2) - 12 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">$2^{x+2} = 4 \cdot 2^x$. Let $u = 2^x$: $u^2 + 4u - 12 = 0$
+$(u+6)(u-2) = 0 \Rightarrow u = 2$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$2^x = 2 = 2^1 \Rightarrow x = 1$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: 1
-Approx: 1.000</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = 1</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">$2^{x+2} = 4 \cdot 2^x$. Let $u = 2^x$: $u^2 + 4u - 12 = 0$
+$(u+6)(u-2) = 0 \Rightarrow u = 2$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 1
-Approx: 1.000
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$2^x = 2 = 2^1 \Rightarrow x = 1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 1
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 1$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-60">
           <h2>Problem 60</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 3^(2x) + 3^(x+1) - 4 = 0</div>
+          <div class="given-box">Solve: $\;3^{2x} + 3^{x+1} - 4 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 3^(2x) + 3^(x + 1) - 4 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">$3^{x+1} = 3 \cdot 3^x$. Let $u = 3^x$: $u^2 + 3u - 4 = 0$
+$(u+4)(u-1) = 0 \Rightarrow u = 1$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: 0
-Approx: 0.000</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = 0</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">$3^{x+1} = 3 \cdot 3^x$. Let $u = 3^x$: $u^2 + 3u - 4 = 0$
+$(u+4)(u-1) = 0 \Rightarrow u = 1$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: 0
-Approx: 0.000
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = 0
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = 0$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-61">
           <h2>Problem 61</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 16^x + 4^(x+1) - 3 = 0</div>
+          <div class="given-box">Solve: $\;16^x + 4^{x+1} - 3 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 16^x + 4^(x + 1) - 3 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">$16^x = (4^x)^2$, $4^{x+1} = 4\cdot4^x$. Let $u = 4^x$:
+$u^2 + 4u - 3 = 0 \Rightarrow u = \dfrac{-4 \pm \sqrt{28}}{2} = -2 \pm \sqrt{7}$
+Take $u = -2+\sqrt{7} &gt; 0$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$4^x = \sqrt{7}-2 \Rightarrow x = \dfrac{\ln(\sqrt{7}-2)}{\ln 4} = \dfrac{\ln(\sqrt{7}-2)}{2\ln 2}$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: log(-2 + sqrt(7))/(2·log(2))
-Approx: -0.315</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = log(-2 + sqrt(7))/(2·log(2))</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">$16^x = (4^x)^2$, $4^{x+1} = 4\cdot4^x$. Let $u = 4^x$:
+$u^2 + 4u - 3 = 0 \Rightarrow u = \dfrac{-4 \pm \sqrt{28}}{2} = -2 \pm \sqrt{7}$
+Take $u = -2+\sqrt{7} &gt; 0$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: log(-2 + sqrt(7))/(2·log(2))
-Approx: -0.315
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$4^x = \sqrt{7}-2 \Rightarrow x = \dfrac{\ln(\sqrt{7}-2)}{\ln 4} = \dfrac{\ln(\sqrt{7}-2)}{2\ln 2}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = log(-2 + sqrt(7))/(2·log(2))
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \dfrac{\ln(\sqrt{7}-2)}{2\ln 2} \approx -0.317$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-62">
           <h2>Problem 62</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 9^x - 3^(x+1) + 1 = 0</div>
+          <div class="given-box">Solve: $\;9^x - 3^{x+1} + 1 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ -3^(x + 1) + 9^x + 1 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">$9^x = (3^x)^2$, $3^{x+1} = 3\cdot3^x$. Let $u = 3^x$:
+$u^2 - 3u + 1 = 0 \Rightarrow u = \dfrac{3 \pm \sqrt{5}}{2}$
+Both values positive, so both give valid solutions.</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$x_1 = \log_3\!\left(\dfrac{3+\sqrt{5}}{2}\right)$,  $x_2 = \log_3\!\left(\dfrac{3-\sqrt{5}}{2}\right)$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: log(3/2 - sqrt(5)/2)/log(3), log(sqrt(5)/2 + 3/2)/log(3)
-Approx: -0.876, 0.876</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = log(3/2 - sqrt(5)/2)/log(3), log(sqrt(5)/2 + 3/2)/log(3)</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">$9^x = (3^x)^2$, $3^{x+1} = 3\cdot3^x$. Let $u = 3^x$:
+$u^2 - 3u + 1 = 0 \Rightarrow u = \dfrac{3 \pm \sqrt{5}}{2}$
+Both values positive, so both give valid solutions.</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: log(3/2 - sqrt(5)/2)/log(3), log(sqrt(5)/2 + 3/2)/log(3)
-Approx: -0.876, 0.876
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$x_1 = \log_3\!\left(\dfrac{3+\sqrt{5}}{2}\right)$,  $x_2 = \log_3\!\left(\dfrac{3-\sqrt{5}}{2}\right)$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = log(3/2 - sqrt(5)/2)/log(3), log(sqrt(5)/2 + 3/2)/log(3)
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \log_3\!\left(\dfrac{3 \pm \sqrt{5}}{2}\right)$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-63">
           <h2>Problem 63</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 6^x - 6*6^(-x) = -9</div>
+          <div class="given-box">Solve: $\;6^x - 6 \cdot 6^{-x} = -9$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 6^x - 6/6^x = -9 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">Multiply by $6^x$: $(6^x)^2 + 9 \cdot 6^x - 6 = 0$. Let $u = 6^x$:
+$u^2 + 9u - 6 = 0 \Rightarrow u = \dfrac{-9+\sqrt{105}}{2}$ (positive root only)</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$6^x = \dfrac{-9+\sqrt{105}}{2} \Rightarrow x = \dfrac{\ln\frac{\sqrt{105}-9}{2}}{\ln 6}$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: log(-9/2 + sqrt(105)/2)/log(6)
-Approx: -0.264</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = log(-9/2 + sqrt(105)/2)/log(6)</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">Multiply by $6^x$: $(6^x)^2 + 9 \cdot 6^x - 6 = 0$. Let $u = 6^x$:
+$u^2 + 9u - 6 = 0 \Rightarrow u = \dfrac{-9+\sqrt{105}}{2}$ (positive root only)</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: log(-9/2 + sqrt(105)/2)/log(6)
-Approx: -0.264
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$6^x = \dfrac{-9+\sqrt{105}}{2} \Rightarrow x = \dfrac{\ln\frac{\sqrt{105}-9}{2}}{\ln 6}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = log(-9/2 + sqrt(105)/2)/log(6)
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \log_6\!\left(\dfrac{\sqrt{105}-9}{2}\right)$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-64">
           <h2>Problem 64</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 5^x - 8*5^(-x) = -16</div>
+          <div class="given-box">Solve: $\;5^x - 8 \cdot 5^{-x} = -16$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 5^x - 8/5^x = -16 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">Multiply by $5^x$: $(5^x)^2 + 16 \cdot 5^x - 8 = 0$. Let $u = 5^x$:
+$u^2 + 16u - 8 = 0 \Rightarrow u = \dfrac{-16+\sqrt{288}}{2} = -8+6\sqrt{2}$</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">$5^x = -8+6\sqrt{2} \Rightarrow x = \dfrac{\ln(-8+6\sqrt{2})}{\ln 5}$</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: log(-8 + 6·sqrt(2))/log(5)
-Approx: -0.449</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = log(-8 + 6·sqrt(2))/log(5)</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">Multiply by $5^x$: $(5^x)^2 + 16 \cdot 5^x - 8 = 0$. Let $u = 5^x$:
+$u^2 + 16u - 8 = 0 \Rightarrow u = \dfrac{-16+\sqrt{288}}{2} = -8+6\sqrt{2}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: log(-8 + 6·sqrt(2))/log(5)
-Approx: -0.449
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">$5^x = -8+6\sqrt{2} \Rightarrow x = \dfrac{\ln(-8+6\sqrt{2})}{\ln 5}$</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = log(-8 + 6·sqrt(2))/log(5)
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">$x = \log_5(-8+6\sqrt{2})$</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-65">
           <h2>Problem 65</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 2*49^x + 11*7^x + 5 = 0</div>
+          <div class="given-box">Solve: $\;2 \cdot 49^x + 11 \cdot 7^x + 5 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 2·49^x + 11·7^x + 5 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">$49^x = (7^x)^2$. Let $u = 7^x &gt; 0$: $2u^2 + 11u + 5 = 0$
+$(2u+1)(u+5) = 0 \Rightarrow u = -\dfrac{1}{2}$ or $u = -5$
+Both roots are negative — impossible since $7^x &gt; 0$.</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">No real solutions exist.</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: no real solution
-Approx: none</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: No real solution</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">$49^x = (7^x)^2$. Let $u = 7^x &gt; 0$: $2u^2 + 11u + 5 = 0$
+$(2u+1)(u+5) = 0 \Rightarrow u = -\dfrac{1}{2}$ or $u = -5$
+Both roots are negative — impossible since $7^x &gt; 0$.</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: no real solution
-Approx: none
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">No real solutions exist.</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  No real solution
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">No solution (all terms positive for real $x$)</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
         <hr />
-         
         <div class="problem" id="prob-66">
           <h2>Problem 66</h2>
           <span class="badge">Exponential Equation</span>
           <div class="given-label">Given</div>
-          <div class="given-box">Solve: 3*4^x + 4*2^x + 8 = 0</div>
+          <div class="given-box">Solve: $\;3 \cdot 4^x + 4 \cdot 2^x + 8 = 0$</div>
           <div class="steps">
-            
             <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 4·2^x + 3·4^x + 8 = 0 $$
-
-Rewrite terms so powers can be compared directly.</div>
+              <div class="step-title">Use substitution u = aˣ</div>
+              <div class="step-body">$4^x = (2^x)^2$. Let $u = 2^x &gt; 0$: $3u^2 + 4u + 8 = 0$
+Discriminant $= 16 - 96 = -80 &lt; 0$; no real roots.</div>
             </div>
-            
             <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
+              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-body">No real solutions exist.</div>
             </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: no real solution
-Approx: none</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: No real solution</div>
-            </div>
-            
           </div>
-           
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
-            
             <div class="answer-sections">
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
+                <div class="answer-sec-label">Use substitution u = aˣ</div>
+                <div class="answer-sec-body">$4^x = (2^x)^2$. Let $u = 2^x &gt; 0$: $3u^2 + 4u + 8 = 0$
+Discriminant $= 16 - 96 = -80 &lt; 0$; no real roots.</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: no real solution
-Approx: none
-                </div>
+                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-body">No real solutions exist.</div>
               </div>
-              
               <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  No real solution
-                </div>
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">No solution (discriminant is negative)</div>
               </div>
-              
             </div>
-            
           </div>
-          
           <a class="back-top" href="#top">&#8593; Back to top</a>
         </div>
-        <hr />
-         
-        <div class="problem" id="prob-67">
-          <h2>Problem 67</h2>
-          <span class="badge">Exponential Equation</span>
-          <div class="given-label">Given</div>
-          <div class="given-box">Solve: 3^x - 14*3^(-x) = 5</div>
-          <div class="steps">
-            
-            <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 3^x - 14/3^x = 5 $$
-
-Rewrite terms so powers can be compared directly.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: log(7)/log(3)
-Approx: 1.771</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = log(7)/log(3)</div>
-            </div>
-            
-          </div>
-           
-          <div class="answer-box">
-            <div class="answer-box-header">Exam Answer</div>
-            
-            <div class="answer-sections">
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: log(7)/log(3)
-Approx: 1.771
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = log(7)/log(3)
-                </div>
-              </div>
-              
-            </div>
-            
-          </div>
-          
-          <a class="back-top" href="#top">&#8593; Back to top</a>
-        </div>
-        <hr />
-         
-        <div class="problem" id="prob-68">
-          <h2>Problem 68</h2>
-          <span class="badge">Exponential Equation</span>
-          <div class="given-label">Given</div>
-          <div class="given-box">Solve: 4^x - 10*4^(-x) = 3</div>
-          <div class="steps">
-            
-            <div class="step">
-              <div class="step-title">Step 1 - Rewrite with a Common Exponential Base</div>
-              <div class="step-body">Start from
-$$ 4^x - 10/4^x = 3 $$
-
-Rewrite terms so powers can be compared directly.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 2 - Use Substitution (if needed)</div>
-              <div class="step-body">For expressions like a^(2x), a^x, and a^(-x), let u = a^x.
-Solve the resulting algebraic equation in u, then back-substitute u = a^x.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve for x</div>
-              <div class="step-body">Exact: log(5)/(2·log(2))
-Approx: 1.161</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Final Check</div>
-              <div class="step-body">Substitute values into the original equation to verify.
-Valid solution set: x = log(5)/(2·log(2))</div>
-            </div>
-            
-          </div>
-           
-          <div class="answer-box">
-            <div class="answer-box-header">Exam Answer</div>
-            
-            <div class="answer-sections">
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(i) Convert/Set Substitution</div>
-                <div class="answer-sec-body">
-                  Rewrite to common base and/or let u = a^x.
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(ii) Solve</div>
-                <div class="answer-sec-body">
-                  Exact: log(5)/(2·log(2))
-Approx: 1.161
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(iii) Final Answer</div>
-                <div class="answer-sec-body">
-                  x = log(5)/(2·log(2))
-                </div>
-              </div>
-              
-            </div>
-            
-          </div>
-          
-          <a class="back-top" href="#top">&#8593; Back to top</a>
-        </div>
-        <hr />
-         
-        <div class="problem" id="prob-105">
-          <h2>Problem 105</h2>
-          <span class="badge">Exponential Growth/Decay Model</span>
-          <div class="given-label">Given</div>
-          <div class="given-box">Population model: P(t)=287(1.010)^(t-1999). Find when population reaches 307 million and 394 million.</div>
-          <div class="steps">
-            
-            <div class="step">
-              <div class="step-title">Step 1 - Write the Exponential Model</div>
-              <div class="step-body">Model: $$ 287·1.01^(t - 1999) $$
-This is an exponential growth model.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 2 - Set Model Equal to Each Target Value</div>
-              <div class="step-body">(a) Solve 287·1.01^(t - 1999) = 307
-    t = 100.49917080713·log(307/287) + 1999 ~= 2005.770
-(b) Solve 287·1.01^(t - 1999) = 394
-    t = 100.49917080713·log(394/287) + 1999 ~= 2030.845</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve Using Logarithms</div>
-              <div class="step-body">Isolate the exponential expression, then take natural logs to solve for the time variable.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Interpret the Result</div>
-              <div class="step-body">Interpret each solution in context (population) with units: million people.
-(a) t ~= 2005.770
-(b) t ~= 2030.845</div>
-            </div>
-            
-          </div>
-           
-          <div class="answer-box">
-            <div class="answer-box-header">Exam Answer</div>
-            
-            <div class="answer-sections">
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(a) Target 307</div>
-                <div class="answer-sec-body">
-                  Set model equal to target and solve:
-  287·1.01^(t - 1999) = 307
-  t = 100.49917080713·log(307/287) + 1999 ~= 2005.770
-Approximate year/value marker: 2006
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(b) Target 394</div>
-                <div class="answer-sec-body">
-                  Set model equal to target and solve:
-  287·1.01^(t - 1999) = 394
-  t = 100.49917080713·log(394/287) + 1999 ~= 2030.845
-Approximate year/value marker: 2031
-                </div>
-              </div>
-              
-            </div>
-            
-          </div>
-          
-          <a class="back-top" href="#top">&#8593; Back to top</a>
-        </div>
-        <hr />
-         
-        <div class="problem" id="prob-106">
-          <h2>Problem 106</h2>
-          <span class="badge">Exponential Growth/Decay Model</span>
-          <div class="given-label">Given</div>
-          <div class="given-box">Population model: P(t)=7.14(1.011)^(t-2014). Find when population reaches 9 and 12.5 billion.</div>
-          <div class="steps">
-            
-            <div class="step">
-              <div class="step-title">Step 1 - Write the Exponential Model</div>
-              <div class="step-body">Model: $$ 7.14·1.011^(t - 2014) $$
-This is an exponential growth model.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 2 - Set Model Equal to Each Target Value</div>
-              <div class="step-body">(a) Solve 7.14·1.011^(t - 2014) = 9
-    t = 2035.16207220273 ~= 2035.162
-(b) Solve 7.14·1.011^(t - 2014) = 12.5
-    t = 2065.19003084061 ~= 2065.190</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve Using Logarithms</div>
-              <div class="step-body">Isolate the exponential expression, then take natural logs to solve for the time variable.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Interpret the Result</div>
-              <div class="step-body">Interpret each solution in context (population) with units: billion people.
-(a) t ~= 2035.162
-(b) t ~= 2065.190</div>
-            </div>
-            
-          </div>
-           
-          <div class="answer-box">
-            <div class="answer-box-header">Exam Answer</div>
-            
-            <div class="answer-sections">
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(a) Target 9</div>
-                <div class="answer-sec-body">
-                  Set model equal to target and solve:
-  7.14·1.011^(t - 2014) = 9
-  t = 2035.16207220273 ~= 2035.162
-Approximate year/value marker: 2035
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(b) Target 12.5</div>
-                <div class="answer-sec-body">
-                  Set model equal to target and solve:
-  7.14·1.011^(t - 2014) = 12.5
-  t = 2065.19003084061 ~= 2065.190
-Approximate year/value marker: 2065
-                </div>
-              </div>
-              
-            </div>
-            
-          </div>
-          
-          <a class="back-top" href="#top">&#8593; Back to top</a>
-        </div>
-        <hr />
-         
-        <div class="problem" id="prob-107">
-          <h2>Problem 107</h2>
-          <span class="badge">Exponential Growth/Decay Model</span>
-          <div class="given-label">Given</div>
-          <div class="given-box">Depreciation model: V(t)=14162(0.832)^t. Find when value is $8000, $3000, and $1000.</div>
-          <div class="steps">
-            
-            <div class="step">
-              <div class="step-title">Step 1 - Write the Exponential Model</div>
-              <div class="step-body">Model: $$ 14162·0.832^t $$
-This is an exponential decay model.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 2 - Set Model Equal to Each Target Value</div>
-              <div class="step-body">(a) Solve 14162·0.832^t = 8000
-    t = -5.43706268345545·log(4000/7081) ~= 3.105
-(b) Solve 14162·0.832^t = 3000
-    t = -5.43706268345545·log(1500/7081) ~= 8.438
-(c) Solve 14162·0.832^t = 1000
-    t = -5.43706268345545·log(500/7081) ~= 14.411</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 3 - Solve Using Logarithms</div>
-              <div class="step-body">Isolate the exponential expression, then take natural logs to solve for the time variable.</div>
-            </div>
-            
-            <div class="step">
-              <div class="step-title">Step 4 - Interpret the Result</div>
-              <div class="step-body">Interpret each solution in context (depreciation) with units: dollars.
-(a) t ~= 3.105
-(b) t ~= 8.438
-(c) t ~= 14.411</div>
-            </div>
-            
-          </div>
-           
-          <div class="answer-box">
-            <div class="answer-box-header">Exam Answer</div>
-            
-            <div class="answer-sections">
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(a) Target 8000</div>
-                <div class="answer-sec-body">
-                  Set model equal to target and solve:
-  14162·0.832^t = 8000
-  t = -5.43706268345545·log(4000/7081) ~= 3.105
-Approximate year/value marker: 3
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(b) Target 3000</div>
-                <div class="answer-sec-body">
-                  Set model equal to target and solve:
-  14162·0.832^t = 3000
-  t = -5.43706268345545·log(1500/7081) ~= 8.438
-Approximate year/value marker: 8
-                </div>
-              </div>
-              
-              <div class="answer-section">
-                <div class="answer-sec-label">(c) Target 1000</div>
-                <div class="answer-sec-body">
-                  Set model equal to target and solve:
-  14162·0.832^t = 1000
-  t = -5.43706268345545·log(500/7081) ~= 14.411
-Approximate year/value marker: 14
-                </div>
-              </div>
-              
-            </div>
-            
-          </div>
-          
-          <a class="back-top" href="#top">&#8593; Back to top</a>
-        </div>
-        <hr />
-        
       </div>
     </div>
 
@@ -3143,8 +1810,6 @@ Approximate year/value marker: 14
         document.addEventListener("keydown", function (e) {
           if (e.key === "Escape") closeNav();
         });
-
-        /* active link highlight */
         var navLinks = {};
         sidebar.querySelectorAll("a[data-target]").forEach(function (a) {
           navLinks[a.dataset.target] = a;
@@ -3155,67 +1820,16 @@ Approximate year/value marker: 14
               var link = navLinks[entry.target.id];
               if (!link) return;
               if (entry.isIntersecting) {
-                Object.values(navLinks).forEach(function (l) {
-                  l.classList.remove("active");
-                });
+                Object.values(navLinks).forEach(function (l) { l.classList.remove("active"); });
                 link.classList.add("active");
                 link.scrollIntoView({ block: "nearest", behavior: "smooth" });
               }
             });
           },
-          { rootMargin: "-10% 0px -80% 0px", threshold: 0 },
+          { rootMargin: "-10% 0px -80% 0px", threshold: 0 }
         );
-        document.querySelectorAll(".problem[id]").forEach(function (el) {
-          io.observe(el);
-        });
+        document.querySelectorAll(".problem[id]").forEach(function (el) { io.observe(el); });
       })();
-    </script>
-    <script>
-      if (typeof Plotly !== 'undefined') {
-        var _GRAPHS = [
-          
-        ];
-        _GRAPHS.forEach(function (item) {
-          var g = item.d;
-          var traces = [{
-            x: g.x, y: g.y,
-            type: 'scatter', mode: 'lines',
-            name: 'f(x)',
-            line: {color: '#0f3460', width: 2.5},
-            connectgaps: false
-          }];
-          if (g.key_points && g.key_points.length) {
-            traces.push({
-              x: g.key_points.map(function(p){return p.x;}),
-              y: g.key_points.map(function(p){return p.y;}),
-              text: g.key_points.map(function(p){return p.label;}),
-              type: 'scatter', mode: 'markers+text',
-              textposition: 'top center',
-              textfont: {size: 11, color: '#333'},
-              marker: {size: 9, color: g.key_points.map(function(p){return p.color||'#e94560';})},
-              showlegend: false
-            });
-          }
-          var layout = {
-            margin: {t: 16, b: 44, l: 52, r: 16},
-            xaxis: {
-              title: 'x', range: g.x_range,
-              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
-              gridcolor: '#eaeaea'
-            },
-            yaxis: {
-              title: 'f(x)', range: g.y_range,
-              zeroline: true, zerolinecolor: '#bbb', zerolinewidth: 1.5,
-              gridcolor: '#eaeaea'
-            },
-            paper_bgcolor: '#fff',
-            plot_bgcolor: '#fafbfe',
-            showlegend: false,
-            font: {family: 'Georgia, serif', size: 12}
-          };
-          Plotly.newPlot(item.id, traces, layout, {responsive: true, displayModeBar: false});
-        });
-      }
     </script>
   </body>
 </html>
