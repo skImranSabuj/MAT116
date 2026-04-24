@@ -1760,6 +1760,108 @@ PROBS_5_6 = [
         ],
         'answer': 'No real solution ($\\Delta = -80 &lt; 0$)',
     },
+    # ── Application Problems 105-107 ──────────────────────────────────────────
+    {
+        'num': 105, 'badge': 'Exponential Growth Application',
+        'given': 'Population Model: $P(t) = 287(1.010)^{t-1999}$ (millions, year $t$)\n'
+                 '(a) When will the population reach 307 million?\n'
+                 '(b) When will the population reach 394 million?',
+        'steps': [
+            {'title': 'Part (a): Solve $287(1.010)^{t-1999} = 307$',
+             'body': 'Step 1 — Divide both sides by 287:\n'
+                     '$(1.010)^{t-1999} = \\dfrac{307}{287} \\approx 1.0697$'},
+            {'title': 'Step 2 — Take $\\ln$ of both sides',
+             'body': '$\\ln\\left[(1.010)^{t-1999}\\right] = \\ln(1.0697)$\n'
+                     '$(t-1999) \\ln(1.010) = \\ln(1.0697)$'},
+            {'title': 'Step 3 — Solve for $t$',
+             'body': '$t - 1999 = \\dfrac{\\ln(1.0697)}{\\ln(1.010)} = \\dfrac{0.0674}{0.00995} \\approx 6.78$\n'
+                     '$t \\approx 1999 + 6.78 = 2005.78$'},
+            {'title': 'Step 4 — Interpret the result',
+             'body': 'The population will reach 307 million during the year 2006.\n(More precisely, around October 2005.)'},
+            {'title': 'Part (b): Solve $287(1.010)^{t-1999} = 394$',
+             'body': 'Step 1 — Divide both sides by 287:\n'
+                     '$(1.010)^{t-1999} = \\dfrac{394}{287} \\approx 1.3728$'},
+            {'title': 'Step 2 — Take $\\ln$ of both sides',
+             'body': '$(t-1999) \\ln(1.010) = \\ln(1.3728)$'},
+            {'title': 'Step 3 — Solve for $t$',
+             'body': '$t - 1999 = \\dfrac{\\ln(1.3728)}{\\ln(1.010)} = \\dfrac{0.3173}{0.00995} \\approx 31.9$\n'
+                     '$t \\approx 1999 + 31.9 = 2030.9$'},
+            {'title': 'Step 4 — Interpret the result',
+             'body': 'The population will reach 394 million during the year 2031.'},
+            _insight('For exponential growth models: divide to isolate the exponential, take $\\ln$,\n'
+                     'then solve for time. Always round the year up if the decimal is positive.'),
+        ],
+        'answer': '(a) ≈ 2006  |  (b) ≈ 2031',
+    },
+    {
+        'num': 106, 'badge': 'Exponential Growth Application',
+        'given': 'World Population Model: $P(t) = 7.14(1.011)^{t-2014}$ (billions, year $t$)\n'
+                 '(a) When will the population reach 9 billion?\n'
+                 '(b) When will the population reach 12.5 billion?',
+        'steps': [
+            {'title': 'Part (a): Solve $7.14(1.011)^{t-2014} = 9$',
+             'body': 'Step 1 — Divide both sides by 7.14:\n'
+                     '$(1.011)^{t-2014} = \\dfrac{9}{7.14} \\approx 1.2605$'},
+            {'title': 'Step 2 — Take $\\ln$ of both sides',
+             'body': '$(t-2014) \\ln(1.011) = \\ln(1.2605)$'},
+            {'title': 'Step 3 — Solve for $t$',
+             'body': '$t - 2014 = \\dfrac{\\ln(1.2605)}{\\ln(1.011)} = \\dfrac{0.2317}{0.01095} \\approx 21.2$\n'
+                     '$t \\approx 2014 + 21.2 = 2035.2$'},
+            {'title': 'Step 4 — Interpret',
+             'body': 'The world population will reach 9 billion during the year 2035.'},
+            {'title': 'Part (b): Solve $7.14(1.011)^{t-2014} = 12.5$',
+             'body': 'Step 1 — Divide both sides by 7.14:\n'
+                     '$(1.011)^{t-2014} = \\dfrac{12.5}{7.14} \\approx 1.7507$'},
+            {'title': 'Step 2 — Take $\\ln$ of both sides',
+             'body': '$(t-2014) \\ln(1.011) = \\ln(1.7507)$'},
+            {'title': 'Step 3 — Solve for $t$',
+             'body': '$t - 2014 = \\dfrac{\\ln(1.7507)}{\\ln(1.011)} = \\dfrac{0.5596}{0.01095} \\approx 51.1$\n'
+                     '$t \\approx 2014 + 51.1 = 2065.1$'},
+            {'title': 'Step 4 — Interpret',
+             'body': 'The world population will reach 12.5 billion during the year 2065.'},
+            _insight('Similar pattern to Problem 105: isolate the base, take $\\ln$, solve.\n'
+                     'Note: growth rate here (1.1% per year) is slightly faster than Problem 105 (1.0%).'),
+        ],
+        'answer': '(a) ≈ 2035  |  (b) ≈ 2065',
+    },
+    {
+        'num': 107, 'badge': 'Exponential Decay Application',
+        'given': 'Car Depreciation Model: $V(t) = 14,162(0.83)^t$ (dollars, year $t$)\n'
+                 '(a) When will the car be worth $8000?\n'
+                 '(b) When will the car be worth $3000?\n'
+                 '(c) When will the car be worth $1000?',
+        'steps': [
+            {'title': 'Part (a): Solve $14,162(0.83)^t = 8000$',
+             'body': 'Step 1 — Divide both sides by 14,162:\n'
+                     '$(0.83)^t = \\dfrac{8000}{14162} \\approx 0.5646$'},
+            {'title': 'Step 2 — Take $\\ln$ of both sides',
+             'body': '$t \\ln(0.83) = \\ln(0.5646)$'},
+            {'title': 'Step 3 — Solve for $t$',
+             'body': '$t = \\dfrac{\\ln(0.5646)}{\\ln(0.83)} = \\dfrac{-0.5738}{-0.1863} \\approx 3.08$ years'},
+            {'title': 'Part (b): Solve $14,162(0.83)^t = 3000$',
+             'body': 'Step 1 — Divide both sides by 14,162:\n'
+                     '$(0.83)^t = \\dfrac{3000}{14162} \\approx 0.2119$'},
+            {'title': 'Step 2 — Take $\\ln$ of both sides',
+             'body': '$t \\ln(0.83) = \\ln(0.2119)$'},
+            {'title': 'Step 3 — Solve for $t$',
+             'body': '$t = \\dfrac{\\ln(0.2119)}{\\ln(0.83)} = \\dfrac{-1.5507}{-0.1863} \\approx 8.32$ years'},
+            {'title': 'Part (c): Solve $14,162(0.83)^t = 1000$',
+             'body': 'Step 1 — Divide both sides by 14,162:\n'
+                     '$(0.83)^t = \\dfrac{1000}{14162} \\approx 0.0707$'},
+            {'title': 'Step 2 — Take $\\ln$ of both sides',
+             'body': '$t \\ln(0.83) = \\ln(0.0707)$'},
+            {'title': 'Step 3 — Solve for $t$',
+             'body': '$t = \\dfrac{\\ln(0.0707)}{\\ln(0.83)} = \\dfrac{-2.6478}{-0.1863} \\approx 14.22$ years'},
+            {'title': 'Summary of Results',
+             'body': 'At 17% depreciation per year (factor 0.83):\n'
+                     '• Car worth $8,000 after ≈ 3.1 years\n'
+                     '• Car worth $3,000 after ≈ 8.3 years\n'
+                     '• Car worth $1,000 after ≈ 14.2 years'},
+            _insight('For decay models with $0 &lt; b &lt; 1$: the $\\ln$ of the base is negative,\n'
+                     'so dividing by it flips the sign. The fraction decreases as $t$ increases.'),
+        ],
+        'answer': '(a) ≈ 3.1 years  |  (b) ≈ 8.3 years  |  (c) ≈ 14.2 years',
+    },
 ]
 
 # ─── old helper stubs (no longer called, kept for safety) ───────────────────
@@ -1775,6 +1877,7 @@ CFG_5_6 = {
     'groups': [
         {'title': 'Logarithmic Equations', 'probs': list(range(15, 31))},
         {'title': 'Exponential Equations', 'probs': list(range(57, 67))},
+        {'title': 'Applications and Extensions', 'probs': [105, 106, 107]},
     ],
     'sidenotes': [
         {'header': 'Solving Logarithmic Equations',

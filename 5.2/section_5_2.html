@@ -584,6 +584,52 @@
         color: #bf360c;
         font-style: italic;
       }
+
+      /* ── Side Notes ── */
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.80rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+
+      /* ── Mini Insight Step ── */
+      .step.insight {
+        background: #fff8e1;
+        border-left: 4px solid #ff9800;
+      }
+      .step.insight .step-title {
+        color: #bf360c;
+        font-style: italic;
+      }
 </style>
   </head>
   <body>

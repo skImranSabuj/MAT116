@@ -584,6 +584,52 @@
         color: #bf360c;
         font-style: italic;
       }
+
+      /* ── Side Notes ── */
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.80rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+
+      /* ── Mini Insight Step ── */
+      .step.insight {
+        background: #fff8e1;
+        border-left: 4px solid #ff9800;
+      }
+      .step.insight .step-title {
+        color: #bf360c;
+        font-style: italic;
+      }
 </style>
   </head>
   <body>
@@ -671,6 +717,14 @@
           <li><a href="#prob-64" data-target="prob-64"><span class="nav-num">64</span>Problem 64</a></li>
           <li><a href="#prob-65" data-target="prob-65"><span class="nav-num">65</span>Problem 65</a></li>
           <li><a href="#prob-66" data-target="prob-66"><span class="nav-num">66</span>Problem 66</a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Applications and Extensions</div>
+        <ul>
+          <li><a href="#prob-105" data-target="prob-105"><span class="nav-num">105</span>Problem 105</a></li>
+          <li><a href="#prob-106" data-target="prob-106"><span class="nav-num">106</span>Problem 106</a></li>
+          <li><a href="#prob-107" data-target="prob-107"><span class="nav-num">107</span>Problem 107</a></li>
         </ul>
       </div>
     </nav>
@@ -2758,6 +2812,325 @@ Therefore, no real $x$ satisfies the original equation.</div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
                 <div class="answer-sec-body">No real solution ($\Delta = -80 &lt; 0$)</div>
+              </div>
+            </div>
+          </div>
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+        <div class="problem" id="prob-105">
+          <h2>Problem 105</h2>
+          <span class="badge">Exponential Growth Application</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">Population Model: $P(t) = 287(1.010)^{t-1999}$ (millions, year $t$)
+(a) When will the population reach 307 million?
+(b) When will the population reach 394 million?</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Part (a): Solve $287(1.010)^{t-1999} = 307$</div>
+              <div class="step-body">Step 1 — Divide both sides by 287:
+$(1.010)^{t-1999} = \dfrac{307}{287} \approx 1.0697$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Take $\ln$ of both sides</div>
+              <div class="step-body">$\ln\left[(1.010)^{t-1999}\right] = \ln(1.0697)$
+$(t-1999) \ln(1.010) = \ln(1.0697)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Solve for $t$</div>
+              <div class="step-body">$t - 1999 = \dfrac{\ln(1.0697)}{\ln(1.010)} = \dfrac{0.0674}{0.00995} \approx 6.78$
+$t \approx 1999 + 6.78 = 2005.78$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Interpret the result</div>
+              <div class="step-body">The population will reach 307 million during the year 2006.
+(More precisely, around October 2005.)</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Part (b): Solve $287(1.010)^{t-1999} = 394$</div>
+              <div class="step-body">Step 1 — Divide both sides by 287:
+$(1.010)^{t-1999} = \dfrac{394}{287} \approx 1.3728$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Take $\ln$ of both sides</div>
+              <div class="step-body">$(t-1999) \ln(1.010) = \ln(1.3728)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Solve for $t$</div>
+              <div class="step-body">$t - 1999 = \dfrac{\ln(1.3728)}{\ln(1.010)} = \dfrac{0.3173}{0.00995} \approx 31.9$
+$t \approx 1999 + 31.9 = 2030.9$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Interpret the result</div>
+              <div class="step-body">The population will reach 394 million during the year 2031.</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">For exponential growth models: divide to isolate the exponential, take $\ln$,
+then solve for time. Always round the year up if the decimal is positive.</div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            <div class="answer-sections">
+              <div class="answer-section">
+                <div class="answer-sec-label">Part (a): Solve $287(1.010)^{t-1999} = 307$</div>
+                <div class="answer-sec-body">Step 1 — Divide both sides by 287:
+$(1.010)^{t-1999} = \dfrac{307}{287} \approx 1.0697$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 2 — Take $\ln$ of both sides</div>
+                <div class="answer-sec-body">$\ln\left[(1.010)^{t-1999}\right] = \ln(1.0697)$
+$(t-1999) \ln(1.010) = \ln(1.0697)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Solve for $t$</div>
+                <div class="answer-sec-body">$t - 1999 = \dfrac{\ln(1.0697)}{\ln(1.010)} = \dfrac{0.0674}{0.00995} \approx 6.78$
+$t \approx 1999 + 6.78 = 2005.78$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Interpret the result</div>
+                <div class="answer-sec-body">The population will reach 307 million during the year 2006.
+(More precisely, around October 2005.)</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Part (b): Solve $287(1.010)^{t-1999} = 394$</div>
+                <div class="answer-sec-body">Step 1 — Divide both sides by 287:
+$(1.010)^{t-1999} = \dfrac{394}{287} \approx 1.3728$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 2 — Take $\ln$ of both sides</div>
+                <div class="answer-sec-body">$(t-1999) \ln(1.010) = \ln(1.3728)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Solve for $t$</div>
+                <div class="answer-sec-body">$t - 1999 = \dfrac{\ln(1.3728)}{\ln(1.010)} = \dfrac{0.3173}{0.00995} \approx 31.9$
+$t \approx 1999 + 31.9 = 2030.9$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Interpret the result</div>
+                <div class="answer-sec-body">The population will reach 394 million during the year 2031.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">(a) ≈ 2006  |  (b) ≈ 2031</div>
+              </div>
+            </div>
+          </div>
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+        <div class="problem" id="prob-106">
+          <h2>Problem 106</h2>
+          <span class="badge">Exponential Growth Application</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">World Population Model: $P(t) = 7.14(1.011)^{t-2014}$ (billions, year $t$)
+(a) When will the population reach 9 billion?
+(b) When will the population reach 12.5 billion?</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Part (a): Solve $7.14(1.011)^{t-2014} = 9$</div>
+              <div class="step-body">Step 1 — Divide both sides by 7.14:
+$(1.011)^{t-2014} = \dfrac{9}{7.14} \approx 1.2605$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Take $\ln$ of both sides</div>
+              <div class="step-body">$(t-2014) \ln(1.011) = \ln(1.2605)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Solve for $t$</div>
+              <div class="step-body">$t - 2014 = \dfrac{\ln(1.2605)}{\ln(1.011)} = \dfrac{0.2317}{0.01095} \approx 21.2$
+$t \approx 2014 + 21.2 = 2035.2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Interpret</div>
+              <div class="step-body">The world population will reach 9 billion during the year 2035.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Part (b): Solve $7.14(1.011)^{t-2014} = 12.5$</div>
+              <div class="step-body">Step 1 — Divide both sides by 7.14:
+$(1.011)^{t-2014} = \dfrac{12.5}{7.14} \approx 1.7507$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Take $\ln$ of both sides</div>
+              <div class="step-body">$(t-2014) \ln(1.011) = \ln(1.7507)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Solve for $t$</div>
+              <div class="step-body">$t - 2014 = \dfrac{\ln(1.7507)}{\ln(1.011)} = \dfrac{0.5596}{0.01095} \approx 51.1$
+$t \approx 2014 + 51.1 = 2065.1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Interpret</div>
+              <div class="step-body">The world population will reach 12.5 billion during the year 2065.</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Similar pattern to Problem 105: isolate the base, take $\ln$, solve.
+Note: growth rate here (1.1% per year) is slightly faster than Problem 105 (1.0%).</div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            <div class="answer-sections">
+              <div class="answer-section">
+                <div class="answer-sec-label">Part (a): Solve $7.14(1.011)^{t-2014} = 9$</div>
+                <div class="answer-sec-body">Step 1 — Divide both sides by 7.14:
+$(1.011)^{t-2014} = \dfrac{9}{7.14} \approx 1.2605$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 2 — Take $\ln$ of both sides</div>
+                <div class="answer-sec-body">$(t-2014) \ln(1.011) = \ln(1.2605)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Solve for $t$</div>
+                <div class="answer-sec-body">$t - 2014 = \dfrac{\ln(1.2605)}{\ln(1.011)} = \dfrac{0.2317}{0.01095} \approx 21.2$
+$t \approx 2014 + 21.2 = 2035.2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Interpret</div>
+                <div class="answer-sec-body">The world population will reach 9 billion during the year 2035.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Part (b): Solve $7.14(1.011)^{t-2014} = 12.5$</div>
+                <div class="answer-sec-body">Step 1 — Divide both sides by 7.14:
+$(1.011)^{t-2014} = \dfrac{12.5}{7.14} \approx 1.7507$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 2 — Take $\ln$ of both sides</div>
+                <div class="answer-sec-body">$(t-2014) \ln(1.011) = \ln(1.7507)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Solve for $t$</div>
+                <div class="answer-sec-body">$t - 2014 = \dfrac{\ln(1.7507)}{\ln(1.011)} = \dfrac{0.5596}{0.01095} \approx 51.1$
+$t \approx 2014 + 51.1 = 2065.1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Interpret</div>
+                <div class="answer-sec-body">The world population will reach 12.5 billion during the year 2065.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">(a) ≈ 2035  |  (b) ≈ 2065</div>
+              </div>
+            </div>
+          </div>
+          <a class="back-top" href="#top">&#8593; Back to top</a>
+        </div>
+        <hr />
+        <div class="problem" id="prob-107">
+          <h2>Problem 107</h2>
+          <span class="badge">Exponential Decay Application</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">Car Depreciation Model: $V(t) = 14,162(0.83)^t$ (dollars, year $t$)
+(a) When will the car be worth $8000?
+(b) When will the car be worth $3000?
+(c) When will the car be worth $1000?</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Part (a): Solve $14,162(0.83)^t = 8000$</div>
+              <div class="step-body">Step 1 — Divide both sides by 14,162:
+$(0.83)^t = \dfrac{8000}{14162} \approx 0.5646$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Take $\ln$ of both sides</div>
+              <div class="step-body">$t \ln(0.83) = \ln(0.5646)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Solve for $t$</div>
+              <div class="step-body">$t = \dfrac{\ln(0.5646)}{\ln(0.83)} = \dfrac{-0.5738}{-0.1863} \approx 3.08$ years</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Part (b): Solve $14,162(0.83)^t = 3000$</div>
+              <div class="step-body">Step 1 — Divide both sides by 14,162:
+$(0.83)^t = \dfrac{3000}{14162} \approx 0.2119$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Take $\ln$ of both sides</div>
+              <div class="step-body">$t \ln(0.83) = \ln(0.2119)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Solve for $t$</div>
+              <div class="step-body">$t = \dfrac{\ln(0.2119)}{\ln(0.83)} = \dfrac{-1.5507}{-0.1863} \approx 8.32$ years</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Part (c): Solve $14,162(0.83)^t = 1000$</div>
+              <div class="step-body">Step 1 — Divide both sides by 14,162:
+$(0.83)^t = \dfrac{1000}{14162} \approx 0.0707$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Take $\ln$ of both sides</div>
+              <div class="step-body">$t \ln(0.83) = \ln(0.0707)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Solve for $t$</div>
+              <div class="step-body">$t = \dfrac{\ln(0.0707)}{\ln(0.83)} = \dfrac{-2.6478}{-0.1863} \approx 14.22$ years</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Summary of Results</div>
+              <div class="step-body">At 17% depreciation per year (factor 0.83):
+• Car worth $8,000 after ≈ 3.1 years
+• Car worth $3,000 after ≈ 8.3 years
+• Car worth $1,000 after ≈ 14.2 years</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">For decay models with $0 &lt; b &lt; 1$: the $\ln$ of the base is negative,
+so dividing by it flips the sign. The fraction decreases as $t$ increases.</div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Exam Answer</div>
+            <div class="answer-sections">
+              <div class="answer-section">
+                <div class="answer-sec-label">Part (a): Solve $14,162(0.83)^t = 8000$</div>
+                <div class="answer-sec-body">Step 1 — Divide both sides by 14,162:
+$(0.83)^t = \dfrac{8000}{14162} \approx 0.5646$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 2 — Take $\ln$ of both sides</div>
+                <div class="answer-sec-body">$t \ln(0.83) = \ln(0.5646)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Solve for $t$</div>
+                <div class="answer-sec-body">$t = \dfrac{\ln(0.5646)}{\ln(0.83)} = \dfrac{-0.5738}{-0.1863} \approx 3.08$ years</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Part (b): Solve $14,162(0.83)^t = 3000$</div>
+                <div class="answer-sec-body">Step 1 — Divide both sides by 14,162:
+$(0.83)^t = \dfrac{3000}{14162} \approx 0.2119$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 2 — Take $\ln$ of both sides</div>
+                <div class="answer-sec-body">$t \ln(0.83) = \ln(0.2119)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Solve for $t$</div>
+                <div class="answer-sec-body">$t = \dfrac{\ln(0.2119)}{\ln(0.83)} = \dfrac{-1.5507}{-0.1863} \approx 8.32$ years</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Part (c): Solve $14,162(0.83)^t = 1000$</div>
+                <div class="answer-sec-body">Step 1 — Divide both sides by 14,162:
+$(0.83)^t = \dfrac{1000}{14162} \approx 0.0707$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 2 — Take $\ln$ of both sides</div>
+                <div class="answer-sec-body">$t \ln(0.83) = \ln(0.0707)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Solve for $t$</div>
+                <div class="answer-sec-body">$t = \dfrac{\ln(0.0707)}{\ln(0.83)} = \dfrac{-2.6478}{-0.1863} \approx 14.22$ years</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Summary of Results</div>
+                <div class="answer-sec-body">At 17% depreciation per year (factor 0.83):
+• Car worth $8,000 after ≈ 3.1 years
+• Car worth $3,000 after ≈ 8.3 years
+• Car worth $1,000 after ≈ 14.2 years</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Final Answer</div>
+                <div class="answer-sec-body">(a) ≈ 3.1 years  |  (b) ≈ 8.3 years  |  (c) ≈ 14.2 years</div>
               </div>
             </div>
           </div>
