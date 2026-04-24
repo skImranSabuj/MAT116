@@ -52,6 +52,16 @@ SIDENOTE_CSS = """
         color: #1a1a2e;
         white-space: pre-wrap;
       }
+
+      /* ── Mini Insight Step ── */
+      .step.insight {
+        background: #fff8e1;
+        border-left: 4px solid #ff9800;
+      }
+      .step.insight .step-title {
+        color: #bf360c;
+        font-style: italic;
+      }
 """
 
 BASE_CSS = BASE_CSS + SIDENOTE_CSS
@@ -188,13 +198,16 @@ def build_sidenotes(sidenotes):
 def build_problem(p, is_last=False):
     steps_html = ''
     for step in p['steps']:
-        steps_html += f"""            <div class="step">
+        extra_cls = f' {step["class"]}' if step.get('class') else ''
+        steps_html += f"""            <div class="step{extra_cls}">
               <div class="step-title">{step['title']}</div>
               <div class="step-body">{step['body']}</div>
             </div>\n"""
 
     ans_secs = ''
     for step in p['steps']:
+        if step.get('class') == 'insight':
+            continue  # exclude Mini Insight from Exam Answer box
         ans_secs += f"""              <div class="answer-section">
                 <div class="answer-sec-label">{step['title']}</div>
                 <div class="answer-sec-body">{step['body']}</div>
@@ -1163,169 +1176,596 @@ def exp_eq_sub_prob(num, eq_str, sub_body, solve_body, answer_str):
     }
 
 
+def _insight(body):
+    return {'title': '💡 Mini Insight (Exam Shortcut)', 'class': 'insight', 'body': body}
+
+
 PROBS_5_6 = [
     # ── Log equations 15-30 ───────────────────────────────────────────────────
-    log_eq_prob(15, '2\\log_3(x+4) - \\log_3 9 = 2',
-        '$x+4 &gt; 0 \\Rightarrow x &gt; -4$',
-        ('$\\log_3 9 = 2$, so $2\\log_3(x+4) - 2 = 2$\n'
-         '$2\\log_3(x+4) = 4 \\Rightarrow \\log_3(x+4) = 2$\n'
-         '$x+4 = 3^2 = 9 \\Rightarrow x = 5$'),
-        'Check: $x=5 &gt; -4$ ✓',
-        '$x = 5$'),
-    log_eq_prob(16, '3\\log_2(x-1) + \\log_2 4 = 5',
-        '$x-1 &gt; 0 \\Rightarrow x &gt; 1$',
-        ('$\\log_2 4 = 2$, so $3\\log_2(x-1) + 2 = 5$\n'
-         '$3\\log_2(x-1) = 3 \\Rightarrow \\log_2(x-1) = 1$\n'
-         '$x-1 = 2 \\Rightarrow x = 3$'),
-        'Check: $x=3 &gt; 1$ ✓',
-        '$x = 3$'),
-    log_eq_prob(17, '\\log x + \\log(x-21) = 2',
-        '$x &gt; 21$ (need both args positive)',
-        ('$\\log[x(x-21)] = 2 \\Rightarrow x(x-21) = 100$\n'
-         '$x^2 - 21x - 100 = 0 \\Rightarrow (x-25)(x+4) = 0$\n'
-         '$x = 25$ or $x = -4$'),
-        'Reject $x=-4$ (not in domain). Check $x=25$: $\\log 25 + \\log 4 = \\log 100 = 2$ ✓',
-        '$x = 25$'),
-    log_eq_prob(18, '\\log x + \\log(x+15) = 2',
-        '$x &gt; 0$',
-        ('$\\log[x(x+15)] = 2 \\Rightarrow x^2+15x-100 = 0$\n'
-         '$(x+20)(x-5) = 0 \\Rightarrow x=5$ or $x=-20$'),
-        'Reject $x=-20$. Check $x=5$ ✓',
-        '$x = 5$'),
-    log_eq_prob(19, '\\log(2x) - \\log(x-3) = 1',
-        '$x &gt; 3$',
-        ('$\\log\\!\\left(\\dfrac{2x}{x-3}\\right) = 1 \\Rightarrow \\dfrac{2x}{x-3} = 10$\n'
-         '$2x = 10x - 30 \\Rightarrow 8x = 30 \\Rightarrow x = \\dfrac{15}{4}$'),
-        'Check: $\\dfrac{15}{4} &gt; 3$ ✓',
-        '$x = \\dfrac{15}{4}$'),
-    log_eq_prob(20, '\\log(2x+1) = 1 + \\log(x-2)',
-        '$x &gt; 2$',
-        ('$\\log(2x+1) - \\log(x-2) = 1 \\Rightarrow \\log\\!\\left(\\dfrac{2x+1}{x-2}\\right) = 1$\n'
-         '$\\dfrac{2x+1}{x-2} = 10 \\Rightarrow 2x+1 = 10x-20 \\Rightarrow x = \\dfrac{21}{8}$'),
-        'Check: $\\dfrac{21}{8} &gt; 2$ ✓',
-        '$x = \\dfrac{21}{8}$'),
-    log_eq_prob(21, '\\log_2(x+7) + \\log_2(x+8) = 1',
-        '$x &gt; -7$',
-        ('$(x+7)(x+8) = 2^1 = 2$\n'
-         '$x^2 + 15x + 56 = 2 \\Rightarrow x^2+15x+54 = 0$\n'
-         '$(x+9)(x+6) = 0 \\Rightarrow x=-9$ or $x=-6$'),
-        'Reject $x=-9$ ($-9 \\not&gt; -7$). Check $x=-6$ ✓',
-        '$x = -6$'),
-    log_eq_prob(22, '\\log_6(x+4) + \\log_6(x+3) = 1',
-        '$x &gt; -3$',
-        ('$(x+4)(x+3) = 6$\n'
-         '$x^2+7x+12=6 \\Rightarrow x^2+7x+6=0$\n'
-         '$(x+6)(x+1)=0 \\Rightarrow x=-6$ or $x=-1$'),
-        'Reject $x=-6$. Check $x=-1$ ✓',
-        '$x = -1$'),
-    log_eq_prob(23, '\\log_5(x+3) = 1 - \\log_5(x-1)',
-        '$x &gt; 1$',
-        ('$\\log_5(x+3) + \\log_5(x-1) = 1$\n'
-         '$(x+3)(x-1) = 5 \\Rightarrow x^2+2x-3=5 \\Rightarrow x^2+2x-8=0$\n'
-         '$(x+4)(x-2)=0 \\Rightarrow x=-4$ or $x=2$'),
-        'Reject $x=-4$. Check $x=2$ ✓',
-        '$x = 2$'),
-    log_eq_prob(24, '\\log_8(x+6) = 1 - \\log_8(x+4)',
-        '$x &gt; -4$',
-        ('$(x+6)(x+4) = 8$\n'
-         '$x^2+10x+24=8 \\Rightarrow x^2+10x+16=0$\n'
-         '$(x+8)(x+2)=0 \\Rightarrow x=-8$ or $x=-2$'),
-        'Reject $x=-8$. Check $x=-2$ ✓',
-        '$x = -2$'),
-    log_eq_prob(25, '\\ln(x+1) - \\ln x = 2',
-        '$x &gt; 0$',
-        ('$\\ln\\!\\left(\\dfrac{x+1}{x}\\right) = 2 \\Rightarrow \\dfrac{x+1}{x} = e^2$\n'
-         '$x+1 = e^2 x \\Rightarrow 1 = x(e^2-1) \\Rightarrow x = \\dfrac{1}{e^2-1}$'),
-        'Check: $x = \\dfrac{1}{e^2-1} &gt; 0$ ✓',
-        '$x = \\dfrac{1}{e^2-1}$'),
-    log_eq_prob(26, '\\ln x + \\ln(x+2) = 4',
-        '$x &gt; 0$',
-        ('$\\ln[x(x+2)] = 4 \\Rightarrow x^2+2x = e^4$\n'
-         '$x^2+2x-e^4=0 \\Rightarrow x = \\dfrac{-2+\\sqrt{4+4e^4}}{2} = -1+\\sqrt{1+e^4}$'),
-        'Check: $-1+\\sqrt{1+e^4} \\approx 6.46 &gt; 0$ ✓',
-        '$x = -1+\\sqrt{1+e^4}$'),
-    log_eq_prob(27, '\\log_2(x+1) + \\log_2(x+7) = 3',
-        '$x &gt; -1$',
-        ('$(x+1)(x+7) = 8$\n'
-         '$x^2+8x+7=8 \\Rightarrow x^2+8x-1=0$\n'
-         '$x = \\dfrac{-8 \\pm \\sqrt{68}}{2} = -4 \\pm \\sqrt{17}$'),
-        'Take $x = -4+\\sqrt{17} \\approx 0.12 &gt; -1$ ✓; reject $x=-4-\\sqrt{17}$.',
-        '$x = -4+\\sqrt{17}$'),
-    log_eq_prob(28, '\\log_3(x+1) + \\log_3(x+4) = 2',
-        '$x &gt; -1$',
-        ('$(x+1)(x+4) = 9$\n'
-         '$x^2+5x+4=9 \\Rightarrow x^2+5x-5=0$\n'
-         '$x = \\dfrac{-5+\\sqrt{45}}{2} = \\dfrac{-5+3\\sqrt{5}}{2}$'),
-        'Check: $\\approx 0.854 &gt; -1$ ✓',
-        '$x = \\dfrac{-5+3\\sqrt{5}}{2}$'),
-    log_eq_prob(29, '\\log_4(x^2-9) - \\log_4(x+3) = 3',
-        '$x &gt; 3$ (need $x^2-9 &gt; 0$ and $x+3 &gt; 0$)',
-        ('$\\log_4\\!\\left(\\dfrac{x^2-9}{x+3}\\right) = 3 \\Rightarrow \\dfrac{(x-3)(x+3)}{x+3} = x-3 = 4^3 = 64$\n'
-         '$x = 67$'),
-        'Check: $x=67 &gt; 3$ ✓',
-        '$x = 67$'),
-    log_eq_prob(30, '\\log_{1/3}(x^2+x) - \\log_{1/3}(x^2-x) = -1',
-        '$x &gt; 1$ (from intersection of $x(x+1)&gt;0$ and $x(x-1)&gt;0$)',
-        ('$\\log_{1/3}\\!\\left(\\dfrac{x^2+x}{x^2-x}\\right) = -1 \\Rightarrow \\dfrac{x+1}{x-1} = \\left(\\tfrac{1}{3}\\right)^{-1} = 3$\n'
-         '$x+1 = 3x-3 \\Rightarrow x = 2$'),
-        'Check: $x=2 &gt; 1$ ✓',
-        '$x = 2$'),
+    {
+        'num': 15, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;2\\log_3(x+4) - \\log_3 9 = 2$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': 'Argument of each log must be positive.\n$x + 4 &gt; 0 \\Rightarrow x &gt; -4$'},
+            {'title': 'Step 2 — Evaluate the known logarithm',
+             'body': '$\\log_3 9 = 2 \\quad$ (since $3^2 = 9$)\nSubstitute: $\\;2\\log_3(x+4) - 2 = 2$'},
+            {'title': 'Step 3 — Isolate the log (add 2 to both sides)',
+             'body': '$2\\log_3(x+4) = 4$'},
+            {'title': 'Step 4 — Remove the coefficient (divide both sides by 2)',
+             'body': '$\\log_3(x+4) = 2$'},
+            {'title': 'Step 5 — Convert to exponential form',
+             'body': 'Recall: $\\log_b A = c \\Longleftrightarrow A = b^c$\n$x + 4 = 3^2 = 9$'},
+            {'title': 'Step 6 — Solve for x',
+             'body': '$x = 9 - 4 = 5$'},
+            {'title': '✅ Check — verify against domain',
+             'body': '$x = 5 &gt; -4$ ✓\nVerify: $2\\log_3(9) - \\log_3 9 = 2(2) - 2 = 2$ ✓'},
+            _insight('Once you arrive at $\\log_3(x+4) = 2$, recall $\\log_3 9 = 2$,\n'
+                     'so immediately: $x + 4 = 9 \\Rightarrow x = 5$ — no formal conversion needed!'),
+        ],
+        'answer': '$x = 5$',
+    },
+    {
+        'num': 16, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;3\\log_2(x-1) + \\log_2 4 = 5$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x - 1 &gt; 0 \\Rightarrow x &gt; 1$'},
+            {'title': 'Step 2 — Evaluate the known logarithm',
+             'body': '$\\log_2 4 = 2 \\quad$ (since $2^2 = 4$)\nSubstitute: $\\;3\\log_2(x-1) + 2 = 5$'},
+            {'title': 'Step 3 — Isolate the log (subtract 2 from both sides)',
+             'body': '$3\\log_2(x-1) = 3$'},
+            {'title': 'Step 4 — Remove the coefficient (divide both sides by 3)',
+             'body': '$\\log_2(x-1) = 1$'},
+            {'title': 'Step 5 — Convert to exponential form',
+             'body': 'Recall: $\\log_b A = c \\Longleftrightarrow A = b^c$\n$x - 1 = 2^1 = 2$'},
+            {'title': 'Step 6 — Solve for x',
+             'body': '$x = 2 + 1 = 3$'},
+            {'title': '✅ Check — verify against domain',
+             'body': '$x = 3 &gt; 1$ ✓\nVerify: $3\\log_2(2) + \\log_2 4 = 3(1) + 2 = 5$ ✓'},
+            _insight('Once you reach $\\log_2(x-1) = 1$, instantly think: $x - 1 = 2^1 = 2$.\n'
+                     'Key fact: $\\log_b(b) = 1$ always — so $\\log_2(2) = 1$.'),
+        ],
+        'answer': '$x = 3$',
+    },
+    {
+        'num': 17, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log x + \\log(x-21) = 2$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': 'Both arguments must be positive:\n'
+                     '$x &gt; 0$ and $x - 21 &gt; 0$\nStricter condition: $x &gt; 21$'},
+            {'title': 'Step 2 — Apply the Product Rule',
+             'body': 'Product Rule: $\\log M + \\log N = \\log(MN)$\n$\\log[x(x-21)] = 2$'},
+            {'title': 'Step 3 — Convert to exponential form (base 10)',
+             'body': 'Recall: $\\log A = c \\Longleftrightarrow A = 10^c$\n$x(x-21) = 10^2 = 100$'},
+            {'title': 'Step 4 — Expand and rearrange',
+             'body': '$x^2 - 21x = 100$\n$x^2 - 21x - 100 = 0$'},
+            {'title': 'Step 5 — Factor the quadratic',
+             'body': 'Find two numbers that multiply to $-100$ and add to $-21$: $-25$ and $+4$\n'
+                     '$(x-25)(x+4) = 0$\n$x = 25 \\quad$ or $\\quad x = -4$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': 'Reject $x = -4$: fails domain ($-4 \\not&gt; 21$).\n'
+                     'Check $x = 25$: $\\log 25 + \\log 4 = \\log(100) = 2$ ✓'},
+            _insight('When you get two solutions from a quadratic, always test both against the domain.\n'
+                     'Here, only $x = 25$ satisfies $x &gt; 21$.'),
+        ],
+        'answer': '$x = 25$',
+    },
+    {
+        'num': 18, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log x + \\log(x+15) = 2$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x &gt; 0$ and $x+15 &gt; 0$ — stricter condition: $x &gt; 0$'},
+            {'title': 'Step 2 — Apply the Product Rule',
+             'body': '$\\log[x(x+15)] = 2$'},
+            {'title': 'Step 3 — Convert to exponential form',
+             'body': '$x(x+15) = 10^2 = 100$'},
+            {'title': 'Step 4 — Expand and rearrange',
+             'body': '$x^2 + 15x = 100$\n$x^2 + 15x - 100 = 0$'},
+            {'title': 'Step 5 — Factor the quadratic',
+             'body': 'Find two numbers that multiply to $-100$ and add to $+15$: $+20$ and $-5$\n'
+                     '$(x+20)(x-5) = 0$\n$x = -20 \\quad$ or $\\quad x = 5$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': 'Reject $x = -20$: fails domain ($x &gt; 0$ required).\n'
+                     'Check $x = 5$: $\\log 5 + \\log 20 = \\log 100 = 2$ ✓'},
+            _insight('Pattern: $\\log x + \\log(x+n) = 2$ means $x(x+n) = 100$.\n'
+                     'Base-10 log of $100 = 2$ since $10^2 = 100$.'),
+        ],
+        'answer': '$x = 5$',
+    },
+    {
+        'num': 19, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log(2x) - \\log(x-3) = 1$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$2x &gt; 0$ and $x - 3 &gt; 0$ — stricter condition: $x &gt; 3$'},
+            {'title': 'Step 2 — Apply the Quotient Rule',
+             'body': 'Quotient Rule: $\\log M - \\log N = \\log\\!\\left(\\dfrac{M}{N}\\right)$\n'
+                     '$\\log\\!\\left(\\dfrac{2x}{x-3}\\right) = 1$'},
+            {'title': 'Step 3 — Convert to exponential form',
+             'body': '$\\dfrac{2x}{x-3} = 10^1 = 10$'},
+            {'title': 'Step 4 — Cross-multiply and solve',
+             'body': '$2x = 10(x-3)$\n$2x = 10x - 30$\n$-8x = -30$\n$x = \\dfrac{30}{8} = \\dfrac{15}{4}$'},
+            {'title': '✅ Check — verify against domain',
+             'body': '$x = \\dfrac{15}{4} = 3.75 &gt; 3$ ✓\nVerify: $\\log(7.5) - \\log(0.75) = \\log(10) = 1$ ✓'},
+            _insight('Quotient rule turns the subtraction of logs into a single fraction $= 10$.\n'
+                     'Cross-multiplying then gives a straightforward linear equation.'),
+        ],
+        'answer': '$x = \\dfrac{15}{4}$',
+    },
+    {
+        'num': 20, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log(2x+1) = 1 + \\log(x-2)$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$2x+1 &gt; 0$ and $x-2 &gt; 0$ — stricter condition: $x &gt; 2$'},
+            {'title': 'Step 2 — Move all log terms to the left side',
+             'body': '$\\log(2x+1) - \\log(x-2) = 1$'},
+            {'title': 'Step 3 — Apply the Quotient Rule',
+             'body': '$\\log\\!\\left(\\dfrac{2x+1}{x-2}\\right) = 1$'},
+            {'title': 'Step 4 — Convert to exponential form',
+             'body': '$\\dfrac{2x+1}{x-2} = 10^1 = 10$'},
+            {'title': 'Step 5 — Cross-multiply and solve',
+             'body': '$2x+1 = 10(x-2)$\n$2x+1 = 10x - 20$\n$-8x = -21$\n$x = \\dfrac{21}{8}$'},
+            {'title': '✅ Check — verify against domain',
+             'body': '$x = \\dfrac{21}{8} = 2.625 &gt; 2$ ✓'},
+            _insight('When a constant (like $+1$) sits on the same side as a log, move it left first.\n'
+                     'This lets you combine into a single $\\log = 1$ form before converting.'),
+        ],
+        'answer': '$x = \\dfrac{21}{8}$',
+    },
+    {
+        'num': 21, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_2(x+7) + \\log_2(x+8) = 1$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x + 7 &gt; 0$ and $x + 8 &gt; 0$ — stricter condition: $x &gt; -7$'},
+            {'title': 'Step 2 — Apply the Product Rule',
+             'body': '$\\log_2[(x+7)(x+8)] = 1$'},
+            {'title': 'Step 3 — Convert to exponential form (base 2)',
+             'body': '$(x+7)(x+8) = 2^1 = 2$'},
+            {'title': 'Step 4 — Expand and rearrange',
+             'body': '$x^2 + 15x + 56 = 2$\n$x^2 + 15x + 54 = 0$'},
+            {'title': 'Step 5 — Factor the quadratic',
+             'body': 'Find two numbers that multiply to $54$ and add to $15$: $9$ and $6$\n'
+                     '$(x+9)(x+6) = 0$\n$x = -9 \\quad$ or $\\quad x = -6$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': 'Reject $x = -9$: $-9 \\not&gt; -7$ (fails domain).\n'
+                     'Check $x = -6$: $\\log_2(1) + \\log_2(2) = 0 + 1 = 1$ ✓'},
+            _insight('With base 2 and RHS $= 1$: product $= 2^1 = 2$. The small RHS leads to\n'
+                     'small (possibly negative) $x$ — always check domain carefully here.'),
+        ],
+        'answer': '$x = -6$',
+    },
+    {
+        'num': 22, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_6(x+4) + \\log_6(x+3) = 1$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x + 4 &gt; 0$ and $x + 3 &gt; 0$ — stricter condition: $x &gt; -3$'},
+            {'title': 'Step 2 — Apply the Product Rule',
+             'body': '$\\log_6[(x+4)(x+3)] = 1$'},
+            {'title': 'Step 3 — Convert to exponential form (base 6)',
+             'body': '$(x+4)(x+3) = 6^1 = 6$'},
+            {'title': 'Step 4 — Expand and rearrange',
+             'body': '$x^2 + 7x + 12 = 6$\n$x^2 + 7x + 6 = 0$'},
+            {'title': 'Step 5 — Factor the quadratic',
+             'body': '$(x+6)(x+1) = 0$\n$x = -6 \\quad$ or $\\quad x = -1$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': 'Reject $x = -6$: $-6 \\not&gt; -3$ (fails domain).\n'
+                     'Check $x = -1$: $\\log_6(3) + \\log_6(2) = \\log_6(6) = 1$ ✓'},
+            _insight('Spot the verification shortcut: $\\log_6(3) + \\log_6(2) = \\log_6(3 \\cdot 2) = \\log_6 6 = 1$.\n'
+                     'Recognising this product-rule check saves time on the exam.'),
+        ],
+        'answer': '$x = -1$',
+    },
+    {
+        'num': 23, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_5(x+3) = 1 - \\log_5(x-1)$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x + 3 &gt; 0$ and $x - 1 &gt; 0$ — stricter condition: $x &gt; 1$'},
+            {'title': 'Step 2 — Move all log terms to the left side',
+             'body': '$\\log_5(x+3) + \\log_5(x-1) = 1$'},
+            {'title': 'Step 3 — Apply the Product Rule',
+             'body': '$\\log_5[(x+3)(x-1)] = 1$'},
+            {'title': 'Step 4 — Convert to exponential form (base 5)',
+             'body': '$(x+3)(x-1) = 5^1 = 5$'},
+            {'title': 'Step 5 — Expand and rearrange',
+             'body': '$x^2 + 2x - 3 = 5$\n$x^2 + 2x - 8 = 0$'},
+            {'title': 'Step 6 — Factor the quadratic',
+             'body': '$(x+4)(x-2) = 0$\n$x = -4 \\quad$ or $\\quad x = 2$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': 'Reject $x = -4$: $-4 \\not&gt; 1$ (fails domain).\n'
+                     'Check $x = 2$: $\\log_5(5) = 1 - \\log_5(1) = 1 - 0 = 1$ ✓'},
+            _insight('Pattern: $\\log_b A = 1 - \\log_b B \\Rightarrow \\log_b(AB) = 1 \\Rightarrow AB = b$.\n'
+                     'Move the log right, then apply the product rule.'),
+        ],
+        'answer': '$x = 2$',
+    },
+    {
+        'num': 24, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_8(x+6) = 1 - \\log_8(x+4)$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x + 6 &gt; 0$ and $x + 4 &gt; 0$ — stricter condition: $x &gt; -4$'},
+            {'title': 'Step 2 — Move all log terms to the left side',
+             'body': '$\\log_8(x+6) + \\log_8(x+4) = 1$'},
+            {'title': 'Step 3 — Apply the Product Rule',
+             'body': '$\\log_8[(x+6)(x+4)] = 1$'},
+            {'title': 'Step 4 — Convert to exponential form (base 8)',
+             'body': '$(x+6)(x+4) = 8^1 = 8$'},
+            {'title': 'Step 5 — Expand and rearrange',
+             'body': '$x^2 + 10x + 24 = 8$\n$x^2 + 10x + 16 = 0$'},
+            {'title': 'Step 6 — Factor the quadratic',
+             'body': '$(x+8)(x+2) = 0$\n$x = -8 \\quad$ or $\\quad x = -2$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': 'Reject $x = -8$: $-8 \\not&gt; -4$ (fails domain).\n'
+                     'Check $x = -2$: $\\log_8(4) + \\log_8(2) = \\log_8(8) = 1$ ✓'},
+            _insight('Same pattern as Problem 23: $\\log_b A = 1 - \\log_b B \\Rightarrow AB = b$.\n'
+                     'Here $(x+6)(x+4) = 8$.'),
+        ],
+        'answer': '$x = -2$',
+    },
+    {
+        'num': 25, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\ln(x+1) - \\ln x = 2$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x + 1 &gt; 0$ and $x &gt; 0$ — stricter condition: $x &gt; 0$'},
+            {'title': 'Step 2 — Apply the Quotient Rule',
+             'body': '$\\ln\\!\\left(\\dfrac{x+1}{x}\\right) = 2$'},
+            {'title': 'Step 3 — Convert to exponential form (base $e$)',
+             'body': 'Recall: $\\ln A = c \\Longleftrightarrow A = e^c$\n$\\dfrac{x+1}{x} = e^2$'},
+            {'title': 'Step 4 — Cross-multiply and solve',
+             'body': '$x + 1 = e^2 \\cdot x$\n$1 = e^2 x - x = x(e^2 - 1)$\n$x = \\dfrac{1}{e^2-1}$'},
+            {'title': '✅ Check — verify against domain',
+             'body': '$x = \\dfrac{1}{e^2-1} \\approx 0.156 &gt; 0$ ✓'},
+            _insight('$\\ln$ uses base $e$, so $\\ln A = c \\Rightarrow A = e^c$.\n'
+                     'Factor $x$ from the right side: $1 = x(e^2-1) \\Rightarrow x = \\dfrac{1}{e^2-1}$.'),
+        ],
+        'answer': '$x = \\dfrac{1}{e^2-1}$',
+    },
+    {
+        'num': 26, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\ln x + \\ln(x+2) = 4$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x &gt; 0$ and $x+2 &gt; 0$ — stricter condition: $x &gt; 0$'},
+            {'title': 'Step 2 — Apply the Product Rule',
+             'body': '$\\ln[x(x+2)] = 4$'},
+            {'title': 'Step 3 — Convert to exponential form (base $e$)',
+             'body': '$x(x+2) = e^4$'},
+            {'title': 'Step 4 — Expand and rearrange',
+             'body': '$x^2 + 2x = e^4$\n$x^2 + 2x - e^4 = 0$'},
+            {'title': 'Step 5 — Apply the quadratic formula',
+             'body': '$a=1,\\; b=2,\\; c=-e^4$\n'
+                     '$x = \\dfrac{-2 \\pm \\sqrt{4 + 4e^4}}{2} = \\dfrac{-2 \\pm 2\\sqrt{1+e^4}}{2} = -1 \\pm \\sqrt{1+e^4}$'},
+            {'title': '✅ Check — reject negative root',
+             'body': 'Reject $x = -1-\\sqrt{1+e^4}$ (negative, fails $x &gt; 0$).\n'
+                     'Check $x = -1+\\sqrt{1+e^4} \\approx 6.46 &gt; 0$ ✓'},
+            _insight('When you cannot factor (because $e^4$ is irrational), use the quadratic formula.\n'
+                     'Always simplify: $\\sqrt{4+4e^4} = 2\\sqrt{1+e^4}$.'),
+        ],
+        'answer': '$x = -1+\\sqrt{1+e^4}$',
+    },
+    {
+        'num': 27, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_2(x+1) + \\log_2(x+7) = 3$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x + 1 &gt; 0$ and $x + 7 &gt; 0$ — stricter condition: $x &gt; -1$'},
+            {'title': 'Step 2 — Apply the Product Rule',
+             'body': '$\\log_2[(x+1)(x+7)] = 3$'},
+            {'title': 'Step 3 — Convert to exponential form (base 2)',
+             'body': '$(x+1)(x+7) = 2^3 = 8$'},
+            {'title': 'Step 4 — Expand and rearrange',
+             'body': '$x^2 + 8x + 7 = 8$\n$x^2 + 8x - 1 = 0$'},
+            {'title': 'Step 5 — Apply the quadratic formula (cannot factor)',
+             'body': '$x = \\dfrac{-8 \\pm \\sqrt{64+4}}{2} = \\dfrac{-8 \\pm \\sqrt{68}}{2} = \\dfrac{-8 \\pm 2\\sqrt{17}}{2} = -4 \\pm \\sqrt{17}$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': '$x = -4+\\sqrt{17} \\approx 0.12 &gt; -1$ ✓\n'
+                     'Reject $x = -4-\\sqrt{17} \\approx -8.12$ (fails $x &gt; -1$).'},
+            _insight('Simplify the discriminant: $\\sqrt{68} = \\sqrt{4 \\cdot 17} = 2\\sqrt{17}$.\n'
+                     'Always factor out perfect squares from under the radical.'),
+        ],
+        'answer': '$x = -4+\\sqrt{17}$',
+    },
+    {
+        'num': 28, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_3(x+1) + \\log_3(x+4) = 2$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x + 1 &gt; 0$ and $x + 4 &gt; 0$ — stricter condition: $x &gt; -1$'},
+            {'title': 'Step 2 — Apply the Product Rule',
+             'body': '$\\log_3[(x+1)(x+4)] = 2$'},
+            {'title': 'Step 3 — Convert to exponential form (base 3)',
+             'body': '$(x+1)(x+4) = 3^2 = 9$'},
+            {'title': 'Step 4 — Expand and rearrange',
+             'body': '$x^2 + 5x + 4 = 9$\n$x^2 + 5x - 5 = 0$'},
+            {'title': 'Step 5 — Apply the quadratic formula',
+             'body': '$x = \\dfrac{-5 \\pm \\sqrt{25+20}}{2} = \\dfrac{-5 \\pm \\sqrt{45}}{2} = \\dfrac{-5 \\pm 3\\sqrt{5}}{2}$'},
+            {'title': '✅ Check — reject extraneous solutions',
+             'body': '$x = \\dfrac{-5+3\\sqrt{5}}{2} \\approx 0.854 &gt; -1$ ✓\n'
+                     'Reject $x = \\dfrac{-5-3\\sqrt{5}}{2} \\approx -5.854$.'},
+            _insight('Simplify the surd: $\\sqrt{45} = \\sqrt{9 \\cdot 5} = 3\\sqrt{5}$.\n'
+                     'Always factor perfect squares out of surds for full marks.'),
+        ],
+        'answer': '$x = \\dfrac{-5+3\\sqrt{5}}{2}$',
+    },
+    {
+        'num': 29, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_4(x^2-9) - \\log_4(x+3) = 3$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x^2-9 &gt; 0 \\Rightarrow (x-3)(x+3) &gt; 0 \\Rightarrow x &gt; 3$ or $x &lt; -3$\n'
+                     '$x+3 &gt; 0 \\Rightarrow x &gt; -3$\nIntersection: $x &gt; 3$'},
+            {'title': 'Step 2 — Apply the Quotient Rule',
+             'body': '$\\log_4\\!\\left(\\dfrac{x^2-9}{x+3}\\right) = 3$'},
+            {'title': 'Step 3 — Factor the numerator (difference of squares)',
+             'body': '$\\dfrac{(x-3)(x+3)}{x+3} = x-3 \\quad$ (cancel $x+3 \\neq 0$)'},
+            {'title': 'Step 4 — Simplified equation; convert to exponential form',
+             'body': '$\\log_4(x-3) = 3$\n$x - 3 = 4^3 = 64$'},
+            {'title': 'Step 5 — Solve for x',
+             'body': '$x = 64 + 3 = 67$'},
+            {'title': '✅ Check — verify against domain',
+             'body': '$x = 67 &gt; 3$ ✓\n'
+                     'Verify: $\\log_4(67^2-9) - \\log_4(70) = \\log_4\\!\\left(\\dfrac{4480}{70}\\right) = \\log_4(64) = 3$ ✓'},
+            _insight('Always check if the argument factors — $x^2-9 = (x-3)(x+3)$.\n'
+                     'The $(x+3)$ cancels, simplifying to $\\log_4(x-3) = 3$.'),
+        ],
+        'answer': '$x = 67$',
+    },
+    {
+        'num': 30, 'badge': 'Logarithmic Equation',
+        'given': 'Solve: $\\;\\log_{1/3}(x^2+x) - \\log_{1/3}(x^2-x) = -1$',
+        'steps': [
+            {'title': 'Step 1 — State domain restriction',
+             'body': '$x^2+x &gt; 0 \\Rightarrow x(x+1) &gt; 0 \\Rightarrow x &lt; -1$ or $x &gt; 0$\n'
+                     '$x^2-x &gt; 0 \\Rightarrow x(x-1) &gt; 0 \\Rightarrow x &lt; 0$ or $x &gt; 1$\n'
+                     'Intersection: $x &gt; 1$'},
+            {'title': 'Step 2 — Apply the Quotient Rule',
+             'body': '$\\log_{1/3}\\!\\left(\\dfrac{x^2+x}{x^2-x}\\right) = -1$'},
+            {'title': 'Step 3 — Simplify the fraction by factoring',
+             'body': '$\\dfrac{x(x+1)}{x(x-1)} = \\dfrac{x+1}{x-1}$\n'
+                     'So: $\\log_{1/3}\\!\\left(\\dfrac{x+1}{x-1}\\right) = -1$'},
+            {'title': 'Step 4 — Convert to exponential form',
+             'body': 'Recall: $\\log_b A = c \\Longleftrightarrow A = b^c$\n'
+                     '$\\dfrac{x+1}{x-1} = \\left(\\dfrac{1}{3}\\right)^{-1} = 3$'},
+            {'title': 'Step 5 — Cross-multiply and solve',
+             'body': '$x+1 = 3(x-1)$\n$x+1 = 3x-3$\n$4 = 2x$\n$x = 2$'},
+            {'title': '✅ Check — verify against domain',
+             'body': '$x = 2 &gt; 1$ ✓\n'
+                     'Verify: $\\log_{1/3}(6) - \\log_{1/3}(2) = \\log_{1/3}(3) = -1$ ✓ (since $(\\tfrac{1}{3})^{-1}=3$)'},
+            _insight('Key: $\\left(\\dfrac{1}{3}\\right)^{-1} = 3$, so $\\log_{1/3}(3) = -1$.\n'
+                     'A negative exponent with base $&lt; 1$ gives a value $&gt; 1$.'),
+        ],
+        'answer': '$x = 2$',
+    },
     # ── Exponential equations 57-66 ───────────────────────────────────────────
-    exp_eq_sub_prob(57, '3^{2x} + 3^x - 2 = 0',
-        ('Let $u = 3^x$ ($u &gt; 0$): $u^2 + u - 2 = 0$\n'
-         '$(u+2)(u-1) = 0 \\Rightarrow u = -2$ (reject) or $u = 1$'),
-        '$3^x = 1 = 3^0 \\Rightarrow x = 0$',
-        '$x = 0$'),
-    exp_eq_sub_prob(58, '2^{2x} + 2^x - 12 = 0',
-        ('Let $u = 2^x$: $u^2 + u - 12 = 0$\n'
-         '$(u+4)(u-3) = 0 \\Rightarrow u = -4$ (reject) or $u = 3$'),
-        '$2^x = 3 \\Rightarrow x = \\log_2 3 = \\dfrac{\\ln 3}{\\ln 2}$',
-        '$x = \\log_2 3 \\approx 1.585$'),
-    exp_eq_sub_prob(59, '2^{2x} + 2^{x+2} - 12 = 0',
-        ('$2^{x+2} = 4 \\cdot 2^x$. Let $u = 2^x$: $u^2 + 4u - 12 = 0$\n'
-         '$(u+6)(u-2) = 0 \\Rightarrow u = 2$'),
-        '$2^x = 2 = 2^1 \\Rightarrow x = 1$',
-        '$x = 1$'),
-    exp_eq_sub_prob(60, '3^{2x} + 3^{x+1} - 4 = 0',
-        ('$3^{x+1} = 3 \\cdot 3^x$. Let $u = 3^x$: $u^2 + 3u - 4 = 0$\n'
-         '$(u+4)(u-1) = 0 \\Rightarrow u = 1$'),
-        '$3^x = 1 = 3^0 \\Rightarrow x = 0$',
-        '$x = 0$'),
-    exp_eq_sub_prob(61, '16^x + 4^{x+1} - 3 = 0',
-        ('$16^x = (4^x)^2$, $4^{x+1} = 4\\cdot4^x$. Let $u = 4^x$:\n'
-         '$u^2 + 4u - 3 = 0 \\Rightarrow u = \\dfrac{-4 \\pm \\sqrt{28}}{2} = -2 \\pm \\sqrt{7}$\n'
-         'Take $u = -2+\\sqrt{7} &gt; 0$'),
-        ('$4^x = \\sqrt{7}-2 \\Rightarrow x = \\dfrac{\\ln(\\sqrt{7}-2)}{\\ln 4} = \\dfrac{\\ln(\\sqrt{7}-2)}{2\\ln 2}$'),
-        '$x = \\dfrac{\\ln(\\sqrt{7}-2)}{2\\ln 2} \\approx -0.317$'),
-    exp_eq_sub_prob(62, '9^x - 3^{x+1} + 1 = 0',
-        ('$9^x = (3^x)^2$, $3^{x+1} = 3\\cdot3^x$. Let $u = 3^x$:\n'
-         '$u^2 - 3u + 1 = 0 \\Rightarrow u = \\dfrac{3 \\pm \\sqrt{5}}{2}$\n'
-         'Both values positive, so both give valid solutions.'),
-        ('$x_1 = \\log_3\\!\\left(\\dfrac{3+\\sqrt{5}}{2}\\right)$,  '
-         '$x_2 = \\log_3\\!\\left(\\dfrac{3-\\sqrt{5}}{2}\\right)$'),
-        '$x = \\log_3\\!\\left(\\dfrac{3 \\pm \\sqrt{5}}{2}\\right)$'),
-    exp_eq_sub_prob(63, '6^x - 6 \\cdot 6^{-x} = -9',
-        ('Multiply by $6^x$: $(6^x)^2 + 9 \\cdot 6^x - 6 = 0$. Let $u = 6^x$:\n'
-         '$u^2 + 9u - 6 = 0 \\Rightarrow u = \\dfrac{-9+\\sqrt{105}}{2}$ (positive root only)'),
-        ('$6^x = \\dfrac{-9+\\sqrt{105}}{2} \\Rightarrow x = \\dfrac{\\ln\\frac{\\sqrt{105}-9}{2}}{\\ln 6}$'),
-        '$x = \\log_6\\!\\left(\\dfrac{\\sqrt{105}-9}{2}\\right)$'),
-    exp_eq_sub_prob(64, '5^x - 8 \\cdot 5^{-x} = -16',
-        ('Multiply by $5^x$: $(5^x)^2 + 16 \\cdot 5^x - 8 = 0$. Let $u = 5^x$:\n'
-         '$u^2 + 16u - 8 = 0 \\Rightarrow u = \\dfrac{-16+\\sqrt{288}}{2} = -8+6\\sqrt{2}$'),
-        ('$5^x = -8+6\\sqrt{2} \\Rightarrow x = \\dfrac{\\ln(-8+6\\sqrt{2})}{\\ln 5}$'),
-        '$x = \\log_5(-8+6\\sqrt{2})$'),
-    exp_eq_sub_prob(65, '2 \\cdot 49^x + 11 \\cdot 7^x + 5 = 0',
-        ('$49^x = (7^x)^2$. Let $u = 7^x &gt; 0$: $2u^2 + 11u + 5 = 0$\n'
-         '$(2u+1)(u+5) = 0 \\Rightarrow u = -\\dfrac{1}{2}$ or $u = -5$\n'
-         'Both roots are negative — impossible since $7^x &gt; 0$.'),
-        'No real solutions exist.',
-        'No solution (all terms positive for real $x$)'),
-    exp_eq_sub_prob(66, '3 \\cdot 4^x + 4 \\cdot 2^x + 8 = 0',
-        ('$4^x = (2^x)^2$. Let $u = 2^x &gt; 0$: $3u^2 + 4u + 8 = 0$\n'
-         'Discriminant $= 16 - 96 = -80 &lt; 0$; no real roots.'),
-        'No real solutions exist.',
-        'No solution (discriminant is negative)'),
+    {
+        'num': 57, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;3^{2x} + 3^x - 2 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Recognize the quadratic structure',
+             'body': 'Note: $3^{2x} = (3^x)^2$ — this equation is quadratic in $3^x$.'},
+            {'title': 'Step 2 — Let $u = 3^x$ (substitution)',
+             'body': 'Important: $u = 3^x &gt; 0$ for all $x$.\nEquation becomes: $u^2 + u - 2 = 0$'},
+            {'title': 'Step 3 — Factor the quadratic',
+             'body': '$(u+2)(u-1) = 0$\n$u = -2 \\quad$ or $\\quad u = 1$'},
+            {'title': 'Step 4 — Reject invalid root',
+             'body': 'Reject $u = -2$: impossible since $3^x &gt; 0$ always.\nKeep $u = 1$.'},
+            {'title': 'Step 5 — Solve $3^x = 1$ for $x$',
+             'body': '$3^x = 1 = 3^0$\nSince bases match: $x = 0$'},
+            {'title': '✅ Check — verify',
+             'body': '$3^{2(0)} + 3^0 - 2 = 1 + 1 - 2 = 0$ ✓'},
+            _insight('When $a^x = 1$ (any base $a \\neq 0$): always $x = 0$, since $a^0 = 1$.'),
+        ],
+        'answer': '$x = 0$',
+    },
+    {
+        'num': 58, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;2^{2x} + 2^x - 12 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Recognize the quadratic structure',
+             'body': '$2^{2x} = (2^x)^2$ — quadratic in $2^x$.'},
+            {'title': 'Step 2 — Let $u = 2^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation becomes: $u^2 + u - 12 = 0$'},
+            {'title': 'Step 3 — Factor the quadratic',
+             'body': '$(u+4)(u-3) = 0$\n$u = -4 \\quad$ or $\\quad u = 3$'},
+            {'title': 'Step 4 — Reject invalid root',
+             'body': 'Reject $u = -4$ (negative, $2^x &gt; 0$). Keep $u = 3$.'},
+            {'title': 'Step 5 — Solve $2^x = 3$ for $x$',
+             'body': 'Take $\\ln$ of both sides:\n$x \\ln 2 = \\ln 3$\n$x = \\dfrac{\\ln 3}{\\ln 2} = \\log_2 3$'},
+            {'title': '✅ Check — verify (approximate)',
+             'body': '$x \\approx 1.585$. Then $2^{2(1.585)} + 2^{1.585} - 12 \\approx 9 + 3 - 12 = 0$ ✓'},
+            _insight('When $2^x = 3$ (not a power of 2): $x = \\log_2 3 = \\dfrac{\\ln 3}{\\ln 2}$.\n'
+                     'Change-of-base: $\\log_b a = \\dfrac{\\ln a}{\\ln b}$.'),
+        ],
+        'answer': '$x = \\log_2 3 \\approx 1.585$',
+    },
+    {
+        'num': 59, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;2^{2x} + 2^{x+2} - 12 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Rewrite $2^{x+2}$ using exponent rules',
+             'body': '$2^{x+2} = 2^x \\cdot 2^2 = 4 \\cdot 2^x$\nEquation becomes: $2^{2x} + 4 \\cdot 2^x - 12 = 0$'},
+            {'title': 'Step 2 — Let $u = 2^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation becomes: $u^2 + 4u - 12 = 0$'},
+            {'title': 'Step 3 — Factor the quadratic',
+             'body': '$(u+6)(u-2) = 0$\n$u = -6 \\quad$ or $\\quad u = 2$'},
+            {'title': 'Step 4 — Reject invalid root',
+             'body': 'Reject $u = -6$. Keep $u = 2$.'},
+            {'title': 'Step 5 — Solve $2^x = 2$ for $x$',
+             'body': '$2^x = 2 = 2^1 \\Rightarrow x = 1$'},
+            {'title': '✅ Check — verify',
+             'body': '$2^2 + 2^3 - 12 = 4 + 8 - 12 = 0$ ✓'},
+            _insight('Key step: $2^{x+2} = 4 \\cdot 2^x$.\n'
+                     'Always rewrite $a^{x+k} = a^k \\cdot a^x$ BEFORE substituting.'),
+        ],
+        'answer': '$x = 1$',
+    },
+    {
+        'num': 60, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;3^{2x} + 3^{x+1} - 4 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Rewrite $3^{x+1}$ using exponent rules',
+             'body': '$3^{x+1} = 3 \\cdot 3^x$\nEquation becomes: $3^{2x} + 3 \\cdot 3^x - 4 = 0$'},
+            {'title': 'Step 2 — Let $u = 3^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation becomes: $u^2 + 3u - 4 = 0$'},
+            {'title': 'Step 3 — Factor the quadratic',
+             'body': '$(u+4)(u-1) = 0$\n$u = -4 \\quad$ or $\\quad u = 1$'},
+            {'title': 'Step 4 — Reject invalid root',
+             'body': 'Reject $u = -4$. Keep $u = 1$.'},
+            {'title': 'Step 5 — Solve $3^x = 1$ for $x$',
+             'body': '$3^x = 1 = 3^0 \\Rightarrow x = 0$'},
+            {'title': '✅ Check — verify',
+             'body': '$3^0 + 3^1 - 4 = 1 + 3 - 4 = 0$ ✓'},
+            _insight('Same approach as Problem 59: rewrite $3^{x+1} = 3 \\cdot 3^x$ first,\n'
+                     'making the coefficient of $u$ equal to $3$ in the quadratic.'),
+        ],
+        'answer': '$x = 0$',
+    },
+    {
+        'num': 61, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;16^x + 4^{x+1} - 3 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Rewrite all terms in base 4',
+             'body': '$16^x = (4^2)^x = (4^x)^2$\n$4^{x+1} = 4 \\cdot 4^x$\nEquation: $(4^x)^2 + 4 \\cdot 4^x - 3 = 0$'},
+            {'title': 'Step 2 — Let $u = 4^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation: $u^2 + 4u - 3 = 0$'},
+            {'title': 'Step 3 — Quadratic formula (does not factor nicely)',
+             'body': '$u = \\dfrac{-4 \\pm \\sqrt{16+12}}{2} = \\dfrac{-4 \\pm \\sqrt{28}}{2} = \\dfrac{-4 \\pm 2\\sqrt{7}}{2} = -2 \\pm \\sqrt{7}$'},
+            {'title': 'Step 4 — Reject invalid root',
+             'body': '$\\sqrt{7} \\approx 2.646$\n'
+                     '$u = -2+\\sqrt{7} \\approx 0.646 &gt; 0$ ✓  Keep.\n'
+                     '$u = -2-\\sqrt{7} \\approx -4.646 &lt; 0$ ✗  Reject.'},
+            {'title': 'Step 5 — Solve $4^x = \\sqrt{7}-2$ for $x$',
+             'body': 'Take $\\ln$ of both sides:\n'
+                     '$x \\ln 4 = \\ln(\\sqrt{7}-2)$\n'
+                     '$x = \\dfrac{\\ln(\\sqrt{7}-2)}{\\ln 4} = \\dfrac{\\ln(\\sqrt{7}-2)}{2\\ln 2}$'},
+            {'title': '✅ Check — verify (approximate)',
+             'body': '$x \\approx \\dfrac{\\ln(0.646)}{\\ln 4} \\approx -0.317$\nConfirmed numerically. ✓'},
+            _insight('Key simplification: $\\sqrt{28} = 2\\sqrt{7}$ — then cancel the 2 to get $u = -2 \\pm \\sqrt{7}$.'),
+        ],
+        'answer': '$x = \\dfrac{\\ln(\\sqrt{7}-2)}{2\\ln 2} \\approx -0.317$',
+    },
+    {
+        'num': 62, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;9^x - 3^{x+1} + 1 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Rewrite all terms in base 3',
+             'body': '$9^x = (3^2)^x = (3^x)^2$\n$3^{x+1} = 3 \\cdot 3^x$\nEquation: $(3^x)^2 - 3 \\cdot 3^x + 1 = 0$'},
+            {'title': 'Step 2 — Let $u = 3^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation: $u^2 - 3u + 1 = 0$'},
+            {'title': 'Step 3 — Quadratic formula (does not factor)',
+             'body': '$u = \\dfrac{3 \\pm \\sqrt{9-4}}{2} = \\dfrac{3 \\pm \\sqrt{5}}{2}$'},
+            {'title': 'Step 4 — Both roots are positive (two valid solutions!)',
+             'body': '$u_1 = \\dfrac{3+\\sqrt{5}}{2} \\approx 2.618 &gt; 0$ ✓\n'
+                     '$u_2 = \\dfrac{3-\\sqrt{5}}{2} \\approx 0.382 &gt; 0$ ✓'},
+            {'title': 'Step 5 — Solve for $x$ in each case',
+             'body': 'Case 1: $3^x = \\dfrac{3+\\sqrt{5}}{2} \\Rightarrow x_1 = \\log_3\\!\\left(\\dfrac{3+\\sqrt{5}}{2}\\right)$\n'
+                     'Case 2: $3^x = \\dfrac{3-\\sqrt{5}}{2} \\Rightarrow x_2 = \\log_3\\!\\left(\\dfrac{3-\\sqrt{5}}{2}\\right)$'},
+            {'title': '✅ Check — verify (approximate)',
+             'body': '$x_1 \\approx 0.859$ and $x_2 \\approx -0.859$ — both satisfy the original equation.'},
+            _insight('This is rare — both quadratic roots are positive, giving TWO valid solutions.\n'
+                     'Notice: $x_1 = -x_2$ (symmetric about $x=0$).'),
+        ],
+        'answer': '$x = \\log_3\\!\\left(\\dfrac{3 \\pm \\sqrt{5}}{2}\\right)$',
+    },
+    {
+        'num': 63, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;6^x - 6 \\cdot 6^{-x} = -9$',
+        'steps': [
+            {'title': 'Step 1 — Eliminate the negative exponent',
+             'body': 'Multiply every term by $6^x$ (valid since $6^x &gt; 0$):\n$(6^x)^2 - 6 = -9 \\cdot 6^x$'},
+            {'title': 'Step 2 — Rearrange into standard form',
+             'body': '$(6^x)^2 + 9 \\cdot 6^x - 6 = 0$'},
+            {'title': 'Step 3 — Let $u = 6^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation: $u^2 + 9u - 6 = 0$'},
+            {'title': 'Step 4 — Quadratic formula',
+             'body': '$u = \\dfrac{-9 \\pm \\sqrt{81+24}}{2} = \\dfrac{-9 \\pm \\sqrt{105}}{2}$'},
+            {'title': 'Step 5 — Reject invalid root',
+             'body': '$\\sqrt{105} \\approx 10.247$\n'
+                     '$u = \\dfrac{-9+\\sqrt{105}}{2} \\approx 0.624 &gt; 0$ ✓  Keep.\n'
+                     '$u = \\dfrac{-9-\\sqrt{105}}{2} \\approx -9.624 &lt; 0$ ✗  Reject.'},
+            {'title': 'Step 6 — Solve $6^x = \\dfrac{\\sqrt{105}-9}{2}$ for $x$',
+             'body': '$x = \\log_6\\!\\left(\\dfrac{\\sqrt{105}-9}{2}\\right) = \\dfrac{\\ln\\!\\left(\\dfrac{\\sqrt{105}-9}{2}\\right)}{\\ln 6}$'},
+            _insight('Trick: when $a^{-x}$ appears, multiply through by $a^x$ to clear the negative exponent.\n'
+                     'This converts the equation into a quadratic in $a^x$.'),
+        ],
+        'answer': '$x = \\log_6\\!\\left(\\dfrac{\\sqrt{105}-9}{2}\\right)$',
+    },
+    {
+        'num': 64, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;5^x - 8 \\cdot 5^{-x} = -16$',
+        'steps': [
+            {'title': 'Step 1 — Eliminate the negative exponent',
+             'body': 'Multiply every term by $5^x$:\n$(5^x)^2 - 8 = -16 \\cdot 5^x$'},
+            {'title': 'Step 2 — Rearrange into standard form',
+             'body': '$(5^x)^2 + 16 \\cdot 5^x - 8 = 0$'},
+            {'title': 'Step 3 — Let $u = 5^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation: $u^2 + 16u - 8 = 0$'},
+            {'title': 'Step 4 — Quadratic formula with surd simplification',
+             'body': '$u = \\dfrac{-16 \\pm \\sqrt{256+32}}{2} = \\dfrac{-16 \\pm \\sqrt{288}}{2}$\n'
+                     'Simplify: $\\sqrt{288} = \\sqrt{144 \\cdot 2} = 12\\sqrt{2}$\n'
+                     '$u = \\dfrac{-16 \\pm 12\\sqrt{2}}{2} = -8 \\pm 6\\sqrt{2}$'},
+            {'title': 'Step 5 — Reject invalid root',
+             'body': '$u = -8+6\\sqrt{2} \\approx 0.485 &gt; 0$ ✓  Keep.\n'
+                     '$u = -8-6\\sqrt{2} &lt; 0$ ✗  Reject.'},
+            {'title': 'Step 6 — Solve $5^x = 6\\sqrt{2}-8$ for $x$',
+             'body': '$x = \\log_5(6\\sqrt{2}-8) = \\dfrac{\\ln(6\\sqrt{2}-8)}{\\ln 5}$'},
+            _insight('Key simplification: $\\sqrt{288} = 12\\sqrt{2}$ (factor out $144 = 12^2$).\n'
+                     'Then $\\dfrac{12\\sqrt{2}}{2} = 6\\sqrt{2}$ — always simplify surds fully.'),
+        ],
+        'answer': '$x = \\log_5(6\\sqrt{2}-8)$',
+    },
+    {
+        'num': 65, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;2 \\cdot 49^x + 11 \\cdot 7^x + 5 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Recognize the quadratic structure',
+             'body': '$49^x = (7^2)^x = (7^x)^2$ — quadratic in $7^x$.'},
+            {'title': 'Step 2 — Let $u = 7^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation: $2u^2 + 11u + 5 = 0$'},
+            {'title': 'Step 3 — Factor the quadratic',
+             'body': '$(2u+1)(u+5) = 0$\n$u = -\\dfrac{1}{2} \\quad$ or $\\quad u = -5$'},
+            {'title': 'Step 4 — Reject both roots',
+             'body': '$u = 7^x &gt; 0$ for all real $x$.\n'
+                     'Both roots ($-\\tfrac{1}{2}$ and $-5$) are negative — neither is valid.'},
+            {'title': 'Step 5 — Conclusion',
+             'body': 'No real solution exists.'},
+            _insight('When ALL quadratic roots are $\\leq 0$ (and base $&gt; 1$), there is NO real solution.\n'
+                     'Spotting this quickly saves time on the exam.'),
+        ],
+        'answer': 'No real solution',
+    },
+    {
+        'num': 66, 'badge': 'Exponential Equation',
+        'given': 'Solve: $\\;3 \\cdot 4^x + 4 \\cdot 2^x + 8 = 0$',
+        'steps': [
+            {'title': 'Step 1 — Rewrite in a common base',
+             'body': '$4^x = (2^2)^x = (2^x)^2$ — quadratic in $2^x$.'},
+            {'title': 'Step 2 — Let $u = 2^x$ (substitution)',
+             'body': '$u &gt; 0$. Equation: $3u^2 + 4u + 8 = 0$'},
+            {'title': 'Step 3 — Compute the discriminant',
+             'body': '$\\Delta = b^2 - 4ac = (4)^2 - 4(3)(8) = 16 - 96 = -80$'},
+            {'title': 'Step 4 — Negative discriminant: no real roots',
+             'body': '$\\Delta = -80 &lt; 0 \\Rightarrow$ the quadratic has no real solutions.\n'
+                     'Therefore, no real $x$ satisfies the original equation.'},
+            _insight('Always compute $\\Delta = b^2 - 4ac$ first.\n'
+                     'If $\\Delta &lt; 0$: write "no real solution" immediately — saves exam time!'),
+        ],
+        'answer': 'No real solution ($\\Delta = -80 &lt; 0$)',
+    },
 ]
+
+# ─── old helper stubs (no longer called, kept for safety) ───────────────────
+def log_eq_prob(*args): pass
+def exp_eq_sub_prob(*args): pass
+
 
 CFG_5_6 = {
     'section_label': '5.6',

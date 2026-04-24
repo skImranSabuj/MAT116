@@ -538,6 +538,52 @@
         color: #1a1a2e;
         white-space: pre-wrap;
       }
+
+      /* ── Side Notes ── */
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.80rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+
+      /* ── Mini Insight Step ── */
+      .step.insight {
+        background: #fff8e1;
+        border-left: 4px solid #ff9800;
+      }
+      .step.insight .step-title {
+        color: #bf360c;
+        font-style: italic;
+      }
 </style>
   </head>
   <body>
@@ -675,36 +721,77 @@ Then solve $a^x = u$ for $x$</div>
           <div class="given-box">Solve: $\;2\log_3(x+4) - \log_3 9 = 2$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x+4 &gt; 0 \Rightarrow x &gt; -4$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">Argument of each log must be positive.
+$x + 4 &gt; 0 \Rightarrow x &gt; -4$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log_3 9 = 2$, so $2\log_3(x+4) - 2 = 2$
-$2\log_3(x+4) = 4 \Rightarrow \log_3(x+4) = 2$
-$x+4 = 3^2 = 9 \Rightarrow x = 5$</div>
+              <div class="step-title">Step 2 — Evaluate the known logarithm</div>
+              <div class="step-body">$\log_3 9 = 2 \quad$ (since $3^2 = 9$)
+Substitute: $\;2\log_3(x+4) - 2 = 2$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $x=5 &gt; -4$ ✓</div>
+              <div class="step-title">Step 3 — Isolate the log (add 2 to both sides)</div>
+              <div class="step-body">$2\log_3(x+4) = 4$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Remove the coefficient (divide both sides by 2)</div>
+              <div class="step-body">$\log_3(x+4) = 2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Convert to exponential form</div>
+              <div class="step-body">Recall: $\log_b A = c \Longleftrightarrow A = b^c$
+$x + 4 = 3^2 = 9$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 6 — Solve for x</div>
+              <div class="step-body">$x = 9 - 4 = 5$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify against domain</div>
+              <div class="step-body">$x = 5 &gt; -4$ ✓
+Verify: $2\log_3(9) - \log_3 9 = 2(2) - 2 = 2$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Once you arrive at $\log_3(x+4) = 2$, recall $\log_3 9 = 2$,
+so immediately: $x + 4 = 9 \Rightarrow x = 5$ — no formal conversion needed!</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x+4 &gt; 0 \Rightarrow x &gt; -4$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">Argument of each log must be positive.
+$x + 4 &gt; 0 \Rightarrow x &gt; -4$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log_3 9 = 2$, so $2\log_3(x+4) - 2 = 2$
-$2\log_3(x+4) = 4 \Rightarrow \log_3(x+4) = 2$
-$x+4 = 3^2 = 9 \Rightarrow x = 5$</div>
+                <div class="answer-sec-label">Step 2 — Evaluate the known logarithm</div>
+                <div class="answer-sec-body">$\log_3 9 = 2 \quad$ (since $3^2 = 9$)
+Substitute: $\;2\log_3(x+4) - 2 = 2$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $x=5 &gt; -4$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Isolate the log (add 2 to both sides)</div>
+                <div class="answer-sec-body">$2\log_3(x+4) = 4$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Remove the coefficient (divide both sides by 2)</div>
+                <div class="answer-sec-body">$\log_3(x+4) = 2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Convert to exponential form</div>
+                <div class="answer-sec-body">Recall: $\log_b A = c \Longleftrightarrow A = b^c$
+$x + 4 = 3^2 = 9$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 6 — Solve for x</div>
+                <div class="answer-sec-body">$x = 9 - 4 = 5$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify against domain</div>
+                <div class="answer-sec-body">$x = 5 &gt; -4$ ✓
+Verify: $2\log_3(9) - \log_3 9 = 2(2) - 2 = 2$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -722,36 +809,75 @@ $x+4 = 3^2 = 9 \Rightarrow x = 5$</div>
           <div class="given-box">Solve: $\;3\log_2(x-1) + \log_2 4 = 5$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x-1 &gt; 0 \Rightarrow x &gt; 1$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x - 1 &gt; 0 \Rightarrow x &gt; 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log_2 4 = 2$, so $3\log_2(x-1) + 2 = 5$
-$3\log_2(x-1) = 3 \Rightarrow \log_2(x-1) = 1$
-$x-1 = 2 \Rightarrow x = 3$</div>
+              <div class="step-title">Step 2 — Evaluate the known logarithm</div>
+              <div class="step-body">$\log_2 4 = 2 \quad$ (since $2^2 = 4$)
+Substitute: $\;3\log_2(x-1) + 2 = 5$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $x=3 &gt; 1$ ✓</div>
+              <div class="step-title">Step 3 — Isolate the log (subtract 2 from both sides)</div>
+              <div class="step-body">$3\log_2(x-1) = 3$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Remove the coefficient (divide both sides by 3)</div>
+              <div class="step-body">$\log_2(x-1) = 1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Convert to exponential form</div>
+              <div class="step-body">Recall: $\log_b A = c \Longleftrightarrow A = b^c$
+$x - 1 = 2^1 = 2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 6 — Solve for x</div>
+              <div class="step-body">$x = 2 + 1 = 3$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify against domain</div>
+              <div class="step-body">$x = 3 &gt; 1$ ✓
+Verify: $3\log_2(2) + \log_2 4 = 3(1) + 2 = 5$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Once you reach $\log_2(x-1) = 1$, instantly think: $x - 1 = 2^1 = 2$.
+Key fact: $\log_b(b) = 1$ always — so $\log_2(2) = 1$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x-1 &gt; 0 \Rightarrow x &gt; 1$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x - 1 &gt; 0 \Rightarrow x &gt; 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log_2 4 = 2$, so $3\log_2(x-1) + 2 = 5$
-$3\log_2(x-1) = 3 \Rightarrow \log_2(x-1) = 1$
-$x-1 = 2 \Rightarrow x = 3$</div>
+                <div class="answer-sec-label">Step 2 — Evaluate the known logarithm</div>
+                <div class="answer-sec-body">$\log_2 4 = 2 \quad$ (since $2^2 = 4$)
+Substitute: $\;3\log_2(x-1) + 2 = 5$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $x=3 &gt; 1$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Isolate the log (subtract 2 from both sides)</div>
+                <div class="answer-sec-body">$3\log_2(x-1) = 3$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Remove the coefficient (divide both sides by 3)</div>
+                <div class="answer-sec-body">$\log_2(x-1) = 1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Convert to exponential form</div>
+                <div class="answer-sec-body">Recall: $\log_b A = c \Longleftrightarrow A = b^c$
+$x - 1 = 2^1 = 2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 6 — Solve for x</div>
+                <div class="answer-sec-body">$x = 2 + 1 = 3$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify against domain</div>
+                <div class="answer-sec-body">$x = 3 &gt; 1$ ✓
+Verify: $3\log_2(2) + \log_2 4 = 3(1) + 2 = 5$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -769,36 +895,77 @@ $x-1 = 2 \Rightarrow x = 3$</div>
           <div class="given-box">Solve: $\;\log x + \log(x-21) = 2$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 21$ (need both args positive)</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">Both arguments must be positive:
+$x &gt; 0$ and $x - 21 &gt; 0$
+Stricter condition: $x &gt; 21$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log[x(x-21)] = 2 \Rightarrow x(x-21) = 100$
-$x^2 - 21x - 100 = 0 \Rightarrow (x-25)(x+4) = 0$
-$x = 25$ or $x = -4$</div>
+              <div class="step-title">Step 2 — Apply the Product Rule</div>
+              <div class="step-body">Product Rule: $\log M + \log N = \log(MN)$
+$\log[x(x-21)] = 2$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Reject $x=-4$ (not in domain). Check $x=25$: $\log 25 + \log 4 = \log 100 = 2$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form (base 10)</div>
+              <div class="step-body">Recall: $\log A = c \Longleftrightarrow A = 10^c$
+$x(x-21) = 10^2 = 100$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Expand and rearrange</div>
+              <div class="step-body">$x^2 - 21x = 100$
+$x^2 - 21x - 100 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Factor the quadratic</div>
+              <div class="step-body">Find two numbers that multiply to $-100$ and add to $-21$: $-25$ and $+4$
+$(x-25)(x+4) = 0$
+$x = 25 \quad$ or $\quad x = -4$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">Reject $x = -4$: fails domain ($-4 \not&gt; 21$).
+Check $x = 25$: $\log 25 + \log 4 = \log(100) = 2$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">When you get two solutions from a quadratic, always test both against the domain.
+Here, only $x = 25$ satisfies $x &gt; 21$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 21$ (need both args positive)</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">Both arguments must be positive:
+$x &gt; 0$ and $x - 21 &gt; 0$
+Stricter condition: $x &gt; 21$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log[x(x-21)] = 2 \Rightarrow x(x-21) = 100$
-$x^2 - 21x - 100 = 0 \Rightarrow (x-25)(x+4) = 0$
-$x = 25$ or $x = -4$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Product Rule</div>
+                <div class="answer-sec-body">Product Rule: $\log M + \log N = \log(MN)$
+$\log[x(x-21)] = 2$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Reject $x=-4$ (not in domain). Check $x=25$: $\log 25 + \log 4 = \log 100 = 2$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form (base 10)</div>
+                <div class="answer-sec-body">Recall: $\log A = c \Longleftrightarrow A = 10^c$
+$x(x-21) = 10^2 = 100$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 - 21x = 100$
+$x^2 - 21x - 100 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Factor the quadratic</div>
+                <div class="answer-sec-body">Find two numbers that multiply to $-100$ and add to $-21$: $-25$ and $+4$
+$(x-25)(x+4) = 0$
+$x = 25 \quad$ or $\quad x = -4$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">Reject $x = -4$: fails domain ($-4 \not&gt; 21$).
+Check $x = 25$: $\log 25 + \log 4 = \log(100) = 2$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -816,34 +983,69 @@ $x = 25$ or $x = -4$</div>
           <div class="given-box">Solve: $\;\log x + \log(x+15) = 2$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 0$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x &gt; 0$ and $x+15 &gt; 0$ — stricter condition: $x &gt; 0$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log[x(x+15)] = 2 \Rightarrow x^2+15x-100 = 0$
-$(x+20)(x-5) = 0 \Rightarrow x=5$ or $x=-20$</div>
+              <div class="step-title">Step 2 — Apply the Product Rule</div>
+              <div class="step-body">$\log[x(x+15)] = 2$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Reject $x=-20$. Check $x=5$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form</div>
+              <div class="step-body">$x(x+15) = 10^2 = 100$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 15x = 100$
+$x^2 + 15x - 100 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Factor the quadratic</div>
+              <div class="step-body">Find two numbers that multiply to $-100$ and add to $+15$: $+20$ and $-5$
+$(x+20)(x-5) = 0$
+$x = -20 \quad$ or $\quad x = 5$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">Reject $x = -20$: fails domain ($x &gt; 0$ required).
+Check $x = 5$: $\log 5 + \log 20 = \log 100 = 2$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Pattern: $\log x + \log(x+n) = 2$ means $x(x+n) = 100$.
+Base-10 log of $100 = 2$ since $10^2 = 100$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 0$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 0$ and $x+15 &gt; 0$ — stricter condition: $x &gt; 0$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log[x(x+15)] = 2 \Rightarrow x^2+15x-100 = 0$
-$(x+20)(x-5) = 0 \Rightarrow x=5$ or $x=-20$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\log[x(x+15)] = 2$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Reject $x=-20$. Check $x=5$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form</div>
+                <div class="answer-sec-body">$x(x+15) = 10^2 = 100$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 15x = 100$
+$x^2 + 15x - 100 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Factor the quadratic</div>
+                <div class="answer-sec-body">Find two numbers that multiply to $-100$ and add to $+15$: $+20$ and $-5$
+$(x+20)(x-5) = 0$
+$x = -20 \quad$ or $\quad x = 5$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">Reject $x = -20$: fails domain ($x &gt; 0$ required).
+Check $x = 5$: $\log 5 + \log 20 = \log 100 = 2$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -861,34 +1063,63 @@ $(x+20)(x-5) = 0 \Rightarrow x=5$ or $x=-20$</div>
           <div class="given-box">Solve: $\;\log(2x) - \log(x-3) = 1$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 3$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$2x &gt; 0$ and $x - 3 &gt; 0$ — stricter condition: $x &gt; 3$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log\!\left(\dfrac{2x}{x-3}\right) = 1 \Rightarrow \dfrac{2x}{x-3} = 10$
-$2x = 10x - 30 \Rightarrow 8x = 30 \Rightarrow x = \dfrac{15}{4}$</div>
+              <div class="step-title">Step 2 — Apply the Quotient Rule</div>
+              <div class="step-body">Quotient Rule: $\log M - \log N = \log\!\left(\dfrac{M}{N}\right)$
+$\log\!\left(\dfrac{2x}{x-3}\right) = 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $\dfrac{15}{4} &gt; 3$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form</div>
+              <div class="step-body">$\dfrac{2x}{x-3} = 10^1 = 10$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Cross-multiply and solve</div>
+              <div class="step-body">$2x = 10(x-3)$
+$2x = 10x - 30$
+$-8x = -30$
+$x = \dfrac{30}{8} = \dfrac{15}{4}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify against domain</div>
+              <div class="step-body">$x = \dfrac{15}{4} = 3.75 &gt; 3$ ✓
+Verify: $\log(7.5) - \log(0.75) = \log(10) = 1$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Quotient rule turns the subtraction of logs into a single fraction $= 10$.
+Cross-multiplying then gives a straightforward linear equation.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 3$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$2x &gt; 0$ and $x - 3 &gt; 0$ — stricter condition: $x &gt; 3$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log\!\left(\dfrac{2x}{x-3}\right) = 1 \Rightarrow \dfrac{2x}{x-3} = 10$
-$2x = 10x - 30 \Rightarrow 8x = 30 \Rightarrow x = \dfrac{15}{4}$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Quotient Rule</div>
+                <div class="answer-sec-body">Quotient Rule: $\log M - \log N = \log\!\left(\dfrac{M}{N}\right)$
+$\log\!\left(\dfrac{2x}{x-3}\right) = 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $\dfrac{15}{4} &gt; 3$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form</div>
+                <div class="answer-sec-body">$\dfrac{2x}{x-3} = 10^1 = 10$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Cross-multiply and solve</div>
+                <div class="answer-sec-body">$2x = 10(x-3)$
+$2x = 10x - 30$
+$-8x = -30$
+$x = \dfrac{30}{8} = \dfrac{15}{4}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify against domain</div>
+                <div class="answer-sec-body">$x = \dfrac{15}{4} = 3.75 &gt; 3$ ✓
+Verify: $\log(7.5) - \log(0.75) = \log(10) = 1$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -906,34 +1137,67 @@ $2x = 10x - 30 \Rightarrow 8x = 30 \Rightarrow x = \dfrac{15}{4}$</div>
           <div class="given-box">Solve: $\;\log(2x+1) = 1 + \log(x-2)$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 2$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$2x+1 &gt; 0$ and $x-2 &gt; 0$ — stricter condition: $x &gt; 2$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log(2x+1) - \log(x-2) = 1 \Rightarrow \log\!\left(\dfrac{2x+1}{x-2}\right) = 1$
-$\dfrac{2x+1}{x-2} = 10 \Rightarrow 2x+1 = 10x-20 \Rightarrow x = \dfrac{21}{8}$</div>
+              <div class="step-title">Step 2 — Move all log terms to the left side</div>
+              <div class="step-body">$\log(2x+1) - \log(x-2) = 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $\dfrac{21}{8} &gt; 2$ ✓</div>
+              <div class="step-title">Step 3 — Apply the Quotient Rule</div>
+              <div class="step-body">$\log\!\left(\dfrac{2x+1}{x-2}\right) = 1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Convert to exponential form</div>
+              <div class="step-body">$\dfrac{2x+1}{x-2} = 10^1 = 10$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Cross-multiply and solve</div>
+              <div class="step-body">$2x+1 = 10(x-2)$
+$2x+1 = 10x - 20$
+$-8x = -21$
+$x = \dfrac{21}{8}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify against domain</div>
+              <div class="step-body">$x = \dfrac{21}{8} = 2.625 &gt; 2$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">When a constant (like $+1$) sits on the same side as a log, move it left first.
+This lets you combine into a single $\log = 1$ form before converting.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 2$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$2x+1 &gt; 0$ and $x-2 &gt; 0$ — stricter condition: $x &gt; 2$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log(2x+1) - \log(x-2) = 1 \Rightarrow \log\!\left(\dfrac{2x+1}{x-2}\right) = 1$
-$\dfrac{2x+1}{x-2} = 10 \Rightarrow 2x+1 = 10x-20 \Rightarrow x = \dfrac{21}{8}$</div>
+                <div class="answer-sec-label">Step 2 — Move all log terms to the left side</div>
+                <div class="answer-sec-body">$\log(2x+1) - \log(x-2) = 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $\dfrac{21}{8} &gt; 2$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Apply the Quotient Rule</div>
+                <div class="answer-sec-body">$\log\!\left(\dfrac{2x+1}{x-2}\right) = 1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Convert to exponential form</div>
+                <div class="answer-sec-body">$\dfrac{2x+1}{x-2} = 10^1 = 10$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Cross-multiply and solve</div>
+                <div class="answer-sec-body">$2x+1 = 10(x-2)$
+$2x+1 = 10x - 20$
+$-8x = -21$
+$x = \dfrac{21}{8}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify against domain</div>
+                <div class="answer-sec-body">$x = \dfrac{21}{8} = 2.625 &gt; 2$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -951,36 +1215,69 @@ $\dfrac{2x+1}{x-2} = 10 \Rightarrow 2x+1 = 10x-20 \Rightarrow x = \dfrac{21}{8}$
           <div class="given-box">Solve: $\;\log_2(x+7) + \log_2(x+8) = 1$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; -7$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x + 7 &gt; 0$ and $x + 8 &gt; 0$ — stricter condition: $x &gt; -7$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$(x+7)(x+8) = 2^1 = 2$
-$x^2 + 15x + 56 = 2 \Rightarrow x^2+15x+54 = 0$
-$(x+9)(x+6) = 0 \Rightarrow x=-9$ or $x=-6$</div>
+              <div class="step-title">Step 2 — Apply the Product Rule</div>
+              <div class="step-body">$\log_2[(x+7)(x+8)] = 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Reject $x=-9$ ($-9 \not&gt; -7$). Check $x=-6$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form (base 2)</div>
+              <div class="step-body">$(x+7)(x+8) = 2^1 = 2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 15x + 56 = 2$
+$x^2 + 15x + 54 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Factor the quadratic</div>
+              <div class="step-body">Find two numbers that multiply to $54$ and add to $15$: $9$ and $6$
+$(x+9)(x+6) = 0$
+$x = -9 \quad$ or $\quad x = -6$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">Reject $x = -9$: $-9 \not&gt; -7$ (fails domain).
+Check $x = -6$: $\log_2(1) + \log_2(2) = 0 + 1 = 1$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">With base 2 and RHS $= 1$: product $= 2^1 = 2$. The small RHS leads to
+small (possibly negative) $x$ — always check domain carefully here.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; -7$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x + 7 &gt; 0$ and $x + 8 &gt; 0$ — stricter condition: $x &gt; -7$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$(x+7)(x+8) = 2^1 = 2$
-$x^2 + 15x + 56 = 2 \Rightarrow x^2+15x+54 = 0$
-$(x+9)(x+6) = 0 \Rightarrow x=-9$ or $x=-6$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\log_2[(x+7)(x+8)] = 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Reject $x=-9$ ($-9 \not&gt; -7$). Check $x=-6$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form (base 2)</div>
+                <div class="answer-sec-body">$(x+7)(x+8) = 2^1 = 2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 15x + 56 = 2$
+$x^2 + 15x + 54 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Factor the quadratic</div>
+                <div class="answer-sec-body">Find two numbers that multiply to $54$ and add to $15$: $9$ and $6$
+$(x+9)(x+6) = 0$
+$x = -9 \quad$ or $\quad x = -6$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">Reject $x = -9$: $-9 \not&gt; -7$ (fails domain).
+Check $x = -6$: $\log_2(1) + \log_2(2) = 0 + 1 = 1$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -998,36 +1295,67 @@ $(x+9)(x+6) = 0 \Rightarrow x=-9$ or $x=-6$</div>
           <div class="given-box">Solve: $\;\log_6(x+4) + \log_6(x+3) = 1$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; -3$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x + 4 &gt; 0$ and $x + 3 &gt; 0$ — stricter condition: $x &gt; -3$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$(x+4)(x+3) = 6$
-$x^2+7x+12=6 \Rightarrow x^2+7x+6=0$
-$(x+6)(x+1)=0 \Rightarrow x=-6$ or $x=-1$</div>
+              <div class="step-title">Step 2 — Apply the Product Rule</div>
+              <div class="step-body">$\log_6[(x+4)(x+3)] = 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Reject $x=-6$. Check $x=-1$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form (base 6)</div>
+              <div class="step-body">$(x+4)(x+3) = 6^1 = 6$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 7x + 12 = 6$
+$x^2 + 7x + 6 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Factor the quadratic</div>
+              <div class="step-body">$(x+6)(x+1) = 0$
+$x = -6 \quad$ or $\quad x = -1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">Reject $x = -6$: $-6 \not&gt; -3$ (fails domain).
+Check $x = -1$: $\log_6(3) + \log_6(2) = \log_6(6) = 1$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Spot the verification shortcut: $\log_6(3) + \log_6(2) = \log_6(3 \cdot 2) = \log_6 6 = 1$.
+Recognising this product-rule check saves time on the exam.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; -3$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x + 4 &gt; 0$ and $x + 3 &gt; 0$ — stricter condition: $x &gt; -3$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$(x+4)(x+3) = 6$
-$x^2+7x+12=6 \Rightarrow x^2+7x+6=0$
-$(x+6)(x+1)=0 \Rightarrow x=-6$ or $x=-1$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\log_6[(x+4)(x+3)] = 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Reject $x=-6$. Check $x=-1$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form (base 6)</div>
+                <div class="answer-sec-body">$(x+4)(x+3) = 6^1 = 6$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 7x + 12 = 6$
+$x^2 + 7x + 6 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(x+6)(x+1) = 0$
+$x = -6 \quad$ or $\quad x = -1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">Reject $x = -6$: $-6 \not&gt; -3$ (fails domain).
+Check $x = -1$: $\log_6(3) + \log_6(2) = \log_6(6) = 1$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1045,36 +1373,75 @@ $(x+6)(x+1)=0 \Rightarrow x=-6$ or $x=-1$</div>
           <div class="given-box">Solve: $\;\log_5(x+3) = 1 - \log_5(x-1)$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 1$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x + 3 &gt; 0$ and $x - 1 &gt; 0$ — stricter condition: $x &gt; 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log_5(x+3) + \log_5(x-1) = 1$
-$(x+3)(x-1) = 5 \Rightarrow x^2+2x-3=5 \Rightarrow x^2+2x-8=0$
-$(x+4)(x-2)=0 \Rightarrow x=-4$ or $x=2$</div>
+              <div class="step-title">Step 2 — Move all log terms to the left side</div>
+              <div class="step-body">$\log_5(x+3) + \log_5(x-1) = 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Reject $x=-4$. Check $x=2$ ✓</div>
+              <div class="step-title">Step 3 — Apply the Product Rule</div>
+              <div class="step-body">$\log_5[(x+3)(x-1)] = 1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Convert to exponential form (base 5)</div>
+              <div class="step-body">$(x+3)(x-1) = 5^1 = 5$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 2x - 3 = 5$
+$x^2 + 2x - 8 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 6 — Factor the quadratic</div>
+              <div class="step-body">$(x+4)(x-2) = 0$
+$x = -4 \quad$ or $\quad x = 2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">Reject $x = -4$: $-4 \not&gt; 1$ (fails domain).
+Check $x = 2$: $\log_5(5) = 1 - \log_5(1) = 1 - 0 = 1$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Pattern: $\log_b A = 1 - \log_b B \Rightarrow \log_b(AB) = 1 \Rightarrow AB = b$.
+Move the log right, then apply the product rule.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 1$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x + 3 &gt; 0$ and $x - 1 &gt; 0$ — stricter condition: $x &gt; 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log_5(x+3) + \log_5(x-1) = 1$
-$(x+3)(x-1) = 5 \Rightarrow x^2+2x-3=5 \Rightarrow x^2+2x-8=0$
-$(x+4)(x-2)=0 \Rightarrow x=-4$ or $x=2$</div>
+                <div class="answer-sec-label">Step 2 — Move all log terms to the left side</div>
+                <div class="answer-sec-body">$\log_5(x+3) + \log_5(x-1) = 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Reject $x=-4$. Check $x=2$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\log_5[(x+3)(x-1)] = 1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Convert to exponential form (base 5)</div>
+                <div class="answer-sec-body">$(x+3)(x-1) = 5^1 = 5$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 2x - 3 = 5$
+$x^2 + 2x - 8 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 6 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(x+4)(x-2) = 0$
+$x = -4 \quad$ or $\quad x = 2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">Reject $x = -4$: $-4 \not&gt; 1$ (fails domain).
+Check $x = 2$: $\log_5(5) = 1 - \log_5(1) = 1 - 0 = 1$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1092,36 +1459,75 @@ $(x+4)(x-2)=0 \Rightarrow x=-4$ or $x=2$</div>
           <div class="given-box">Solve: $\;\log_8(x+6) = 1 - \log_8(x+4)$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; -4$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x + 6 &gt; 0$ and $x + 4 &gt; 0$ — stricter condition: $x &gt; -4$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$(x+6)(x+4) = 8$
-$x^2+10x+24=8 \Rightarrow x^2+10x+16=0$
-$(x+8)(x+2)=0 \Rightarrow x=-8$ or $x=-2$</div>
+              <div class="step-title">Step 2 — Move all log terms to the left side</div>
+              <div class="step-body">$\log_8(x+6) + \log_8(x+4) = 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Reject $x=-8$. Check $x=-2$ ✓</div>
+              <div class="step-title">Step 3 — Apply the Product Rule</div>
+              <div class="step-body">$\log_8[(x+6)(x+4)] = 1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Convert to exponential form (base 8)</div>
+              <div class="step-body">$(x+6)(x+4) = 8^1 = 8$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 10x + 24 = 8$
+$x^2 + 10x + 16 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 6 — Factor the quadratic</div>
+              <div class="step-body">$(x+8)(x+2) = 0$
+$x = -8 \quad$ or $\quad x = -2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">Reject $x = -8$: $-8 \not&gt; -4$ (fails domain).
+Check $x = -2$: $\log_8(4) + \log_8(2) = \log_8(8) = 1$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Same pattern as Problem 23: $\log_b A = 1 - \log_b B \Rightarrow AB = b$.
+Here $(x+6)(x+4) = 8$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; -4$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x + 6 &gt; 0$ and $x + 4 &gt; 0$ — stricter condition: $x &gt; -4$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$(x+6)(x+4) = 8$
-$x^2+10x+24=8 \Rightarrow x^2+10x+16=0$
-$(x+8)(x+2)=0 \Rightarrow x=-8$ or $x=-2$</div>
+                <div class="answer-sec-label">Step 2 — Move all log terms to the left side</div>
+                <div class="answer-sec-body">$\log_8(x+6) + \log_8(x+4) = 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Reject $x=-8$. Check $x=-2$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\log_8[(x+6)(x+4)] = 1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Convert to exponential form (base 8)</div>
+                <div class="answer-sec-body">$(x+6)(x+4) = 8^1 = 8$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 10x + 24 = 8$
+$x^2 + 10x + 16 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 6 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(x+8)(x+2) = 0$
+$x = -8 \quad$ or $\quad x = -2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">Reject $x = -8$: $-8 \not&gt; -4$ (fails domain).
+Check $x = -2$: $\log_8(4) + \log_8(2) = \log_8(8) = 1$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1139,34 +1545,59 @@ $(x+8)(x+2)=0 \Rightarrow x=-8$ or $x=-2$</div>
           <div class="given-box">Solve: $\;\ln(x+1) - \ln x = 2$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 0$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x + 1 &gt; 0$ and $x &gt; 0$ — stricter condition: $x &gt; 0$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\ln\!\left(\dfrac{x+1}{x}\right) = 2 \Rightarrow \dfrac{x+1}{x} = e^2$
-$x+1 = e^2 x \Rightarrow 1 = x(e^2-1) \Rightarrow x = \dfrac{1}{e^2-1}$</div>
+              <div class="step-title">Step 2 — Apply the Quotient Rule</div>
+              <div class="step-body">$\ln\!\left(\dfrac{x+1}{x}\right) = 2$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $x = \dfrac{1}{e^2-1} &gt; 0$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form (base $e$)</div>
+              <div class="step-body">Recall: $\ln A = c \Longleftrightarrow A = e^c$
+$\dfrac{x+1}{x} = e^2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Cross-multiply and solve</div>
+              <div class="step-body">$x + 1 = e^2 \cdot x$
+$1 = e^2 x - x = x(e^2 - 1)$
+$x = \dfrac{1}{e^2-1}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify against domain</div>
+              <div class="step-body">$x = \dfrac{1}{e^2-1} \approx 0.156 &gt; 0$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">$\ln$ uses base $e$, so $\ln A = c \Rightarrow A = e^c$.
+Factor $x$ from the right side: $1 = x(e^2-1) \Rightarrow x = \dfrac{1}{e^2-1}$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 0$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x + 1 &gt; 0$ and $x &gt; 0$ — stricter condition: $x &gt; 0$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\ln\!\left(\dfrac{x+1}{x}\right) = 2 \Rightarrow \dfrac{x+1}{x} = e^2$
-$x+1 = e^2 x \Rightarrow 1 = x(e^2-1) \Rightarrow x = \dfrac{1}{e^2-1}$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Quotient Rule</div>
+                <div class="answer-sec-body">$\ln\!\left(\dfrac{x+1}{x}\right) = 2$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $x = \dfrac{1}{e^2-1} &gt; 0$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form (base $e$)</div>
+                <div class="answer-sec-body">Recall: $\ln A = c \Longleftrightarrow A = e^c$
+$\dfrac{x+1}{x} = e^2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Cross-multiply and solve</div>
+                <div class="answer-sec-body">$x + 1 = e^2 \cdot x$
+$1 = e^2 x - x = x(e^2 - 1)$
+$x = \dfrac{1}{e^2-1}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify against domain</div>
+                <div class="answer-sec-body">$x = \dfrac{1}{e^2-1} \approx 0.156 &gt; 0$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1184,34 +1615,67 @@ $x+1 = e^2 x \Rightarrow 1 = x(e^2-1) \Rightarrow x = \dfrac{1}{e^2-1}$</div>
           <div class="given-box">Solve: $\;\ln x + \ln(x+2) = 4$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 0$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x &gt; 0$ and $x+2 &gt; 0$ — stricter condition: $x &gt; 0$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\ln[x(x+2)] = 4 \Rightarrow x^2+2x = e^4$
-$x^2+2x-e^4=0 \Rightarrow x = \dfrac{-2+\sqrt{4+4e^4}}{2} = -1+\sqrt{1+e^4}$</div>
+              <div class="step-title">Step 2 — Apply the Product Rule</div>
+              <div class="step-body">$\ln[x(x+2)] = 4$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $-1+\sqrt{1+e^4} \approx 6.46 &gt; 0$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form (base $e$)</div>
+              <div class="step-body">$x(x+2) = e^4$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 2x = e^4$
+$x^2 + 2x - e^4 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Apply the quadratic formula</div>
+              <div class="step-body">$a=1,\; b=2,\; c=-e^4$
+$x = \dfrac{-2 \pm \sqrt{4 + 4e^4}}{2} = \dfrac{-2 \pm 2\sqrt{1+e^4}}{2} = -1 \pm \sqrt{1+e^4}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject negative root</div>
+              <div class="step-body">Reject $x = -1-\sqrt{1+e^4}$ (negative, fails $x &gt; 0$).
+Check $x = -1+\sqrt{1+e^4} \approx 6.46 &gt; 0$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">When you cannot factor (because $e^4$ is irrational), use the quadratic formula.
+Always simplify: $\sqrt{4+4e^4} = 2\sqrt{1+e^4}$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 0$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x &gt; 0$ and $x+2 &gt; 0$ — stricter condition: $x &gt; 0$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\ln[x(x+2)] = 4 \Rightarrow x^2+2x = e^4$
-$x^2+2x-e^4=0 \Rightarrow x = \dfrac{-2+\sqrt{4+4e^4}}{2} = -1+\sqrt{1+e^4}$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\ln[x(x+2)] = 4$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $-1+\sqrt{1+e^4} \approx 6.46 &gt; 0$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form (base $e$)</div>
+                <div class="answer-sec-body">$x(x+2) = e^4$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 2x = e^4$
+$x^2 + 2x - e^4 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Apply the quadratic formula</div>
+                <div class="answer-sec-body">$a=1,\; b=2,\; c=-e^4$
+$x = \dfrac{-2 \pm \sqrt{4 + 4e^4}}{2} = \dfrac{-2 \pm 2\sqrt{1+e^4}}{2} = -1 \pm \sqrt{1+e^4}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject negative root</div>
+                <div class="answer-sec-body">Reject $x = -1-\sqrt{1+e^4}$ (negative, fails $x &gt; 0$).
+Check $x = -1+\sqrt{1+e^4} \approx 6.46 &gt; 0$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1229,36 +1693,65 @@ $x^2+2x-e^4=0 \Rightarrow x = \dfrac{-2+\sqrt{4+4e^4}}{2} = -1+\sqrt{1+e^4}$</di
           <div class="given-box">Solve: $\;\log_2(x+1) + \log_2(x+7) = 3$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; -1$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x + 1 &gt; 0$ and $x + 7 &gt; 0$ — stricter condition: $x &gt; -1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$(x+1)(x+7) = 8$
-$x^2+8x+7=8 \Rightarrow x^2+8x-1=0$
-$x = \dfrac{-8 \pm \sqrt{68}}{2} = -4 \pm \sqrt{17}$</div>
+              <div class="step-title">Step 2 — Apply the Product Rule</div>
+              <div class="step-body">$\log_2[(x+1)(x+7)] = 3$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Take $x = -4+\sqrt{17} \approx 0.12 &gt; -1$ ✓; reject $x=-4-\sqrt{17}$.</div>
+              <div class="step-title">Step 3 — Convert to exponential form (base 2)</div>
+              <div class="step-body">$(x+1)(x+7) = 2^3 = 8$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 8x + 7 = 8$
+$x^2 + 8x - 1 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Apply the quadratic formula (cannot factor)</div>
+              <div class="step-body">$x = \dfrac{-8 \pm \sqrt{64+4}}{2} = \dfrac{-8 \pm \sqrt{68}}{2} = \dfrac{-8 \pm 2\sqrt{17}}{2} = -4 \pm \sqrt{17}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">$x = -4+\sqrt{17} \approx 0.12 &gt; -1$ ✓
+Reject $x = -4-\sqrt{17} \approx -8.12$ (fails $x &gt; -1$).</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Simplify the discriminant: $\sqrt{68} = \sqrt{4 \cdot 17} = 2\sqrt{17}$.
+Always factor out perfect squares from under the radical.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; -1$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x + 1 &gt; 0$ and $x + 7 &gt; 0$ — stricter condition: $x &gt; -1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$(x+1)(x+7) = 8$
-$x^2+8x+7=8 \Rightarrow x^2+8x-1=0$
-$x = \dfrac{-8 \pm \sqrt{68}}{2} = -4 \pm \sqrt{17}$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\log_2[(x+1)(x+7)] = 3$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Take $x = -4+\sqrt{17} \approx 0.12 &gt; -1$ ✓; reject $x=-4-\sqrt{17}$.</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form (base 2)</div>
+                <div class="answer-sec-body">$(x+1)(x+7) = 2^3 = 8$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 8x + 7 = 8$
+$x^2 + 8x - 1 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Apply the quadratic formula (cannot factor)</div>
+                <div class="answer-sec-body">$x = \dfrac{-8 \pm \sqrt{64+4}}{2} = \dfrac{-8 \pm \sqrt{68}}{2} = \dfrac{-8 \pm 2\sqrt{17}}{2} = -4 \pm \sqrt{17}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">$x = -4+\sqrt{17} \approx 0.12 &gt; -1$ ✓
+Reject $x = -4-\sqrt{17} \approx -8.12$ (fails $x &gt; -1$).</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1276,36 +1769,65 @@ $x = \dfrac{-8 \pm \sqrt{68}}{2} = -4 \pm \sqrt{17}$</div>
           <div class="given-box">Solve: $\;\log_3(x+1) + \log_3(x+4) = 2$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; -1$</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x + 1 &gt; 0$ and $x + 4 &gt; 0$ — stricter condition: $x &gt; -1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$(x+1)(x+4) = 9$
-$x^2+5x+4=9 \Rightarrow x^2+5x-5=0$
-$x = \dfrac{-5+\sqrt{45}}{2} = \dfrac{-5+3\sqrt{5}}{2}$</div>
+              <div class="step-title">Step 2 — Apply the Product Rule</div>
+              <div class="step-body">$\log_3[(x+1)(x+4)] = 2$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $\approx 0.854 &gt; -1$ ✓</div>
+              <div class="step-title">Step 3 — Convert to exponential form (base 3)</div>
+              <div class="step-body">$(x+1)(x+4) = 3^2 = 9$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Expand and rearrange</div>
+              <div class="step-body">$x^2 + 5x + 4 = 9$
+$x^2 + 5x - 5 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Apply the quadratic formula</div>
+              <div class="step-body">$x = \dfrac{-5 \pm \sqrt{25+20}}{2} = \dfrac{-5 \pm \sqrt{45}}{2} = \dfrac{-5 \pm 3\sqrt{5}}{2}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — reject extraneous solutions</div>
+              <div class="step-body">$x = \dfrac{-5+3\sqrt{5}}{2} \approx 0.854 &gt; -1$ ✓
+Reject $x = \dfrac{-5-3\sqrt{5}}{2} \approx -5.854$.</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Simplify the surd: $\sqrt{45} = \sqrt{9 \cdot 5} = 3\sqrt{5}$.
+Always factor perfect squares out of surds for full marks.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; -1$</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x + 1 &gt; 0$ and $x + 4 &gt; 0$ — stricter condition: $x &gt; -1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$(x+1)(x+4) = 9$
-$x^2+5x+4=9 \Rightarrow x^2+5x-5=0$
-$x = \dfrac{-5+\sqrt{45}}{2} = \dfrac{-5+3\sqrt{5}}{2}$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Product Rule</div>
+                <div class="answer-sec-body">$\log_3[(x+1)(x+4)] = 2$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $\approx 0.854 &gt; -1$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Convert to exponential form (base 3)</div>
+                <div class="answer-sec-body">$(x+1)(x+4) = 3^2 = 9$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Expand and rearrange</div>
+                <div class="answer-sec-body">$x^2 + 5x + 4 = 9$
+$x^2 + 5x - 5 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Apply the quadratic formula</div>
+                <div class="answer-sec-body">$x = \dfrac{-5 \pm \sqrt{25+20}}{2} = \dfrac{-5 \pm \sqrt{45}}{2} = \dfrac{-5 \pm 3\sqrt{5}}{2}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — reject extraneous solutions</div>
+                <div class="answer-sec-body">$x = \dfrac{-5+3\sqrt{5}}{2} \approx 0.854 &gt; -1$ ✓
+Reject $x = \dfrac{-5-3\sqrt{5}}{2} \approx -5.854$.</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1323,34 +1845,69 @@ $x = \dfrac{-5+\sqrt{45}}{2} = \dfrac{-5+3\sqrt{5}}{2}$</div>
           <div class="given-box">Solve: $\;\log_4(x^2-9) - \log_4(x+3) = 3$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 3$ (need $x^2-9 &gt; 0$ and $x+3 &gt; 0$)</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x^2-9 &gt; 0 \Rightarrow (x-3)(x+3) &gt; 0 \Rightarrow x &gt; 3$ or $x &lt; -3$
+$x+3 &gt; 0 \Rightarrow x &gt; -3$
+Intersection: $x &gt; 3$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log_4\!\left(\dfrac{x^2-9}{x+3}\right) = 3 \Rightarrow \dfrac{(x-3)(x+3)}{x+3} = x-3 = 4^3 = 64$
-$x = 67$</div>
+              <div class="step-title">Step 2 — Apply the Quotient Rule</div>
+              <div class="step-body">$\log_4\!\left(\dfrac{x^2-9}{x+3}\right) = 3$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $x=67 &gt; 3$ ✓</div>
+              <div class="step-title">Step 3 — Factor the numerator (difference of squares)</div>
+              <div class="step-body">$\dfrac{(x-3)(x+3)}{x+3} = x-3 \quad$ (cancel $x+3 \neq 0$)</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Simplified equation; convert to exponential form</div>
+              <div class="step-body">$\log_4(x-3) = 3$
+$x - 3 = 4^3 = 64$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Solve for x</div>
+              <div class="step-body">$x = 64 + 3 = 67$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify against domain</div>
+              <div class="step-body">$x = 67 &gt; 3$ ✓
+Verify: $\log_4(67^2-9) - \log_4(70) = \log_4\!\left(\dfrac{4480}{70}\right) = \log_4(64) = 3$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Always check if the argument factors — $x^2-9 = (x-3)(x+3)$.
+The $(x+3)$ cancels, simplifying to $\log_4(x-3) = 3$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 3$ (need $x^2-9 &gt; 0$ and $x+3 &gt; 0$)</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x^2-9 &gt; 0 \Rightarrow (x-3)(x+3) &gt; 0 \Rightarrow x &gt; 3$ or $x &lt; -3$
+$x+3 &gt; 0 \Rightarrow x &gt; -3$
+Intersection: $x &gt; 3$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log_4\!\left(\dfrac{x^2-9}{x+3}\right) = 3 \Rightarrow \dfrac{(x-3)(x+3)}{x+3} = x-3 = 4^3 = 64$
-$x = 67$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Quotient Rule</div>
+                <div class="answer-sec-body">$\log_4\!\left(\dfrac{x^2-9}{x+3}\right) = 3$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $x=67 &gt; 3$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Factor the numerator (difference of squares)</div>
+                <div class="answer-sec-body">$\dfrac{(x-3)(x+3)}{x+3} = x-3 \quad$ (cancel $x+3 \neq 0$)</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Simplified equation; convert to exponential form</div>
+                <div class="answer-sec-body">$\log_4(x-3) = 3$
+$x - 3 = 4^3 = 64$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Solve for x</div>
+                <div class="answer-sec-body">$x = 64 + 3 = 67$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify against domain</div>
+                <div class="answer-sec-body">$x = 67 &gt; 3$ ✓
+Verify: $\log_4(67^2-9) - \log_4(70) = \log_4\!\left(\dfrac{4480}{70}\right) = \log_4(64) = 3$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1368,34 +1925,77 @@ $x = 67$</div>
           <div class="given-box">Solve: $\;\log_{1/3}(x^2+x) - \log_{1/3}(x^2-x) = -1$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">State domain restriction</div>
-              <div class="step-body">$x &gt; 1$ (from intersection of $x(x+1)&gt;0$ and $x(x-1)&gt;0$)</div>
+              <div class="step-title">Step 1 — State domain restriction</div>
+              <div class="step-body">$x^2+x &gt; 0 \Rightarrow x(x+1) &gt; 0 \Rightarrow x &lt; -1$ or $x &gt; 0$
+$x^2-x &gt; 0 \Rightarrow x(x-1) &gt; 0 \Rightarrow x &lt; 0$ or $x &gt; 1$
+Intersection: $x &gt; 1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Apply log properties and simplify</div>
-              <div class="step-body">$\log_{1/3}\!\left(\dfrac{x^2+x}{x^2-x}\right) = -1 \Rightarrow \dfrac{x+1}{x-1} = \left(\tfrac{1}{3}\right)^{-1} = 3$
-$x+1 = 3x-3 \Rightarrow x = 2$</div>
+              <div class="step-title">Step 2 — Apply the Quotient Rule</div>
+              <div class="step-body">$\log_{1/3}\!\left(\dfrac{x^2+x}{x^2-x}\right) = -1$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve and check for extraneous values</div>
-              <div class="step-body">Check: $x=2 &gt; 1$ ✓</div>
+              <div class="step-title">Step 3 — Simplify the fraction by factoring</div>
+              <div class="step-body">$\dfrac{x(x+1)}{x(x-1)} = \dfrac{x+1}{x-1}$
+So: $\log_{1/3}\!\left(\dfrac{x+1}{x-1}\right) = -1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Convert to exponential form</div>
+              <div class="step-body">Recall: $\log_b A = c \Longleftrightarrow A = b^c$
+$\dfrac{x+1}{x-1} = \left(\dfrac{1}{3}\right)^{-1} = 3$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Cross-multiply and solve</div>
+              <div class="step-body">$x+1 = 3(x-1)$
+$x+1 = 3x-3$
+$4 = 2x$
+$x = 2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify against domain</div>
+              <div class="step-body">$x = 2 &gt; 1$ ✓
+Verify: $\log_{1/3}(6) - \log_{1/3}(2) = \log_{1/3}(3) = -1$ ✓ (since $(\tfrac{1}{3})^{-1}=3$)</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Key: $\left(\dfrac{1}{3}\right)^{-1} = 3$, so $\log_{1/3}(3) = -1$.
+A negative exponent with base $&lt; 1$ gives a value $&gt; 1$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">State domain restriction</div>
-                <div class="answer-sec-body">$x &gt; 1$ (from intersection of $x(x+1)&gt;0$ and $x(x-1)&gt;0$)</div>
+                <div class="answer-sec-label">Step 1 — State domain restriction</div>
+                <div class="answer-sec-body">$x^2+x &gt; 0 \Rightarrow x(x+1) &gt; 0 \Rightarrow x &lt; -1$ or $x &gt; 0$
+$x^2-x &gt; 0 \Rightarrow x(x-1) &gt; 0 \Rightarrow x &lt; 0$ or $x &gt; 1$
+Intersection: $x &gt; 1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Apply log properties and simplify</div>
-                <div class="answer-sec-body">$\log_{1/3}\!\left(\dfrac{x^2+x}{x^2-x}\right) = -1 \Rightarrow \dfrac{x+1}{x-1} = \left(\tfrac{1}{3}\right)^{-1} = 3$
-$x+1 = 3x-3 \Rightarrow x = 2$</div>
+                <div class="answer-sec-label">Step 2 — Apply the Quotient Rule</div>
+                <div class="answer-sec-body">$\log_{1/3}\!\left(\dfrac{x^2+x}{x^2-x}\right) = -1$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve and check for extraneous values</div>
-                <div class="answer-sec-body">Check: $x=2 &gt; 1$ ✓</div>
+                <div class="answer-sec-label">Step 3 — Simplify the fraction by factoring</div>
+                <div class="answer-sec-body">$\dfrac{x(x+1)}{x(x-1)} = \dfrac{x+1}{x-1}$
+So: $\log_{1/3}\!\left(\dfrac{x+1}{x-1}\right) = -1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Convert to exponential form</div>
+                <div class="answer-sec-body">Recall: $\log_b A = c \Longleftrightarrow A = b^c$
+$\dfrac{x+1}{x-1} = \left(\dfrac{1}{3}\right)^{-1} = 3$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Cross-multiply and solve</div>
+                <div class="answer-sec-body">$x+1 = 3(x-1)$
+$x+1 = 3x-3$
+$4 = 2x$
+$x = 2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify against domain</div>
+                <div class="answer-sec-body">$x = 2 &gt; 1$ ✓
+Verify: $\log_{1/3}(6) - \log_{1/3}(2) = \log_{1/3}(3) = -1$ ✓ (since $(\tfrac{1}{3})^{-1}=3$)</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1413,26 +2013,68 @@ $x+1 = 3x-3 \Rightarrow x = 2$</div>
           <div class="given-box">Solve: $\;3^{2x} + 3^x - 2 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">Let $u = 3^x$ ($u &gt; 0$): $u^2 + u - 2 = 0$
-$(u+2)(u-1) = 0 \Rightarrow u = -2$ (reject) or $u = 1$</div>
+              <div class="step-title">Step 1 — Recognize the quadratic structure</div>
+              <div class="step-body">Note: $3^{2x} = (3^x)^2$ — this equation is quadratic in $3^x$.</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
+              <div class="step-title">Step 2 — Let $u = 3^x$ (substitution)</div>
+              <div class="step-body">Important: $u = 3^x &gt; 0$ for all $x$.
+Equation becomes: $u^2 + u - 2 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Factor the quadratic</div>
+              <div class="step-body">$(u+2)(u-1) = 0$
+$u = -2 \quad$ or $\quad u = 1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Reject invalid root</div>
+              <div class="step-body">Reject $u = -2$: impossible since $3^x &gt; 0$ always.
+Keep $u = 1$.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Solve $3^x = 1$ for $x$</div>
+              <div class="step-body">$3^x = 1 = 3^0$
+Since bases match: $x = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify</div>
+              <div class="step-body">$3^{2(0)} + 3^0 - 2 = 1 + 1 - 2 = 0$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">When $a^x = 1$ (any base $a \neq 0$): always $x = 0$, since $a^0 = 1$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">Let $u = 3^x$ ($u &gt; 0$): $u^2 + u - 2 = 0$
-$(u+2)(u-1) = 0 \Rightarrow u = -2$ (reject) or $u = 1$</div>
+                <div class="answer-sec-label">Step 1 — Recognize the quadratic structure</div>
+                <div class="answer-sec-body">Note: $3^{2x} = (3^x)^2$ — this equation is quadratic in $3^x$.</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 3^x$ (substitution)</div>
+                <div class="answer-sec-body">Important: $u = 3^x &gt; 0$ for all $x$.
+Equation becomes: $u^2 + u - 2 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(u+2)(u-1) = 0$
+$u = -2 \quad$ or $\quad u = 1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Reject invalid root</div>
+                <div class="answer-sec-body">Reject $u = -2$: impossible since $3^x &gt; 0$ always.
+Keep $u = 1$.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Solve $3^x = 1$ for $x$</div>
+                <div class="answer-sec-body">$3^x = 1 = 3^0$
+Since bases match: $x = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify</div>
+                <div class="answer-sec-body">$3^{2(0)} + 3^0 - 2 = 1 + 1 - 2 = 0$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1450,26 +2092,67 @@ $(u+2)(u-1) = 0 \Rightarrow u = -2$ (reject) or $u = 1$</div>
           <div class="given-box">Solve: $\;2^{2x} + 2^x - 12 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">Let $u = 2^x$: $u^2 + u - 12 = 0$
-$(u+4)(u-3) = 0 \Rightarrow u = -4$ (reject) or $u = 3$</div>
+              <div class="step-title">Step 1 — Recognize the quadratic structure</div>
+              <div class="step-body">$2^{2x} = (2^x)^2$ — quadratic in $2^x$.</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">$2^x = 3 \Rightarrow x = \log_2 3 = \dfrac{\ln 3}{\ln 2}$</div>
+              <div class="step-title">Step 2 — Let $u = 2^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation becomes: $u^2 + u - 12 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Factor the quadratic</div>
+              <div class="step-body">$(u+4)(u-3) = 0$
+$u = -4 \quad$ or $\quad u = 3$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Reject invalid root</div>
+              <div class="step-body">Reject $u = -4$ (negative, $2^x &gt; 0$). Keep $u = 3$.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Solve $2^x = 3$ for $x$</div>
+              <div class="step-body">Take $\ln$ of both sides:
+$x \ln 2 = \ln 3$
+$x = \dfrac{\ln 3}{\ln 2} = \log_2 3$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify (approximate)</div>
+              <div class="step-body">$x \approx 1.585$. Then $2^{2(1.585)} + 2^{1.585} - 12 \approx 9 + 3 - 12 = 0$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">When $2^x = 3$ (not a power of 2): $x = \log_2 3 = \dfrac{\ln 3}{\ln 2}$.
+Change-of-base: $\log_b a = \dfrac{\ln a}{\ln b}$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">Let $u = 2^x$: $u^2 + u - 12 = 0$
-$(u+4)(u-3) = 0 \Rightarrow u = -4$ (reject) or $u = 3$</div>
+                <div class="answer-sec-label">Step 1 — Recognize the quadratic structure</div>
+                <div class="answer-sec-body">$2^{2x} = (2^x)^2$ — quadratic in $2^x$.</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">$2^x = 3 \Rightarrow x = \log_2 3 = \dfrac{\ln 3}{\ln 2}$</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 2^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation becomes: $u^2 + u - 12 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(u+4)(u-3) = 0$
+$u = -4 \quad$ or $\quad u = 3$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Reject invalid root</div>
+                <div class="answer-sec-body">Reject $u = -4$ (negative, $2^x &gt; 0$). Keep $u = 3$.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Solve $2^x = 3$ for $x$</div>
+                <div class="answer-sec-body">Take $\ln$ of both sides:
+$x \ln 2 = \ln 3$
+$x = \dfrac{\ln 3}{\ln 2} = \log_2 3$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify (approximate)</div>
+                <div class="answer-sec-body">$x \approx 1.585$. Then $2^{2(1.585)} + 2^{1.585} - 12 \approx 9 + 3 - 12 = 0$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1487,26 +2170,65 @@ $(u+4)(u-3) = 0 \Rightarrow u = -4$ (reject) or $u = 3$</div>
           <div class="given-box">Solve: $\;2^{2x} + 2^{x+2} - 12 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">$2^{x+2} = 4 \cdot 2^x$. Let $u = 2^x$: $u^2 + 4u - 12 = 0$
-$(u+6)(u-2) = 0 \Rightarrow u = 2$</div>
+              <div class="step-title">Step 1 — Rewrite $2^{x+2}$ using exponent rules</div>
+              <div class="step-body">$2^{x+2} = 2^x \cdot 2^2 = 4 \cdot 2^x$
+Equation becomes: $2^{2x} + 4 \cdot 2^x - 12 = 0$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-title">Step 2 — Let $u = 2^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation becomes: $u^2 + 4u - 12 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Factor the quadratic</div>
+              <div class="step-body">$(u+6)(u-2) = 0$
+$u = -6 \quad$ or $\quad u = 2$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Reject invalid root</div>
+              <div class="step-body">Reject $u = -6$. Keep $u = 2$.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Solve $2^x = 2$ for $x$</div>
               <div class="step-body">$2^x = 2 = 2^1 \Rightarrow x = 1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify</div>
+              <div class="step-body">$2^2 + 2^3 - 12 = 4 + 8 - 12 = 0$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Key step: $2^{x+2} = 4 \cdot 2^x$.
+Always rewrite $a^{x+k} = a^k \cdot a^x$ BEFORE substituting.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">$2^{x+2} = 4 \cdot 2^x$. Let $u = 2^x$: $u^2 + 4u - 12 = 0$
-$(u+6)(u-2) = 0 \Rightarrow u = 2$</div>
+                <div class="answer-sec-label">Step 1 — Rewrite $2^{x+2}$ using exponent rules</div>
+                <div class="answer-sec-body">$2^{x+2} = 2^x \cdot 2^2 = 4 \cdot 2^x$
+Equation becomes: $2^{2x} + 4 \cdot 2^x - 12 = 0$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 2^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation becomes: $u^2 + 4u - 12 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(u+6)(u-2) = 0$
+$u = -6 \quad$ or $\quad u = 2$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Reject invalid root</div>
+                <div class="answer-sec-body">Reject $u = -6$. Keep $u = 2$.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Solve $2^x = 2$ for $x$</div>
                 <div class="answer-sec-body">$2^x = 2 = 2^1 \Rightarrow x = 1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify</div>
+                <div class="answer-sec-body">$2^2 + 2^3 - 12 = 4 + 8 - 12 = 0$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1524,26 +2246,65 @@ $(u+6)(u-2) = 0 \Rightarrow u = 2$</div>
           <div class="given-box">Solve: $\;3^{2x} + 3^{x+1} - 4 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">$3^{x+1} = 3 \cdot 3^x$. Let $u = 3^x$: $u^2 + 3u - 4 = 0$
-$(u+4)(u-1) = 0 \Rightarrow u = 1$</div>
+              <div class="step-title">Step 1 — Rewrite $3^{x+1}$ using exponent rules</div>
+              <div class="step-body">$3^{x+1} = 3 \cdot 3^x$
+Equation becomes: $3^{2x} + 3 \cdot 3^x - 4 = 0$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
+              <div class="step-title">Step 2 — Let $u = 3^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation becomes: $u^2 + 3u - 4 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Factor the quadratic</div>
+              <div class="step-body">$(u+4)(u-1) = 0$
+$u = -4 \quad$ or $\quad u = 1$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Reject invalid root</div>
+              <div class="step-body">Reject $u = -4$. Keep $u = 1$.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Solve $3^x = 1$ for $x$</div>
               <div class="step-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify</div>
+              <div class="step-body">$3^0 + 3^1 - 4 = 1 + 3 - 4 = 0$ ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Same approach as Problem 59: rewrite $3^{x+1} = 3 \cdot 3^x$ first,
+making the coefficient of $u$ equal to $3$ in the quadratic.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">$3^{x+1} = 3 \cdot 3^x$. Let $u = 3^x$: $u^2 + 3u - 4 = 0$
-$(u+4)(u-1) = 0 \Rightarrow u = 1$</div>
+                <div class="answer-sec-label">Step 1 — Rewrite $3^{x+1}$ using exponent rules</div>
+                <div class="answer-sec-body">$3^{x+1} = 3 \cdot 3^x$
+Equation becomes: $3^{2x} + 3 \cdot 3^x - 4 = 0$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 3^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation becomes: $u^2 + 3u - 4 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(u+4)(u-1) = 0$
+$u = -4 \quad$ or $\quad u = 1$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Reject invalid root</div>
+                <div class="answer-sec-body">Reject $u = -4$. Keep $u = 1$.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Solve $3^x = 1$ for $x$</div>
                 <div class="answer-sec-body">$3^x = 1 = 3^0 \Rightarrow x = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify</div>
+                <div class="answer-sec-body">$3^0 + 3^1 - 4 = 1 + 3 - 4 = 0$ ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1561,28 +2322,74 @@ $(u+4)(u-1) = 0 \Rightarrow u = 1$</div>
           <div class="given-box">Solve: $\;16^x + 4^{x+1} - 3 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">$16^x = (4^x)^2$, $4^{x+1} = 4\cdot4^x$. Let $u = 4^x$:
-$u^2 + 4u - 3 = 0 \Rightarrow u = \dfrac{-4 \pm \sqrt{28}}{2} = -2 \pm \sqrt{7}$
-Take $u = -2+\sqrt{7} &gt; 0$</div>
+              <div class="step-title">Step 1 — Rewrite all terms in base 4</div>
+              <div class="step-body">$16^x = (4^2)^x = (4^x)^2$
+$4^{x+1} = 4 \cdot 4^x$
+Equation: $(4^x)^2 + 4 \cdot 4^x - 3 = 0$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">$4^x = \sqrt{7}-2 \Rightarrow x = \dfrac{\ln(\sqrt{7}-2)}{\ln 4} = \dfrac{\ln(\sqrt{7}-2)}{2\ln 2}$</div>
+              <div class="step-title">Step 2 — Let $u = 4^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation: $u^2 + 4u - 3 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Quadratic formula (does not factor nicely)</div>
+              <div class="step-body">$u = \dfrac{-4 \pm \sqrt{16+12}}{2} = \dfrac{-4 \pm \sqrt{28}}{2} = \dfrac{-4 \pm 2\sqrt{7}}{2} = -2 \pm \sqrt{7}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Reject invalid root</div>
+              <div class="step-body">$\sqrt{7} \approx 2.646$
+$u = -2+\sqrt{7} \approx 0.646 &gt; 0$ ✓  Keep.
+$u = -2-\sqrt{7} \approx -4.646 &lt; 0$ ✗  Reject.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Solve $4^x = \sqrt{7}-2$ for $x$</div>
+              <div class="step-body">Take $\ln$ of both sides:
+$x \ln 4 = \ln(\sqrt{7}-2)$
+$x = \dfrac{\ln(\sqrt{7}-2)}{\ln 4} = \dfrac{\ln(\sqrt{7}-2)}{2\ln 2}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify (approximate)</div>
+              <div class="step-body">$x \approx \dfrac{\ln(0.646)}{\ln 4} \approx -0.317$
+Confirmed numerically. ✓</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Key simplification: $\sqrt{28} = 2\sqrt{7}$ — then cancel the 2 to get $u = -2 \pm \sqrt{7}$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">$16^x = (4^x)^2$, $4^{x+1} = 4\cdot4^x$. Let $u = 4^x$:
-$u^2 + 4u - 3 = 0 \Rightarrow u = \dfrac{-4 \pm \sqrt{28}}{2} = -2 \pm \sqrt{7}$
-Take $u = -2+\sqrt{7} &gt; 0$</div>
+                <div class="answer-sec-label">Step 1 — Rewrite all terms in base 4</div>
+                <div class="answer-sec-body">$16^x = (4^2)^x = (4^x)^2$
+$4^{x+1} = 4 \cdot 4^x$
+Equation: $(4^x)^2 + 4 \cdot 4^x - 3 = 0$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">$4^x = \sqrt{7}-2 \Rightarrow x = \dfrac{\ln(\sqrt{7}-2)}{\ln 4} = \dfrac{\ln(\sqrt{7}-2)}{2\ln 2}$</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 4^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation: $u^2 + 4u - 3 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Quadratic formula (does not factor nicely)</div>
+                <div class="answer-sec-body">$u = \dfrac{-4 \pm \sqrt{16+12}}{2} = \dfrac{-4 \pm \sqrt{28}}{2} = \dfrac{-4 \pm 2\sqrt{7}}{2} = -2 \pm \sqrt{7}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Reject invalid root</div>
+                <div class="answer-sec-body">$\sqrt{7} \approx 2.646$
+$u = -2+\sqrt{7} \approx 0.646 &gt; 0$ ✓  Keep.
+$u = -2-\sqrt{7} \approx -4.646 &lt; 0$ ✗  Reject.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Solve $4^x = \sqrt{7}-2$ for $x$</div>
+                <div class="answer-sec-body">Take $\ln$ of both sides:
+$x \ln 4 = \ln(\sqrt{7}-2)$
+$x = \dfrac{\ln(\sqrt{7}-2)}{\ln 4} = \dfrac{\ln(\sqrt{7}-2)}{2\ln 2}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify (approximate)</div>
+                <div class="answer-sec-body">$x \approx \dfrac{\ln(0.646)}{\ln 4} \approx -0.317$
+Confirmed numerically. ✓</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1600,28 +2407,69 @@ Take $u = -2+\sqrt{7} &gt; 0$</div>
           <div class="given-box">Solve: $\;9^x - 3^{x+1} + 1 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">$9^x = (3^x)^2$, $3^{x+1} = 3\cdot3^x$. Let $u = 3^x$:
-$u^2 - 3u + 1 = 0 \Rightarrow u = \dfrac{3 \pm \sqrt{5}}{2}$
-Both values positive, so both give valid solutions.</div>
+              <div class="step-title">Step 1 — Rewrite all terms in base 3</div>
+              <div class="step-body">$9^x = (3^2)^x = (3^x)^2$
+$3^{x+1} = 3 \cdot 3^x$
+Equation: $(3^x)^2 - 3 \cdot 3^x + 1 = 0$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">$x_1 = \log_3\!\left(\dfrac{3+\sqrt{5}}{2}\right)$,  $x_2 = \log_3\!\left(\dfrac{3-\sqrt{5}}{2}\right)$</div>
+              <div class="step-title">Step 2 — Let $u = 3^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation: $u^2 - 3u + 1 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Quadratic formula (does not factor)</div>
+              <div class="step-body">$u = \dfrac{3 \pm \sqrt{9-4}}{2} = \dfrac{3 \pm \sqrt{5}}{2}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Both roots are positive (two valid solutions!)</div>
+              <div class="step-body">$u_1 = \dfrac{3+\sqrt{5}}{2} \approx 2.618 &gt; 0$ ✓
+$u_2 = \dfrac{3-\sqrt{5}}{2} \approx 0.382 &gt; 0$ ✓</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Solve for $x$ in each case</div>
+              <div class="step-body">Case 1: $3^x = \dfrac{3+\sqrt{5}}{2} \Rightarrow x_1 = \log_3\!\left(\dfrac{3+\sqrt{5}}{2}\right)$
+Case 2: $3^x = \dfrac{3-\sqrt{5}}{2} \Rightarrow x_2 = \log_3\!\left(\dfrac{3-\sqrt{5}}{2}\right)$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">✅ Check — verify (approximate)</div>
+              <div class="step-body">$x_1 \approx 0.859$ and $x_2 \approx -0.859$ — both satisfy the original equation.</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">This is rare — both quadratic roots are positive, giving TWO valid solutions.
+Notice: $x_1 = -x_2$ (symmetric about $x=0$).</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">$9^x = (3^x)^2$, $3^{x+1} = 3\cdot3^x$. Let $u = 3^x$:
-$u^2 - 3u + 1 = 0 \Rightarrow u = \dfrac{3 \pm \sqrt{5}}{2}$
-Both values positive, so both give valid solutions.</div>
+                <div class="answer-sec-label">Step 1 — Rewrite all terms in base 3</div>
+                <div class="answer-sec-body">$9^x = (3^2)^x = (3^x)^2$
+$3^{x+1} = 3 \cdot 3^x$
+Equation: $(3^x)^2 - 3 \cdot 3^x + 1 = 0$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">$x_1 = \log_3\!\left(\dfrac{3+\sqrt{5}}{2}\right)$,  $x_2 = \log_3\!\left(\dfrac{3-\sqrt{5}}{2}\right)$</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 3^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation: $u^2 - 3u + 1 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Quadratic formula (does not factor)</div>
+                <div class="answer-sec-body">$u = \dfrac{3 \pm \sqrt{9-4}}{2} = \dfrac{3 \pm \sqrt{5}}{2}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Both roots are positive (two valid solutions!)</div>
+                <div class="answer-sec-body">$u_1 = \dfrac{3+\sqrt{5}}{2} \approx 2.618 &gt; 0$ ✓
+$u_2 = \dfrac{3-\sqrt{5}}{2} \approx 0.382 &gt; 0$ ✓</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Solve for $x$ in each case</div>
+                <div class="answer-sec-body">Case 1: $3^x = \dfrac{3+\sqrt{5}}{2} \Rightarrow x_1 = \log_3\!\left(\dfrac{3+\sqrt{5}}{2}\right)$
+Case 2: $3^x = \dfrac{3-\sqrt{5}}{2} \Rightarrow x_2 = \log_3\!\left(\dfrac{3-\sqrt{5}}{2}\right)$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">✅ Check — verify (approximate)</div>
+                <div class="answer-sec-body">$x_1 \approx 0.859$ and $x_2 \approx -0.859$ — both satisfy the original equation.</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1639,26 +2487,67 @@ Both values positive, so both give valid solutions.</div>
           <div class="given-box">Solve: $\;6^x - 6 \cdot 6^{-x} = -9$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">Multiply by $6^x$: $(6^x)^2 + 9 \cdot 6^x - 6 = 0$. Let $u = 6^x$:
-$u^2 + 9u - 6 = 0 \Rightarrow u = \dfrac{-9+\sqrt{105}}{2}$ (positive root only)</div>
+              <div class="step-title">Step 1 — Eliminate the negative exponent</div>
+              <div class="step-body">Multiply every term by $6^x$ (valid since $6^x &gt; 0$):
+$(6^x)^2 - 6 = -9 \cdot 6^x$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">$6^x = \dfrac{-9+\sqrt{105}}{2} \Rightarrow x = \dfrac{\ln\frac{\sqrt{105}-9}{2}}{\ln 6}$</div>
+              <div class="step-title">Step 2 — Rearrange into standard form</div>
+              <div class="step-body">$(6^x)^2 + 9 \cdot 6^x - 6 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Let $u = 6^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation: $u^2 + 9u - 6 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Quadratic formula</div>
+              <div class="step-body">$u = \dfrac{-9 \pm \sqrt{81+24}}{2} = \dfrac{-9 \pm \sqrt{105}}{2}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Reject invalid root</div>
+              <div class="step-body">$\sqrt{105} \approx 10.247$
+$u = \dfrac{-9+\sqrt{105}}{2} \approx 0.624 &gt; 0$ ✓  Keep.
+$u = \dfrac{-9-\sqrt{105}}{2} \approx -9.624 &lt; 0$ ✗  Reject.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 6 — Solve $6^x = \dfrac{\sqrt{105}-9}{2}$ for $x$</div>
+              <div class="step-body">$x = \log_6\!\left(\dfrac{\sqrt{105}-9}{2}\right) = \dfrac{\ln\!\left(\dfrac{\sqrt{105}-9}{2}\right)}{\ln 6}$</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Trick: when $a^{-x}$ appears, multiply through by $a^x$ to clear the negative exponent.
+This converts the equation into a quadratic in $a^x$.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">Multiply by $6^x$: $(6^x)^2 + 9 \cdot 6^x - 6 = 0$. Let $u = 6^x$:
-$u^2 + 9u - 6 = 0 \Rightarrow u = \dfrac{-9+\sqrt{105}}{2}$ (positive root only)</div>
+                <div class="answer-sec-label">Step 1 — Eliminate the negative exponent</div>
+                <div class="answer-sec-body">Multiply every term by $6^x$ (valid since $6^x &gt; 0$):
+$(6^x)^2 - 6 = -9 \cdot 6^x$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">$6^x = \dfrac{-9+\sqrt{105}}{2} \Rightarrow x = \dfrac{\ln\frac{\sqrt{105}-9}{2}}{\ln 6}$</div>
+                <div class="answer-sec-label">Step 2 — Rearrange into standard form</div>
+                <div class="answer-sec-body">$(6^x)^2 + 9 \cdot 6^x - 6 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Let $u = 6^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation: $u^2 + 9u - 6 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Quadratic formula</div>
+                <div class="answer-sec-body">$u = \dfrac{-9 \pm \sqrt{81+24}}{2} = \dfrac{-9 \pm \sqrt{105}}{2}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Reject invalid root</div>
+                <div class="answer-sec-body">$\sqrt{105} \approx 10.247$
+$u = \dfrac{-9+\sqrt{105}}{2} \approx 0.624 &gt; 0$ ✓  Keep.
+$u = \dfrac{-9-\sqrt{105}}{2} \approx -9.624 &lt; 0$ ✗  Reject.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 6 — Solve $6^x = \dfrac{\sqrt{105}-9}{2}$ for $x$</div>
+                <div class="answer-sec-body">$x = \log_6\!\left(\dfrac{\sqrt{105}-9}{2}\right) = \dfrac{\ln\!\left(\dfrac{\sqrt{105}-9}{2}\right)}{\ln 6}$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
@@ -1676,30 +2565,73 @@ $u^2 + 9u - 6 = 0 \Rightarrow u = \dfrac{-9+\sqrt{105}}{2}$ (positive root only)
           <div class="given-box">Solve: $\;5^x - 8 \cdot 5^{-x} = -16$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">Multiply by $5^x$: $(5^x)^2 + 16 \cdot 5^x - 8 = 0$. Let $u = 5^x$:
-$u^2 + 16u - 8 = 0 \Rightarrow u = \dfrac{-16+\sqrt{288}}{2} = -8+6\sqrt{2}$</div>
+              <div class="step-title">Step 1 — Eliminate the negative exponent</div>
+              <div class="step-body">Multiply every term by $5^x$:
+$(5^x)^2 - 8 = -16 \cdot 5^x$</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">$5^x = -8+6\sqrt{2} \Rightarrow x = \dfrac{\ln(-8+6\sqrt{2})}{\ln 5}$</div>
+              <div class="step-title">Step 2 — Rearrange into standard form</div>
+              <div class="step-body">$(5^x)^2 + 16 \cdot 5^x - 8 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Let $u = 5^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation: $u^2 + 16u - 8 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Quadratic formula with surd simplification</div>
+              <div class="step-body">$u = \dfrac{-16 \pm \sqrt{256+32}}{2} = \dfrac{-16 \pm \sqrt{288}}{2}$
+Simplify: $\sqrt{288} = \sqrt{144 \cdot 2} = 12\sqrt{2}$
+$u = \dfrac{-16 \pm 12\sqrt{2}}{2} = -8 \pm 6\sqrt{2}$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Reject invalid root</div>
+              <div class="step-body">$u = -8+6\sqrt{2} \approx 0.485 &gt; 0$ ✓  Keep.
+$u = -8-6\sqrt{2} &lt; 0$ ✗  Reject.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 6 — Solve $5^x = 6\sqrt{2}-8$ for $x$</div>
+              <div class="step-body">$x = \log_5(6\sqrt{2}-8) = \dfrac{\ln(6\sqrt{2}-8)}{\ln 5}$</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Key simplification: $\sqrt{288} = 12\sqrt{2}$ (factor out $144 = 12^2$).
+Then $\dfrac{12\sqrt{2}}{2} = 6\sqrt{2}$ — always simplify surds fully.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">Multiply by $5^x$: $(5^x)^2 + 16 \cdot 5^x - 8 = 0$. Let $u = 5^x$:
-$u^2 + 16u - 8 = 0 \Rightarrow u = \dfrac{-16+\sqrt{288}}{2} = -8+6\sqrt{2}$</div>
+                <div class="answer-sec-label">Step 1 — Eliminate the negative exponent</div>
+                <div class="answer-sec-body">Multiply every term by $5^x$:
+$(5^x)^2 - 8 = -16 \cdot 5^x$</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">$5^x = -8+6\sqrt{2} \Rightarrow x = \dfrac{\ln(-8+6\sqrt{2})}{\ln 5}$</div>
+                <div class="answer-sec-label">Step 2 — Rearrange into standard form</div>
+                <div class="answer-sec-body">$(5^x)^2 + 16 \cdot 5^x - 8 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Let $u = 5^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation: $u^2 + 16u - 8 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Quadratic formula with surd simplification</div>
+                <div class="answer-sec-body">$u = \dfrac{-16 \pm \sqrt{256+32}}{2} = \dfrac{-16 \pm \sqrt{288}}{2}$
+Simplify: $\sqrt{288} = \sqrt{144 \cdot 2} = 12\sqrt{2}$
+$u = \dfrac{-16 \pm 12\sqrt{2}}{2} = -8 \pm 6\sqrt{2}$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Reject invalid root</div>
+                <div class="answer-sec-body">$u = -8+6\sqrt{2} \approx 0.485 &gt; 0$ ✓  Keep.
+$u = -8-6\sqrt{2} &lt; 0$ ✗  Reject.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 6 — Solve $5^x = 6\sqrt{2}-8$ for $x$</div>
+                <div class="answer-sec-body">$x = \log_5(6\sqrt{2}-8) = \dfrac{\ln(6\sqrt{2}-8)}{\ln 5}$</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">$x = \log_5(-8+6\sqrt{2})$</div>
+                <div class="answer-sec-body">$x = \log_5(6\sqrt{2}-8)$</div>
               </div>
             </div>
           </div>
@@ -1713,32 +2645,61 @@ $u^2 + 16u - 8 = 0 \Rightarrow u = \dfrac{-16+\sqrt{288}}{2} = -8+6\sqrt{2}$</di
           <div class="given-box">Solve: $\;2 \cdot 49^x + 11 \cdot 7^x + 5 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">$49^x = (7^x)^2$. Let $u = 7^x &gt; 0$: $2u^2 + 11u + 5 = 0$
-$(2u+1)(u+5) = 0 \Rightarrow u = -\dfrac{1}{2}$ or $u = -5$
-Both roots are negative — impossible since $7^x &gt; 0$.</div>
+              <div class="step-title">Step 1 — Recognize the quadratic structure</div>
+              <div class="step-body">$49^x = (7^2)^x = (7^x)^2$ — quadratic in $7^x$.</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">No real solutions exist.</div>
+              <div class="step-title">Step 2 — Let $u = 7^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation: $2u^2 + 11u + 5 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Factor the quadratic</div>
+              <div class="step-body">$(2u+1)(u+5) = 0$
+$u = -\dfrac{1}{2} \quad$ or $\quad u = -5$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Reject both roots</div>
+              <div class="step-body">$u = 7^x &gt; 0$ for all real $x$.
+Both roots ($-\tfrac{1}{2}$ and $-5$) are negative — neither is valid.</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 5 — Conclusion</div>
+              <div class="step-body">No real solution exists.</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">When ALL quadratic roots are $\leq 0$ (and base $&gt; 1$), there is NO real solution.
+Spotting this quickly saves time on the exam.</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">$49^x = (7^x)^2$. Let $u = 7^x &gt; 0$: $2u^2 + 11u + 5 = 0$
-$(2u+1)(u+5) = 0 \Rightarrow u = -\dfrac{1}{2}$ or $u = -5$
-Both roots are negative — impossible since $7^x &gt; 0$.</div>
+                <div class="answer-sec-label">Step 1 — Recognize the quadratic structure</div>
+                <div class="answer-sec-body">$49^x = (7^2)^x = (7^x)^2$ — quadratic in $7^x$.</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">No real solutions exist.</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 7^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation: $2u^2 + 11u + 5 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Factor the quadratic</div>
+                <div class="answer-sec-body">$(2u+1)(u+5) = 0$
+$u = -\dfrac{1}{2} \quad$ or $\quad u = -5$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Reject both roots</div>
+                <div class="answer-sec-body">$u = 7^x &gt; 0$ for all real $x$.
+Both roots ($-\tfrac{1}{2}$ and $-5$) are negative — neither is valid.</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 5 — Conclusion</div>
+                <div class="answer-sec-body">No real solution exists.</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">No solution (all terms positive for real $x$)</div>
+                <div class="answer-sec-body">No real solution</div>
               </div>
             </div>
           </div>
@@ -1752,30 +2713,51 @@ Both roots are negative — impossible since $7^x &gt; 0$.</div>
           <div class="given-box">Solve: $\;3 \cdot 4^x + 4 \cdot 2^x + 8 = 0$</div>
           <div class="steps">
             <div class="step">
-              <div class="step-title">Use substitution u = aˣ</div>
-              <div class="step-body">$4^x = (2^x)^2$. Let $u = 2^x &gt; 0$: $3u^2 + 4u + 8 = 0$
-Discriminant $= 16 - 96 = -80 &lt; 0$; no real roots.</div>
+              <div class="step-title">Step 1 — Rewrite in a common base</div>
+              <div class="step-body">$4^x = (2^2)^x = (2^x)^2$ — quadratic in $2^x$.</div>
             </div>
             <div class="step">
-              <div class="step-title">Solve the resulting equation for x</div>
-              <div class="step-body">No real solutions exist.</div>
+              <div class="step-title">Step 2 — Let $u = 2^x$ (substitution)</div>
+              <div class="step-body">$u &gt; 0$. Equation: $3u^2 + 4u + 8 = 0$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Compute the discriminant</div>
+              <div class="step-body">$\Delta = b^2 - 4ac = (4)^2 - 4(3)(8) = 16 - 96 = -80$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 4 — Negative discriminant: no real roots</div>
+              <div class="step-body">$\Delta = -80 &lt; 0 \Rightarrow$ the quadratic has no real solutions.
+Therefore, no real $x$ satisfies the original equation.</div>
+            </div>
+            <div class="step insight">
+              <div class="step-title">💡 Mini Insight (Exam Shortcut)</div>
+              <div class="step-body">Always compute $\Delta = b^2 - 4ac$ first.
+If $\Delta &lt; 0$: write "no real solution" immediately — saves exam time!</div>
             </div>
           </div>
           <div class="answer-box">
             <div class="answer-box-header">Exam Answer</div>
             <div class="answer-sections">
               <div class="answer-section">
-                <div class="answer-sec-label">Use substitution u = aˣ</div>
-                <div class="answer-sec-body">$4^x = (2^x)^2$. Let $u = 2^x &gt; 0$: $3u^2 + 4u + 8 = 0$
-Discriminant $= 16 - 96 = -80 &lt; 0$; no real roots.</div>
+                <div class="answer-sec-label">Step 1 — Rewrite in a common base</div>
+                <div class="answer-sec-body">$4^x = (2^2)^x = (2^x)^2$ — quadratic in $2^x$.</div>
               </div>
               <div class="answer-section">
-                <div class="answer-sec-label">Solve the resulting equation for x</div>
-                <div class="answer-sec-body">No real solutions exist.</div>
+                <div class="answer-sec-label">Step 2 — Let $u = 2^x$ (substitution)</div>
+                <div class="answer-sec-body">$u &gt; 0$. Equation: $3u^2 + 4u + 8 = 0$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 3 — Compute the discriminant</div>
+                <div class="answer-sec-body">$\Delta = b^2 - 4ac = (4)^2 - 4(3)(8) = 16 - 96 = -80$</div>
+              </div>
+              <div class="answer-section">
+                <div class="answer-sec-label">Step 4 — Negative discriminant: no real roots</div>
+                <div class="answer-sec-body">$\Delta = -80 &lt; 0 \Rightarrow$ the quadratic has no real solutions.
+Therefore, no real $x$ satisfies the original equation.</div>
               </div>
               <div class="answer-section">
                 <div class="answer-sec-label">Final Answer</div>
-                <div class="answer-sec-body">No solution (discriminant is negative)</div>
+                <div class="answer-sec-body">No real solution ($\Delta = -80 &lt; 0$)</div>
               </div>
             </div>
           </div>
