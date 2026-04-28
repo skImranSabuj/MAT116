@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-2 | MAT 116</title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+    <style>
+      :root {
+        --ink: #1b2430;
+        --brand: #0f3460;
+        --accent: #e94560;
+        --paper: #ffffff;
+        --bg: #f3f6fa;
+        --muted: #5d6671;
+        --line: #d9e0ea;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.7;
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 1.25rem;
+      }
+      .hero {
+        background: linear-gradient(135deg, #0f3460 0%, #184e89 100%);
+        color: #fff;
+        border-radius: 14px;
+        padding: 1.25rem 1.3rem;
+        box-shadow: 0 8px 26px rgba(15, 52, 96, 0.22);
+      }
+      .hero h1 {
+        margin: 0;
+        font-size: 1.6rem;
+      }
+      .hero p {
+        margin: 0.35rem 0 0;
+        opacity: 0.95;
+      }
+      .hero a {
+        color: #fff;
+        text-underline-offset: 2px;
+      }
+      .card {
+        margin-top: 1rem;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 1.15rem;
+      }
+      h2 {
+        margin: 0 0 0.5rem;
+        color: var(--brand);
+        border-left: 4px solid var(--accent);
+        padding-left: 0.55rem;
+      }
+      h3 {
+        margin: 1rem 0 0.4rem;
+        color: var(--brand);
+      }
+      .final {
+        background: #fff5f7;
+        border: 1px solid #ffd2dc;
+        border-radius: 8px;
+        padding: 0.55rem 0.7rem;
+      }
+      .note {
+        background: #f4f9ff;
+        border: 1px solid #cde0f7;
+        border-radius: 8px;
+        padding: 0.55rem 0.7rem;
+        color: #183a63;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .answers {
+        border-top: 1px dashed var(--line);
+        margin-top: 1.15rem;
+        padding-top: 0.8rem;
+      }
+      ol,
+      ul {
+        padding-left: 1.15rem;
+      }
+      @media (max-width: 640px) {
+        .hero h1 {
+          font-size: 1.28rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <h1>Assignment-2 Solution Sheet (MAT 116)</h1>
+        <p>
+          Spring 2026, DMP NSU • Full-mark, lecturer-style worked answers.
+          <a href="../index.html">Back to main index</a>
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>1(a) Transformations: $f(x)=2(x-2)^4+1$</h2>
+        <p>Parent function: $y=x^4$.</p>
+        <ol>
+          <li>$(x-2)$ means shift right by $2$.</li>
+          <li>Multiply by $2$ means vertical stretch by factor $2$.</li>
+          <li>$+1$ means shift upward by $1$.</li>
+        </ol>
+        <p>Vertex: $(2,1)$, axis of symmetry: $x=2$.</p>
+        <p>Domain: $(-\infty,\infty)$, range: $[1,\infty)$.</p>
+        <p class="note">
+          Side note: Because the exponent is even, both ends go upward.
+        </p>
+        <p class="final">
+          Final answer: Graph is $y=x^4$ shifted right $2$, stretched by $2$,
+          shifted up $1$.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>1(b) Zero behavior and end behavior</h2>
+        <p>Given $f(x)=2(x+3)(x^2+4)^3$.</p>
+        <p>Real x-intercepts come from real zeros only.</p>
+        <ul>
+          <li>$x+3=0 \Rightarrow x=-3$</li>
+          <li>$x^2+4=0 \Rightarrow x=\pm 2i$ (not real)</li>
+        </ul>
+        <p>So the only real x-intercept is $(-3,0)$, multiplicity $1$.</p>
+        <p>Therefore, the graph crosses the x-axis at $x=-3$.</p>
+        <p>Leading term is $2x^7$, so end behavior resembles $y=2x^7$.</p>
+        <p>
+          Thus: $x\to\infty \Rightarrow f(x)\to\infty$, and $x\to-\infty
+          \Rightarrow f(x)\to-\infty$.
+        </p>
+        <p class="note">
+          Side note: odd degree + positive leading coefficient means left tail
+          down, right tail up.
+        </p>
+        <p class="final">
+          Final answer: only real intercept at $x=-3$ (crossing); end behavior
+          like $y=2x^7$.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>2) Asymptotes of $f(x)=\dfrac{x^3-1}{x^2-5x-14}$</h2>
+        <p>Factor denominator: $x^2-5x-14=(x-7)(x+2)$.</p>
+        <p>Factor numerator: $x^3-1=(x-1)(x^2+x+1)$.</p>
+        <p>No common factor, so vertical asymptotes are $x=7$ and $x=-2$.</p>
+        <p>Since degree difference is $1$, there is a slant asymptote.</p>
+        <p>
+          Division gives:
+          $$\frac{x^3-1}{x^2-5x-14}=x+5+\frac{39x+69}{x^2-5x-14}$$ so oblique
+          asymptote is $y=x+5$.
+        </p>
+        <p class="note">
+          Side note: No horizontal asymptote when numerator degree exceeds
+          denominator by 1.
+        </p>
+        <p class="final">
+          Final answer: VA: $x=7,-2$; HA: none; oblique: $y=x+5$.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>3) Analyze $f(x)=\dfrac{x^2}{x^2+x-6}$</h2>
+        <p>Rewrite denominator: $x^2+x-6=(x+3)(x-2)$.</p>
+        <h3>Core features</h3>
+        <ul>
+          <li>Domain: $x\neq -3,2$.</li>
+          <li>Intercepts: $(0,0)$ (both x- and y-intercept).</li>
+          <li>Vertical asymptotes: $x=-3$, $x=2$.</li>
+          <li>Horizontal asymptote: $y=1$ (equal degrees).</li>
+        </ul>
+        <p>
+          Crossing horizontal asymptote: $$\frac{x^2}{x^2+x-6}=1\Rightarrow
+          x=6,$$ so crossing point is $(6,1)$.
+        </p>
+        <p class="note">
+          Side note: zero at $x=0$ has multiplicity 2, so the graph touches the
+          x-axis and turns.
+        </p>
+        <p class="final">
+          Final answer: Domain $\mathbb R\setminus\{-3,2\}$, intercept $(0,0)$,
+          VA at $x=-3,2$, HA $y=1$.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>4) Solve $\dfrac{5}{x-3}\le\dfrac{3}{x+1}$</h2>
+        <p>
+          $$\frac{5}{x-3}-\frac{3}{x+1}\le0$$
+          $$\frac{5(x+1)-3(x-3)}{(x-3)(x+1)}\le0$$
+          $$\frac{x+7}{(x-3)(x+1)}\le0$$
+        </p>
+        <p>Critical values: $x=-7$ (zero), $x=-1,3$ (undefined).</p>
+        <p>Sign chart gives solution on $(-\infty,-7]$ and $(-1,3)$.</p>
+        <p class="note">
+          Side note: points making denominator zero are always excluded.
+        </p>
+        <p class="final">Final answer: $\boxed{(-\infty,-7]\cup(-1,3)}$.</p>
+      </section>
+
+      <section class="card">
+        <h2>5) Real zeros of $f(x)=2x^4+x^3-7x^2-3x+3$</h2>
+        <p>Rational candidates: $\pm1,\pm3,\pm\frac12,\pm\frac32$.</p>
+        <p>Testing shows $x=-1$ and $x=\frac12$ are zeros.</p>
+        <p>Complete factorization: $$f(x)=(x+1)(2x-1)(x^2-3).$$</p>
+        <p>From $x^2-3=0$, remaining zeros are $x=\pm\sqrt3$.</p>
+        <p class="note">
+          Side note: Rational Zeros Theorem gives rational candidates;
+          irrational zeros can still appear from leftover quadratic factors.
+        </p>
+        <p class="final">
+          Final answer: $\boxed{x=-1,\;x=\frac12,\;x=\pm\sqrt3}$.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>6(a) Solve $\log_3(x+1)+\log_3(x+4)=2$</h2>
+        <p>Domain: $x>-1$.</p>
+        <p>
+          $$\log_3\big((x+1)(x+4)\big)=2$$ $$x^2+5x-5=0$$
+          $$x=\frac{-5\pm3\sqrt5}{2}$$
+        </p>
+        <p>Only $x=\dfrac{-5+3\sqrt5}{2}$ satisfies domain $x>-1$.</p>
+        <p class="final">Final answer: $\boxed{x=\dfrac{-5+3\sqrt5}{2}}$.</p>
+      </section>
+
+      <section class="card">
+        <h2>6(b) Solve $25^x-8\cdot5^x=-16$</h2>
+        <p>Let $y=5^x$, then $25^x=5^{2x}=y^2$.</p>
+        <p>
+          $$y^2-8y+16=0$$ $$(y-4)^2=0\Rightarrow y=4$$ $$5^x=4\Rightarrow
+          x=\log_5 4\approx0.8614$$
+        </p>
+        <p class="note">
+          Side note: this is a standard quadratic-in-$5^x$ pattern.
+        </p>
+        <p class="final">Final answer: $\boxed{x=\log_5 4\approx0.8614}$.</p>
+      </section>
+
+      <section class="card answers">
+        <h2>Compact final answers</h2>
+        <p class="muted">
+          1(a) right 2, stretch by 2, up 1 (vertex $(2,1)$).<br />
+          1(b) only real intercept $x=-3$ (crossing), end behavior like
+          $2x^7$.<br />
+          2) VA $x=7,-2$, HA none, oblique $y=x+5$.<br />
+          3) Domain $\mathbb R\setminus\{-3,2\}$, intercept $(0,0)$, VA
+          $x=-3,2$, HA $y=1$.<br />
+          4) $(-\infty,-7]\cup(-1,3)$.<br />
+          5) $x=-1,\frac12,\pm\sqrt3$.<br />
+          6(a) $x=\dfrac{-5+3\sqrt5}{2}$.<br />
+          6(b) $x=\log_5(4)\approx0.8614$.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
