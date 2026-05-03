@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Section 6.4 – Graphs of the Sine and Cosine Functions | MAT 116
+    </title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+    <script
+      src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js"
+      charset="utf-8"
+    ></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+      :root {
+        --navy: #0f3460;
+        --red: #e94560;
+        --sidebar-w: 260px;
+        --topbar-h: 56px;
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --text: #1a1a2e;
+        --muted: #666;
+        --border: #e0e4ec;
+        --step-bg: #f8f9fa;
+      }
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: var(--text);
+        background: var(--bg);
+        min-height: 100vh;
+      }
+      .topbar {
+        display: none;
+        align-items: center;
+        height: var(--topbar-h);
+        background: var(--navy);
+        color: #fff;
+        padding: 0 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        gap: 0.75rem;
+      }
+      .topbar-title {
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .menu-btn span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+      }
+      body.nav-open .menu-btn span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      body.nav-open .menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-btn span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-w);
+        height: 100vh;
+        background: var(--navy);
+        color: #fff;
+        overflow-y: auto;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-brand {
+        padding: 1.25rem 1.1rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .brand-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+      }
+      .brand-sub {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 0.25rem;
+      }
+      .nav-group {
+        margin: 0.5rem 0;
+      }
+      .nav-group-title {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0.75rem 1.1rem 0.25rem;
+      }
+      .nav-group ul {
+        list-style: none;
+      }
+      .nav-group ul li a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.42rem 1.1rem;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-left: 3px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .nav-group ul li a:hover,
+      .nav-group ul li a.active {
+        background: rgba(255, 255, 255, 0.09);
+        border-left-color: var(--red);
+        color: #fff;
+      }
+      .nav-num {
+        display: inline-block;
+        min-width: 1.8rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+        font-size: 0.78rem;
+        padding: 0 0.3rem;
+        flex-shrink: 0;
+      }
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 90;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      body.nav-open .overlay {
+        opacity: 1;
+      }
+      .main {
+        margin-left: var(--sidebar-w);
+        min-height: 100vh;
+        padding: 2rem 1.5rem 5rem;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--card);
+        padding: 2.5rem 3.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+      }
+      .page-header {
+        border-bottom: 4px solid var(--navy);
+        padding-bottom: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .page-header h1 {
+        font-size: 1.9rem;
+        color: var(--navy);
+        margin-bottom: 0.3rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: var(--muted);
+        font-style: italic;
+      }
+      .header-nav-label {
+        margin-top: 1rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .chapter-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.6rem;
+      }
+      .chapter-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3.5rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: #eef3f8;
+        border: 1px solid #d6dfeb;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .chapter-link:hover,
+      .chapter-link.active {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+      .problem {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem 2rem;
+        margin: 2.25rem 0;
+        background: var(--card);
+        scroll-margin-top: 1.5rem;
+      }
+      .problem h2 {
+        font-size: 1.5rem;
+        color: var(--navy);
+        border-left: 5px solid var(--red);
+        padding-left: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 0.18rem 0.65rem;
+        margin-bottom: 1.1rem;
+      }
+      .given-label {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+      .given-box {
+        background: #f0f4ff;
+        border-left: 4px solid var(--navy);
+        border-radius: 4px;
+        padding: 0.85rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-size: 0.95rem;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .step {
+        padding: 0.85rem 1.1rem;
+        background: var(--step-bg);
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+      }
+      .step-title {
+        font-weight: bold;
+        color: #16213e;
+        margin-bottom: 0.4rem;
+      }
+      .step-body {
+        font-size: 0.97rem;
+        word-break: break-word;
+      }
+      .kp-table {
+        border-collapse: collapse;
+        margin: 0.6rem 0;
+        font-size: 0.9rem;
+        width: 100%;
+      }
+      .kp-table th,
+      .kp-table td {
+        border: 1px solid var(--border);
+        padding: 0.35rem 0.65rem;
+        text-align: center;
+      }
+      .kp-table th {
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.82rem;
+      }
+      .answer-box {
+        margin-top: 1.25rem;
+        background: #e8f5e9;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .answer-box-header {
+        font-weight: bold;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-plain {
+        padding: 0.7rem 1rem;
+        font-size: 0.97rem;
+        color: #1b5e20;
+      }
+      .graph-wrap {
+        margin: 1.25rem 0 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .graph-label {
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+      }
+      .graph-div {
+        height: 280px;
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        .topbar {
+          display: flex;
+        }
+        .sidebar {
+          top: 0;
+          transform: translateX(-100%);
+          z-index: 300;
+        }
+        body.nav-open .sidebar {
+          transform: translateX(0);
+        }
+        body.nav-open .overlay {
+          display: block;
+        }
+        .main {
+          margin-left: 0;
+          padding: calc(var(--topbar-h)+1rem) 0.75rem 4rem;
+        }
+        .container {
+          padding: 1.25rem 1rem;
+        }
+        .page-header h1 {
+          font-size: 1.4rem;
+        }
+        .problem {
+          padding: 1.1rem 0.9rem;
+        }
+        .graph-div {
+          height: 220px;
+        }
+      }
+      @media (min-width: 769px) {
+        .overlay {
+          display: none !important;
+        }
+        .topbar {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar" id="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="topbar-title">MAT 116 — Section 6.4</span>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-title">MAT 116 Solutions</div>
+        <div class="brand-sub">Sullivan Precalculus 10th Ed · Section 6.4</div>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Chapters</div>
+        <ul>
+          <li>
+            <a href="../index.html"><span class="nav-num">⌂</span>Home</a>
+          </li>
+          <li>
+            <a href="../6.1/section_6_1.html"
+              ><span class="nav-num">6.1</span>Arc Length &amp; Area</a
+            >
+          </li>
+          <li>
+            <a href="../6.2/section_6_2.html"
+              ><span class="nav-num">6.2</span>Unit Circle Trig</a
+            >
+          </li>
+          <li>
+            <a href="../6.3/section_6_3.html"
+              ><span class="nav-num">6.3</span>Remaining Trig Fns</a
+            >
+          </li>
+          <li>
+            <a href="section_6_4.html" class="active"
+              ><span class="nav-num">6.4</span>Graphs of Sin/Cos</a
+            >
+          </li>
+          <li>
+            <a href="../7.2/section_7_2.html"
+              ><span class="nav-num">7.2</span>Inverse Trig</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Amplitude &amp; Period (41–44)</div>
+        <ul>
+          <li>
+            <a href="#p41"><span class="nav-num">41</span>y=2cos(x/4)</a>
+          </li>
+          <li>
+            <a href="#p42"><span class="nav-num">42</span>y=2sin(x/2)</a>
+          </li>
+          <li>
+            <a href="#p43"><span class="nav-num">43</span>y=−½cos(2x)</a>
+          </li>
+          <li>
+            <a href="#p44"><span class="nav-num">44</span>y=−4sin(x/8)</a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Vertical Shift (49–50)</div>
+        <ul>
+          <li>
+            <a href="#p49"><span class="nav-num">49</span>y=−6sin(πx/3)+4</a>
+          </li>
+          <li>
+            <a href="#p50"><span class="nav-num">50</span>y=−3cos(3πx/4)+2</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main">
+      <div class="container">
+        <header class="page-header" id="top">
+          <h1>Section 6.4 — Graphs of the Sine and Cosine Functions</h1>
+          <p class="subtitle">
+            MAT 116 — Precalculus &nbsp;|&nbsp; Sullivan 10th Edition
+            &nbsp;|&nbsp; Problems 41–44, 49–50
+          </p>
+          <div class="header-nav-label">Jump to Section</div>
+          <div class="chapter-nav">
+            <a class="chapter-link" href="../6.1/section_6_1.html">6.1</a>
+            <a class="chapter-link" href="../6.2/section_6_2.html">6.2</a>
+            <a class="chapter-link" href="../6.3/section_6_3.html">6.3</a>
+            <a class="chapter-link active" href="section_6_4.html">6.4</a>
+            <a class="chapter-link" href="../7.2/section_7_2.html">7.2</a>
+            <a class="chapter-link" href="../index.html">Home</a>
+          </div>
+        </header>
+
+        <div class="section-sidenotes">
+          <div class="sidenotes-title">★ Key Notes for Section 6.4</div>
+          <div class="sidenote">
+            <div class="sidenote-header">General Form</div>
+            <div class="sidenote-body">
+              $$y = A\sin(\omega x + \phi) + B \qquad \text{or} \qquad y =
+              A\cos(\omega x + \phi) + B$$ Amplitude $= |A|$ &nbsp;(negative $A$
+              reflects the graph over the $x$-axis) Period $=
+              \dfrac{2\pi}{\omega}$ Phase Shift $= -\dfrac{\phi}{\omega}$
+              Vertical Shift $= B$ (shifts midline to $y=B$) Range $= [B-|A|,\;
+              B+|A|]$
+            </div>
+          </div>
+          <div class="sidenote">
+            <div class="sidenote-header">Five Key Points per Cycle</div>
+            <div class="sidenote-body">
+              Divide one full period into 4 equal sub-intervals. Evaluate at
+              each quarter-period mark. For $y=\sin$: start at 0, peak at T/4,
+              return to 0 at T/2, trough at 3T/4, return at T. For $y=\cos$:
+              start at max, cross midline at T/4, trough at T/2, midline at
+              3T/4, max at T.
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P41 ===== -->
+        <div class="problem" id="p41">
+          <h2>Problem 41</h2>
+          <span class="badge">Graph using Transformations</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $$y = 2\cos\!\left(\frac{x}{4}\right)$$ Graph using transformations.
+            State domain and range.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Identify parameters</div>
+              <div class="step-body">
+                $A=2$, $\;\omega=\dfrac{1}{4}$, $\;\phi=0$, $\;B=0$. Amplitude
+                $= 2$, &nbsp; Period $= \dfrac{2\pi}{1/4} = 8\pi$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">
+                Step 2 — Five key points (one full cycle, starting at $x=0$)
+              </div>
+              <div class="step-body">
+                <table class="kp-table">
+                  <tr>
+                    <th>$x$</th>
+                    <th>$0$</th>
+                    <th>$2\pi$</th>
+                    <th>$4\pi$</th>
+                    <th>$6\pi$</th>
+                    <th>$8\pi$</th>
+                  </tr>
+                  <tr>
+                    <td>$y$</td>
+                    <td>$2$</td>
+                    <td>$0$</td>
+                    <td>$-2$</td>
+                    <td>$0$</td>
+                    <td>$2$</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Transformation description</div>
+              <div class="step-body">
+                Start from $y=\cos x$. ① Horizontal stretch by factor 4 (period:
+                $2\pi \to 8\pi$). ② Vertical stretch by factor 2 (amplitude: $1
+                \to 2$).
+              </div>
+            </div>
+          </div>
+          <div class="graph-wrap">
+            <div class="graph-label">
+              Graph: y = 2 cos(x/4) — two full cycles
+            </div>
+            <div class="graph-div" id="g41"></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              Amplitude $= 2$, &nbsp; Period $= 8\pi \approx 25.13$ Domain:
+              $(-\infty, \infty)$, &nbsp; Range: $[-2, 2]$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P42 ===== -->
+        <div class="problem" id="p42">
+          <h2>Problem 42</h2>
+          <span class="badge">Graph using Transformations</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">$$y = 2\sin\!\left(\frac{x}{2}\right)$$</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Parameters</div>
+              <div class="step-body">
+                $A=2$, $\omega=\frac{1}{2}$. Amplitude $= 2$, &nbsp; Period $=
+                \dfrac{2\pi}{1/2} = 4\pi$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Key points (one cycle)</div>
+              <div class="step-body">
+                <table class="kp-table">
+                  <tr>
+                    <th>$x$</th>
+                    <th>$0$</th>
+                    <th>$\pi$</th>
+                    <th>$2\pi$</th>
+                    <th>$3\pi$</th>
+                    <th>$4\pi$</th>
+                  </tr>
+                  <tr>
+                    <td>$y$</td>
+                    <td>$0$</td>
+                    <td>$2$</td>
+                    <td>$0$</td>
+                    <td>$-2$</td>
+                    <td>$0$</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Transformation</div>
+              <div class="step-body">
+                Start from $y=\sin x$: horizontal stretch by 2, then vertical
+                stretch by 2.
+              </div>
+            </div>
+          </div>
+          <div class="graph-wrap">
+            <div class="graph-label">
+              Graph: y = 2 sin(x/2) — two full cycles
+            </div>
+            <div class="graph-div" id="g42"></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              Amplitude $= 2$, &nbsp; Period $= 4\pi \approx 12.57$ Domain:
+              $(-\infty,\infty)$, &nbsp; Range: $[-2,2]$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P43 ===== -->
+        <div class="problem" id="p43">
+          <h2>Problem 43</h2>
+          <span class="badge">Graph using Transformations</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">$$y = -\frac{1}{2}\cos(2x)$$</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Parameters</div>
+              <div class="step-body">
+                $A=-\tfrac{1}{2}$, $\omega=2$. Amplitude $= \tfrac{1}{2}$
+                (reflects over $x$-axis). Period $= \dfrac{2\pi}{2} = \pi$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Key points (one cycle)</div>
+              <div class="step-body">
+                <table class="kp-table">
+                  <tr>
+                    <th>$x$</th>
+                    <th>$0$</th>
+                    <th>$\pi/4$</th>
+                    <th>$\pi/2$</th>
+                    <th>$3\pi/4$</th>
+                    <th>$\pi$</th>
+                  </tr>
+                  <tr>
+                    <td>$y$</td>
+                    <td>$-\frac{1}{2}$</td>
+                    <td>$0$</td>
+                    <td>$\frac{1}{2}$</td>
+                    <td>$0$</td>
+                    <td>$-\frac{1}{2}$</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Transformation</div>
+              <div class="step-body">
+                Start from $y=\cos x$: ① Horizontal compression by $\frac{1}{2}$
+                (period: $2\pi \to \pi$). ② Vertical compression to amplitude
+                $\frac{1}{2}$, then reflect over $x$-axis.
+              </div>
+            </div>
+          </div>
+          <div class="graph-wrap">
+            <div class="graph-label">
+              Graph: y = −½ cos(2x) — two full cycles
+            </div>
+            <div class="graph-div" id="g43"></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              Amplitude $= \tfrac{1}{2}$ (reflected), &nbsp; Period $= \pi$
+              Domain: $(-\infty,\infty)$, &nbsp; Range: $[-\tfrac{1}{2},
+              \tfrac{1}{2}]$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P44 ===== -->
+        <div class="problem" id="p44">
+          <h2>Problem 44</h2>
+          <span class="badge">Graph using Transformations</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">$$y = -4\sin\!\left(\frac{x}{8}\right)$$</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Parameters</div>
+              <div class="step-body">
+                $A=-4$, $\omega=\tfrac{1}{8}$. Amplitude $= 4$ (reflected).
+                &nbsp; Period $= \dfrac{2\pi}{1/8} = 16\pi$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Key points</div>
+              <div class="step-body">
+                <table class="kp-table">
+                  <tr>
+                    <th>$x$</th>
+                    <th>$0$</th>
+                    <th>$4\pi$</th>
+                    <th>$8\pi$</th>
+                    <th>$12\pi$</th>
+                    <th>$16\pi$</th>
+                  </tr>
+                  <tr>
+                    <td>$y$</td>
+                    <td>$0$</td>
+                    <td>$-4$</td>
+                    <td>$0$</td>
+                    <td>$4$</td>
+                    <td>$0$</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Transformation</div>
+              <div class="step-body">
+                Horizontal stretch by 8, vertical stretch by 4, and reflect over
+                $x$-axis.
+              </div>
+            </div>
+          </div>
+          <div class="graph-wrap">
+            <div class="graph-label">
+              Graph: y = −4 sin(x/8) — two full cycles
+            </div>
+            <div class="graph-div" id="g44"></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              Amplitude $= 4$ (reflected), &nbsp; Period $= 16\pi \approx 50.27$
+              Domain: $(-\infty,\infty)$, &nbsp; Range: $[-4, 4]$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P49 ===== -->
+        <div class="problem" id="p49">
+          <h2>Problem 49</h2>
+          <span class="badge"
+            >Graph using Transformations — Vertical Shift</span
+          >
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $$y = -6\sin\!\left(\frac{\pi x}{3}\right) + 4$$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Parameters</div>
+              <div class="step-body">
+                $A=-6$, $\;\omega=\dfrac{\pi}{3}$, $\;B=4$. Amplitude $= 6$
+                (reflected). &nbsp; Period $= \dfrac{2\pi}{\pi/3} = 6$. &nbsp;
+                Vertical shift up $4$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Midline and range</div>
+              <div class="step-body">
+                Midline: $y = 4$. Range: $[4-6,\;4+6] = [-2, 10]$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Key points (one cycle)</div>
+              <div class="step-body">
+                Quarter period $= \frac{6}{4} = \frac{3}{2}$.
+                <table class="kp-table">
+                  <tr>
+                    <th>$x$</th>
+                    <th>$0$</th>
+                    <th>$\frac{3}{2}$</th>
+                    <th>$3$</th>
+                    <th>$\frac{9}{2}$</th>
+                    <th>$6$</th>
+                  </tr>
+                  <tr>
+                    <td>$-6\sin(\pi x/3)$</td>
+                    <td>$0$</td>
+                    <td>$-6$</td>
+                    <td>$0$</td>
+                    <td>$6$</td>
+                    <td>$0$</td>
+                  </tr>
+                  <tr>
+                    <td>$y$ (after $+4$)</td>
+                    <td>$4$</td>
+                    <td>$-2$</td>
+                    <td>$4$</td>
+                    <td>$10$</td>
+                    <td>$4$</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="graph-wrap">
+            <div class="graph-label">
+              Graph: y = −6 sin(πx/3) + 4 — two full cycles
+            </div>
+            <div class="graph-div" id="g49"></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              Amplitude $= 6$, &nbsp; Period $= 6$, &nbsp; Midline $y = 4$
+              Domain: $(-\infty,\infty)$, &nbsp; Range: $[-2, 10]$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P50 ===== -->
+        <div class="problem" id="p50">
+          <h2>Problem 50</h2>
+          <span class="badge"
+            >Graph using Transformations — Vertical Shift</span
+          >
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $$y = -3\cos\!\left(\frac{3\pi x}{4}\right) + 2$$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Parameters</div>
+              <div class="step-body">
+                $A=-3$, $\;\omega=\dfrac{3\pi}{4}$, $\;B=2$. Amplitude $= 3$
+                (reflected). &nbsp; Period $= \dfrac{2\pi}{3\pi/4} =
+                \dfrac{8}{3}$. &nbsp; Vertical shift up $2$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Midline and range</div>
+              <div class="step-body">
+                Midline: $y = 2$. Range: $[2-3,\;2+3] = [-1, 5]$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Key points (one cycle)</div>
+              <div class="step-body">
+                Quarter period $= \frac{8/3}{4} = \frac{2}{3}$.
+                <table class="kp-table">
+                  <tr>
+                    <th>$x$</th>
+                    <th>$0$</th>
+                    <th>$\frac{2}{3}$</th>
+                    <th>$\frac{4}{3}$</th>
+                    <th>$2$</th>
+                    <th>$\frac{8}{3}$</th>
+                  </tr>
+                  <tr>
+                    <td>$-3\cos(\frac{3\pi x}{4})$</td>
+                    <td>$-3$</td>
+                    <td>$0$</td>
+                    <td>$3$</td>
+                    <td>$0$</td>
+                    <td>$-3$</td>
+                  </tr>
+                  <tr>
+                    <td>$y$ (after $+2$)</td>
+                    <td>$-1$</td>
+                    <td>$2$</td>
+                    <td>$5$</td>
+                    <td>$2$</td>
+                    <td>$-1$</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="graph-wrap">
+            <div class="graph-label">
+              Graph: y = −3 cos(3πx/4) + 2 — two full cycles
+            </div>
+            <div class="graph-div" id="g50"></div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              Amplitude $= 3$, &nbsp; Period $= \tfrac{8}{3} \approx 2.667$,
+              &nbsp; Midline $y = 2$ Domain: $(-\infty,\infty)$, &nbsp; Range:
+              $[-1, 5]$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const btn = document.getElementById("menuBtn"),
+        overlay = document.getElementById("overlay"),
+        sidebar = document.getElementById("sidebar");
+      function toggle() {
+        document.body.classList.toggle("nav-open");
+      }
+      btn.addEventListener("click", toggle);
+      overlay.addEventListener("click", toggle);
+      sidebar.querySelectorAll('a[href^="#"]').forEach((a) =>
+        a.addEventListener("click", () => {
+          if (window.innerWidth <= 768) toggle();
+        }),
+      );
+
+      function linspace(a, b, n) {
+        const arr = [];
+        const step = (b - a) / (n - 1);
+        for (let i = 0; i < n; i++) arr.push(a + i * step);
+        return arr;
+      }
+      const layout = {
+        margin: { t: 10, b: 35, l: 45, r: 10 },
+        xaxis: { gridcolor: "#eee", zerolinecolor: "#999" },
+        yaxis: { gridcolor: "#eee", zerolinecolor: "#999" },
+        paper_bgcolor: "#fff",
+        plot_bgcolor: "#fafafa",
+        showlegend: false,
+      };
+      const cfg = { responsive: true, displayModeBar: false };
+
+      // P41: y=2cos(x/4), 2 periods = 16π
+      (function () {
+        const x = linspace(0, 16 * Math.PI, 800);
+        const y = x.map((v) => 2 * Math.cos(v / 4));
+        Plotly.newPlot(
+          "g41",
+          [{ x, y, mode: "lines", line: { color: "#0f3460", width: 2.2 } }],
+          {
+            ...layout,
+            xaxis: { ...layout.xaxis, title: "x" },
+            yaxis: { ...layout.yaxis, title: "y" },
+          },
+          cfg,
+        );
+      })();
+
+      // P42: y=2sin(x/2), 2 periods = 8π
+      (function () {
+        const x = linspace(0, 8 * Math.PI, 800);
+        const y = x.map((v) => 2 * Math.sin(v / 2));
+        Plotly.newPlot(
+          "g42",
+          [{ x, y, mode: "lines", line: { color: "#e94560", width: 2.2 } }],
+          {
+            ...layout,
+            xaxis: { ...layout.xaxis, title: "x" },
+            yaxis: { ...layout.yaxis, title: "y" },
+          },
+          cfg,
+        );
+      })();
+
+      // P43: y=-0.5cos(2x), 2 periods = 2π
+      (function () {
+        const x = linspace(0, 2 * Math.PI, 800);
+        const y = x.map((v) => -0.5 * Math.cos(2 * v));
+        Plotly.newPlot(
+          "g43",
+          [{ x, y, mode: "lines", line: { color: "#2ecc71", width: 2.2 } }],
+          {
+            ...layout,
+            xaxis: { ...layout.xaxis, title: "x" },
+            yaxis: { ...layout.yaxis, title: "y" },
+          },
+          cfg,
+        );
+      })();
+
+      // P44: y=-4sin(x/8), 2 periods = 32π
+      (function () {
+        const x = linspace(0, 32 * Math.PI, 1200);
+        const y = x.map((v) => -4 * Math.sin(v / 8));
+        Plotly.newPlot(
+          "g44",
+          [{ x, y, mode: "lines", line: { color: "#9b59b6", width: 2.2 } }],
+          {
+            ...layout,
+            xaxis: { ...layout.xaxis, title: "x" },
+            yaxis: { ...layout.yaxis, title: "y" },
+          },
+          cfg,
+        );
+      })();
+
+      // P49: y=-6sin(πx/3)+4, 2 periods = 12
+      (function () {
+        const x = linspace(0, 12, 800);
+        const y = x.map((v) => -6 * Math.sin((Math.PI * v) / 3) + 4);
+        Plotly.newPlot(
+          "g49",
+          [
+            { x, y, mode: "lines", line: { color: "#e67e22", width: 2.2 } },
+            {
+              x: [0, 12],
+              y: [4, 4],
+              mode: "lines",
+              line: { color: "#ccc", width: 1, dash: "dash" },
+            },
+          ],
+          {
+            ...layout,
+            xaxis: { ...layout.xaxis, title: "x" },
+            yaxis: { ...layout.yaxis, title: "y" },
+          },
+          cfg,
+        );
+      })();
+
+      // P50: y=-3cos(3πx/4)+2, 2 periods = 16/3
+      (function () {
+        const T = 16 / 3;
+        const x = linspace(0, T, 800);
+        const y = x.map((v) => -3 * Math.cos((3 * Math.PI * v) / 4) + 2);
+        Plotly.newPlot(
+          "g50",
+          [
+            { x, y, mode: "lines", line: { color: "#1abc9c", width: 2.2 } },
+            {
+              x: [0, T],
+              y: [2, 2],
+              mode: "lines",
+              line: { color: "#ccc", width: 1, dash: "dash" },
+            },
+          ],
+          {
+            ...layout,
+            xaxis: { ...layout.xaxis, title: "x" },
+            yaxis: { ...layout.yaxis, title: "y" },
+          },
+          cfg,
+        );
+      })();
+    </script>
+  </body>
+</html>

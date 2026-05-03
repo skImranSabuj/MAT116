@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section 6.1 – Arc Length &amp; Area of a Sector | MAT 116</title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+      :root {
+        --navy: #0f3460;
+        --red: #e94560;
+        --sidebar-w: 260px;
+        --topbar-h: 56px;
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --text: #1a1a2e;
+        --muted: #666;
+        --border: #e0e4ec;
+        --step-bg: #f8f9fa;
+      }
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: var(--text);
+        background: var(--bg);
+        min-height: 100vh;
+      }
+      .topbar {
+        display: none;
+        align-items: center;
+        height: var(--topbar-h);
+        background: var(--navy);
+        color: #fff;
+        padding: 0 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        gap: 0.75rem;
+      }
+      .topbar-title {
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .menu-btn span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition:
+          transform 0.25s,
+          opacity 0.25s;
+      }
+      body.nav-open .menu-btn span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      body.nav-open .menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-btn span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-w);
+        height: 100vh;
+        background: var(--navy);
+        color: #fff;
+        overflow-y: auto;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-brand {
+        padding: 1.25rem 1.1rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .brand-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        line-height: 1.35;
+      }
+      .brand-sub {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 0.25rem;
+      }
+      .nav-group {
+        margin: 0.5rem 0;
+      }
+      .nav-group-title {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0.75rem 1.1rem 0.25rem;
+      }
+      .nav-group ul {
+        list-style: none;
+      }
+      .nav-group ul li a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.42rem 1.1rem;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-left: 3px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .nav-group ul li a:hover,
+      .nav-group ul li a.active {
+        background: rgba(255, 255, 255, 0.09);
+        border-left-color: var(--red);
+        color: #fff;
+      }
+      .nav-num {
+        display: inline-block;
+        min-width: 1.8rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+        font-size: 0.78rem;
+        padding: 0 0.3rem;
+        flex-shrink: 0;
+      }
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 90;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      body.nav-open .overlay {
+        opacity: 1;
+      }
+      .main {
+        margin-left: var(--sidebar-w);
+        min-height: 100vh;
+        padding: 2rem 1.5rem 5rem;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--card);
+        padding: 2.5rem 3.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+      }
+      .page-header {
+        border-bottom: 4px solid var(--navy);
+        padding-bottom: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .page-header h1 {
+        font-size: 1.9rem;
+        color: var(--navy);
+        margin-bottom: 0.3rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: var(--muted);
+        font-style: italic;
+      }
+      .header-nav-label {
+        margin-top: 1rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .chapter-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.6rem;
+      }
+      .chapter-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3.5rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: #eef3f8;
+        border: 1px solid #d6dfeb;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .chapter-link:hover,
+      .chapter-link.active {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+      .problem {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem 2rem;
+        margin: 2.25rem 0;
+        background: var(--card);
+        scroll-margin-top: 1.5rem;
+      }
+      .problem h2 {
+        font-size: 1.5rem;
+        color: var(--navy);
+        border-left: 5px solid var(--red);
+        padding-left: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 0.18rem 0.65rem;
+        margin-bottom: 1.1rem;
+      }
+      .given-label {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+      .given-box {
+        background: #f0f4ff;
+        border-left: 4px solid var(--navy);
+        border-radius: 4px;
+        padding: 0.85rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-size: 0.95rem;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .step {
+        padding: 0.85rem 1.1rem;
+        background: var(--step-bg);
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+      }
+      .step-title {
+        font-weight: bold;
+        color: #16213e;
+        margin-bottom: 0.4rem;
+      }
+      .step-body {
+        font-size: 0.97rem;
+        word-break: break-word;
+      }
+      .answer-box {
+        margin-top: 1.25rem;
+        background: #e8f5e9;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .answer-box-header {
+        font-weight: bold;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-plain {
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+        color: #1b5e20;
+        font-weight: bold;
+      }
+      hr {
+        border: none;
+        border-top: 1px solid #e8eaee;
+        margin: 2rem 0;
+      }
+      @media (max-width: 768px) {
+        .topbar {
+          display: flex;
+        }
+        .sidebar {
+          top: 0;
+          transform: translateX(-100%);
+          z-index: 300;
+        }
+        body.nav-open .sidebar {
+          transform: translateX(0);
+        }
+        body.nav-open .overlay {
+          display: block;
+        }
+        .main {
+          margin-left: 0;
+          padding: calc(var(--topbar-h) + 1rem) 0.75rem 4rem;
+        }
+        .container {
+          padding: 1.25rem 1rem;
+          border-radius: 8px;
+        }
+        .page-header h1 {
+          font-size: 1.4rem;
+        }
+        .problem {
+          padding: 1.1rem 0.9rem;
+        }
+        .problem h2 {
+          font-size: 1.2rem;
+        }
+      }
+      @media (min-width: 769px) {
+        .overlay {
+          display: none !important;
+        }
+        .topbar {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar" id="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="topbar-title">MAT 116 — Section 6.1</span>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-title">MAT 116 Solutions</div>
+        <div class="brand-sub">Sullivan Precalculus 10th Ed · Section 6.1</div>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Chapters</div>
+        <ul>
+          <li>
+            <a href="../index.html"><span class="nav-num">⌂</span>Home</a>
+          </li>
+          <li>
+            <a href="../4.1/section_4_1.html"
+              ><span class="nav-num">4.1</span>Polynomials</a
+            >
+          </li>
+          <li>
+            <a href="../4.2/section_4_2.html"
+              ><span class="nav-num">4.2</span>Rational Asymptotes</a
+            >
+          </li>
+          <li>
+            <a href="../4.3/section_4_3.html"
+              ><span class="nav-num">4.3</span>Rational Graphs</a
+            >
+          </li>
+          <li>
+            <a href="../4.4/section_4_4.html"
+              ><span class="nav-num">4.4</span>Inequalities</a
+            >
+          </li>
+          <li>
+            <a href="../5.1/section_5_1.html"
+              ><span class="nav-num">5.1</span>Composite Functions</a
+            >
+          </li>
+          <li>
+            <a href="../5.2/section_5_2.html"
+              ><span class="nav-num">5.2</span>Inverse Functions</a
+            >
+          </li>
+          <li>
+            <a href="../5.3/section_5_3.html"
+              ><span class="nav-num">5.3</span>Exponential Functions</a
+            >
+          </li>
+          <li>
+            <a href="../5.4/section_5_4.html"
+              ><span class="nav-num">5.4</span>Logarithmic Functions</a
+            >
+          </li>
+          <li>
+            <a href="../5.5/section_5_5.html"
+              ><span class="nav-num">5.5</span>Log Properties</a
+            >
+          </li>
+          <li>
+            <a href="../5.6/section_5_6.html"
+              ><span class="nav-num">5.6</span>Log &amp; Exp Equations</a
+            >
+          </li>
+          <li>
+            <a href="section_6_1.html" class="active"
+              ><span class="nav-num">6.1</span>Arc Length &amp; Area</a
+            >
+          </li>
+          <li>
+            <a href="../6.2/section_6_2.html"
+              ><span class="nav-num">6.2</span>Unit Circle Trig</a
+            >
+          </li>
+          <li>
+            <a href="../6.3/section_6_3.html"
+              ><span class="nav-num">6.3</span>Remaining Trig Fns</a
+            >
+          </li>
+          <li>
+            <a href="../6.4/section_6_4.html"
+              ><span class="nav-num">6.4</span>Graphs of Sin/Cos</a
+            >
+          </li>
+          <li>
+            <a href="../7.2/section_7_2.html"
+              ><span class="nav-num">7.2</span>Inverse Trig</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Arc Length (s = rθ)</div>
+        <ul>
+          <li>
+            <a href="#p71"><span class="nav-num">71</span>r=10m, θ=½</a>
+          </li>
+          <li>
+            <a href="#p72"><span class="nav-num">72</span>r=6ft, θ=2</a>
+          </li>
+          <li>
+            <a href="#p73"><span class="nav-num">73</span>θ=¼, s=6cm</a>
+          </li>
+          <li>
+            <a href="#p74"><span class="nav-num">74</span>θ=⅓, s=2ft</a>
+          </li>
+          <li>
+            <a href="#p75"><span class="nav-num">75</span>r=6m, s=8m</a>
+          </li>
+          <li>
+            <a href="#p76"><span class="nav-num">76</span>r=5mi, s=3mi</a>
+          </li>
+          <li>
+            <a href="#p77"><span class="nav-num">77</span>r=3m, θ=120°</a>
+          </li>
+          <li>
+            <a href="#p78"><span class="nav-num">78</span>r=2in, θ=30°</a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Area of Sector (A = ½r²θ)</div>
+        <ul>
+          <li>
+            <a href="#p79"><span class="nav-num">79</span>r=10m, θ=½</a>
+          </li>
+          <li>
+            <a href="#p80"><span class="nav-num">80</span>r=6ft, θ=2</a>
+          </li>
+          <li>
+            <a href="#p81"><span class="nav-num">81</span>θ=¼, A=6cm²</a>
+          </li>
+          <li>
+            <a href="#p82"><span class="nav-num">82</span>θ=⅓, A=2ft²</a>
+          </li>
+          <li>
+            <a href="#p83"><span class="nav-num">83</span>r=6m, A=8m²</a>
+          </li>
+          <li>
+            <a href="#p84"><span class="nav-num">84</span>r=5mi, A=3mi²</a>
+          </li>
+          <li>
+            <a href="#p85"><span class="nav-num">85</span>r=3m, θ=120°</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main">
+      <div class="container">
+        <header class="page-header" id="top">
+          <h1>Section 6.1 — Arc Length &amp; Area of a Sector</h1>
+          <p class="subtitle">
+            MAT 116 — Precalculus &nbsp;|&nbsp; Sullivan
+            <em>Precalculus</em> 10th Edition &nbsp;|&nbsp; Problems 71–85
+          </p>
+          <div class="header-nav-label">Jump to Section</div>
+          <div class="chapter-nav">
+            <a class="chapter-link" href="../4.1/section_4_1.html">4.1</a>
+            <a class="chapter-link" href="../4.2/section_4_2.html">4.2</a>
+            <a class="chapter-link" href="../4.3/section_4_3.html">4.3</a>
+            <a class="chapter-link" href="../4.4/section_4_4.html">4.4</a>
+            <a class="chapter-link" href="../5.1/section_5_1.html">5.1</a>
+            <a class="chapter-link" href="../5.2/section_5_2.html">5.2</a>
+            <a class="chapter-link" href="../5.3/section_5_3.html">5.3</a>
+            <a class="chapter-link" href="../5.4/section_5_4.html">5.4</a>
+            <a class="chapter-link" href="../5.5/section_5_5.html">5.5</a>
+            <a class="chapter-link" href="../5.6/section_5_6.html">5.6</a>
+            <a class="chapter-link active" href="section_6_1.html">6.1</a>
+            <a class="chapter-link" href="../6.2/section_6_2.html">6.2</a>
+            <a class="chapter-link" href="../6.3/section_6_3.html">6.3</a>
+            <a class="chapter-link" href="../6.4/section_6_4.html">6.4</a>
+            <a class="chapter-link" href="../7.2/section_7_2.html">7.2</a>
+            <a class="chapter-link" href="../index.html">Home</a>
+          </div>
+        </header>
+
+        <div class="section-sidenotes">
+          <div class="sidenotes-title">★ Key Formulas for Section 6.1</div>
+          <div class="sidenote">
+            <div class="sidenote-header">Arc Length</div>
+            <div class="sidenote-body">
+              $$s = r\theta \qquad (\theta \text{ must be in radians})$$ To find
+              any one of $s$, $r$, $\theta$: rearrange as $r = s/\theta$ or
+              $\theta = s/r$.
+            </div>
+          </div>
+          <div class="sidenote">
+            <div class="sidenote-header">Area of a Sector</div>
+            <div class="sidenote-body">
+              $$A = \tfrac{1}{2}r^2\theta \qquad (\theta \text{ in radians})$$
+              Solve for $r$: $r = \sqrt{2A/\theta}$ &nbsp;·&nbsp; Solve for
+              $\theta$: $\theta = 2A/r^2$
+            </div>
+          </div>
+          <div class="sidenote">
+            <div class="sidenote-header">Degree → Radian Conversion</div>
+            <div class="sidenote-body">
+              $$\theta_{\text{rad}} = \theta_{\deg} \times \frac{\pi}{180}$$
+              Common: $30° = \pi/6$, $\;60° = \pi/3$, $\;90° = \pi/2$, $\;120° =
+              2\pi/3$, $\;180° = \pi$
+            </div>
+          </div>
+        </div>
+
+        <!-- ───── PROBLEMS 71–78 (ARC LENGTH) ───── -->
+
+        <div class="problem" id="p71">
+          <h2>Problem 71</h2>
+          <span class="badge">Arc Length</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 10$ meters, $\;\theta = \dfrac{1}{2}$ radian. &nbsp; Find $s$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Apply the arc-length formula
+              </div>
+              <div class="step-body">$$s = r\theta$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Substitute</div>
+              <div class="step-body">
+                $$s = 10 \times \frac{1}{2} = 5 \text{ meters}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$s = 5 \text{ meters}$$</div>
+          </div>
+        </div>
+
+        <div class="problem" id="p72">
+          <h2>Problem 72</h2>
+          <span class="badge">Arc Length</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 6$ feet, $\;\theta = 2$ radians. &nbsp; Find $s$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Apply $s = r\theta$</div>
+              <div class="step-body">$$s = 6 \times 2 = 12 \text{ feet}$$</div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$s = 12 \text{ feet}$$</div>
+          </div>
+        </div>
+
+        <div class="problem" id="p73">
+          <h2>Problem 73</h2>
+          <span class="badge">Arc Length</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\theta = \dfrac{1}{4}$ radian, $\;s = 6$ centimeters. &nbsp; Find
+            $r$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Rearrange the formula for $r$
+              </div>
+              <div class="step-body">$$r = \frac{s}{\theta}$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Substitute</div>
+              <div class="step-body">
+                $$r = \frac{6}{1/4} = 6 \times 4 = 24 \text{ cm}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$r = 24 \text{ centimeters}$$</div>
+          </div>
+        </div>
+
+        <div class="problem" id="p74">
+          <h2>Problem 74</h2>
+          <span class="badge">Arc Length</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\theta = \dfrac{1}{3}$ radian, $\;s = 2$ feet. &nbsp; Find $r$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — $r = s/\theta$</div>
+              <div class="step-body">
+                $$r = \frac{2}{1/3} = 2 \times 3 = 6 \text{ feet}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$r = 6 \text{ feet}$$</div>
+          </div>
+        </div>
+
+        <div class="problem" id="p75">
+          <h2>Problem 75</h2>
+          <span class="badge">Arc Length</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 6$ meters, $\;s = 8$ meters. &nbsp; Find $\theta$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Rearrange for $\theta$</div>
+              <div class="step-body">$$\theta = \frac{s}{r}$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Substitute</div>
+              <div class="step-body">
+                $$\theta = \frac{8}{6} = \frac{4}{3} \approx 1.333 \text{
+                radians}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\theta = \frac{4}{3} \approx 1.333 \text{ radians}$$
+            </div>
+          </div>
+        </div>
+
+        <div class="problem" id="p76">
+          <h2>Problem 76</h2>
+          <span class="badge">Arc Length</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 5$ miles, $\;s = 3$ miles. &nbsp; Find $\theta$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — $\theta = s/r$</div>
+              <div class="step-body">
+                $$\theta = \frac{3}{5} = 0.6 \text{ radians}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\theta = \frac{3}{5} = 0.600 \text{ radians}$$
+            </div>
+          </div>
+        </div>
+
+        <div class="problem" id="p77">
+          <h2>Problem 77</h2>
+          <span class="badge">Arc Length — Degree Conversion</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 3$ meters, $\;\theta = 120°$. &nbsp; Find $s$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Convert degrees to radians</div>
+              <div class="step-body">
+                $$\theta = 120° \times \frac{\pi}{180} = \frac{2\pi}{3} \text{
+                rad}$$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Apply $s = r\theta$</div>
+              <div class="step-body">
+                $$s = 3 \times \frac{2\pi}{3} = 2\pi \approx 6.283 \text{ m}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$s = 2\pi \approx 6.283 \text{ meters}$$
+            </div>
+          </div>
+        </div>
+
+        <div class="problem" id="p78">
+          <h2>Problem 78</h2>
+          <span class="badge">Arc Length — Degree Conversion</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 2$ inches, $\;\theta = 30°$. &nbsp; Find $s$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Convert degrees to radians</div>
+              <div class="step-body">
+                $$\theta = 30° \times \frac{\pi}{180} = \frac{\pi}{6} \text{
+                rad}$$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Apply $s = r\theta$</div>
+              <div class="step-body">
+                $$s = 2 \times \frac{\pi}{6} = \frac{\pi}{3} \approx 1.047
+                \text{ in}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$s = \frac{\pi}{3} \approx 1.047 \text{ inches}$$
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- ───── PROBLEMS 79–85 (AREA OF SECTOR) ───── -->
+
+        <div class="problem" id="p79">
+          <h2>Problem 79</h2>
+          <span class="badge">Area of Sector</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 10$ meters, $\;\theta = \dfrac{1}{2}$ radian. &nbsp; Find $A$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Apply the area-of-sector formula
+              </div>
+              <div class="step-body">$$A = \frac{1}{2}r^2\theta$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Substitute</div>
+              <div class="step-body">
+                $$A = \frac{1}{2}(10)^2\left(\frac{1}{2}\right) =
+                \frac{1}{2}(100)\left(\frac{1}{2}\right) = 25 \text{ m}^2$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$A = 25 \text{ square meters}$$</div>
+          </div>
+        </div>
+
+        <div class="problem" id="p80">
+          <h2>Problem 80</h2>
+          <span class="badge">Area of Sector</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 6$ feet, $\;\theta = 2$ radians. &nbsp; Find $A$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — $A = \frac{1}{2}r^2\theta$</div>
+              <div class="step-body">
+                $$A = \frac{1}{2}(6)^2(2) = \frac{1}{2}(36)(2) = 36 \text{
+                ft}^2$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$A = 36 \text{ square feet}$$</div>
+          </div>
+        </div>
+
+        <div class="problem" id="p81">
+          <h2>Problem 81</h2>
+          <span class="badge">Area of Sector</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\theta = \dfrac{1}{4}$ radian, $\;A = 6$ square centimeters. &nbsp;
+            Find $r$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Solve $A = \frac{1}{2}r^2\theta$ for $r$
+              </div>
+              <div class="step-body">$$r^2 = \frac{2A}{\theta}$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Substitute</div>
+              <div class="step-body">
+                $$r^2 = \frac{2(6)}{1/4} = 12 \times 4 = 48$$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">
+                Step 3 — Take the positive square root ($r &gt; 0$)
+              </div>
+              <div class="step-body">
+                $$r = \sqrt{48} = 4\sqrt{3} \approx 6.928 \text{ cm}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$r = 4\sqrt{3} \approx 6.928 \text{ centimeters}$$
+            </div>
+          </div>
+        </div>
+
+        <div class="problem" id="p82">
+          <h2>Problem 82</h2>
+          <span class="badge">Area of Sector</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\theta = \dfrac{1}{3}$ radian, $\;A = 2$ square feet. &nbsp; Find
+            $r$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — $r^2 = 2A/\theta$</div>
+              <div class="step-body">
+                $$r^2 = \frac{2(2)}{1/3} = 4 \times 3 = 12$$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Square root</div>
+              <div class="step-body">
+                $$r = \sqrt{12} = 2\sqrt{3} \approx 3.464 \text{ ft}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$r = 2\sqrt{3} \approx 3.464 \text{ feet}$$
+            </div>
+          </div>
+        </div>
+
+        <div class="problem" id="p83">
+          <h2>Problem 83</h2>
+          <span class="badge">Area of Sector</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 6$ meters, $\;A = 8$ square meters. &nbsp; Find $\theta$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Solve $A = \frac{1}{2}r^2\theta$ for $\theta$
+              </div>
+              <div class="step-body">$$\theta = \frac{2A}{r^2}$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Substitute</div>
+              <div class="step-body">
+                $$\theta = \frac{2(8)}{(6)^2} = \frac{16}{36} = \frac{4}{9}
+                \approx 0.444 \text{ rad}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\theta = \frac{4}{9} \approx 0.444 \text{ radians}$$
+            </div>
+          </div>
+        </div>
+
+        <div class="problem" id="p84">
+          <h2>Problem 84</h2>
+          <span class="badge">Area of Sector</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 5$ miles, $\;A = 3$ square miles. &nbsp; Find $\theta$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — $\theta = 2A/r^2$</div>
+              <div class="step-body">
+                $$\theta = \frac{2(3)}{(5)^2} = \frac{6}{25} = 0.24 \text{
+                rad}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\theta = \frac{6}{25} = 0.240 \text{ radians}$$
+            </div>
+          </div>
+        </div>
+
+        <div class="problem" id="p85">
+          <h2>Problem 85</h2>
+          <span class="badge">Area of Sector — Degree Conversion</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $r = 3$ meters, $\;\theta = 120°$. &nbsp; Find $A$.
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Convert to radians</div>
+              <div class="step-body">
+                $$\theta = 120° \times \frac{\pi}{180} = \frac{2\pi}{3} \text{
+                rad}$$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — $A = \frac{1}{2}r^2\theta$</div>
+              <div class="step-body">
+                $$A = \frac{1}{2}(3)^2 \cdot \frac{2\pi}{3} =
+                \frac{1}{2}(9)\cdot\frac{2\pi}{3} = 3\pi \approx 9.425 \text{
+                m}^2$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$A = 3\pi \approx 9.425 \text{ square meters}$$
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- .container -->
+    </div>
+    <!-- .main -->
+
+    <script>
+      const btn = document.getElementById("menuBtn"),
+        overlay = document.getElementById("overlay"),
+        sidebar = document.getElementById("sidebar");
+      function toggle() {
+        document.body.classList.toggle("nav-open");
+      }
+      btn.addEventListener("click", toggle);
+      overlay.addEventListener("click", toggle);
+      sidebar.querySelectorAll('a[href^="#"]').forEach((a) =>
+        a.addEventListener("click", () => {
+          if (window.innerWidth <= 768) toggle();
+        }),
+      );
+    </script>
+  </body>
+</html>

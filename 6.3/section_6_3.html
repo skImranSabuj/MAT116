@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section 6.3 – Remaining Trigonometric Functions | MAT 116</title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+      :root {
+        --navy: #0f3460;
+        --red: #e94560;
+        --sidebar-w: 260px;
+        --topbar-h: 56px;
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --text: #1a1a2e;
+        --muted: #666;
+        --border: #e0e4ec;
+        --step-bg: #f8f9fa;
+      }
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: var(--text);
+        background: var(--bg);
+        min-height: 100vh;
+      }
+      .topbar {
+        display: none;
+        align-items: center;
+        height: var(--topbar-h);
+        background: var(--navy);
+        color: #fff;
+        padding: 0 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        gap: 0.75rem;
+      }
+      .topbar-title {
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .menu-btn span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+      }
+      body.nav-open .menu-btn span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      body.nav-open .menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-btn span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-w);
+        height: 100vh;
+        background: var(--navy);
+        color: #fff;
+        overflow-y: auto;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-brand {
+        padding: 1.25rem 1.1rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .brand-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+      }
+      .brand-sub {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 0.25rem;
+      }
+      .nav-group {
+        margin: 0.5rem 0;
+      }
+      .nav-group-title {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0.75rem 1.1rem 0.25rem;
+      }
+      .nav-group ul {
+        list-style: none;
+      }
+      .nav-group ul li a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.42rem 1.1rem;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-left: 3px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .nav-group ul li a:hover,
+      .nav-group ul li a.active {
+        background: rgba(255, 255, 255, 0.09);
+        border-left-color: var(--red);
+        color: #fff;
+      }
+      .nav-num {
+        display: inline-block;
+        min-width: 1.8rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+        font-size: 0.78rem;
+        padding: 0 0.3rem;
+        flex-shrink: 0;
+      }
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 90;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      body.nav-open .overlay {
+        opacity: 1;
+      }
+      .main {
+        margin-left: var(--sidebar-w);
+        min-height: 100vh;
+        padding: 2rem 1.5rem 5rem;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--card);
+        padding: 2.5rem 3.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+      }
+      .page-header {
+        border-bottom: 4px solid var(--navy);
+        padding-bottom: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .page-header h1 {
+        font-size: 1.9rem;
+        color: var(--navy);
+        margin-bottom: 0.3rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: var(--muted);
+        font-style: italic;
+      }
+      .header-nav-label {
+        margin-top: 1rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .chapter-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.6rem;
+      }
+      .chapter-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3.5rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: #eef3f8;
+        border: 1px solid #d6dfeb;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .chapter-link:hover,
+      .chapter-link.active {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+      .problem {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem 2rem;
+        margin: 2.25rem 0;
+        background: var(--card);
+        scroll-margin-top: 1.5rem;
+      }
+      .problem h2 {
+        font-size: 1.5rem;
+        color: var(--navy);
+        border-left: 5px solid var(--red);
+        padding-left: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 0.18rem 0.65rem;
+        margin-bottom: 1.1rem;
+      }
+      .given-label {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+      .given-box {
+        background: #f0f4ff;
+        border-left: 4px solid var(--navy);
+        border-radius: 4px;
+        padding: 0.85rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-size: 0.95rem;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .step {
+        padding: 0.85rem 1.1rem;
+        background: var(--step-bg);
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+      }
+      .step-title {
+        font-weight: bold;
+        color: #16213e;
+        margin-bottom: 0.4rem;
+      }
+      .step-body {
+        font-size: 0.97rem;
+        word-break: break-word;
+      }
+      .answer-box {
+        margin-top: 1.25rem;
+        background: #e8f5e9;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .answer-box-header {
+        font-weight: bold;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-plain {
+        padding: 0.7rem 1rem;
+        font-size: 0.97rem;
+        color: #1b5e20;
+      }
+      hr {
+        border: none;
+        border-top: 1px solid #e8eaee;
+        margin: 2rem 0;
+      }
+      @media (max-width: 768px) {
+        .topbar {
+          display: flex;
+        }
+        .sidebar {
+          top: 0;
+          transform: translateX(-100%);
+          z-index: 300;
+        }
+        body.nav-open .sidebar {
+          transform: translateX(0);
+        }
+        body.nav-open .overlay {
+          display: block;
+        }
+        .main {
+          margin-left: 0;
+          padding: calc(var(--topbar-h)+1rem) 0.75rem 4rem;
+        }
+        .container {
+          padding: 1.25rem 1rem;
+        }
+        .page-header h1 {
+          font-size: 1.4rem;
+        }
+        .problem {
+          padding: 1.1rem 0.9rem;
+        }
+      }
+      @media (min-width: 769px) {
+        .overlay {
+          display: none !important;
+        }
+        .topbar {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar" id="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="topbar-title">MAT 116 — Section 6.3</span>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-title">MAT 116 Solutions</div>
+        <div class="brand-sub">Sullivan Precalculus 10th Ed · Section 6.3</div>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Chapters</div>
+        <ul>
+          <li>
+            <a href="../index.html"><span class="nav-num">⌂</span>Home</a>
+          </li>
+          <li>
+            <a href="../6.1/section_6_1.html"
+              ><span class="nav-num">6.1</span>Arc Length &amp; Area</a
+            >
+          </li>
+          <li>
+            <a href="../6.2/section_6_2.html"
+              ><span class="nav-num">6.2</span>Unit Circle Trig</a
+            >
+          </li>
+          <li>
+            <a href="section_6_3.html" class="active"
+              ><span class="nav-num">6.3</span>Remaining Trig Fns</a
+            >
+          </li>
+          <li>
+            <a href="../6.4/section_6_4.html"
+              ><span class="nav-num">6.4</span>Graphs of Sin/Cos</a
+            >
+          </li>
+          <li>
+            <a href="../7.2/section_7_2.html"
+              ><span class="nav-num">7.2</span>Inverse Trig</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Quadrant Given (43–48)</div>
+        <ul>
+          <li>
+            <a href="#p43"><span class="nav-num">43</span>sin=12/13, QII</a>
+          </li>
+          <li>
+            <a href="#p44"><span class="nav-num">44</span>cos=3/5, QIV</a>
+          </li>
+          <li>
+            <a href="#p45"><span class="nav-num">45</span>sin=−5/13, QIII</a>
+          </li>
+          <li>
+            <a href="#p46"><span class="nav-num">46</span>cos=−4/5, QIII</a>
+          </li>
+          <li>
+            <a href="#p47"
+              ><span class="nav-num">47</span>cos=4/5, 270°&lt;θ&lt;360°</a
+            >
+          </li>
+          <li>
+            <a href="#p48"
+              ><span class="nav-num">48</span>sin=5/13, 90°&lt;θ&lt;180°</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Range Given (49–52)</div>
+        <ul>
+          <li>
+            <a href="#p49"
+              ><span class="nav-num">49</span>sin=−2/3, π&lt;θ&lt;3π/2</a
+            >
+          </li>
+          <li>
+            <a href="#p50"
+              ><span class="nav-num">50</span>cos=−1/3, π/2&lt;θ&lt;π</a
+            >
+          </li>
+          <li>
+            <a href="#p51"><span class="nav-num">51</span>cos=−1/4, tan&gt;0</a>
+          </li>
+          <li>
+            <a href="#p52"><span class="nav-num">52</span>sin=2/3, tan&lt;0</a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Two Conditions (53–55)</div>
+        <ul>
+          <li>
+            <a href="#p53"><span class="nav-num">53</span>csc=3, cot&lt;0</a>
+          </li>
+          <li>
+            <a href="#p54"><span class="nav-num">54</span>sec=2, sin&lt;0</a>
+          </li>
+          <li>
+            <a href="#p55"><span class="nav-num">55</span>cot=4/3, cos&lt;0</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main">
+      <div class="container">
+        <header class="page-header" id="top">
+          <h1>Section 6.3 — Remaining Trigonometric Functions</h1>
+          <p class="subtitle">
+            MAT 116 — Precalculus &nbsp;|&nbsp; Sullivan 10th Edition
+            &nbsp;|&nbsp; Problems 43–55
+          </p>
+          <div class="header-nav-label">Jump to Section</div>
+          <div class="chapter-nav">
+            <a class="chapter-link" href="../6.1/section_6_1.html">6.1</a>
+            <a class="chapter-link" href="../6.2/section_6_2.html">6.2</a>
+            <a class="chapter-link active" href="section_6_3.html">6.3</a>
+            <a class="chapter-link" href="../6.4/section_6_4.html">6.4</a>
+            <a class="chapter-link" href="../7.2/section_7_2.html">7.2</a>
+            <a class="chapter-link" href="../index.html">Home</a>
+          </div>
+        </header>
+
+        <div class="section-sidenotes">
+          <div class="sidenotes-title">★ Key Notes for Section 6.3</div>
+          <div class="sidenote">
+            <div class="sidenote-header">Pythagorean Identity — Core Tool</div>
+            <div class="sidenote-body">
+              $$\sin^2\theta + \cos^2\theta = 1$$ Use it to find the missing
+              primary function, then derive the rest:
+              $\tan\theta=\dfrac{\sin\theta}{\cos\theta}$,
+              $\csc\theta=\dfrac{1}{\sin\theta}$,
+              $\sec\theta=\dfrac{1}{\cos\theta}$,
+              $\cot\theta=\dfrac{1}{\tan\theta}$
+            </div>
+          </div>
+          <div class="sidenote">
+            <div class="sidenote-header">
+              Signs in Each Quadrant (ASTC rule)
+            </div>
+            <div class="sidenote-body">
+              QI: All positive QII: sin, csc positive QIII: tan, cot positive
+              QIV: cos, sec positive Memory: "All Students Take Calculus" →
+              QI→QII→QIII→QIV
+            </div>
+          </div>
+          <div class="sidenote">
+            <div class="sidenote-header">Strategy</div>
+            <div class="sidenote-body">
+              1. Identify the quadrant from the given conditions. 2. Use the
+              Pythagorean identity to find the missing trig value with correct
+              sign. 3. Compute the remaining four functions using definitions.
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P43 ===== -->
+        <div class="problem" id="p43">
+          <h2>Problem 43</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\sin\theta = \dfrac{12}{13}$, &nbsp; $\theta$ in Quadrant II
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Find $\cos\theta$ via Pythagorean identity
+              </div>
+              <div class="step-body">
+                $$\cos^2\theta = 1-\sin^2\theta = 1-\left(\frac{12}{13}\right)^2
+                = 1-\frac{144}{169}=\frac{25}{169}$$ In QII, $\cos\theta \lt 0$:
+                $$\cos\theta = -\frac{5}{13}$$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Compute all six functions</div>
+              <div class="step-body">
+                $$\tan\theta =
+                \frac{\sin\theta}{\cos\theta}=\frac{12/13}{-5/13}=-\frac{12}{5}$$
+                $$\csc\theta = \frac{1}{\sin\theta}=\frac{13}{12}$$ $$\sec\theta
+                = \frac{1}{\cos\theta}=-\frac{13}{5}$$ $$\cot\theta =
+                \frac{1}{\tan\theta}=-\frac{5}{12}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\cos\theta=-\tfrac{5}{13},\quad\tan\theta=-\tfrac{12}{5},\quad\csc\theta=\tfrac{13}{12},\quad\sec\theta=-\tfrac{13}{5},\quad\cot\theta=-\tfrac{5}{12}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P44 ===== -->
+        <div class="problem" id="p44">
+          <h2>Problem 44</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\cos\theta = \dfrac{3}{5}$, &nbsp; $\theta$ in Quadrant IV
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Find $\sin\theta$</div>
+              <div class="step-body">
+                $$\sin^2\theta =
+                1-\left(\frac{3}{5}\right)^2=1-\frac{9}{25}=\frac{16}{25}$$ In
+                QIV, $\sin\theta \lt 0$: $\quad\sin\theta = -\dfrac{4}{5}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta =
+                \frac{-4/5}{3/5}=-\frac{4}{3},\quad\csc\theta=-\frac{5}{4},\quad\sec\theta=\frac{5}{3},\quad\cot\theta=-\frac{3}{4}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=-\tfrac{4}{5},\quad\tan\theta=-\tfrac{4}{3},\quad\csc\theta=-\tfrac{5}{4},\quad\sec\theta=\tfrac{5}{3},\quad\cot\theta=-\tfrac{3}{4}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P45 ===== -->
+        <div class="problem" id="p45">
+          <h2>Problem 45</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\sin\theta = -\dfrac{5}{13}$, &nbsp; $\theta$ in Quadrant III
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Find $\cos\theta$</div>
+              <div class="step-body">
+                $$\cos^2\theta=1-\frac{25}{169}=\frac{144}{169}$$ In QIII,
+                $\cos\theta \lt 0$: $\quad\cos\theta=-\dfrac{12}{13}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{-5/13}{-12/13}=\frac{5}{12},\quad\csc\theta=-\frac{13}{5},\quad\sec\theta=-\frac{13}{12},\quad\cot\theta=\frac{12}{5}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\cos\theta=-\tfrac{12}{13},\quad\tan\theta=\tfrac{5}{12},\quad\csc\theta=-\tfrac{13}{5},\quad\sec\theta=-\tfrac{13}{12},\quad\cot\theta=\tfrac{12}{5}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P46 ===== -->
+        <div class="problem" id="p46">
+          <h2>Problem 46</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\cos\theta = -\dfrac{4}{5}$, &nbsp; $\theta$ in Quadrant III
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Find $\sin\theta$</div>
+              <div class="step-body">
+                $$\sin^2\theta=1-\frac{16}{25}=\frac{9}{25}$$ In QIII,
+                $\sin\theta \lt 0$: $\quad\sin\theta=-\dfrac{3}{5}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{-3/5}{-4/5}=\frac{3}{4},\quad\csc\theta=-\frac{5}{3},\quad\sec\theta=-\frac{5}{4},\quad\cot\theta=\frac{4}{3}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=-\tfrac{3}{5},\quad\tan\theta=\tfrac{3}{4},\quad\csc\theta=-\tfrac{5}{3},\quad\sec\theta=-\tfrac{5}{4},\quad\cot\theta=\tfrac{4}{3}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P47 ===== -->
+        <div class="problem" id="p47">
+          <h2>Problem 47</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\cos\theta = \dfrac{4}{5}$, &nbsp; $270° \lt \theta \lt 360°$
+            (Quadrant IV)
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Find $\sin\theta$</div>
+              <div class="step-body">
+                $$\sin^2\theta=1-\frac{16}{25}=\frac{9}{25}$$ In QIV,
+                $\sin\theta \lt 0$: $\quad\sin\theta=-\dfrac{3}{5}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{-3/5}{4/5}=-\frac{3}{4},\quad\csc\theta=-\frac{5}{3},\quad\sec\theta=\frac{5}{4},\quad\cot\theta=-\frac{4}{3}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=-\tfrac{3}{5},\quad\tan\theta=-\tfrac{3}{4},\quad\csc\theta=-\tfrac{5}{3},\quad\sec\theta=\tfrac{5}{4},\quad\cot\theta=-\tfrac{4}{3}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P48 ===== -->
+        <div class="problem" id="p48">
+          <h2>Problem 48</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\sin\theta = \dfrac{5}{13}$, &nbsp; $90° \lt \theta \lt 180°$
+            (Quadrant II)
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Find $\cos\theta$</div>
+              <div class="step-body">
+                $$\cos^2\theta=1-\frac{25}{169}=\frac{144}{169}$$ In QII,
+                $\cos\theta \lt 0$: $\quad\cos\theta=-\dfrac{12}{13}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{5/13}{-12/13}=-\frac{5}{12},\quad\csc\theta=\frac{13}{5},\quad\sec\theta=-\frac{13}{12},\quad\cot\theta=-\frac{12}{5}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\cos\theta=-\tfrac{12}{13},\quad\tan\theta=-\tfrac{5}{12},\quad\csc\theta=\tfrac{13}{5},\quad\sec\theta=-\tfrac{13}{12},\quad\cot\theta=-\tfrac{12}{5}$$
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- ===== P49 ===== -->
+        <div class="problem" id="p49">
+          <h2>Problem 49</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\sin\theta = -\dfrac{2}{3}$, &nbsp; $\pi \lt \theta \lt
+            \dfrac{3\pi}{2}$ (Quadrant III)
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Find $\cos\theta$</div>
+              <div class="step-body">
+                $$\cos^2\theta=1-\frac{4}{9}=\frac{5}{9}$$ In QIII, $\cos\theta
+                \lt 0$: $\quad\cos\theta=-\dfrac{\sqrt5}{3}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{-2/3}{-\sqrt5/3}=\frac{2}{\sqrt5}=\frac{2\sqrt5}{5}$$
+                $$\csc\theta=-\frac{3}{2},\quad\sec\theta=-\frac{3}{\sqrt5}=-\frac{3\sqrt5}{5},\quad\cot\theta=\frac{\sqrt5}{2}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\cos\theta=-\frac{\sqrt5}{3},\quad\tan\theta=\frac{2\sqrt5}{5},\quad\csc\theta=-\frac{3}{2},\quad\sec\theta=-\frac{3\sqrt5}{5},\quad\cot\theta=\frac{\sqrt5}{2}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P50 ===== -->
+        <div class="problem" id="p50">
+          <h2>Problem 50</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\cos\theta = -\dfrac{1}{3}$, &nbsp; $\dfrac{\pi}{2} \lt \theta \lt
+            \pi$ (Quadrant II)
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Find $\sin\theta$</div>
+              <div class="step-body">
+                $$\sin^2\theta=1-\frac{1}{9}=\frac{8}{9}$$ In QII, $\sin\theta
+                \gt 0$: $\quad\sin\theta=\dfrac{2\sqrt2}{3}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{2\sqrt2/3}{-1/3}=-2\sqrt2$$
+                $$\csc\theta=\frac{3}{2\sqrt2}=\frac{3\sqrt2}{4},\quad\sec\theta=-3,\quad\cot\theta=\frac{-1/3}{2\sqrt2/3}=-\frac{1}{2\sqrt2}=-\frac{\sqrt2}{4}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=\frac{2\sqrt2}{3},\quad\tan\theta=-2\sqrt2,\quad\csc\theta=\frac{3\sqrt2}{4},\quad\sec\theta=-3,\quad\cot\theta=-\frac{\sqrt2}{4}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P51 ===== -->
+        <div class="problem" id="p51">
+          <h2>Problem 51</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\cos\theta = -\dfrac{1}{4}$, &nbsp; $\tan\theta \gt 0$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Identify the quadrant</div>
+              <div class="step-body">
+                $\cos\theta \lt 0$ and $\tan\theta \gt 0 \;\Rightarrow\;$ both
+                $\sin\theta$ and $\cos\theta$ must be negative $\Rightarrow$
+                Quadrant III.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Find $\sin\theta$</div>
+              <div class="step-body">
+                $$\sin^2\theta=1-\frac{1}{16}=\frac{15}{16}$$ In QIII:
+                $\quad\sin\theta=-\dfrac{\sqrt{15}}{4}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{-\sqrt{15}/4}{-1/4}=\sqrt{15}$$
+                $$\csc\theta=-\frac{4}{\sqrt{15}}=-\frac{4\sqrt{15}}{15},\quad\sec\theta=-4,\quad\cot\theta=\frac{1}{\sqrt{15}}=\frac{\sqrt{15}}{15}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=-\frac{\sqrt{15}}{4},\quad\tan\theta=\sqrt{15},\quad\csc\theta=-\frac{4\sqrt{15}}{15},\quad\sec\theta=-4,\quad\cot\theta=\frac{\sqrt{15}}{15}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P52 ===== -->
+        <div class="problem" id="p52">
+          <h2>Problem 52</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\sin\theta = \dfrac{2}{3}$, &nbsp; $\tan\theta \lt 0$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Identify the quadrant</div>
+              <div class="step-body">
+                $\sin\theta \gt 0$ and $\tan\theta \lt 0 \;\Rightarrow\;
+                \cos\theta \lt 0 \;\Rightarrow$ Quadrant II.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Find $\cos\theta$</div>
+              <div class="step-body">
+                $$\cos^2\theta=1-\frac{4}{9}=\frac{5}{9}$$ In QII:
+                $\quad\cos\theta=-\dfrac{\sqrt5}{3}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{2/3}{-\sqrt5/3}=-\frac{2}{\sqrt5}=-\frac{2\sqrt5}{5}$$
+                $$\csc\theta=\frac{3}{2},\quad\sec\theta=-\frac{3}{\sqrt5}=-\frac{3\sqrt5}{5},\quad\cot\theta=-\frac{\sqrt5}{2}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\cos\theta=-\frac{\sqrt5}{3},\quad\tan\theta=-\frac{2\sqrt5}{5},\quad\csc\theta=\frac{3}{2},\quad\sec\theta=-\frac{3\sqrt5}{5},\quad\cot\theta=-\frac{\sqrt5}{2}$$
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- ===== P53 ===== -->
+        <div class="problem" id="p53">
+          <h2>Problem 53</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\csc\theta = 3$, &nbsp; $\cot\theta \lt 0$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Extract $\sin\theta$ and identify quadrant
+              </div>
+              <div class="step-body">
+                $\csc\theta=3 \Rightarrow \sin\theta=\dfrac{1}{3} \gt 0$.
+                $\cot\theta \lt 0 \Rightarrow \cos\theta/\sin\theta \lt 0$.
+                Since $\sin\theta \gt 0$, we need $\cos\theta \lt 0 \Rightarrow$
+                Quadrant II.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Find $\cos\theta$</div>
+              <div class="step-body">
+                $$\cos^2\theta=1-\frac{1}{9}=\frac{8}{9}$$ In QII:
+                $\quad\cos\theta=-\dfrac{2\sqrt2}{3}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{1/3}{-2\sqrt2/3}=-\frac{1}{2\sqrt2}=-\frac{\sqrt2}{4}$$
+                $$\sec\theta=-\frac{3}{2\sqrt2}=-\frac{3\sqrt2}{4},\quad\cot\theta=-2\sqrt2$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=\tfrac{1}{3},\;\cos\theta=-\tfrac{2\sqrt2}{3},\;\tan\theta=-\tfrac{\sqrt2}{4},\;\sec\theta=-\tfrac{3\sqrt2}{4},\;\cot\theta=-2\sqrt2$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P54 ===== -->
+        <div class="problem" id="p54">
+          <h2>Problem 54</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\sec\theta = 2$, &nbsp; $\sin\theta \lt 0$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Extract $\cos\theta$ and identify quadrant
+              </div>
+              <div class="step-body">
+                $\sec\theta=2 \Rightarrow \cos\theta=\dfrac{1}{2} \gt 0$.
+                $\cos\theta \gt 0$ and $\sin\theta \lt 0 \Rightarrow$ Quadrant
+                IV.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Find $\sin\theta$</div>
+              <div class="step-body">
+                $$\sin^2\theta=1-\frac{1}{4}=\frac{3}{4}$$ In QIV:
+                $\quad\sin\theta=-\dfrac{\sqrt3}{2}$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{-\sqrt3/2}{1/2}=-\sqrt3$$
+                $$\csc\theta=-\frac{2}{\sqrt3}=-\frac{2\sqrt3}{3},\quad\cot\theta=-\frac{1}{\sqrt3}=-\frac{\sqrt3}{3}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=-\tfrac{\sqrt3}{2},\;\cos\theta=\tfrac{1}{2},\;\tan\theta=-\sqrt3,\;\csc\theta=-\tfrac{2\sqrt3}{3},\;\cot\theta=-\tfrac{\sqrt3}{3}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== P55 ===== -->
+        <div class="problem" id="p55">
+          <h2>Problem 55</h2>
+          <span class="badge">Find Remaining Trig Functions</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            $\cot\theta = \dfrac{4}{3}$, &nbsp; $\cos\theta \lt 0$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Identify the quadrant</div>
+              <div class="step-body">
+                $\cot\theta \gt 0 \Rightarrow \tan\theta \gt 0 \Rightarrow \sin$
+                and $\cos$ have the same sign. $\cos\theta \lt 0 \Rightarrow
+                \sin\theta \lt 0$ as well $\Rightarrow$ Quadrant III.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">
+                Step 2 — Use reference triangle: opposite $=3$, adjacent $=4$,
+                hypotenuse $=5$
+              </div>
+              <div class="step-body">
+                In QIII both components are negative:
+                $$\sin\theta=-\frac{3}{5},\quad\cos\theta=-\frac{4}{5}$$ Check:
+                $\cot\theta=\cos\theta/\sin\theta=(-4/5)/(-3/5)=4/3$ ✓
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 3 — Remaining functions</div>
+              <div class="step-body">
+                $$\tan\theta=\frac{3}{4},\quad\csc\theta=-\frac{5}{3},\quad\sec\theta=-\frac{5}{4}$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\sin\theta=-\tfrac{3}{5},\;\cos\theta=-\tfrac{4}{5},\;\tan\theta=\tfrac{3}{4},\;\csc\theta=-\tfrac{5}{3},\;\sec\theta=-\tfrac{5}{4}$$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const btn = document.getElementById("menuBtn"),
+        overlay = document.getElementById("overlay"),
+        sidebar = document.getElementById("sidebar");
+      function toggle() {
+        document.body.classList.toggle("nav-open");
+      }
+      btn.addEventListener("click", toggle);
+      overlay.addEventListener("click", toggle);
+      sidebar.querySelectorAll('a[href^="#"]').forEach((a) =>
+        a.addEventListener("click", () => {
+          if (window.innerWidth <= 768) toggle();
+        }),
+      );
+    </script>
+  </body>
+</html>

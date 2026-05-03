@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Section 6.2 – Trigonometric Functions: Unit Circle Approach | MAT 116
+    </title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+    ></script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+      :root {
+        --navy: #0f3460;
+        --red: #e94560;
+        --sidebar-w: 260px;
+        --topbar-h: 56px;
+        --bg: #f3f4f6;
+        --card: #ffffff;
+        --text: #1a1a2e;
+        --muted: #666;
+        --border: #e0e4ec;
+        --step-bg: #f8f9fa;
+      }
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        line-height: 1.8;
+        color: var(--text);
+        background: var(--bg);
+        min-height: 100vh;
+      }
+      .topbar {
+        display: none;
+        align-items: center;
+        height: var(--topbar-h);
+        background: var(--navy);
+        color: #fff;
+        padding: 0 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        gap: 0.75rem;
+      }
+      .topbar-title {
+        font-size: 1rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+      }
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .menu-btn span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition:
+          transform 0.25s,
+          opacity 0.25s;
+      }
+      body.nav-open .menu-btn span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      body.nav-open .menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-btn span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-w);
+        height: 100vh;
+        background: var(--navy);
+        color: #fff;
+        overflow-y: auto;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .sidebar-brand {
+        padding: 1.25rem 1.1rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .brand-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        line-height: 1.35;
+      }
+      .brand-sub {
+        font-size: 0.73rem;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 0.25rem;
+      }
+      .nav-group {
+        margin: 0.5rem 0;
+      }
+      .nav-group-title {
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0.75rem 1.1rem 0.25rem;
+      }
+      .nav-group ul {
+        list-style: none;
+      }
+      .nav-group ul li a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.42rem 1.1rem;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-size: 0.875rem;
+        border-left: 3px solid transparent;
+        transition:
+          background 0.15s,
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .nav-group ul li a:hover,
+      .nav-group ul li a.active {
+        background: rgba(255, 255, 255, 0.09);
+        border-left-color: var(--red);
+        color: #fff;
+      }
+      .nav-num {
+        display: inline-block;
+        min-width: 1.8rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+        font-size: 0.78rem;
+        padding: 0 0.3rem;
+        flex-shrink: 0;
+      }
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 90;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      body.nav-open .overlay {
+        opacity: 1;
+      }
+      .main {
+        margin-left: var(--sidebar-w);
+        min-height: 100vh;
+        padding: 2rem 1.5rem 5rem;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--card);
+        padding: 2.5rem 3.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+      }
+      .page-header {
+        border-bottom: 4px solid var(--navy);
+        padding-bottom: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .page-header h1 {
+        font-size: 1.9rem;
+        color: var(--navy);
+        margin-bottom: 0.3rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        color: var(--muted);
+        font-style: italic;
+      }
+      .header-nav-label {
+        margin-top: 1rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .chapter-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.6rem;
+      }
+      .chapter-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3.5rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--navy);
+        background: #eef3f8;
+        border: 1px solid #d6dfeb;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .chapter-link:hover,
+      .chapter-link.active {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+      .section-sidenotes {
+        margin: 0 0 2.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .sidenotes-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      .sidenote {
+        background: #fffde7;
+        border-left: 4px solid #f9a825;
+        border-radius: 0 6px 6px 0;
+        padding: 0.75rem 1.1rem;
+      }
+      .sidenote-header {
+        font-weight: bold;
+        color: #e65100;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 0.4rem;
+      }
+      .sidenote-body {
+        font-size: 0.94rem;
+        line-height: 1.9;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+      .problem {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem 2rem;
+        margin: 2.25rem 0;
+        background: var(--card);
+        scroll-margin-top: 1.5rem;
+      }
+      .problem h2 {
+        font-size: 1.5rem;
+        color: var(--navy);
+        border-left: 5px solid var(--red);
+        padding-left: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .badge {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 0.18rem 0.65rem;
+        margin-bottom: 1.1rem;
+      }
+      .given-label {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.35rem;
+      }
+      .given-box {
+        background: #f0f4ff;
+        border-left: 4px solid var(--navy);
+        border-radius: 4px;
+        padding: 0.85rem 1.1rem;
+        margin-bottom: 1.4rem;
+        font-size: 0.95rem;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      .step {
+        padding: 0.85rem 1.1rem;
+        background: var(--step-bg);
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+      }
+      .step-title {
+        font-weight: bold;
+        color: #16213e;
+        margin-bottom: 0.4rem;
+      }
+      .step-body {
+        font-size: 0.97rem;
+        word-break: break-word;
+      }
+      .answer-box {
+        margin-top: 1.25rem;
+        background: #e8f5e9;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .answer-box-header {
+        font-weight: bold;
+        color: #fff;
+        background: #2e7d32;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 0.38rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .answer-box-header::before {
+        content: "✎";
+        font-size: 0.9rem;
+      }
+      .answer-plain {
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+        color: #1b5e20;
+        font-weight: bold;
+      }
+      @media (max-width: 768px) {
+        .topbar {
+          display: flex;
+        }
+        .sidebar {
+          top: 0;
+          transform: translateX(-100%);
+          z-index: 300;
+        }
+        body.nav-open .sidebar {
+          transform: translateX(0);
+        }
+        body.nav-open .overlay {
+          display: block;
+        }
+        .main {
+          margin-left: 0;
+          padding: calc(var(--topbar-h)+1rem) 0.75rem 4rem;
+        }
+        .container {
+          padding: 1.25rem 1rem;
+        }
+        .page-header h1 {
+          font-size: 1.4rem;
+        }
+        .problem {
+          padding: 1.1rem 0.9rem;
+        }
+      }
+      @media (min-width: 769px) {
+        .overlay {
+          display: none !important;
+        }
+        .topbar {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar" id="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="topbar-title">MAT 116 — Section 6.2</span>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-title">MAT 116 Solutions</div>
+        <div class="brand-sub">Sullivan Precalculus 10th Ed · Section 6.2</div>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Chapters</div>
+        <ul>
+          <li>
+            <a href="../index.html"><span class="nav-num">⌂</span>Home</a>
+          </li>
+          <li>
+            <a href="../5.6/section_5_6.html"
+              ><span class="nav-num">5.6</span>Log &amp; Exp Eqs</a
+            >
+          </li>
+          <li>
+            <a href="../6.1/section_6_1.html"
+              ><span class="nav-num">6.1</span>Arc Length &amp; Area</a
+            >
+          </li>
+          <li>
+            <a href="section_6_2.html" class="active"
+              ><span class="nav-num">6.2</span>Unit Circle Trig</a
+            >
+          </li>
+          <li>
+            <a href="../6.3/section_6_3.html"
+              ><span class="nav-num">6.3</span>Remaining Trig Fns</a
+            >
+          </li>
+          <li>
+            <a href="../6.4/section_6_4.html"
+              ><span class="nav-num">6.4</span>Graphs of Sin/Cos</a
+            >
+          </li>
+          <li>
+            <a href="../7.2/section_7_2.html"
+              ><span class="nav-num">7.2</span>Inverse Trig</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Problems 21–28</div>
+        <ul>
+          <li>
+            <a href="#p21"><span class="nav-num">21</span>sin(11π/2)</a>
+          </li>
+          <li>
+            <a href="#p22"><span class="nav-num">22</span>cos(7π)</a>
+          </li>
+          <li>
+            <a href="#p23"><span class="nav-num">23</span>cot(7π/2)</a>
+          </li>
+          <li>
+            <a href="#p24"><span class="nav-num">24</span>tan(6π)</a>
+          </li>
+          <li>
+            <a href="#p25"><span class="nav-num">25</span>sec(8π)</a>
+          </li>
+          <li>
+            <a href="#p26"><span class="nav-num">26</span>csc(11π/2)</a>
+          </li>
+          <li>
+            <a href="#p27"><span class="nav-num">27</span>sin(−3π)</a>
+          </li>
+          <li>
+            <a href="#p28"><span class="nav-num">28</span>cos(−3π/2)</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main">
+      <div class="container">
+        <header class="page-header" id="top">
+          <h1>Section 6.2 — Trigonometric Functions: Unit Circle Approach</h1>
+          <p class="subtitle">
+            MAT 116 — Precalculus &nbsp;|&nbsp; Sullivan 10th Edition
+            &nbsp;|&nbsp; Problems 21–28
+          </p>
+          <div class="header-nav-label">Jump to Section</div>
+          <div class="chapter-nav">
+            <a class="chapter-link" href="../6.1/section_6_1.html">6.1</a>
+            <a class="chapter-link active" href="section_6_2.html">6.2</a>
+            <a class="chapter-link" href="../6.3/section_6_3.html">6.3</a>
+            <a class="chapter-link" href="../6.4/section_6_4.html">6.4</a>
+            <a class="chapter-link" href="../7.2/section_7_2.html">7.2</a>
+            <a class="chapter-link" href="../index.html">Home</a>
+          </div>
+        </header>
+
+        <div class="section-sidenotes">
+          <div class="sidenotes-title">★ Key Notes for Section 6.2</div>
+          <div class="sidenote">
+            <div class="sidenote-header">Periodicity — the Core Strategy</div>
+            <div class="sidenote-body">
+              Reduce any large angle by subtracting full periods until the angle
+              is in $[0,2\pi)$: $\sin\theta$, $\cos\theta$: period $= 2\pi$
+              $\tan\theta$, $\cot\theta$: period $= \pi$ $\sec\theta$,
+              $\csc\theta$: period $= 2\pi$ Then use standard unit-circle
+              values.
+            </div>
+          </div>
+          <div class="sidenote">
+            <div class="sidenote-header">Quick Unit-Circle Reference</div>
+            <div class="sidenote-body">
+              $\sin
+              0=0,\;\sin\tfrac{\pi}{2}=1,\;\sin\pi=0,\;\sin\tfrac{3\pi}{2}=-1$
+              $\cos
+              0=1,\;\cos\tfrac{\pi}{2}=0,\;\cos\pi=-1,\;\cos\tfrac{3\pi}{2}=0$
+              Negative angles: $\sin(-\alpha)=-\sin\alpha$,
+              $\cos(-\alpha)=\cos\alpha$ (even/odd)
+            </div>
+          </div>
+        </div>
+
+        <!-- P21 -->
+        <div class="problem" id="p21">
+          <h2>Problem 21</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            Find the exact value of $\;\sin\!\dfrac{11\pi}{2}$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Reduce using period $2\pi$</div>
+              <div class="step-body">
+                Divide $\frac{11\pi}{2}$ by $2\pi$: $\quad
+                \frac{11\pi/2}{2\pi}=\frac{11}{4}=2\tfrac{3}{4}$ So
+                $\dfrac{11\pi}{2} = 2(2\pi)+\dfrac{3\pi}{2}$. Therefore
+                $\sin\!\dfrac{11\pi}{2}=\sin\!\dfrac{3\pi}{2}$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Read unit-circle value</div>
+              <div class="step-body">
+                At $\theta=\dfrac{3\pi}{2}$ (bottom of unit circle):
+                $\sin\!\dfrac{3\pi}{2}=-1$.
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$\sin\frac{11\pi}{2} = -1$$</div>
+          </div>
+        </div>
+
+        <!-- P22 -->
+        <div class="problem" id="p22">
+          <h2>Problem 22</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">Find the exact value of $\;\cos(7\pi)$</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Reduce: $7\pi = 6\pi + \pi = 3(2\pi)+\pi$
+              </div>
+              <div class="step-body">$$\cos(7\pi)=\cos(\pi)$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Unit-circle value</div>
+              <div class="step-body">$$\cos(\pi)=-1$$</div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$\cos(7\pi) = -1$$</div>
+          </div>
+        </div>
+
+        <!-- P23 -->
+        <div class="problem" id="p23">
+          <h2>Problem 23</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            Find the exact value of $\;\cot\!\dfrac{7\pi}{2}$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Reduce using period $2\pi$</div>
+              <div class="step-body">
+                $\dfrac{7\pi}{2} = 2\pi + \dfrac{3\pi}{2}$, so
+                $\cot\!\dfrac{7\pi}{2}=\cot\!\dfrac{3\pi}{2}$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Evaluate using definition</div>
+              <div class="step-body">
+                $$\cot\!\frac{3\pi}{2}=\frac{\cos(3\pi/2)}{\sin(3\pi/2)}=\frac{0}{-1}=0$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$\cot\frac{7\pi}{2} = 0$$</div>
+          </div>
+        </div>
+
+        <!-- P24 -->
+        <div class="problem" id="p24">
+          <h2>Problem 24</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">Find the exact value of $\;\tan(6\pi)$</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — $6\pi = 3(2\pi)$, so reduce to $0$
+              </div>
+              <div class="step-body">$$\tan(6\pi)=\tan(0)$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Unit-circle value</div>
+              <div class="step-body">
+                $$\tan(0)=\frac{\sin 0}{\cos 0}=\frac{0}{1}=0$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$\tan(6\pi) = 0$$</div>
+          </div>
+        </div>
+
+        <!-- P25 -->
+        <div class="problem" id="p25">
+          <h2>Problem 25</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">Find the exact value of $\;\sec(8\pi)$</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Reduce: $8\pi = 4(2\pi) \to$ angle $0$
+              </div>
+              <div class="step-body">$$\sec(8\pi)=\sec(0)$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Evaluate</div>
+              <div class="step-body">
+                $$\sec(0)=\frac{1}{\cos 0}=\frac{1}{1}=1$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$\sec(8\pi) = 1$$</div>
+          </div>
+        </div>
+
+        <!-- P26 -->
+        <div class="problem" id="p26">
+          <h2>Problem 26</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            Find the exact value of $\;\csc\!\dfrac{11\pi}{2}$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">Step 1 — Reduce (same as Problem 21)</div>
+              <div class="step-body">
+                $\dfrac{11\pi}{2}=2(2\pi)+\dfrac{3\pi}{2}$, so
+                $\csc\!\dfrac{11\pi}{2}=\csc\!\dfrac{3\pi}{2}$.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Evaluate</div>
+              <div class="step-body">
+                $$\csc\!\frac{3\pi}{2}=\frac{1}{\sin(3\pi/2)}=\frac{1}{-1}=-1$$
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$\csc\frac{11\pi}{2} = -1$$</div>
+          </div>
+        </div>
+
+        <!-- P27 -->
+        <div class="problem" id="p27">
+          <h2>Problem 27</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">Find the exact value of $\;\sin(-3\pi)$</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Use odd symmetry: $\sin(-\alpha)=-\sin(\alpha)$
+              </div>
+              <div class="step-body">$$\sin(-3\pi)=-\sin(3\pi)$$</div>
+            </div>
+            <div class="step">
+              <div class="step-title">
+                Step 2 — Reduce $3\pi$: $3\pi=2\pi+\pi \Rightarrow
+                \sin(3\pi)=\sin(\pi)=0$
+              </div>
+              <div class="step-body">$$-\sin(3\pi)=-0=0$$</div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">$$\sin(-3\pi) = 0$$</div>
+          </div>
+        </div>
+
+        <!-- P28 -->
+        <div class="problem" id="p28">
+          <h2>Problem 28</h2>
+          <span class="badge">Exact Value — Unit Circle</span>
+          <div class="given-label">Given</div>
+          <div class="given-box">
+            Find the exact value of $\;\cos\!\left(-\dfrac{3\pi}{2}\right)$
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-title">
+                Step 1 — Use even symmetry: $\cos(-\alpha)=\cos(\alpha)$
+              </div>
+              <div class="step-body">
+                $$\cos\!\left(-\frac{3\pi}{2}\right)=\cos\!\frac{3\pi}{2}$$
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-title">Step 2 — Unit-circle value</div>
+              <div class="step-body">
+                At $\theta=\dfrac{3\pi}{2}$: the point on the unit circle is
+                $(0,-1)$, so $\cos\!\dfrac{3\pi}{2}=0$.
+              </div>
+            </div>
+          </div>
+          <div class="answer-box">
+            <div class="answer-box-header">Final Answer</div>
+            <div class="answer-plain">
+              $$\cos\!\left(-\frac{3\pi}{2}\right) = 0$$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const btn = document.getElementById("menuBtn"),
+        overlay = document.getElementById("overlay"),
+        sidebar = document.getElementById("sidebar");
+      function toggle() {
+        document.body.classList.toggle("nav-open");
+      }
+      btn.addEventListener("click", toggle);
+      overlay.addEventListener("click", toggle);
+      sidebar.querySelectorAll('a[href^="#"]').forEach((a) =>
+        a.addEventListener("click", () => {
+          if (window.innerWidth <= 768) toggle();
+        }),
+      );
+    </script>
+  </body>
+</html>
